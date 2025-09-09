@@ -1,0 +1,17 @@
+---
+title: "0. FOREWARD"
+---
+
+Before delving into Atlantis we would like to provide a little bit of background on the modelling framework and this manual.
+
+Atlantis is just one of many marine ecosystem models, originally known as BM2 (BoxModel 2) it was christened Atlantis by Villy Christensen in South Africa in 2001. Marine ecosystem models have existed for more than 50 years, though they have only grown in popular use since the advent of (fast) modern computing power. They have grown from a biophysical focus to include more and more of the human dimensions. This is reflected in the structure of this manual, which sequentially works through the physical then biological before getting into the human dimensions. Atlantis was originally developed with an eye to temperate marine ecosystems and fisheries, though it has grown through time.
+
+This manual (and the wiki) is intended to help provide guidance on what is contained in each submodel in Atlantis, with explanation of assumptions and some pointers on parameterisation and calibration. While it is not an explicit step-by-step recipe book on how to build a model, it will hopefully help new users to understand the core requirements pf Atlantis, while providing a handy reference for more experienced users on particular variants or processes they may want to add in a specific instance. For those (rare beings) who chose to read the manual end-to-end there is some repetition as we wanted to make sure those who were flitting in and out would contact the important information pertinent to the topic, similarly there is cross referencing between sections where important information is in another section of the manual, That cross referencing is not just for completeness, it is because the processes are interlinked and if you are having a difficulty it may be because of something in those other components.
+
+Atlantis was never intended for anyone else's use, but was simply the ecological sandbox for me to explore my understanding of the marine world and how to represent it mathematically. It has been a huge shock to see it adopted by others and I remain deeply apologetic for how difficult it is to use (if I had ever known how it would be used I would likely have done things very differently). Atlantis remains a chimera of past decisions (often foist upon us by expediency or technological limitations) and current developments, as we address new questions. We will endeavour to keep the manual and associated wiki up to date as much as possible, but if you feel something is missing or unclear please let us know.
+
+Note that I have shifted from I to we, because Atlantis now represents a group effort and all those who have participated in its development (especially Bec) and the construction of the manual (in particular Asta) should know they have my gratitude and deep appreciation for how outstanding a group of intellectual power they represent. Similarly, the community of Atlantis users represents a welcoming and stimulating group of collaborators!
+
+For anyone new to Atlantis coming to grips with it is like climbing Olympus Mons. It is not for everyone (particularly as it is very data and time intensive!!). Much like when cooking a good stew, go lightly with the spice and concentrate on the hearty base constituents. Most of all try to relax and have fun.
+
+Beth (Somewhere over the Indian Ocean, June 2016).

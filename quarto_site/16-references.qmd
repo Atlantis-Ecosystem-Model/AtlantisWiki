@@ -1,0 +1,119 @@
+---
+title: "REFERENCES"
+---
+
+Abrams, Peter A. \"The Fallacies of\" Ratio‐Dependent\" Predation.\" Ecology 75, no. 6 (1994): 1842-1850.
+
+Ainsworth, C.H. and Walters, C.J. (2015) Ten common mistakes made in Ecopath with Ecosim modelling. Ecological Modelling 308, 14--17.
+
+Ainsworth, C.H., Morzaria-Luna, H., Kaplan, I.C., Levin, P.S., Fulton, E.A., Cudney-Bueno, R., Turk-Boyer, P., Torre, J., Danemann, G.D., and Pfister, T. 2012a. Effective ecosystem-based management must encourage regulatory compliance: A Gulf of California case study. Mar. Policy 36(6): 1275--1283.
+
+Ainsworth, C.H., Morzaria-Luna, H.N., Kaplan, I.C., Levin, P.S., and Fulton, E.A. 2012b. Full compliance with harvest regulations yields ecological benefits: Northern Gulf of California case study. J. Appl. Ecol. 49(1): 63--72.
+
+Ainsworth, C.H., Schirripa, M.J. and Morzaria Luna, H. (2015) An Atlantis Ecosystem Model for the Gulf of Mexico supporting Integrated Ecosystem Assessment. NOAA Technical Memorandum NMFS-SEFSC-676. Miami, USA.Available from http://dx.doi.org/10.7289/V5X63JVH \[accessed 21 December 2015\].
+
+Alin, S.R., Feely, R.A., Dickson, A., Hernandez-Ayon, J.M., Juranek, L.W., Ohman, M.D. and Goericke, R. (in revision) Robust empirical relationships for estimating the carbonate system in the southern California Current System using hydrographic data and application to CalCOFI hydrographic cruise data (2005--2011). Journal of Geophysical Research.
+
+Arditi, R., & Ginzburg, L. R. (1989). Coupling in predator-prey dynamics: ratio-dependence. Journal of theoretical biology, 139(3), 311-326.
+
+Audzijonyte, A., Kuparinen A., Gorton R., Fulton E.A. (2013) Ecological consequences of body size decline in harvested fish species: positive feedback loops in trophic interactions amplify human impact. Biology Letters, 9(2):1103
+
+Audzijonyte, A., Kuparinen, A., Fulton, E.A. (2014) Ecosystem effects of contemporary life-history changes are comparable to those of fishing. Marine Ecology Progress Series 495: 219-231
+
+Aydin, K., Gaichas, S., Ortiz, I., Kinzey, D. and Friday, N. (2007) A Comparison of the Bering Sea, Gulf of Alaska, and Aleutian Islands Large Marine Ecosystems Through Food Web Modeling.
+
+Behrenfeld, M.J. and Falkowski, P.G. (1997a) A consumer's guide to phytoplankton primary productivity models. Limnology and Oceanography 42, 1479--1491.
+
+Behrenfeld, M.J. and Falkowski, P.G. (1997b) Photosynthetic rates derived from satellite-based chlorophyll concentration. Limnology and oceanography 42, 1--20.
+
+Brand, E.J., Kaplan, I.C., Harvey, C.J., Levin, P.S., Fulton, E.A., Hermann, A.J. and Field, J.C. (2007) A Spatially Explicit Ecosystem Model of the California Current's Food Web and Oceanography. NOAA Technical Memorandum NMFS-NWFSC-84.
+
+Brassington, G.G., Pugh, T., Spillman, C., Schulz, E., Beggs, H., Schiller, A. and Oke, P.R. (2007) BLUElink\> Development of operational oceanography and servicing in Australia. Journal of Research and Practice in Information Technology 39, 151--164.
+
+Chassignet, E.P., Hurlburt, H.E., Smedstad, O.M., Halliwell, G.R., Hogan, P.J., Wallcraft, A.J. and Bleck, R. (2006) Ocean prediction with the hybrid coordinate ocean model (HYCOM). Springer.
+
+Christensen, V., and Walters, C.J. 2004. Ecopath with Ecosim: methods, capabilities and limitations. Ecol. Model. 172(2-4): 109--139.
+
+Essington, T.E. and Plagányi, É.E. (2013). \"Pitfalls and guidelines for "recycling" models for ecosystem-based fisheries management: evaluating model suitability for forage fish fisheries.\" ICES Journal of Marine Science 71: 118--127.
+
+Fiechter, J., Rose, K.A., Curchitser, E.N. and Hedstrom, K.S. (2014) The role of environmental controls in determining sardine and anchovy population cycles in the California Current: Analysis of an end-to-end model. Progress in Oceanography.
+
+Fulton, E.A., M. Fuller, A.D.M. Smith, and A.E. Punt. 2004a. Ecological Indicators of the Ecosystem Effects of Fishing: Final Report. Australian Fisheries Management Authority Report, R99/1546.
+
+Fulton, E.A., A.D.M. Smith and C.R. Johnson. 2004b. Effects of spatial resolution on the performance and interpretation of marine ecosystem models. Ecological Modelling 176: 27 -- 42.
+
+Fulton E.A,. J.S. Parslow, A.D.M. Smith and C.R. Johnson. 2004c. Biogeochemical Marine Ecosystem Models II: The Effect of Physiological Detail on Model Performance. Ecological Modelling, 173: 371-406.
+
+Fulton, E., Smith, A. and Punt, A. (2005) Which ecological indicators can robustly detect effects of fishing? ICES Journal of Marine Science 62, 540--551.
+
+Fulton, E.A., Smith, A.D.M. and Smith, D.C. (2007) Alternative management strategies for southeast Australian Commonwealth Fisheries: stage 2: quantitative management strategy evaluation. Australian Fisheries Management Authority Report.
+
+Fulton, E.A., Link, J.S., Kaplan, I.C., et al. (2011) Lessons in modelling and management of marine ecosystems: the Atlantis experience. Fish and Fisheries 12, 171--188.
+
+Fulton, E.A., Smith, A.D.M., Smith, D.C. and Johnson, P. (2014) An Integrated Approach Is Needed for Ecosystem Based Fisheries Management: Insights from Ecosystem-Level Management Strategy Evaluation. PLoS ONE 9, e84242.
+
+Gray, R., Fulton, E.A., Little, L.R., Scott, R., 2006. Operating Model Specification Within an Agent Based Framework. North West Shelf Joint Environmental Management Study Technical Report, vol 16. CSIRO, Hobart, Tasmania. 127pp.
+
+Griffith, G.P., Fulton, E.A. and Richardson, A.J. (2011) Effects of fishing and acidification-related benthic mortality on the southeast Australian marine ecosystem. Global Change Biology 17, 3058--307.
+
+Griffith, G.P., Fulton, E.A., Gorton, R., and Richardson, A.J. 2012. Predicting Interactions among Fishing, Ocean Warming, and Ocean Acidification in a Marine System with Whole-Ecosystem Models. Conserv. Biol. 26(6): 1145--1152.
+
+Haidvogel, D., Arango, H., Budgell, W., et al. (2008) Ocean forecasting in terrain-following coordinates: Formulation and skill assessment of the Regional Ocean Modeling System. Journal of Computational Physics 227, 3595--3624.
+
+Horne, P.J., Kaplan, I.C., Marshall, K.N., Levin, P.S., Harvey, C.J., Hermann, A.J., and Fulton, E.A. 2010. Design and parameterization of a spatially explicit ecosystem model of the central California Current.
+
+Hunsicker, Mary E., et al. \"Functional responses and scaling in predator--prey interactions of marine fishes: contemporary issues and emerging concepts.\" Ecology Letters 14.12 (2011): 1288-1299.
+
+Ihde, T. F., I. C. Kaplan, E. A. Fulton, I. A. Gray, M. Hasan, D. Bruce, W. Slacum, and H. M. Townsend. 2016. Design and parameterization of the Chesapeake Bay Atlantis Model: A spatially explicit end-to-end ecosystem model. U.S. Dept. of Commer., NOAA. NOAA Technical Memorandum NMFS-F/SPO-166, 145 p.
+
+Johnson, P., Fulton, E., Smith, D. C., Jenkins, G. P., & Barrett, N. (2011). The use of telescoping spatial scales to capture inshore to slope dynamics in marine ecosystem modeling. Natural Resource Modeling, 24(3), 335-364.
+
+Juranek, L.W., Feely, R.A., Peterson, W.T., et al. (2009) A novel method for determination of aragonite saturation state on the continental shelf of central Oregon using multi-parameter relationships with hydrographic data. Geophysical Research Letters 36.
+
+Kaplan, I.C., Levin, P.S., Burden, M. and Fulton, E.A. (2010) Fishing catch shares in the face of global change: a framework for integrating cumulative impacts and single species management. Canadian Journal of Fisheries and Aquatic Sciences 67, 1968--1982.
+
+Kaplan, I.C., Horne, P.J., and Levin, P.S. 2012. Screening California Current Fishery Management Scenarios using the Atlantis End-to-End Ecosystem Model. Prog. Oceanogr. 102: 5--18.
+
+Kaplan, I.C., Holland, D.S., and Fulton, E.A. 2014. Finding the accelerator and brake in an individual quota fishery: linking ecology, economics, and fleet dynamics of US West Coast trawl fisheries. ICES J. Mar. Sci. J. Cons. 71(2): 308--319.
+
+Kroeker, K.J., Kordas, R.L., Crim, R., et al. (2013) Impacts of ocean acidification on marine organisms: quantifying sensitivities and interaction with warming. Global change biology.
+
+Lehodey, P., Senina, I., and Murtugudde, R. 2008. A spatial ecosystem and populations dynamics model (SEAPODYM) -- Modeling of tuna and tuna-like populations. Prog. Oceanogr. 78(4): 304--318. doi:10.1016/j.pocean.2008.06.004.
+
+Link, J.S. (2010) Adding rigor to ecological network models by evaluating a set of pre-balance diagnostics: a plea for PREBAL. Ecological Modelling 221, 1580--1591.
+
+Link, J.S., Fulton, E.A. and Gamble, R.J. (2010) The northeast US application of ATLANTIS: A full system model exploring marine ecosystem dynamics in a living marine resource management context. Progress In Oceanography 87, 214--234.
+
+Methot Jr., R.D., and Wetzel, C.R. 2013. Stock synthesis: A biological and statistical framework for fish stock assessment and fishery management. Fish. Res. 142: 86--99. doi:10.1016/j.fishres.2012.10.012.
+
+Morato, T., E.A. Fulton and T. Pitcher. In press. Approaches to the modelling of seamounts and their fisheries. In, Seamounts, Ecology, Fisheries and Conservation. Fish and Aquatic Resources Series (FAR), Blackwell Publishing, Oxford.
+
+Nihoul, J.C.J. and S. Djenidi, 1998. Chapter 18: Coupled physical, chemical and biological models. In: K.H. Brink and A.R. Robinson (eds), The Sea. John Wiley & Sons Inc: New York, London.
+
+Persson, L., Van Leeuwen, A., & De Roos, A. M. (2014). The ecological foundation for ecosystem-based management of fisheries: mechanistic linkages between the individual-, population-, and community-level dynamics. ICES Journal of Marine Science: Journal du Conseil, fst231.
+
+Rose, K., Allen, J.I., Artioli, Y., et al. (2010) End-To-End Models for the Analysis of Marine Ecosystems: Challenges, Issues, and Next Steps. Marine and Coastal Fisheries: Dynamics, Management, and Ecosystem Science 2, 115--130.
+
+Rose, K.A., Fiechter, J., Curchitser, E.N., et al. (2015) Demonstration of a fully-coupled end-to-end model for small pelagic fish using sardine and anchovy in the California Current. Progress in Oceanography.
+
+Sainsbury, K.J., A.E. Punt A.E. and A.D.M. Smith. 2000. Design of operational management strategies for achieving fishery ecosystem objectives. ICES Journal of Marine Science, 57: 731--741
+
+Savina, M., Condie, S.A., and Fulton, E.A. 2013. The role of pre-existing disturbances in the effect of marine reserves on coastal ecosystems: A modelling approach. PloS One 8(4): e61207.
+
+Shchepetkin, A.F. and McWilliams, J.C. (2005) The regional oceanic modeling system (ROMS): a split-explicit, free-surface, topography-following-coordinate oceanic model. Ocean Modelling 9, 347--404.
+
+Shin, Y.-J., and Cury, P. 2004. Using an individual-based model of fish assemblages to study the response of size spectra to changes in fishing. Can. J. Fish. Aquat. Sci. 61(3): 414--431. doi:10.1139/f03-154.
+
+Smith, D.C., Johnson, P. and Fulton, E.A. (2010) Developing integrated performance measures for spatial management of marine systems. Fisheries Research and Development Corporation Report
+
+Uitz, J., Huot, Y., Bruyant, F., Babin, M. and Claustre, H. (2008) Relating phytoplankton photophysiological properties to community structure on large scales. Limnology and Oceanography 53, 614--630.
+
+Uitz, J., Claustre, H., Gentili, B. and Stramski, D. (2010) Phytoplankton class-specific primary production in the world's oceans: Seasonal and interannual variability from satellite observations: PHYTOPLANKTON CLASS-SPECIFIC PRODUCTION. Global Biogeochemical Cycles 24, n/a--n/a.
+
+Walters, C., Pauly, D., & Christensen, V. (1999). Ecospace: prediction of mesoscale spatial patterns in trophic relationships of exploited ecosystems, with emphasis on the impacts of marine protected areas. Ecosystems, 2(6), 539-554.
+
+Walters, Carl, and James F. Kitchell. \"Cultivation/depensation effects on juvenile survival and recruitment: implications for the theory of fishing.\" Canadian Journal of Fisheries and Aquatic Sciences 58, no. 1 (2001): 39-50.
+
+Weijerman, M., Fulton, E.A., Kaplan, I.C., Gorton, R., Leemans, R., Mooij, W.M., and Brainard, R.E. 2015. An integrated coral reef ecosystem model to support resource management under a changing climate. PloS One 10(12): e0144165.
+
+Wittmann, A.C. and Pörtner, H.-O. (2013) Sensitivities of extant animal taxa to ocean acidification. Nature Climate Change 3, 995--1001.
