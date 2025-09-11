@@ -8,11 +8,11 @@ Before launching into what Atlantis is and what it assumes it is important to ex
 
 This manual is intended for Atlantis beginners who have some experience with modelling, running programs in command line (yes, this is how to run Atlantis!), and writing or using C or R scripts for analysing the outputs. While we have provided some information useful during model construction, this is not a comprehensive step-by-step recipe book on how to create a new model from scratch. We assume in many sections that you already have a somewhat operational Atlantis model that you want to use. The manual will also be useful for experienced users, because even experienced users often focus on the area of their interest and may not be thoroughly familiar with other aspects of the modelling tool. Finally, the manual will aim to provide starting points for developers of new Atlantis applications, but you will have to venture out and learn a lot more than what is covered in the manual.
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **NOTE!**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| As at the time of writing this manual (2016), two versions of Atlantis code are available for to the community[^1]. The main version is called *trunk*, which is the usual way programmers refer to the main line of the code development. It was released in January 2015 and it includes all the latest developments and updates, and should be used for all new model applications. **This manual, with some rare exceptions, will apply to the *trunk* version only.** The old version *bec_dev* is no longer being actively extended and is intended for users who have been using Atlantis for a while and are unable to switch for whatever reason. |
-+============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
+::: {.callout-caution}
+## NOTE!
+
+As at the time of writing this manual (2016), two versions of Atlantis code are available for to the community^[There is also Beth’s development version, that contains features being actively developed at any instant in time. As those features are tested and verified (and so are less likely to contain a bug that will blow up) they are moved to the trunk version for general access.]. The main version is called *trunk*, which is the usual way programmers refer to the main line of the code development. It was released in January 2015 and it includes all the latest developments and updates, and should be used for all new model applications. **This manual, with some rare exceptions, will apply to the *trunk* version only.** The old version *bec_dev* is no longer being actively extended and is intended for users who have been using Atlantis for a while and are unable to switch for whatever reason.
+:::
 
 Atlantis is a rapidly developing tool. There are three main resources to keep up with updates:
 
@@ -22,35 +22,39 @@ Atlantis is a rapidly developing tool. There are three main resources to keep up
 
 3\. [The code itself!](https://confluence.csiro.au/display/Atlantis/Getting+the+source+code) The code is commented and is the best way to understand how different processes are implemented. (We know that may sound confronting and challenging to those less used to code, but doing a word search on the code and looking at what it does is really how Beth and Bec go about answering any questions you ask them... even they don't keep it all in their heads!)
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Some important references for further information on model details and equations (see Atlantis wiki page on [useful reading](https://confluence.csiro.au/display/Atlantis/Useful+Reading))**                                                                        |
-|                                                                                                                                                                                                                                                                       |
-| **Models used as a basis for the physical and biology processes in Atlantis**                                                                                                                                                                                         |
-|                                                                                                                                                                                                                                                                       |
-| 1\) Murray AG, Parslow JS (1999). The analysis of alternative formulations in a simple model of a coastal ecosystem. Ecological Modelling, 119, 149-166.                                                                                                              |
-|                                                                                                                                                                                                                                                                       |
-| 2\) Murray AG, Parslow JS (1997). Port Phillip Bay Integrated Model: Final Report. Technical Report No.44, CSIRO Environmental Projects Office Canberra, ACT, Australia                                                                                               |
-|                                                                                                                                                                                                                                                                       |
-| 3\) Ebenhöh W, Kohlmeier C, Radford P J (1995). The benthic biological submodel in the European regional seas ecosystem model. Netherlands Journal of Sea Research, 33, 423-452.                                                                                      |
-|                                                                                                                                                                                                                                                                       |
-| **Publications explaining which processes from the models above are used in Atlantis (initially called IGBEM and BM2).**                                                                                                                                              |
-|                                                                                                                                                                                                                                                                       |
-| **READING THESE TWO PUBLICATIONS IS ESSENTIAL FOR ANY ATLANTIS USER!**                                                                                                                                                                                                |
-|                                                                                                                                                                                                                                                                       |
-| 4\) Fulton EA, Smith AD, Johnson CR (2004a). Biogeochemical marine ecosystem models I: IGBEM---a model of marine bay ecosystems. Ecological Modelling, 174, 267-307.                                                                                                  |
-|                                                                                                                                                                                                                                                                       |
-| 5\) Fulton EA, Parslow JS, Smith AD, Johnson CR (2004b) Biogeochemical marine ecosystem models II: the effect of physiological detail on model performance. Ecological Modelling, 173, 371--406                                                                       |
-|                                                                                                                                                                                                                                                                       |
-| **Other Atlantis (or Atlantis related) reports** **and publications**                                                                                                                                                                                                 |
-|                                                                                                                                                                                                                                                                       |
-| 6\) Fulton EA (2001) The Effects of Model Structure and Complexity on the Behavior and Performance of Marine Ecosystem Models. PhD Dissertation University of Tasmania                                                                                                |
-|                                                                                                                                                                                                                                                                       |
-| 7\) Fulton EA, Smith AD, Johnson CR (2003). Mortality and predation in ecosystem models: is it important how these are expressed? Ecological Modelling, 169, 157-178                                                                                                  |
-|                                                                                                                                                                                                                                                                       |
-| 8\) Fulton EA, Smith ADM, Smith DC (2007) Alternative management strategies for Southeast Australian Commonwealth fisheries. AFMA, FRDC                                                                                                                               |
-|                                                                                                                                                                                                                                                                       |
-| 9\) Link JS, Gamble RJ, Fulton EA (2011) NEUS---Atlantis: construction, calibration, and application of an ecosystem model with ecological interactions, physiographic conditions and fleet behavior. US Dept. Comm. NOAA Technical Memorandum NMFS-NEFSC-218. 249pp. |
-+=======================================================================================================================================================================================================================================================================+
+::: {.callout-note}
+## Important References for Atlantis Model
+
+For further information on model details and equations, see the Atlantis wiki page on [useful reading](https://confluence.csiro.au/display/Atlantis/Useful+Reading).
+
+#### Models Used as Basis for Physical and Biology Processes in Atlantis
+
+1. Murray AG, Parslow JS (1999). The analysis of alternative formulations in a simple model of a coastal ecosystem. *Ecological Modelling*, 119, 149-166.
+
+2. Murray AG, Parslow JS (1997). Port Phillip Bay Integrated Model: Final Report. Technical Report No.44, CSIRO Environmental Projects Office Canberra, ACT, Australia.
+
+3. Ebenhöh W, Kohlmeier C, Radford P J (1995). The benthic biological submodel in the European regional seas ecosystem model. *Netherlands Journal of Sea Research*, 33, 423-452.
+
+#### Publications Explaining Processes Used in Atlantis
+
+**Initially called IGBEM and BM2**
+
+**⚠️ READING THESE TWO PUBLICATIONS IS ESSENTIAL FOR ANY ATLANTIS USER!**
+
+4. Fulton EA, Smith AD, Johnson CR (2004a). Biogeochemical marine ecosystem models I: IGBEM---a model of marine bay ecosystems. *Ecological Modelling*, 174, 267-307.
+
+5. Fulton EA, Parslow JS, Smith AD, Johnson CR (2004b) Biogeochemical marine ecosystem models II: the effect of physiological detail on model performance. *Ecological Modelling*, 173, 371-406.
+
+#### Other Atlantis Reports and Publications
+
+6. Fulton EA (2001) The Effects of Model Structure and Complexity on the Behavior and Performance of Marine Ecosystem Models. PhD Dissertation University of Tasmania.
+
+7. Fulton EA, Smith AD, Johnson CR (2003). Mortality and predation in ecosystem models: is it important how these are expressed? *Ecological Modelling*, 169, 157-178.
+
+8. Fulton EA, Smith ADM, Smith DC (2007) Alternative management strategies for Southeast Australian Commonwealth fisheries. AFMA, FRDC.
+
+9. Link JS, Gamble RJ, Fulton EA (2011) NEUS---Atlantis: construction, calibration, and application of an ecosystem model with ecological interactions, physiographic conditions and fleet behavior. US Dept. Comm. NOAA Technical Memorandum NMFS-NEFSC-218. 249pp.
+:::
 
 ## **1.2. Terms and conventions used in the manual**
 
@@ -82,11 +86,9 @@ Atlantis is a whole-of-system 3D spatially-explicit marine ecosystem modelling f
 
 The model explicitly tracks the flow of nutrients through the trophic levels, typically using nitrogen as the "common currency" (carbon and phosphorous may also be used). At the core of Atlantis is a deterministic biophysical submodel that is spatially-resolved in three dimensions using a map made up of user defined boxes (polygons) and slab-like depth layers. The model geometry is flexible and should be matched to the major geographical and bioregional features of the simulated marine system. The oceanographic processes, such as water fluxes, salinity and temperature conditions are forced, typically based on outputs from oceanographic models (although they can be read in from observation data or calculated endogenously within Atlantis). Together with the optional forcing of nutrient inputs, these oceanographic processes drive deterministic primary production. The main ecological processes considered are ***production, consumption and predation, waste production and cycling, migration, reproduction and recruitment, habitat dependency and mortality.*** Biological functional groups include habitat-forming species like kelp, corals and sponges, as well as other benthic invertebrates, vertebrates, phytoplankton, zooplankton, refractory and labile detritus, and carrion. Predation is based on a prey availability matrix (similar in concept to the vulnerabilities used in the feeding arena theory, Walters and Kitchell 2001) with the final realised diet modified by the predators' gape limitations and feeding rates, spatiotemporal co-occurrences, the state of habitat refugia (for habitat dependent species) and in some instances nutritional quality and spawning status. Lower trophic levels are treated as biomass pools, whereas some key invertebrates and all vertebrates are represented as age groups. All individuals within an age group are considered identical and their conditions are tracked through energy allocation to structural and reserve nitrogen. The biological components are replicated in each layer of each of the polygons. Movement of organisms between the polygons is simulated by advective transfer for plankton and optional active migration for macrofauna.
 
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+::: {.callout-note}
   Atlantis is a strategic, exploratory tool for investigating ecological processes, management policies, and broad consequences of alternative scenarios. It is not intended to replace traditional tactical models, such as annually updated stock assessments used to set fisheries quotas.
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+:::
 
 Atlantis has very flexible Harvest and Economics submodels that allow the user to set a large number of alternative harvest scenarios. A limited set of simple representations of other marine sectors (shipping, aquaculture, tourism, mining, energy generation and coastal land uses) can also be used. Pollution, coastal development, run-off and broad-scale environmental change can also be represented using forcing time series. The human use and impacts submodels are optional, which means that simulations can be run without any explicit exploitation or human impact.
 
@@ -118,357 +120,33 @@ Most Atlantis development and applications have centred on evaluating alternativ
 
 More recently Atlantis has been used to consider the impacts of marine and coastal industries other than fishing.
 
-[]{#_Toc446445862 .anchor}Figure 1. Some existing applications of Atlantis modelling framework and specific model domains (see Table 1 for details on numbered models).
+[]{#_Toc446445862 .anchor}**Figure 1.** Some existing applications of Atlantis modelling framework and specific model domains (see Table 1 for details on numbered models).
 
-[]{#_Toc526762753 .anchor}Table 1. Examples of Atlantis model applications and their main purposes: P = primary use of the model, S = secondary use, E = exploratory use beginning (modified after Fulton et al. 2011). Some of the model descriptions are included in the [useful reading](https://confluence.csiro.au/display/Atlantis/Useful+Reading) page on the wiki. An updated list of models under development is also available on Atlantis [webpage](http://atlantis.cmar.csiro.au/)
+[]{#_Toc526762753 .anchor}**Table 1.** Examples of Atlantis model applications and their main purposes: P = primary use of the model, S = secondary use, E = exploratory use beginning (modified after Fulton et al. 2011). Some of the model descriptions are included in the [useful reading](https://confluence.csiro.au/display/Atlantis/Useful+Reading) page on the wiki. An updated list of models under development is also available on Atlantis [webpage](http://atlantis.cmar.csiro.au/)
 
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 5%" />
-<col style="width: 19%" />
-</colgroup>
-<tbody>
-<tr>
-<td>System</td>
-<td style="text-align: center;"><blockquote>
-<p>Complexity</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>Understanding</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>System-level MSE</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>Fisheries</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>Nutrients</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>Mining</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>Climate impacts</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>Catchments</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>Indicators</p>
-</blockquote></td>
-<td style="text-align: center;"><blockquote>
-<p>Management</p>
-</blockquote></td>
-<td>Reference</td>
-</tr>
-<tr>
-<td><em>Australia</em></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td></td>
-</tr>
-<tr>
-<td><blockquote>
-<p>1. SE Australia</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td>Fulton et al 2007</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>2. Victoria/Tasmania</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td>Smith et al. 2010</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>3. Port Phillip Bay</p>
-</blockquote></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td>Fulton et al 2004b</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>4. Westernport</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td>Savina et al 2005</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>5. E Tasmania</p>
-</blockquote></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">E</td>
-<td>Johnson et al 2008</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>6. Tasmania</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td>-</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>7. Derwent-Huon</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">E</td>
-<td>Savina 2009</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>8. New South Wales</p>
-</blockquote></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td>Savina et al 2008</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>9. Clarence River</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">E</td>
-<td>Hayes et al 2007</td>
-</tr>
-<tr>
-<td><em>North America</em></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td></td>
-</tr>
-<tr>
-<td><blockquote>
-<p>10. NE USA</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;">P</td>
-<td>Link et al 2010</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>11. California Current</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;">P</td>
-<td>Brand et al 2007</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>12. Central California</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td>Horne et al. 2010</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>13. Chesapeake Bay</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td>Ihde et al. 2016</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>14. Gulf of California</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;">E</td>
-<td style="text-align: center;">P</td>
-<td>Ainsworth et al. 2012b</td>
-</tr>
-<tr>
-<td><blockquote>
-<p>15. Gulf of Mexico</p>
-<p>16. Campeche Bay</p>
-<p>17. Desoto Bay</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"><p>P</p>
-<p>P</p>
-<p>P</p></td>
-<td style="text-align: center;"><p>P</p>
-<p>P</p></td>
-<td style="text-align: center;"><p>P</p>
-<p>P</p>
-<p>P</p></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;"><p>P</p>
-<p>P</p></td>
-<td><p>Ainsworth et al. 2015</p>
-<p>Ortega-Ortiz and Ainsworth in prep.</p>
-<p>Gosnell S., unpubl.</p></td>
-</tr>
-<tr>
-<td><p><em>Other areas</em></p>
-<blockquote>
-<p>18. Guam</p>
-</blockquote></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">P</td>
-<td style="text-align: center;">S</td>
-<td style="text-align: center;">P</td>
-<td>Weijerman et al 2015</td>
-</tr>
-</tbody>
-</table>
+| System | Complexity | Understanding | System-level MSE | Fisheries | Nutrients | Mining | Climate impacts | Catchments | Indicators | Management | Reference |
+|--------|------------|---------------|------------------|-----------|-----------|--------|-----------------|------------|------------|------------|-----------|
+| *Australia* | | | | | | | | | | | |
+| 1. SE Australia | | P | P | P | | | S | | P | P | Fulton et al 2007 |
+| 2. Victoria/Tasmania | | P | | S | S | | S | | P | P | Smith et al. 2010 |
+| 3. Port Phillip Bay | P | | | S | S | | | | P | | Fulton et al 2004b |
+| 4. Westernport | | P | | | P | | | P | | | Savina et al 2005 |
+| 5. E Tasmania | P | P | | S | | | E | | | E | Johnson et al 2008 |
+| 6. Tasmania | | P | | P | | | | | | S | - |
+| 7. Derwent-Huon | | P | E | E | E | | E | E | | E | Savina 2009 |
+| 8. New South Wales | P | P | | P | | S | | | | S | Savina et al 2008 |
+| 9. Clarence River | | P | | E | E | | E | P | P | E | Hayes et al 2007 |
+| *North America* | | | | | | | | | | | |
+| 10. NE USA | | P | P | P | | | | | S | P | Link et al 2010 |
+| 11. California Current | | P | P | P | | | S | | S | P | Brand et al 2007 |
+| 12. Central California | | P | | S | | | | | | P | Horne et al. 2010 |
+| 13. Chesapeake Bay | | P | | P | P | | S | | | P | Ihde et al. 2016 |
+| 14. Gulf of California | | P | P | P | S | | E | E | E | P | Ainsworth et al. 2012b |
+| 15. Gulf of Mexico | | P | P | P | S | | | | S | P | Ainsworth et al. 2015 |
+| 16. Campeche Bay | | P | P | P | | | | | | P | Ortega-Ortiz and Ainsworth in prep. |
+| 17. Desoto Bay | | P | | P | | | | | | | Gosnell S., unpubl. |
+| *Other areas* | | | | | | | | | | | |
+| 18. Guam | | P | | P | P | | P | P | S | P | Weijerman et al 2015 |
 
 The greatest challenge in implementing an Atlantis model is evaluating uncertainty of parameters and model forecasts. Traditional sensitivity analyses are not possible in models as complex as Atlantis, and therefore parameter uncertainty must be assessed in other ways. New means of achieving this are under development, but historically it has been done using 'bounded parameterisation', where extreme sets of parameters still giving realistic biomasses are used to explore sensitivity. For further discussion on evaluating uncertainty in Atlantis, see chapter 3.2 and 6.1 in Fulton et al. 2007. To read about uncertainty in ecosystem models in general see Link et al. 2012.
 
@@ -476,63 +154,18 @@ For this reason Atlantis is well suited for broader scale exploratory analyses, 
 
 Atlantis is not a simple model to implement and even the simplest parameterisation will take many months to a year or more to implement and calibrate. Most models developed from scratch should be considered a close to full time effort for 1-2 years. Including an elaboration of the human dimensions can increase this by a further 6-12 months. Without this level of effort model development can drag on for many years. Once developed however individual simulations can be done quite quickly (on the order of hours to days) so that many questions can be addressed rapidly. The investment in individual models means that re-use of a model for multiple questions make sense, as the models often represent a synthesis of broad system understanding, but care must be taken to make sure this re-use is appropriate. Put thought into whether the model structure captures the correct features, whether the parametrisation decisions still hold. In short go through the model design steps as if you were starting a new and check that the existing model holds up against these needs -- that it is a suitable model. For those who would like more guidance on the re-use of ecosystem models please refer to Essington and Plagányi (2013).
 
-[]{#_Toc526762754 .anchor}Table 2. Some example findings from Atlantis applications (modified after Fulton et al. 2011)
+[]{#_Toc526762754 .anchor}**Table 2**. Some example findings from Atlantis applications (modified after Fulton et al. 2011)
 
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Model**                        | **Findings**                                                                                                                                                                                                                                |
-+==================================+=============================================================================================================================================================================================================================================+
-| SE Australia                     | \- Human behavioural uncertainty produces unanticipated outcomes of management decisions and are important to future adaptive capacity                                                                                                      |
-|                                  |                                                                                                                                                                                                                                             |
-| (SE model)                       | \- If companion TACs are implemented this leads to the ecological decline of weak stocks or significant economic costs (e.g. 75% of the catch foregone)                                                                                     |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Relative biomass indicators, ratios of biomass (e.g. pelagic:demersal), size structure and size at maturity are consistently the most robust indicators of the effects of fishing (at fine or very large scales)                         |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Decline in fish body size can greatly increase predation mortality through positive feedback loops in predator-prey age structure. This can prevent complete recovery from fishing, leading to a new and often lower equilibrium biomass |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Small pelagic fish (like sardines) play a much less important role in temperate Australian ecosystems than in classical upwelling systems                                                                                                |
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Victoria/                        | \- Relative biomass indicators are consistently the most robust indicators of the performance of spatial management (though their performance can be weak at regional scales due to noisy data resulting from overlapping process scales)   |
-|                                  |                                                                                                                                                                                                                                             |
-| Tasmania                         | \- Universal fisheries reference points are unlikely to work                                                                                                                                                                                |
-|                                  |                                                                                                                                                                                                                                             |
-| (SM model)                       | \- Some indicators are only effective at small or very large scales due to how species are aggregated and distributed                                                                                                                       |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Monitoring design is critical for long-term interpretation of time series                                                                                                                                                                |
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Eastern Tasmania                 | \- off Tasmania there appears to be minor effects of fishing squids, but large impacts of targeting myctophids, suggesting a wasp waist system                                                                                              |
-|                                  |                                                                                                                                                                                                                                             |
-| (SETas model)                    |                                                                                                                                                                                                                                             |
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| New South Wales                  | \- The size of no-take marine protected areas can be important for their ultimate success, but the redistribution of the catch and effort outside the closed areas is even more important                                                   |
-|                                  |                                                                                                                                                                                                                                             |
-| (NSW model)                      | \- Not all species benefit from spatial management (e.g. prey species do not)                                                                                                                                                               |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Moderate levels of fishing pressure can lead to an increase in biodiversity                                                                                                                                                              |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- The explicit representation of ontogeny can be important for correctly representing the dynamics of marine species that show large spatial or habitat shifts with age                                                                    |
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| NE United States (NEUS model)    | \- Despite their complexity, clear patterns are detectable in large complicated biophysical systems (making calibrated predictions feasible)                                                                                                |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Modelling squid and shrimp is extremely difficult (a finding recurring in many ecosystem models), but should be attempted as it can lead to new system understanding                                                                     |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Modelling ecology is much simpler than modelling a coupled ecological-anthropogenic system                                                                                                                                               |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Well calibrated models have high model skill, but typically only for those system components informed by data                                                                                                                            |
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| California Current (EMOCC model) | \- Catch shares are more economically efficient, even if catch levels remain unchanged                                                                                                                                                      |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Monitoring and enforcement is critically important for fisheries management and guidance of fleet behaviour                                                                                                                              |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Ocean acidification is likely to lead to the reduction in biomass of predators dependent on shelled invertebrate prey; in contrast other species (e.g. jellyfish) are likely to increase in biomass                                      |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Ratios of functional group biomass (e.g. piscivore : planktivore) are strong indications of community restructuring under fishing                                                                                                        |
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Central California (ECCAL model) | \- Fleets are differentially effected by changes in management rules or environmental conditions (some suffer significant economic declines while others see substantial increases)                                                         |
-|                                  |                                                                                                                                                                                                                                             |
-|                                  | \- Shifting gears to minimise bycatch and habitat destruction does not restore age structures, but spatial closures can                                                                                                                     |
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Gulf of California (GOC model)   | \- Reported catch values are insufficient to cause observed declines in species biomasses (by 3-5 times for most species)                                                                                                                   |
-+----------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Model | Findings |
+|-------|----------|
+| **SE Australia** (SE model) | • Human behavioural uncertainty produces unanticipated outcomes of management decisions and are important to future adaptive capacity<br>• If companion TACs are implemented this leads to the ecological decline of weak stocks or significant economic costs (e.g. 75% of the catch foregone)<br>• Relative biomass indicators, ratios of biomass (e.g. pelagic:demersal), size structure and size at maturity are consistently the most robust indicators of the effects of fishing (at fine or very large scales)<br>• Decline in fish body size can greatly increase predation mortality through positive feedback loops in predator-prey age structure. This can prevent complete recovery from fishing, leading to a new and often lower equilibrium biomass<br>• Small pelagic fish (like sardines) play a much less important role in temperate Australian ecosystems than in classical upwelling systems |
+| **Victoria/Tasmania** (SM model) | • Relative biomass indicators are consistently the most robust indicators of the performance of spatial management (though their performance can be weak at regional scales due to noisy data resulting from overlapping process scales)<br>• Universal fisheries reference points are unlikely to work<br>• Some indicators are only effective at small or very large scales due to how species are aggregated and distributed<br>• Monitoring design is critical for long-term interpretation of time series |
+| **Eastern Tasmania** (SETas model) | • Off Tasmania there appears to be minor effects of fishing squids, but large impacts of targeting myctophids, suggesting a wasp waist system |
+| **New South Wales** (NSW model) | • The size of no-take marine protected areas can be important for their ultimate success, but the redistribution of the catch and effort outside the closed areas is even more important<br>• Not all species benefit from spatial management (e.g. prey species do not)<br>• Moderate levels of fishing pressure can lead to an increase in biodiversity<br>• The explicit representation of ontogeny can be important for correctly representing the dynamics of marine species that show large spatial or habitat shifts with age |
+| **NE United States** (NEUS model) | • Despite their complexity, clear patterns are detectable in large complicated biophysical systems (making calibrated predictions feasible)<br>• Modelling squid and shrimp is extremely difficult (a finding recurring in many ecosystem models), but should be attempted as it can lead to new system understanding<br>• Modelling ecology is much simpler than modelling a coupled ecological-anthropogenic system<br>• Well calibrated models have high model skill, but typically only for those system components informed by data |
+| **California Current** (EMOCC model) | • Catch shares are more economically efficient, even if catch levels remain unchanged<br>• Monitoring and enforcement is critically important for fisheries management and guidance of fleet behaviour<br>• Ocean acidification is likely to lead to the reduction in biomass of predators dependent on shelled invertebrate prey; in contrast other species (e.g. jellyfish) are likely to increase in biomass<br>• Ratios of functional group biomass (e.g. piscivore : planktivore) are strong indications of community restructuring under fishing |
+| **Central California** (ECCAL model) | • Fleets are differentially effected by changes in management rules or environmental conditions (some suffer significant economic declines while others see substantial increases)<br>• Shifting gears to minimise bycatch and habitat destruction does not restore age structures, but spatial closures can |
+| **Gulf of California** (GOC model) | • Reported catch values are insufficient to cause observed declines in species biomasses (by 3-5 times for most species) |
 
 ## **1.5. How does Atlantis compare to other marine ecosystem models?**
 
@@ -544,7 +177,7 @@ The key characteristics of Atlantis is that it is 1) whole-of-system, 2) spatial
 
 3\) Atlantis includes two means of representing species -- biomass pools (similar to those in EwE, these pools can include a small number of life-stage stanzas) and fully age-structured, where the average size-at-age of a typical individual is tracked along with the membership of that age group. Typically, biomass pools are used for invertebrate groups and age-structured for vertebrates, but that is not a strict requirement. The representation used for a species is dictated by the modeller in the .csv file used to define the configuration of the model groups. The realised growth and size of species represented through age-structured groups is dynamically dependent on food intake, whereas feeding interactions and reproductive output depends on the realised size and condition. This flexible age-size relationship adds temporal variation in size-at-age, essential for capturing important ecosystem dynamics and useful for exploring the ecological and fisheries consequences of changes in individual size and life-histories (Audzijonyte et al. 2013, 2014). The combination of spatial structure and temporal age-size dynamics means that Atlantis can produce realistic ecosystem dynamics both temporally and spatially and a lot of attention has been given to developing the models ability to capture age-size dependencies, temporal, habitat and spatial variation (Fulton et al., 2004c). The Atlantis users are therefore encouraged to make full use of these aspects. Alternatively, if the spatial and temporal age dynamics is not important, it might be better to consider using simpler and most likely computationally faster models.
 
-4\) In its standard form, Atlantis is not an agent-based (individual-based) model, like OSMOSE or InVitro (Gray et al 2006)[^2]. It simulates temporally dynamic size-age relationship, but at a given time all individuals in an age group in one cell are identical (variation between cells is possible if a species is sedentary). Thus, Atlantis models processes based on representative "average" individuals for an age group, not true (separate and unique) individuals. This makes Atlantis computationally faster, but it does not simulate inter-individual variation and any potential emergent system properties.
+4\) In its standard form, Atlantis is not an agent-based (individual-based) model, like OSMOSE or InVitro (Gray et al 2006)^[An agent-based extension exists for Atlantis, but it is not currently included in the standard Atlantis package and will not be discussed in the manual.]. It simulates temporally dynamic size-age relationship, but at a given time all individuals in an age group in one cell are identical (variation between cells is possible if a species is sedentary). Thus, Atlantis models processes based on representative "average" individuals for an age group, not true (separate and unique) individuals. This makes Atlantis computationally faster, but it does not simulate inter-individual variation and any potential emergent system properties.
 
 5\) Atlantis does not simulate stochastic environmental and ecological processes. Although Atlantis can include a small amount of recruitment timing variation, it is generally a deterministic model. This makes Atlantis different from models such as OSMOSE where stochastic processes are an integral part of the model formulation.
 
