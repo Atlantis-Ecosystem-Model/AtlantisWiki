@@ -147,9 +147,9 @@ However, even without a background in c coding, two approaches might be useful i
 
 The first is the **Search** tool. In Visual Studio (or GCC, or another package) go to Edit-\>Find and Replace-\>Quick Find, or simply click Ctrl+F. This will bring up the Search menu where you type in the search string, such as the name of parameter.
 
-In the example below, we search for the include_atmosphere parameter, used in the *physics.prm* file. Make sure you search in the "Entire Solution" if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click "Find Next" (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for include_atmosphere the relevant routine is called *Amonium_ROC()*, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file **atNutrient.c**
+In the example below, we search for the `include_atmosphere parameter`, used in the *physics.prm* file. Make sure you search in the "Entire Solution" if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click "Find Next" (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for `include_atmosphere` the relevant routine is called *Amonium_ROC()*, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file **atNutrient.c**
 
-![](media/image9.tmp){width="6.6930555555555555in" height="3.3208333333333333in"}Here we can see that if include_atmosphere flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.
+![](media/image9.tmp){width="6.6930555555555555in" height="3.3208333333333333in"}Here we can see that if `include_atmosphere` flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.
 
 The second approach is to simply browse the libraries, files and routines you might be interested in. Of course, to do this you will need to know the names of routines. This can be done by searching for relevant parameters as shown above or by looking in the drop down list of routine names (most GUIs for interrogating code have such a feature).
 
@@ -173,27 +173,16 @@ Another useful tool in exploring the code is the **Call Hierarchy** tool. It all
 
 Atlantis is an "old style" program that runs from a command line. This is done using \"[Command Prompt](https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt)\" on Windows or \"[Terminal](http://guides.macrumors.com/Terminal)\" on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g. tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                                                                                                                                                                                                                |
-+================================================+===============================================================================================================================================================+
-| **What to type:**                              | **What this does:**                                                                                                                                           |
-|                                                |                                                                                                                                                               |
-| cd\\                                           | go to the root directory of the drive you are currently in                                                                                                    |
-|                                                |                                                                                                                                                               |
-| cd..                                           | go one directory level up                                                                                                                                     |
-|                                                |                                                                                                                                                               |
-| cd C:\\AtlantisRuns                            | go to the specified directory                                                                                                                                 |
-|                                                |                                                                                                                                                               |
-| cd C:\\A + **TAB** key                         | scroll through all folders within **C:** that start with A (case insensitive). This way you don't need to type long folder names (and make spelling mistakes) |
-|                                                |                                                                                                                                                               |
-| (type letter A and keep pressing TAB key)      | go to the previously typed commands                                                                                                                           |
-|                                                |                                                                                                                                                               |
-| Press arrows up and down                       | Go to drive C: from any other drive you are in                                                                                                                |
-|                                                |                                                                                                                                                               |
-| C:                                             |                                                                                                                                                               |
-+------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Note:** In Mac and Linux use / instead of \\ |                                                                                                                                                               |
-+------------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Command | What it does |
+|---------|-------------|
+| `cd\` | Go to the root directory of the current drive |
+| `cd..` | Go one directory level up |
+| `cd C:\AtlantisRuns` | Go to the specified directory |
+| `cd C:\A` + **TAB** key | Scroll through all folders within C: that start with A (case insensitive). This way you don't need to type long folder names |
+| Press **UP/DOWN** arrows | Go to previously typed commands |
+| `C:` | Go to drive C: from any other drive |
+
+**Note:** In Mac and Linux use `/` instead of `\`
 
 ### *2.5.2. Setting up the BAT file*
 
@@ -203,27 +192,27 @@ The next step is to create a BAT file such as *run.bat* (or any name you want, e
 
 The easiest way to setup and modify the .bat file is in a text editor.
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| The BAT file initialising Atlantis simulation has one long command line calling the Atlantis executable and giving the names of the parameter files required for the run. For example in windows the command would look like:                                                                                                                                             |
-|                                                                                                                                                                                                                                                                                                                                                                           |
-| ***atlantismain.exe -i MySea_initial.nc 0 -o simulationOutput1.nc -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm** -m MySea_migrations.csv **-s Functional_groups.csv** -h MySea_harvest.prm -q MyFisheries.csv --a MySea_assess.prm --e MySea_econ.prm -d OutputFolder1 -t C:\\AtlantisRuns\\parameters*                                     |
-|                                                                                                                                                                                                                                                                                                                                                                           |
-| Required parameters and files are shown **in bold**, optional parameters are in regular font.                                                                                                                                                                                                                                                                             |
-|                                                                                                                                                                                                                                                                                                                                                                           |
-| You will still have to make sure that correct paths of forcing files (for hydrodynamics, salinity, temperature and others) are given in the *force.prm* file. In the *force.prm* file the path of the inputs/ folder name often has to given as ../inputs/ which tells the program that the inputs/ folder is in the same higher level directory as the *force.prm* file. |
-|                                                                                                                                                                                                                                                                                                                                                                           |
-| While the *migrations.csv* file is marked as optional here, it is usually used as most models include some form of migration into/out of the model.                                                                                                                                                                                                                       |
-+===========================================================================================================================================================================================================================================================================================================================================================================+
+::: {.callout-note}
+The BAT file initialising Atlantis simulation has one long command line calling the Atlantis executable and giving the names of the parameter files required for the run. For example in windows the command would look like: 
+
+***atlantismain.exe -i MySea_initial.nc 0 -o simulationOutput1.nc -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm** -m MySea_migrations.csv **-s Functional_groups.csv** -h MySea_harvest.prm -q MyFisheries.csv --a MySea_assess.prm --e MySea_econ.prm -d OutputFolder1 -t C:\\AtlantisRuns\\parameters* 
+
+Required parameters and files are shown **in bold**, optional parameters are in regular font.
+
+You will still have to make sure that correct paths of forcing files (for hydrodynamics, salinity, temperature and others) are given in the *force.prm* file. In the *force.prm* file the path of the inputs/ folder name often has to given as ../inputs/ which tells the program that the inputs/ folder is in the same higher level directory as the *force.prm* file. |
+
+While the *migrations.csv* file is marked as optional here, it is usually used as most models include some form of migration into/out of the model. 
+:::
 
 If the *--t \<name of folder containing parameter files\>* is omitted then Atlantis will expect to find the parameter files in the same directory as the batch file used to run the model. If the Atlantis executable is formally installed after it is compiled (e.g. using sudo make install in [Linux](https://confluence.csiro.au/display/Atlantis/Building+under+linux) or adding it to the Windows recognised path names, see the [wiki](https://confluence.csiro.au/display/Atlantis/Building+under+windows)) then you do not need to copy the executable file to the run directory and you only need to type the name of your Atlantis executable (e.g. *atlantismain* in the example) rather than name.exe in the command line.
 
 Names of the parameter files must be given after an appropriate one letter argument which indicates what the following filename represents. For example, ***-i*** tells the executable that the following filename is the input file that details initial conditions. The actual names of the parameter files are flexible, as long as the file extensions are correct. For example, the initial conditions file could be named as initial_conditions.nc, start_of_the_run.nc, start_of_the_fun.nc, a.nc or fred.nc. It does not matter so long as it is an NC file. It is **only** the one letter flag command (e.g. -i, -o, -p and others) preceding the filename that tells Atlantis which kind of file to expect.
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| For example, your BAT file could look like the following and it will run perfectly well:                                                                                                                                                                                                                                   |
-|                                                                                                                                                                                                                                                                                                                            |
-| ***BestModellingTool.exe -i BigBang.nc 0 -o TheLastSimulationEver.nc -r HowToRun.prm -p CleverPhysics.prm -f AllThoseInputs.prm -b EatEachOther.prm -s Critters.csv** -m OurMovements.csv -h HowToCatchFish.prm -q Fishers.csv --a TryToAssess.prm --e MBAdomain.prm -d PutEverythingHere -t C:\\AtlantisRuns\\parameters* |
-+============================================================================================================================================================================================================================================================================================================================+
+::: {.callout-note}
+For example, your BAT file could look like the following and it will run perfectly well:      
+
+***BestModellingTool.exe -i BigBang.nc 0 -o TheLastSimulationEver.nc -r HowToRun.prm -p CleverPhysics.prm -f AllThoseInputs.prm -b EatEachOther.prm -s Critters.csv** -m OurMovements.csv -h HowToCatchFish.prm -q Fishers.csv --a TryToAssess.prm --e MBAdomain.prm -d PutEverythingHere -t C:\\AtlantisRuns\\parameters*
+:::
 
 **Don't forget to add number 0 after the name of the initial conditions file.** This requirement is a legacy of the model development, and Atlantis will not run without it.
 
@@ -233,43 +222,29 @@ By default all simulation outputs will be placed in the same folder as the BAT f
 
 This section gives a brief description of the parameter files. They will be described in further details in subsequent chapters:
 
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ***-i***    initial conditions of your model run, including physical water column properties, seabed properties and biomasses and size per group per box
-  ----------- -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ***-o***    provides a name for the output files. Please make this an nc file (e.g. *simulationOutput1.nc*). Atlantis will create a lot of different outputs and will append titles of different output files to your specified name using the nc filename as the core of those names (e.g. *simulationOutput1BiomInd.txt*, *simulationOuput1Catches.txt*).
-
-  ***-r***    parameters defining the run setup, such as which modules to turn on (fishery, socio-economics), time step (12 or 24hr), run and stop times, frequency of outputs, flags for debugging and verbosity, details of notes to store in log.txt
-
-  ***-p***    physics parameters, such as resuspension, point-source scaling, eddy strengths and others. These parameters are not typically changed, although you may want to modify eddy strengths or turn off resuspension.
-
-  ***-f***    forcing file provides pathways to all external (i.e. not simulated within the model) input files, such as hydrodynamics, salinity, temperature, nutrient input sources from river flows or upwelling, climate time series (precipitation, irradiance), historical catch, fuel prices, GDP and complex spatial zoning through time (the list of allowed external forcing files is given the chapter on *force.prm* below). These files are usually stored in your "inputs" folder.
-
-  ***-b***    ecological parameters, including feeding preferences, distributions, mortality, reproduction and others
-
-  ***-m***    migration parameters (used to be inside the *biology.prm* file)
-
-  ***-s***    list of functional biological groups and their key characteristics, such as number of age groups
-
-  ***-h***    parameters on fishing fleets, target species, catch history, discards, changes in selectivity over time, etc. Note that if you use external forcing of catch or fishing mortality, those forcing files must be specified in the *force.prm* file and not in the *harvest.prm* file
-
-  ***-a***    sample design, sampling error structures and basic assessment model parameters
-
-  ***-e***    socio-economics parameters for fleet dynamics, market model, trading model, and black-book based effort allocation model
-
-  ***-d***    an optional destination folder. If provided, a new folder with this name will be created during the run and all outputs placed in this folder. Using this option is highly recommended
-
-  ***- t***   an optional, but recommended folder, for storing input parameters (see Good Practice Tip 1). If this folder is not provided, all parameters (not inputs) must be in the same directory as the Atlantis bat file, if Atlantis has been formally installed to the command line, or in the same directory as the executable if you are simply copying the exe file to the run directory.
-  -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Flag | Description |
+|------|-------------|
+| **-i** | Initial conditions of your model run, including physical water column properties, seabed properties and biomasses and size per group per box |
+| **-o** | Provides a name for the output files. Please make this an nc file (e.g. *simulationOutput1.nc*). Atlantis will create a lot of different outputs and will append titles of different output files to your specified name using the nc filename as the core of those names (e.g. *simulationOutput1BiomInd.txt*, *simulationOuput1Catches.txt*) |
+| **-r** | Parameters defining the run setup, such as which modules to turn on (fishery, socio-economics), time step (12 or 24hr), run and stop times, frequency of outputs, flags for debugging and verbosity, details of notes to store in log.txt |
+| **-p** | Physics parameters, such as resuspension, point-source scaling, eddy strengths and others. These parameters are not typically changed, although you may want to modify eddy strengths or turn off resuspension |
+| **-f** | Forcing file provides pathways to all external (i.e. not simulated within the model) input files, such as hydrodynamics, salinity, temperature, nutrient input sources from river flows or upwelling, climate time series (precipitation, irradiance), historical catch, fuel prices, GDP and complex spatial zoning through time (the list of allowed external forcing files is given the chapter on *force.prm* below). These files are usually stored in your "inputs" folder |
+| **-b** | Ecological parameters, including feeding preferences, distributions, mortality, reproduction and others |
+| **-m** | Migration parameters (used to be inside the *biology.prm* file) |
+| **-s** | List of functional biological groups and their key characteristics, such as number of age groups |
+| **-h** | Parameters on fishing fleets, target species, catch history, discards, changes in selectivity over time, etc. Note that if you use external forcing of catch or fishing mortality, those forcing files must be specified in the *force.prm* file and not in the *harvest.prm* file |
+| **-a** | Sample design, sampling error structures and basic assessment model parameters |
+| **-e** | Socio-economics parameters for fleet dynamics, market model, trading model, and black-book based effort allocation model |
+| **-d** | An optional destination folder. If provided, a new folder with this name will be created during the run and all outputs placed in this folder. Using this option is highly recommended |
+| **-t** | An optional, but recommended folder, for storing input parameters (see Good Practice Tip 1). If this folder is not provided, all parameters (not inputs) must be in the same directory as the Atlantis bat file, if Atlantis has been formally installed to the command line, or in the same directory as the executable if you are simply copying the exe file to the run directory |
 
 Note, the **forcing files** (such as hydrodynamics, temperature, catch, recruitment and other forcing files) are not included in the *BAT* command line, because they are all listed in the *force.prm* file
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Good practice tip 2**                                                                                                                                                                                                                                                                                                                                                                        |
-|                                                                                                                                                                                                                                                                                                                                                                                                |
-| It is a good idea to give informative names to the parameter files. This way you can remember changes made in them. For example, *Baltic_biol_CodMort05.prm* could denote a biological parameter file with cod mortality set to 0.5. Also make sure you rename the parameter file if you modify it. This will help you keep track of which parameter combination was used for each simulation. |
-|                                                                                                                                                                                                                                                                                                                                                                                                |
-| It is **strongly recommended that you keep a good record of all parameter modifications** and outcomes they had on model simulations. We cannot stress this strongly enough! Almost every modeller has experienced difficult moments when trying to trace back what exactly was done at different steps of model development or scenario analyses.                                             |
-+================================================================================================================================================================================================================================================================================================================================================================================================+
+::: {.callout-tip title="Good practice tip"}
+It is a good idea to give informative names to the parameter files. This way you can remember changes made in them. For example, *Baltic_biol_CodMort05.prm* could denote a biological parameter file with cod mortality set to 0.5. Also make sure you rename the parameter file if you modify it. This will help you keep track of which parameter combination was used for each simulation. 
+
+It is **strongly recommended that you keep a good record of all parameter modifications** and outcomes they had on model simulations. We cannot stress this strongly enough! Almost every modeller has experienced difficult moments when trying to trace back what exactly was done at different steps of model development or scenario analyses. 
+:::
 
 ### *2.5.4. Setting up batch simulations* 
 

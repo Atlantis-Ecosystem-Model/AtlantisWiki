@@ -459,8 +459,8 @@ Caution
 <p>Of course, reading the code will require at least some programming skills. Check out a number of C tutorials available online for basic understanding about programming and C. The internet is an ever changing place so the best idea is to use your favourite search engine to find some good c tutorials for someone with your level of coding experience. At time of writing the following were potentially helpful sites <a href="http://www.cprogramming.com">www.cprogramming.com</a> and <a href="http://www.tutorialspoint.com/cprogramming">www.tutorialspoint.com/cprogramming</a> and <a href="http://www.imada.sdu.dk/~svalle/courses/dm14-2005/mirror/c/">www.imada.sdu.dk/~svalle/courses/dm14-2005/mirror/c/</a></p>
 <p>However, even without a background in c coding, two approaches might be useful in starting to navigate through the code.</p>
 <p>The first is the <strong>Search</strong> tool. In Visual Studio (or GCC, or another package) go to Edit-&gt;Find and Replace-&gt;Quick Find, or simply click Ctrl+F. This will bring up the Search menu where you type in the search string, such as the name of parameter.</p>
-<p>In the example below, we search for the include_atmosphere parameter, used in the <em>physics.prm</em> file. Make sure you search in the “Entire Solution” if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click “Find Next” (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for include_atmosphere the relevant routine is called <em>Amonium_ROC()</em>, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file <strong>atNutrient.c</strong></p>
-<p><img src="media/image9.tmp" style="width:6.69306in;height:3.32083in">Here we can see that if include_atmosphere flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.</p>
+<p>In the example below, we search for the <code>include_atmosphere parameter</code>, used in the <em>physics.prm</em> file. Make sure you search in the “Entire Solution” if you want to browse through the whole code. You can either scroll through the entire list of search results and click directly on the line of interest (if you have some familiarity with the code) or you can click “Find Next” (if you go this route you may need to click a few times to finally get to one of the routines that uses the parameter). For example for <code>include_atmosphere</code> the relevant routine is called <em>Amonium_ROC()</em>, which is indicated on the top right drop-down menu in Visual Studio, and it is located in the file <strong>atNutrient.c</strong></p>
+<p><img src="media/image9.tmp" style="width:6.69306in;height:3.32083in">Here we can see that if <code>include_atmosphere</code> flag is on (set to 1) the code will transfer NH3 values from the atmosphere into the surface cell.</p>
 <p>The second approach is to simply browse the libraries, files and routines you might be interested in. Of course, to do this you will need to know the names of routines. This can be done by searching for relevant parameters as shown above or by looking in the drop down list of routine names (most GUIs for interrogating code have such a feature).</p>
 <p>As an example we will look at the formulation of the respiration processes in fully age structured groups.</p>
 <p>Once you open your solution file in Visual Studio C++, expand the submodel <strong>atecology</strong> (<strong>1.</strong>) and double click the <strong>atvertprocesses.c</strong> file (<strong>2.</strong>). The file will be opened (<strong>3.</strong>) and on the right side you have a drop-down menu to browse through the routines defined in the file (<strong>4.</strong>). By clicking on the <em>Fish_Respiration()</em>routine you will find the description of parameters and equations used to calculate it Note that the first reference to <em>Fish_Respiration()</em> in the drop-down menu has a small arrow next to it. By clicking on this option you will find where in the code the routine is called.</p>
@@ -477,75 +477,82 @@ Caution
 <p>Atlantis is an “old style” program that runs from a command line. This is done using "<a href="https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt">Command Prompt</a>" on Windows or "<a href="http://guides.macrumors.com/Terminal">Terminal</a>" on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g.&nbsp;tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 76%">
+<col style="width: 40%">
+<col style="width: 59%">
 </colgroup>
 <thead>
 <tr class="header">
-<th colspan="2"></th>
+<th>Command</th>
+<th>What it does</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><p><strong>What to type:</strong></p>
-<p>cd\</p>
-<p>cd..</p>
-<p>cd C:\AtlantisRuns</p>
-<p>cd C:\A + <strong>TAB</strong> key</p>
-<p>(type letter A and keep pressing TAB key)</p>
-<p>Press arrows up and down</p>
-<p>C:</p></td>
-<td><p><strong>What this does:</strong></p>
-<p>go to the root directory of the drive you are currently in</p>
-<p>go one directory level up</p>
-<p>go to the specified directory</p>
-<p>scroll through all folders within <strong>C:</strong> that start with A (case insensitive). This way you don’t need to type long folder names (and make spelling mistakes)</p>
-<p>go to the previously typed commands</p>
-<p>Go to drive C: from any other drive you are in</p></td>
+<td><code>cd\</code></td>
+<td>Go to the root directory of the current drive</td>
 </tr>
 <tr class="even">
-<td><strong>Note:</strong> In Mac and Linux use / instead of \</td>
-<td></td>
+<td><code>cd..</code></td>
+<td>Go one directory level up</td>
+</tr>
+<tr class="odd">
+<td><code>cd C:\AtlantisRuns</code></td>
+<td>Go to the specified directory</td>
+</tr>
+<tr class="even">
+<td><code>cd C:\A</code> + <strong>TAB</strong> key</td>
+<td>Scroll through all folders within C: that start with A (case insensitive). This way you don’t need to type long folder names</td>
+</tr>
+<tr class="odd">
+<td>Press <strong>UP/DOWN</strong> arrows</td>
+<td>Go to previously typed commands</td>
+</tr>
+<tr class="even">
+<td><code>C:</code></td>
+<td>Go to drive C: from any other drive</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Note:</strong> In Mac and Linux use <code>/</code> instead of <code>\</code></p>
 </section>
 <section id="setting-up-the-bat-file" class="level3">
 <h3 class="anchored" data-anchor-id="setting-up-the-bat-file"><em>2.5.2. Setting up the BAT file</em></h3>
 <p>At this stage you already have 1) compiled the code on your machine, 2) created a run directory for your simulations (C:\AtlantisRuns\MyModel), 3) copied all input and parameter files into the run directory, 4) copied the Atlantis executable (atlantismain.exe) from C:\...\atlantismain\Debug into your run directory.</p>
 <p>The next step is to create a BAT file such as <em>run.bat</em> (or any name you want, e.g.&nbsp;<em>NoFishing.bat</em>) and then call it from the command prompt to initialise the simulations. <strong>The BAT file must be in the same directory as the Atlantis executable.</strong></p>
 <p>The easiest way to setup and modify the .bat file is in a text editor.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>The BAT file initialising Atlantis simulation has one long command line calling the Atlantis executable and giving the names of the parameter files required for the run. For example in windows the command would look like:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The BAT file initialising Atlantis simulation has one long command line calling the Atlantis executable and giving the names of the parameter files required for the run. For example in windows the command would look like:</p>
 <p><em><strong>atlantismain.exe -i MySea_initial.nc 0 -o simulationOutput1.nc -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm</strong> -m MySea_migrations.csv <strong>-s Functional_groups.csv</strong> -h MySea_harvest.prm -q MyFisheries.csv –a MySea_assess.prm –e MySea_econ.prm -d OutputFolder1 -t C:\AtlantisRuns\parameters</em></p>
 <p>Required parameters and files are shown <strong>in bold</strong>, optional parameters are in regular font.</p>
-<p>You will still have to make sure that correct paths of forcing files (for hydrodynamics, salinity, temperature and others) are given in the <em>force.prm</em> file. In the <em>force.prm</em> file the path of the inputs/ folder name often has to given as ../inputs/ which tells the program that the inputs/ folder is in the same higher level directory as the <em>force.prm</em> file.</p>
-<p>While the <em>migrations.csv</em> file is marked as optional here, it is usually used as most models include some form of migration into/out of the model.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>You will still have to make sure that correct paths of forcing files (for hydrodynamics, salinity, temperature and others) are given in the <em>force.prm</em> file. In the <em>force.prm</em> file the path of the inputs/ folder name often has to given as ../inputs/ which tells the program that the inputs/ folder is in the same higher level directory as the <em>force.prm</em> file. |</p>
+<p>While the <em>migrations.csv</em> file is marked as optional here, it is usually used as most models include some form of migration into/out of the model.</p>
+</div>
+</div>
 <p>If the <em>–t &lt;name of folder containing parameter files&gt;</em> is omitted then Atlantis will expect to find the parameter files in the same directory as the batch file used to run the model. If the Atlantis executable is formally installed after it is compiled (e.g.&nbsp;using sudo make install in <a href="https://confluence.csiro.au/display/Atlantis/Building+under+linux">Linux</a> or adding it to the Windows recognised path names, see the <a href="https://confluence.csiro.au/display/Atlantis/Building+under+windows">wiki</a>) then you do not need to copy the executable file to the run directory and you only need to type the name of your Atlantis executable (e.g.&nbsp;<em>atlantismain</em> in the example) rather than name.exe in the command line.</p>
 <p>Names of the parameter files must be given after an appropriate one letter argument which indicates what the following filename represents. For example, <strong><em>-i</em></strong> tells the executable that the following filename is the input file that details initial conditions. The actual names of the parameter files are flexible, as long as the file extensions are correct. For example, the initial conditions file could be named as initial_conditions.nc, start_of_the_run.nc, start_of_the_fun.nc, a.nc or fred.nc. It does not matter so long as it is an NC file. It is <strong>only</strong> the one letter flag command (e.g.&nbsp;-i, -o, -p and others) preceding the filename that tells Atlantis which kind of file to expect.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>For example, your BAT file could look like the following and it will run perfectly well:</p>
-<p><em><strong>BestModellingTool.exe -i BigBang.nc 0 -o TheLastSimulationEver.nc -r HowToRun.prm -p CleverPhysics.prm -f AllThoseInputs.prm -b EatEachOther.prm -s Critters.csv</strong> -m OurMovements.csv -h HowToCatchFish.prm -q Fishers.csv –a TryToAssess.prm –e MBAdomain.prm -d PutEverythingHere -t C:\AtlantisRuns\parameters</em></p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For example, your BAT file could look like the following and it will run perfectly well:</p>
+<p><em><strong>BestModellingTool.exe -i BigBang.nc 0 -o TheLastSimulationEver.nc -r HowToRun.prm -p CleverPhysics.prm -f AllThoseInputs.prm -b EatEachOther.prm -s Critters.csv</strong> -m OurMovements.csv -h HowToCatchFish.prm -q Fishers.csv –a TryToAssess.prm –e MBAdomain.prm -d PutEverythingHere -t C:\AtlantisRuns\parameters</em></p>
+</div>
+</div>
 <p><strong>Don’t forget to add number 0 after the name of the initial conditions file.</strong> This requirement is a legacy of the model development, and Atlantis will not run without it.</p>
 <p>By default all simulation outputs will be placed in the same folder as the BAT file, but you can create an optional output folder (<em>-d OutputFolderName</em>). Specifying output folders is really important when running batch simulations (see below).</p>
 </section>
@@ -554,81 +561,85 @@ Caution
 <p>This section gives a brief description of the parameter files. They will be described in further details in subsequent chapters:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 2%">
-<col style="width: 97%">
+<col style="width: 31%">
+<col style="width: 68%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"><strong><em>-i</em></strong></th>
-<th style="text-align: left;">initial conditions of your model run, including physical water column properties, seabed properties and biomasses and size per group per box</th>
+<th>Flag</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><strong><em>-o</em></strong></td>
-<td style="text-align: left;">provides a name for the output files. Please make this an nc file (e.g.&nbsp;<em>simulationOutput1.nc</em>). Atlantis will create a lot of different outputs and will append titles of different output files to your specified name using the nc filename as the core of those names (e.g.&nbsp;<em>simulationOutput1BiomInd.txt</em>, <em>simulationOuput1Catches.txt</em>).</td>
+<td><strong>-i</strong></td>
+<td>Initial conditions of your model run, including physical water column properties, seabed properties and biomasses and size per group per box</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong><em>-r</em></strong></td>
-<td style="text-align: left;">parameters defining the run setup, such as which modules to turn on (fishery, socio-economics), time step (12 or 24hr), run and stop times, frequency of outputs, flags for debugging and verbosity, details of notes to store in log.txt</td>
+<td><strong>-o</strong></td>
+<td>Provides a name for the output files. Please make this an nc file (e.g.&nbsp;<em>simulationOutput1.nc</em>). Atlantis will create a lot of different outputs and will append titles of different output files to your specified name using the nc filename as the core of those names (e.g.&nbsp;<em>simulationOutput1BiomInd.txt</em>, <em>simulationOuput1Catches.txt</em>)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong><em>-p</em></strong></td>
-<td style="text-align: left;">physics parameters, such as resuspension, point-source scaling, eddy strengths and others. These parameters are not typically changed, although you may want to modify eddy strengths or turn off resuspension.</td>
+<td><strong>-r</strong></td>
+<td>Parameters defining the run setup, such as which modules to turn on (fishery, socio-economics), time step (12 or 24hr), run and stop times, frequency of outputs, flags for debugging and verbosity, details of notes to store in log.txt</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong><em>-f</em></strong></td>
-<td style="text-align: left;">forcing file provides pathways to all external (i.e.&nbsp;not simulated within the model) input files, such as hydrodynamics, salinity, temperature, nutrient input sources from river flows or upwelling, climate time series (precipitation, irradiance), historical catch, fuel prices, GDP and complex spatial zoning through time (the list of allowed external forcing files is given the chapter on <em>force.prm</em> below). These files are usually stored in your “inputs” folder.</td>
+<td><strong>-p</strong></td>
+<td>Physics parameters, such as resuspension, point-source scaling, eddy strengths and others. These parameters are not typically changed, although you may want to modify eddy strengths or turn off resuspension</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong><em>-b</em></strong></td>
-<td style="text-align: left;">ecological parameters, including feeding preferences, distributions, mortality, reproduction and others</td>
+<td><strong>-f</strong></td>
+<td>Forcing file provides pathways to all external (i.e.&nbsp;not simulated within the model) input files, such as hydrodynamics, salinity, temperature, nutrient input sources from river flows or upwelling, climate time series (precipitation, irradiance), historical catch, fuel prices, GDP and complex spatial zoning through time (the list of allowed external forcing files is given the chapter on <em>force.prm</em> below). These files are usually stored in your “inputs” folder</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong><em>-m</em></strong></td>
-<td style="text-align: left;">migration parameters (used to be inside the <em>biology.prm</em> file)</td>
+<td><strong>-b</strong></td>
+<td>Ecological parameters, including feeding preferences, distributions, mortality, reproduction and others</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong><em>-s</em></strong></td>
-<td style="text-align: left;">list of functional biological groups and their key characteristics, such as number of age groups</td>
+<td><strong>-m</strong></td>
+<td>Migration parameters (used to be inside the <em>biology.prm</em> file)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong><em>-h</em></strong></td>
-<td style="text-align: left;">parameters on fishing fleets, target species, catch history, discards, changes in selectivity over time, etc. Note that if you use external forcing of catch or fishing mortality, those forcing files must be specified in the <em>force.prm</em> file and not in the <em>harvest.prm</em> file</td>
+<td><strong>-s</strong></td>
+<td>List of functional biological groups and their key characteristics, such as number of age groups</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong><em>-a</em></strong></td>
-<td style="text-align: left;">sample design, sampling error structures and basic assessment model parameters</td>
+<td><strong>-h</strong></td>
+<td>Parameters on fishing fleets, target species, catch history, discards, changes in selectivity over time, etc. Note that if you use external forcing of catch or fishing mortality, those forcing files must be specified in the <em>force.prm</em> file and not in the <em>harvest.prm</em> file</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong><em>-e</em></strong></td>
-<td style="text-align: left;">socio-economics parameters for fleet dynamics, market model, trading model, and black-book based effort allocation model</td>
+<td><strong>-a</strong></td>
+<td>Sample design, sampling error structures and basic assessment model parameters</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong><em>-d</em></strong></td>
-<td style="text-align: left;">an optional destination folder. If provided, a new folder with this name will be created during the run and all outputs placed in this folder. Using this option is highly recommended</td>
+<td><strong>-e</strong></td>
+<td>Socio-economics parameters for fleet dynamics, market model, trading model, and black-book based effort allocation model</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><strong><em>- t</em></strong></td>
-<td style="text-align: left;">an optional, but recommended folder, for storing input parameters (see Good Practice Tip 1). If this folder is not provided, all parameters (not inputs) must be in the same directory as the Atlantis bat file, if Atlantis has been formally installed to the command line, or in the same directory as the executable if you are simply copying the exe file to the run directory.</td>
+<td><strong>-d</strong></td>
+<td>An optional destination folder. If provided, a new folder with this name will be created during the run and all outputs placed in this folder. Using this option is highly recommended</td>
+</tr>
+<tr class="odd">
+<td><strong>-t</strong></td>
+<td>An optional, but recommended folder, for storing input parameters (see Good Practice Tip 1). If this folder is not provided, all parameters (not inputs) must be in the same directory as the Atlantis bat file, if Atlantis has been formally installed to the command line, or in the same directory as the executable if you are simply copying the exe file to the run directory</td>
 </tr>
 </tbody>
 </table>
 <p>Note, the <strong>forcing files</strong> (such as hydrodynamics, temperature, catch, recruitment and other forcing files) are not included in the <em>BAT</em> command line, because they are all listed in the <em>force.prm</em> file</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Good practice tip 2</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Good practice tip">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Good practice tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>It is a good idea to give informative names to the parameter files. This way you can remember changes made in them. For example, <em>Baltic_biol_CodMort05.prm</em> could denote a biological parameter file with cod mortality set to 0.5. Also make sure you rename the parameter file if you modify it. This will help you keep track of which parameter combination was used for each simulation.</p>
-<p>It is <strong>strongly recommended that you keep a good record of all parameter modifications</strong> and outcomes they had on model simulations. We cannot stress this strongly enough! Almost every modeller has experienced difficult moments when trying to trace back what exactly was done at different steps of model development or scenario analyses.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>It is <strong>strongly recommended that you keep a good record of all parameter modifications</strong> and outcomes they had on model simulations. We cannot stress this strongly enough! Almost every modeller has experienced difficult moments when trying to trace back what exactly was done at different steps of model development or scenario analyses.</p>
+</div>
+</div>
 </section>
 <section id="setting-up-batch-simulations" class="level3">
 <h3 class="anchored" data-anchor-id="setting-up-batch-simulations"><em>2.5.4. Setting up batch simulations</em></h3>
