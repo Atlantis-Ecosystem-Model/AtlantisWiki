@@ -342,7 +342,7 @@ Caution
 <p><strong>4. Install the NetCDF 4 libraries.</strong> These libraries are required for running Atlantis. Detailed instructions on installing NetCDF and updating the path are available <a href="https://confluence.csiro.au/display/Atlantis/NetCDF+4+in+Windows">on the wiki</a>. It is very important that you do this properly, as Atlantis will not run otherwise. Windows users can download pre-compiled libraries, Mac and Linux users will need to down load the source and compile locally.</p>
 <p><strong>5. Compile the code.</strong> In Windows compiling the code does not require any programming skills. All you need to do is double-click the Visual Studio SLN file (chose the version suitable for your Visual Studio, e.g.&nbsp;Atlantis_VS2010.sln) located in the main directory of where you checked out the code (e.g.&nbsp;C:\programs\Atlantis). This will load the project into Visual Studio. Then go to the Visual Studio Build menu and chose “Build Solution”. Detailed instructions are given on Atlantis Wiki <a href="https://confluence.csiro.au/%20display/Atlantis/Building+Atlantis">building</a> page.</p>
 <p><img src="media/image4.jpg" style="width:5.14151in;height:3.63653in"></p>
-<p>Once the build has successfully completed you will find the latest executable <em>atlantismain.exe</em> in C:\...\Atlantis\atlantismain\Debug folder (where … indicates your designated directory for the code)</p>
+<p>Once the build has successfully completed you will find the latest executable <em>atlantismain.exe</em> in C:\…\Atlantis\atlantismain\Debug folder (where … indicates your designated directory for the code)</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -358,7 +358,7 @@ Caution
 </div>
 <p>On Linux (and Mac) platforms GCC is recommended for compiling the code. Other options for compiling are also available for users who for any reason do not want to use Microsoft Visual Studio or GCC. These options include the <a href="https://confluence.csiro.au/display/Atlantis/Using+the+Intel+Compiler">Intel compiler</a> and <a href="https://confluence.csiro.au/display/Atlantis/Building+under+cygwin">Cygwin</a>. However, these are not recommended compilers and users will potentially have to work out solutions to issues themselves.</p>
 <p><strong>6. Create a directory for your simulations.</strong></p>
-<p>This is where you will keep all your parameters and run outputs. This could be called C:\AtlantisRuns\... This is NOT the same directory as the code itself, so please make sure you understand the difference. If you use several models, such as California, SE Australia and Antarctica, might want to keep parameter files of each model in separate directories, e.g.&nbsp;C:\AtlantisRuns\California\, C:\AtlantisRuns\SE_Australia\ and so on.</p>
+<p>This is where you will keep all your parameters and run outputs. This could be called C:\AtlantisRuns\… This is NOT the same directory as the code itself, so please make sure you understand the difference. If you use several models, such as California, SE Australia and Antarctica, might want to keep parameter files of each model in separate directories, e.g.&nbsp;C:\AtlantisRuns\California\, C:\AtlantisRuns\SE_Australia\ and so on.</p>
 <p>Please make sure not to use spaces in the name of the directory (e.g.&nbsp;use C:\AtlantisRuns or C:\Atlantis_Runs not C:\Atlantis Runs as the core code of Atlantis was written before spaces were allowed in directory names and it may not correctly read file names if the directory structure includes spaces<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -375,7 +375,7 @@ Note
 </div>
 </div>
 <p><strong>7. Check out or copy files of your specific model and latest Atlantis executable into the run directory.</strong></p>
-<p>Also copy the latest executable <em>atlantismain.exe</em> from the C:\...\Atlantis\atlantismain\Debug folder into the run directory you created before (e.g.&nbsp;C:\AtlantisRuns).</p>
+<p>Also copy the latest executable <em>atlantismain.exe</em> from the C:\…\Atlantis\atlantismain\Debug folder into the run directory you created before (e.g.&nbsp;C:\AtlantisRuns).</p>
 <p>The executable <strong>must</strong> be in the same directory as the main BAT run file, required to initialise your runs</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -390,7 +390,7 @@ Caution
 <p>Make sure you copy the new executable file from …Atlantis\atlantismain\Debug into your run directory every time you update and recompile the code. Forgetting to do this is one of the more common mistakes.</p>
 <p>Alternatively, you can insert a line into the start of your BAT file to copy it before the start of each run if you want to make sure you always have the latest version.</p>
 <p>This would look like:</p>
-<p>copy C:\...your Code directory \atlantismain\Debug\atlantismain.exe</p>
+<p>copy C:\…your Code directory \atlantismain\Debug\atlantismain.exe</p>
 <p>The dot at the end of the line means that the file atlantismain.exe from Debug directory will be copied to the same directory as the BAT file.</p>
 <p>See the <a href="https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt">wiki</a> for details.</p>
 </div>
@@ -444,14 +444,14 @@ Caution
 <h2 class="anchored" data-anchor-id="overview-of-atlantis-submodels-and-the-main-routine"><strong>2.3. Overview of Atlantis submodels and the main() routine</strong></h2>
 <p>Detailed descriptions of Atlantis submodels and specific input files are provided in subsequent chapters. For a start you need to understand which of the files are required to set up a simple simulations and what they mean (<strong>Error! Reference source not found.</strong>). The figure below gives a schematic of the Atlantis submodels overlaid one over another. At the very basis there is the model geometry, Physics and Biogeochemical (Biology and Ecology) submodels. The other, optional, submodels use their outputs to simulate the human domain.</p>
 <p><img src="media/image7.jpg" style="width:6.69306in;height:4.50833in"></p>
-<p><span id="_Ref445803305" class="anchor"></span><strong>Figure 2.</strong> Schematic representation of the Atlantis model structure and input files. Submodels coloured in green are obligatory. Files marked with * are required, others are optional.</p>
+<p><strong>Figure 2.</strong> Schematic representation of the Atlantis model structure and input files. Submodels coloured in green are obligatory. Files marked with * are required, others are optional.</p>
 <p>The 3D structure of your model domain, or <strong>Model Geometry</strong>, is described in the BGM file. The model geometry is used to simulate all processes in the five submodels.</p>
 <p><strong>Physics</strong> and <strong>Biology</strong> submodels are required (although you can switch some parts off for debugging purposes), whereas <strong>Harvest</strong>, <strong>Assessment</strong> and <strong>Economics</strong> submodels are optional. Each submodel has a specific PRM file describing parameters used in it. Biology and Harvest submodels also require a list of the relevant groups, such as biological functional groups or list of fisheries, in the CSV format.</p>
 <p><strong>Initial conditions</strong> are the spatially explicit starting values for all modelled state variables (e.g.&nbsp;spatial distribution of numbers of age 1 cod at the start of your simulations). The initial conditions are specified in the initial condition NC file<strong>.</strong></p>
 <p>In addition, all simulations require two supporting files <em>force.prm</em> and <em>run.prm</em> (see below for a brief description of all parameter files).</p>
 <p>The <em>main()</em> routine is in the <strong>atlantismain.c</strong> file in the <strong>atlantismain</strong> library. It calls in a set order all other routines that initialise and run the requested submodels and routines and write output files. Each submodel and their main routines will be described in detail below, but a general overview is given in Fig. 3.</p>
 <p><img src="media/image8.jpeg" style="width:6.96528in;height:5.37153in"></p>
-<p><span id="_Toc526762783" class="anchor"></span><strong>Figure 3.</strong> Brief overview of the Atlantis <em>main()</em> routine that calls other routines implemented in various submodels.</p>
+<p><strong>Figure 3.</strong> Brief overview of the Atlantis <em>main()</em> routine that calls other routines implemented in various submodels.</p>
 </section>
 <section id="delving-into-the-code-finding-the-files-and-routines-that-describe-the-processes-you-are-interested-in" class="level2">
 <h2 class="anchored" data-anchor-id="delving-into-the-code-finding-the-files-and-routines-that-describe-the-processes-you-are-interested-in"><strong>2.4. Delving into the code: finding the files and routines that describe the processes you are interested in</strong></h2>
@@ -474,11 +474,11 @@ Caution
 <h2 class="anchored" data-anchor-id="how-to-setup-and-start-simulations"><strong>2.5. How to setup and start simulations</strong></h2>
 <section id="crash-introduction-into-command-line-interfaces" class="level3">
 <h3 class="anchored" data-anchor-id="crash-introduction-into-command-line-interfaces"><em>2.5.1. Crash introduction into Command line interfaces</em></h3>
-<p>Atlantis is an “old style” program that runs from a command line. This is done using "<a href="https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt">Command Prompt</a>" on Windows or "<a href="http://guides.macrumors.com/Terminal">Terminal</a>" on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g.&nbsp;tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).</p>
+<p>Atlantis is an “old style” program that runs from a command line. This is done using “<a href="https://confluence.csiro.au/display/Atlantis/Windows+Command+Prompt">Command Prompt</a>” on Windows or “<a href="http://guides.macrumors.com/Terminal">Terminal</a>” on a Mac or Linux. Please familiarize yourself with the command line interface and how to navigate among folders. For most uses you only need to know a few commands and can pick up the required skills in a few minutes. There are plenty of online tutorials to quickly learn about the Command line interface for your operating system (e.g.&nbsp;tutorial.djangogirls.org/en/intro_to_command_line/). Here are a few commands just to get you going (in fact you do not really need much more than that).</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 40%">
-<col style="width: 59%">
+<col style="width: 18%">
+<col style="width: 81%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -517,7 +517,7 @@ Caution
 </section>
 <section id="setting-up-the-bat-file" class="level3">
 <h3 class="anchored" data-anchor-id="setting-up-the-bat-file"><em>2.5.2. Setting up the BAT file</em></h3>
-<p>At this stage you already have 1) compiled the code on your machine, 2) created a run directory for your simulations (C:\AtlantisRuns\MyModel), 3) copied all input and parameter files into the run directory, 4) copied the Atlantis executable (atlantismain.exe) from C:\...\atlantismain\Debug into your run directory.</p>
+<p>At this stage you already have 1) compiled the code on your machine, 2) created a run directory for your simulations (C:\AtlantisRuns\MyModel), 3) copied all input and parameter files into the run directory, 4) copied the Atlantis executable (atlantismain.exe) from C:\…\atlantismain\Debug into your run directory.</p>
 <p>The next step is to create a BAT file such as <em>run.bat</em> (or any name you want, e.g.&nbsp;<em>NoFishing.bat</em>) and then call it from the command prompt to initialise the simulations. <strong>The BAT file must be in the same directory as the Atlantis executable.</strong></p>
 <p>The easiest way to setup and modify the .bat file is in a text editor.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -561,8 +561,8 @@ Note
 <p>This section gives a brief description of the parameter files. They will be described in further details in subsequent chapters:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 31%">
-<col style="width: 68%">
+<col style="width: 4%">
+<col style="width: 95%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -644,38 +644,39 @@ Good practice tip
 <section id="setting-up-batch-simulations" class="level3">
 <h3 class="anchored" data-anchor-id="setting-up-batch-simulations"><em>2.5.4. Setting up batch simulations</em></h3>
 <p>To set up <strong>batch simulations</strong>, simply add more command lines in your BAT file:</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><em>atlantismain.exe -i MySea_initial.nc 0 -<strong>o NoFishing.nc</strong> -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -<strong>h MySea_harvestNoFishing.prm</strong> -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -<strong>d OutputNoFishing</strong> -t C:\AtlantisRuns\parameters</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>atlantismain.exe -i MySea_initial.nc 0 -<strong>o NoFishing.nc</strong> -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -<strong>h MySea_harvestNoFishing.prm</strong> -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -<strong>d OutputNoFishing</strong> -t C:\AtlantisRuns\parameters</em></p>
 <p><em>atlantismain.exe -i MySea_initial.nc 0 <strong>-o MedFishing.nc</strong> -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -<strong>h MySea_harvestMedFishing.prm</strong> -q MyFisheries.csv –a MySea_assess.prm -e MySea_econ.prm -<strong>d OutputMedFishing</strong> -t C:\AtlantisRuns\parameters</em></p>
-<p><em>atlantismain.exe -i MySea_initial.nc 0 -<strong>o HighFishing.nc</strong> -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -<strong>h MySea_harvesHighFishing.prm</strong> -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -<strong>d OutputHighFishing</strong> -t C:\AtlantisRuns\parameters</em></p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p><em>atlantismain.exe -i MySea_initial.nc 0 -<strong>o HighFishing.nc</strong> -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -<strong>h MySea_harvesHighFishing.prm</strong> -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -<strong>d OutputHighFishing</strong> -t C:\AtlantisRuns\parameters</em></p>
+</div>
+</div>
 <p>Batch simulations would normally have some differences between runs (<strong>shown in bold</strong> in the example above). Make sure you place each output in a different folder (-d) and don’t overwrite it! Also make sure you carefully check your command lines to ensure you call the correct parameter files. It is really disappointing to wait for a few days for your batch simulation outputs just to realise that the BAT file had wrong combinations of parameter files in it!</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>If you run a lot of simulations it is good idea to keep your BAT files handy, so you can easily trace the parameter combinations used. The LOG file produced for each simulation includes the command line of the BAT file. However, some users find it convenient to add new commands to the BAT file and comment (deactivate) the old ones out with # sign.</p>
-<p><em><strong>#</strong>atlantismain.exe -i MySea_initial.nc 0 -o NoFishing.nc -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -h MySea_harvestNoFishing.prm -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -d OutputNoFishing -t C:\AtlantisRuns\parameters</em></p>
+<p><em>#atlantismain.exe -i MySea_initial.nc 0 -o NoFishing.nc -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -h MySea_harvestNoFishing.prm -q MyFisheries.csv -a MySea_assess.prm -e MySea_econ.prm -d OutputNoFishing -t C:\AtlantisRuns\parameters</em></p>
 <p><em>atlantismain.exe -i MySea_initial.nc 0 <strong>-o MedFishing.nc</strong> -r MySea_run.prm -p MySea_physics.prm -f MySea_force.prm -b MySea_biol.prm -s Functional_groups.csv -<strong>h MySea_harvestMedFishing.prm</strong> -q MyFisheries.csv –a MySea_assess.prm -e MySea_econ.prm -<strong>d OutputMedFishing</strong> -t C:\AtlantisRuns\parameters</em></p>
 <p>In this example, Atlantis will skip the first line and will only execute the second one (where the fishing parameters, harvest and output files are changed). This way you can easily keep a record of parameter combinations used in earlier simulations. Of course, if you run dozens of simulations at some point this BAT file will get too long and cluttered and you will need a different bookkeeping system (but make sure you have some system to trace each parameter combination in each simulation!)</p>
-<p>Note, that the line here refers to the whole command string, separated by line spaces. One command line is wrapped into four lines in the example above, but it does not contain any line breaks.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>Note, that the line here refers to the whole command string, separated by line spaces. One command line is wrapped into four lines in the example above, but it does not contain any line breaks.</p>
+</div>
+</div>
 </section>
 <section id="initialising-simulations" class="level3">
 <h3 class="anchored" data-anchor-id="initialising-simulations"><em>2.5.5. Initialising simulations</em></h3>
@@ -686,55 +687,55 @@ Good practice tip
 <p>When the run is complete, Atlantis will finalise writing all the outputs, free arrays and close (the simulation below was run for 20 days):</p>
 <p><img src="media/image14.tmp" style="width:5.44in;height:3.48958in"></p>
 <p>If, for some reason you need to stop your run before it is finished, go to the output folder and delete the file called “<strong><em>delete_to_halt_run</em></strong>”. This way Atlantis will write all the outputs to date and free memory before stopping the simulation. If you stop Atlantis any other way the files will not be completed properly and will most likely be uselessly incomplete.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
-<p>During the simulations Atlantis runs many outputs into its internal memory. This means that even though all the output files are created at the beginning of the simulation, they may not contain much information until the runs are actually finished. So, do not get disturbed if you want to peek into some output file during the simulation and find it empty, even if the simulation has already been running for a long time.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>During the simulations Atlantis runs many outputs into its internal memory. This means that even though all the output files are created at the beginning of the simulation, they may not contain much information until the runs are actually finished. So, do not get disturbed if you want to peek into some output file during the simulation and find it empty, even if the simulation has already been running for a long time.</p>
+</div>
+</div>
 <p>Don’t despair if the simulation does not start so smoothly. Error messages are an important part of this adventure! Check out the chapter on troubleshooting and the dedicated Atlantis wiki <a href="https://confluence.csiro.au/display/Atlantis/Common+Windows+Build+Errors">page</a></p>
 </section>
 </section>
 <section id="simulation-outputs" class="level2">
 <h2 class="anchored" data-anchor-id="simulation-outputs"><strong>2.6. Simulation outputs</strong></h2>
 <p>Once the simulation finishes Atlantis will generate <strong>a lot of</strong> <strong>output files</strong> in TXT and NC formats. The simulation output folder will also contain the <em>log.txt</em> file (with various details or messages generated during the run), as well as <em>exports.ts</em> and <em>inputs.ts</em>, which store information on flows into/out of the model domain, and a number of XML files, which are mostly just automatically generated files that are converted input files restructured to a format that Atlantis can more easily read in. Most users never touch the TS and XML output files. The XML files might be a useful means of storing the input parameters in a database but are otherwise of little ongoing use. The TS files however can be quite informative for showing how much material enters and exits the domain due to advection.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
-<p>The <em>log.txt</em> file does not start with the name given in the <strong><em>–o</em></strong> command. This means that if you accidentally start another simulation with the same output folder name (or without giving the output folder), the <em>log.txt</em> file will be overwritten.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<p><img src="media/image15.tmp" style="width:6.08472in;height:7.94028in">The list of output files in your output folder will look like this (it indeed has <strong>a lot of</strong> outputs!):</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>log.txt</em> file does not start with the name given in the <strong><em>–o</em></strong> command. This means that if you accidentally start another simulation with the same output folder name (or without giving the output folder), the <em>log.txt</em> file will be overwritten.</p>
+</div>
+</div>
+<p><img src="media/image15.tmp" style="width:6.08472in;height:7.94028in"></p>
+<p>The list of output files in your output folder will look like this (it indeed has <strong>a lot of</strong> outputs!):</p>
 <p>The table below lists the main output files. Some output files will be produced only if relevant flags are active (e.g.&nbsp;evolution, different management or fisheries options) and are not included in the table.</p>
-<p><span id="_Toc445899521" class="anchor"></span></p>
 <p>Table 3. Main Atlantis output files. The main output files of interest for beginner users are shown in grey boxes. The table first lists Biology related outputs and then Harvest submodel related outputs. Please note, that the list of output files are continuously updated, so check the <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+Output+Files">wiki</a> for any changes.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 4%">
-<col style="width: 63%">
-<col style="width: 4%">
-<col style="width: 27%">
+<col style="width: 18%">
+<col style="width: 30%">
+<col style="width: 21%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Name</strong></th>
-<th><strong>Contents</strong></th>
-<th><strong>Units</strong></th>
-<th><strong>Comments</strong></th>
+<th>Name</th>
+<th>Contents</th>
+<th>Units</th>
+<th>Comments</th>
 </tr>
 </thead>
 <tbody>
@@ -754,20 +755,18 @@ Good practice tip
 <td>AgeBiomass.txt</td>
 <td><strong>Snapshots</strong> of biomasses of all active species per age group across the entire model domain</td>
 <td>tonnes</td>
-<td><p>This output is given if</p>
-<p>flag_age_output is set to 1 in <em>run.prm</em></p></td>
+<td>This output is given if flag_age_output is set to 1 in <em>run.prm</em></td>
 </tr>
 <tr class="even">
 <td>DietCheck.txt</td>
 <td>Proportional make up of a diet of each age class of each functional group. This is the cumulative proportion since the last output</td>
-<td>propor-tion</td>
+<td>proportion</td>
 <td>The total sum for each age group is 1 for all prey items</td>
 </tr>
 <tr class="odd">
 <td>DetailedDietCheck.txt</td>
 <td>If flagdietcheck is set to 1 then this returns the total consumed biomass since the last output given for each cell (box and layer) of each age group of each functional group. If flagdietcheck is set to 2 then it is the proportional makeup of the diet instead.</td>
-<td><p>tonnes or</p>
-<p>propor-tion</p></td>
+<td>tonnes or proportion</td>
 <td>Very useful for understanding model dynamics. Check out R codes for querying these outputs (chapter 2.9)</td>
 </tr>
 <tr class="even">
@@ -778,16 +777,13 @@ Good practice tip
 </tr>
 <tr class="odd">
 <td>SpecificMort.txt</td>
-<td><p>Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality.</p>
-<p>At present the M and F values for this output are written <strong>before</strong> Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that <strong>M or F in the file can sometimes exceed 1</strong>. This will be corrected in a future release of Atlantis as the code is restructured.</p></td>
-<td><p>per</p>
-<p>year</p></td>
+<td>Three values of instantaneous mortality for each functional group, age group and stock. M2 is predation mortality, M1 other natural mortality (starvation, linear mortality), F is fishing mortality. At present the M and F values for this output are written <strong>before</strong> Atlantis checks that consumption and fishing are not trying to take more than is available in each cell. This means that <strong>M or F in the file can sometimes exceed 1</strong>. This will be corrected in a future release of Atlantis as the code is restructured.</td>
+<td>per year</td>
 <td>At this stage the file is useful only as an <strong>indication of relative morality</strong> for qualitative mortality assessment (high/low)</td>
 </tr>
 <tr class="even">
 <td>SpecificPredMort.txt</td>
-<td><p><strong>Cumulative</strong> predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year.</p>
-<p>As with the SpecificMort.txt above, <strong>values can exceed 1</strong>. This will be fixed in the future</p></td>
+<td><strong>Cumulative</strong> predation mortality of each stock and age group of each functional group (in rows) as imposed by each predator (in columns) over the course of a year. As with the SpecificMort.txt above, <strong>values can exceed 1</strong>. This will be fixed in the future</td>
 <td>per year</td>
 <td>At this stage the file is useful only as an <strong>indication of relative morality</strong> for qualitative mortality assessment (high/low)</td>
 </tr>
@@ -812,34 +808,30 @@ Good practice tip
 <tr class="even">
 <td>.nc</td>
 <td>3D (time, box, layer) <strong>snapshots</strong> of the tracer values at the time of the output</td>
-<td>mg/m<sup>3</sup> or numb</td>
+<td>mg/m³ or numb</td>
 <td>Frequency of output controlled with toutinc in <em>run.prm</em> file</td>
 </tr>
 <tr class="odd">
 <td>TOT.nc</td>
 <td>2D (time, box) <strong>snapshots</strong> of tracer values per box (summed over layers)</td>
-<td>tonnes/km<sup>2</sup> or numb</td>
+<td>tonnes/km² or numb</td>
 <td>Frequency of output controlled with toutinc in <em>run.prm</em> file</td>
 </tr>
 <tr class="even">
 <td>PROD.nc</td>
 <td>2D (time, box) <strong>snapshots</strong> of diagnostic tracers, such as production and grazing for biomass groups, growth and consumption for each age group for each fully age structured group, and a number of other diagnostic indices</td>
-<td><p>mg/m<sup>3</sup>/day</p>
-<p>or</p>
-<p>mg/day/individ</p></td>
+<td>mg/m³/day or mg/day/individ</td>
 <td>Frequency of output controlled with toutinc in <em>run.prm</em> file</td>
 </tr>
 <tr class="odd">
 <td>ANNAGEBIO.nc</td>
 <td>Numbers in each <strong>annual</strong> age class of a species (<strong>NOT</strong> the model age group) per box. This can be useful when tracking annual changes in species that have multiple years per age group. It also records the average size of individuals of the associated model age group per box (i.e.&nbsp;all age classes in the age group are assumed to be of the same individual size)</td>
-<td><p>number/box</p>
-<p>and g/individ/box</p></td>
+<td>number/box and g/individ/box</td>
 <td>The output is written only when flag_age_output is set to 1 in <em>run.prm</em> file</td>
 </tr>
 <tr class="even">
 <td>BoxLight.txt</td>
-<td><p>Proportion of sun hours per time step</p>
-<p>(how long during that time step there was light)</p></td>
+<td>Proportion of sun hours per time step (how long during that time step there was light)</td>
 <td></td>
 <td></td>
 </tr>
@@ -905,7 +897,7 @@ Good practice tip
 </tr>
 <tr class="odd">
 <td>CATCH.nc</td>
-<td><strong>2D</strong> (time, box) file of <strong>cumulative</strong> values of catch and discard per species per fishery in numbers and tonnes per box: catch per species per age group (numbers), discards per species&nbsp;per age group (numbers), catch per species per fishery (tonnes), discards per species per fishery&nbsp;(tonnes)</td>
+<td><strong>2D</strong> (time, box) file of <strong>cumulative</strong> values of catch and discard per species per fishery in numbers and tonnes per box: catch per species per age group (numbers), discards per species per age group (numbers), catch per species per fishery (tonnes), discards per species per fishery (tonnes)</td>
 <td>tonnes or number</td>
 <td>Frequency of output controlled with toutfinc in <em>run.prm</em> file</td>
 </tr>
@@ -941,199 +933,204 @@ Good practice tip
 <p><a href="https://en.wikipedia.org/wiki/NetCDF">NetCDF (Network Common Data Form)</a> is a set of software libraries and data formats that allow for the creation, access, and sharing of array-oriented scientific data irrespective of type of computer hardware. They are typically used by oceanographers and atmospheric scientists and modellers to store spatial time series information. The NC file format is the computer-readable version, while the CDF format is its unpacked human-readable version that can be viewed and edited with a text editor (such as Notepad or Textpad). The key characteristics of these files are that they are platform-independent and “self-describing”. This means that the file has a header which describes the layout of the rest of the file and array dimensions, followed by sections of data and variable attributes. There are many matlab, R and other tools for interacting with NC files.</p>
 <p>The <em>initial_conditions.nc</em> file in Atlantis must list all variables to be tracked throughout the simulation, their initial values or concentrations in the spatial domain, and some of their key characteristics. It is important to get them right. The <em>initial_conditions.nc</em> file is huge and it is not advisable to edit it by hand (see below for tools available to set and modify it). However, it is useful to open and explore the file by converting the NC file to a CDF file.</p>
 <p>Two small programs, <strong>ncdump.exe</strong> and <strong>ncgen.exe,</strong> can be used to convert NC files into CDF files (to create human readable and editable files) and from CDF to NC respectively (in case you modified the CDF file and need to convert it back into the computer-readable format). The two packages are included in the NetCDF libraries required for compiling Atlantis (see step 4 in the Chapter 2.1). To convert the files, open the Command Prompt, navigate into the folder that includes the NC or CDF files you want to convert and call the appropriate command with its parameters, as shown below. For example, if you want to convert NC into CDF, type: ncdump.exe somedata.nc &gt; otherdata.cdf. Note, the name of the NC file created by the ncgen.exe, will be the same as the name given in the first line of the CDF file (so NOT necessarily the same name as typed in the command prompt). If you install NetCDF and update the paths as described on the <a href="https://confluence.csiro.au/display/Atlantis/NetCDF+4+in+Windows">wiki</a> the Command Prompt will automatically locate ncdump.exe or ncgen.exe files, so you don’t need to have the EXE files in the same folder as the file you want to convert. The names of the NC and CDF files don’t have to be the same.</p>
-<p>My_Data.nc</p>
-<p>My_Data.cdf</p>
-<p><strong>&gt; ncdump.exe My_Data.nc &gt; My_Data.cdf</strong></p>
-<p><strong>&gt; ncgen.exe -b My_Data.cdf</strong></p>
+<p>ncdump.exe My_Data.nc &gt; My_Data.cdf ncgen.exe -b My_Data.cdf</p>
 <p><img src="media/image16.png" style="width:5.68056in;height:2.68056in"></p>
 <p>Once you converted the NC file into CDF, you can open it using a text editor. Here is an example of an output.nc file (comments after ## are added here for explanation):</p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th><p>netcdf example { <em>## name of the file</em></p>
-<p><em>## header section of the file – describes file contents and dimensions</em></p>
-<p><strong>dimensions:</strong></p>
-<p>t = UNLIMITED ; // (111 currently) <em>## number of time steps</em></p>
-<p>b = 29 ; <em>## number of boxes</em></p>
-<p>z = 9 ; <em>## number of layers</em></p>
-<p>icenz=2; <em>## OPTIONAL: number of ice layers</em></p>
-<p><em>## the</em> <a href="https://confluence.csiro.au/display/Atlantis/Changed+to+prm+files"><em>icenz</em></a> <em>attribute <a href="https://confluence.csiro.au/display/Atlantis/Ice+in+Atlantis">activates the ice model</a></em></p>
-<p><strong>variables:</strong> <em>## start listing variable descriptions</em></p>
-<p>double t(t) ; <em>## double precision 1D variable - time</em></p>
-<p>t:units = "seconds since 2005-01-01 00:00:00 +10" ; <em>## start time of the simulation: <strong>time stamp</strong></em></p>
-<p>double volume(t, b, z) ; <em>## 3-dimens. variable: volume (t, b, z)</em></p>
-<p>volume:bmtype = "phys" ; <em>## description of Physical variables</em></p>
-<p>volume:units = "m3" ;</p>
-<p>volume:long_name = "Volume" ;</p>
-<p>…</p>
-<p>double Det_Si(t, b, z) ; <em>## description of Tracer variables</em></p>
-<p>Det_Si:bmtype = "tracer" ;</p>
-<p>Det_Si:units = "mg Si m-3" ;</p>
-<p>Det_Si:long_name = "Detrital Silica" ;</p>
-<p>Det_Si:dtype = 0 ;</p>
-<p>Det_Si:sumtype = 1 ;</p>
-<p>Det_Si:inwc = 1 ;</p>
-<p>Det_Si:insed = 1 ;</p>
-<p>Det_Si:decay = 0. ;</p>
-<p>Det_Si:dissol = 0 ;</p>
-<p>Det_Si:partic = 1 ;</p>
-<p>Det_Si:passive = 1 ;</p>
-<p>Det_Si:svel = -2.894e-005 ;</p>
-<p>Det_Si:xvel = 0. ;</p>
-<p>Det_Si:psize = 1.e-005 ;</p>
-<p>Det_Si:b_dens = 1000000000. ;</p>
-<p>Det_Si:i_conc = 200000000. ;</p>
-<p>Det_Si:f_conc = 200000000. ;</p>
-<p>…</p>
-<p>double Filter_Soft_N(t, b) ; <em>## description of Epibenthic variables</em></p>
-<p>Filter_Soft_N:bmtype = "epibenthos" ;</p>
-<p>Filter_Soft_N:units = "mg N m-2" ;</p>
-<p>Filter_Soft_N:long_name = "Soft substrate filter feeders Nitrogen" ;</p>
-<p>Filter_Soft_N:dtype = 0 ;</p>
-<p>Filter_Soft_N:sumtype = 1 ;</p>
-<p>…</p>
-<p><strong>// global attributes:</strong> <em>##global attributes or variables</em></p>
-<p>:title = "Baltic" ;</p>
-<p>:geometry = "Baltic_aea_v2BGM" ;</p>
-<p>:parameters = "atlantismain2.exe -i init_Baltic.nc 0 -o BalticClimate1.nc -s BalticClimate1TOT.nc -g BalticClimate1PROD.nc -c BalticClimate1TOTCATCH.nc -d BalticClimate1CATCH.nc -r Baltic_run.prm -f Baltic_force2015.prm -b Baltic_biol_Climate.prm -h -p Baltic_physics.prm"; <em>##details on BAT and other outputs</em></p>
-<p>:wcnz = 8 ; <em>## number of water column layers</em></p>
-<p>:sednz = 1 ; <em>## number of sediment layers</em></p>
-<p>## data section of the file contains a data entry for each variable declared in the header section</p>
-<p><strong>data:</strong> <em>## start of the data for each variable</em></p>
-<p>t = 0, 7862400, 15724800, 23587200, 31449600, 39312000, 47174400, <em>## time steps of the simulation</em></p>
-<p>55036800, 62899200, 70761600, 78624000, 86486400, 94348800, …</p>
-<p>volume = <em>## variable values per layer, box, time</em></p>
-<p>0, 0, 0, 0, 1762842878.80397, 8664747499.65088, 2166186874.91272,</p>
-<p>2166186874.91272, 216618687.491272,</p>
-<p>0, 0, 0, 0, 0, 15949302157.943, 27451466709.024, 27451466709.024,</p>
-<p>2745146670.9024, …</p>
-<p>… <em>## continued until all variables are listed</em></p>
-<p>}</p></th>
-</tr>
-</thead>
+<pre><code>netcdf example {  ## name of the file
 
-</table>
+## header section of the file -- describes file contents and dimensions
+
+dimensions:
+    t = UNLIMITED ; // (111 currently)  ## number of time steps
+    b = 29 ;  ## number of boxes  
+    z = 9 ;   ## number of layers
+    icenz=2;  ## OPTIONAL: number of ice layers
+    
+    ## the icenz attribute activates the ice model
+
+variables:  ## start listing variable descriptions
+    double t(t) ;  ## double precision 1D variable - time
+        t:units = "seconds since 2005-01-01 00:00:00 +10" ;  ## start time of the simulation: time stamp
+        
+    double volume(t, b, z) ;  ## 3-dimens. variable: volume (t, b, z)
+        volume:bmtype = "phys" ;  ## description of Physical variables
+        volume:units = "m3" ;
+        volume:long_name = "Volume" ;
+        
+    ...
+    
+    double Det_Si(t, b, z) ;  ## description of Tracer variables
+        Det_Si:bmtype = "tracer" ;
+        Det_Si:units = "mg Si m-3" ;
+        Det_Si:long_name = "Detrital Silica" ;
+        Det_Si:dtype = 0 ;
+        Det_Si:sumtype = 1 ;
+        Det_Si:inwc = 1 ;
+        Det_Si:insed = 1 ;
+        Det_Si:decay = 0. ;
+        Det_Si:dissol = 0 ;
+        Det_Si:partic = 1 ;
+        Det_Si:passive = 1 ;
+        Det_Si:svel = -2.894e-005 ;
+        Det_Si:xvel = 0. ;
+        Det_Si:psize = 1.e-005 ;
+        Det_Si:b_dens = 1000000000. ;
+        Det_Si:i_conc = 200000000. ;
+        Det_Si:f_conc = 200000000. ;
+        
+    ...
+    
+    double Filter_Soft_N(t, b) ;  ## description of Epibenthic variables
+        Filter_Soft_N:bmtype = "epibenthos" ;
+        Filter_Soft_N:units = "mg N m-2" ;
+        Filter_Soft_N:long_name = "Soft substrate filter feeders Nitrogen" ;
+        Filter_Soft_N:dtype = 0 ;
+        Filter_Soft_N:sumtype = 1 ;
+        
+    ...
+
+// global attributes:  ## global attributes or variables
+    :title = "Baltic" ;
+    :geometry = "Baltic_aea_v2BGM" ;
+    :parameters = "atlantismain2.exe -i init_Baltic.nc 0 -o BalticClimate1.nc -s BalticClimate1TOT.nc -g BalticClimate1PROD.nc -c BalticClimate1TOTCATCH.nc -d BalticClimate1CATCH.nc -r Baltic_run.prm -f Baltic_force2015.prm -b Baltic_biol_Climate.prm -h -p Baltic_physics.prm";  ## details on BAT and other outputs
+    :wcnz = 8 ;  ## number of water column layers
+    :sednz = 1 ; ## number of sediment layers
+
+## data section of the file contains a data entry for each variable declared in the header section
+
+data:  ## start of the data for each variable
+    t = 0, 7862400, 15724800, 23587200, 31449600, 39312000, 47174400,  ## time steps of the simulation
+        55036800, 62899200, 70761600, 78624000, 86486400, 94348800, ...
+        
+    volume =  ## variable values per layer, box, time
+        0, 0, 0, 0, 1762842878.80397, 8664747499.65088, 2166186874.91272,
+        2166186874.91272, 216618687.491272,
+        0, 0, 0, 0, 0, 15949302157.943, 27451466709.024, 27451466709.024,
+        2745146670.9024, ...
+        
+    ... ## continued until all variables are listed
+    
+}</code></pre>
 </section>
 <section id="introduction-to-atlantis-variables" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-atlantis-variables"><strong>2.8. Introduction to Atlantis variables</strong></h2>
-<p>There are three kinds of obligatory and two kinds of optional variables used in Atlantis. Variable types are defined by the bmtype parameter:</p>
-<p>1) “phys” - physical properties of the model</p>
-<p>2) “tracer” – three-dimensional dynamic variables (either in the water column or the sediments) of the model domain</p>
-<p>3) “epibenthos” – two-dimensional dynamic benthic variables</p>
-<p>4) <a href="https://confluence.csiro.au/display/Atlantis/Changed+to+Initial+Conditions+NetCDF+file">“icetracer”</a> – a variable that exists in ice layers (if the model explicitly includes ice)</p>
-<p>5) “<a href="https://confluence.csiro.au/display/Atlantis/Land+in+Atlantis">terrestrial</a>” – tracers used to identify land variables (if the model explicitly includes land)</p>
-<p>Each variable declaration includes the expected numerical precision. A few variables (e.g.&nbsp;numlayers) are marked as short, which means they are expecting integer input variables, but most variables are doubles, which indicates that they are a double precision floating point number format (a computer way saying this is a real number not simply an integer). The precision identifier is followed by the variable name and the expected dimensions. Variables can be one dimensional (time), two dimensional (time, box) or three dimensional (time, box, layer). It is important to make sure the data entered has this many dimensions (with no omissions) as Atlantis assumes the dimensions are fully filled when it loads the data.</p>
-<p>Next, the file lists the characteristics of the variables. All variables have four general parameters: units, long_name, dtype, sumtype. Units and long_name are only needed for the user and interpretation of results; they are entered in inverted commas ” ” as they will be loaded as strings of text by Atlantis.</p>
-<p>The parameters dtype and sumtype are flags whose value determines where the output of the variable value is to be written.</p>
-<p>The dtype describes the information that will be written to the output files. It can have four values:</p>
-<p>0: Standard snapshots, sent to the base <em>out.nc</em> output files and summarised in 2D in <em>outTOT.nc</em></p>
-<p>1: Fisheries total values, written to <em>fisheresTOT.nc</em> files when the fisheries submodel is active</p>
-<p>2: Ecological diagnostics, sent to diagnostic <em>PROD.nc</em> files (production, consumption etc)</p>
-<p>3: Detailed fisheries information, typically used for tracers in the dynamic fisheries, sent to base <em>fisheries_out.nc</em> file</p>
-<p>The sumtype parameter can have two values:</p>
-<p>0: indicates that data is written in the 3D format (per layer per box per time step) in the main <em>out.nc</em> file and given in detail</p>
-<p>1: indicates that, in addition to the 3D output given in the main <em>out.nc</em> file, summary (e.g.&nbsp;total value per box integrated over all layers) is also written to the <em>outTOT.nc</em> file</p>
-<p>The term “<strong>tracer</strong>” will be used often throughout the manual. Most of the variables belong to this category. They include temperature, salinity, oxygen, nutrients (NO3, NH3, organic nitrogen), bacteria, pelagic organisms and description of age structured groups. Most tracers, like bacteria_N, cod1_numbers are dynamic, which means they participate in the processes and change through time. The <em>initial_conditions.nc</em> file includes some important characteristics of these tracers (Table 4). Other tracers are in fact processes, such as Nitrification, Denitrification, Light adaptation, Sediment Porosity and others. They are initiated as tracers in order to create arrays for them, so Atlantis has a dedicated place to write the output for them.</p>
-<p><span id="_Toc526762756" class="anchor"></span>Table 4. Parameters used to describe characteristics of Atlantis variables in the <em>initial_conditions.nc</em> file. These parameters are read in by the <em>readBMTracerInfo()</em> in <u>attracerIO.c</u></p>
+<p>There are three kinds of obligatory and two kinds of optional variables used in Atlantis. Variable types are defined by the <code>bmtype</code> parameter:</p>
+<ol type="1">
+<li>“phys” - physical properties of the model</li>
+<li>“tracer” – three-dimensional dynamic variables (either in the water column or the sediments) of the model domain</li>
+<li>“epibenthos” – two-dimensional dynamic benthic variables</li>
+<li><a href="https://confluence.csiro.au/display/Atlantis/Changed+to+Initial+Conditions+NetCDF+file">“icetracer”</a> – a variable that exists in ice layers (if the model explicitly includes ice)</li>
+<li>“<a href="https://confluence.csiro.au/display/Atlantis/Land+in+Atlantis">terrestrial</a>” – tracers used to identify land variables (if the model explicitly includes land)</li>
+</ol>
+<p>Each variable declaration includes the expected numerical precision. A few variables (e.g.&nbsp;numlayers) are marked as short, which means they are expecting integer input variables, but most variables are <code>doubles</code>, which indicates that they are a double precision floating point number format (a computer way saying this is a real number not simply an integer). The precision identifier is followed by the variable name and the expected dimensions. Variables can be one dimensional (time), two dimensional (time, box) or three dimensional (time, box, layer). It is important to make sure the data entered has this many dimensions (with no omissions) as Atlantis assumes the dimensions are fully filled when it loads the data.</p>
+<p>Next, the file lists the characteristics of the variables. All variables have four general parameters: <code>units</code>, <code>long_name</code>, <code>dtype</code>, <code>sumtype</code>. <code>Units</code> and <code>long_name</code> are only needed for the user and interpretation of results; they are entered in inverted commas ” ” as they will be loaded as strings of text by Atlantis.</p>
+<p>The parameters <code>dtype</code> and <code>sumtype</code> are flags whose value determines where the output of the variable value is to be written.</p>
+<p>The <code>dtype</code> describes the information that will be written to the output files. It can have four values:</p>
+<ol start="0" type="1">
+<li>Standard snapshots, sent to the base <em>out.nc</em> output files and summarised in 2D in <em>outTOT.nc</em></li>
+<li>Fisheries total values, written to <em>fisheresTOT.nc</em> files when the fisheries submodel is active</li>
+<li>Ecological diagnostics, sent to diagnostic <em>PROD.nc</em> files (production, consumption etc)</li>
+<li>Detailed fisheries information, typically used for tracers in the dynamic fisheries, sent to base <em>fisheries_out.nc</em> file</li>
+</ol>
+<p>The <code>sumtype</code> parameter can have two values:</p>
+<ol start="0" type="1">
+<li>indicates that data is written in the 3D format (per layer per box per time step) in the main <em>out.nc</em> file and given in detail</li>
+<li>indicates that, in addition to the 3D output given in the main <em>out.nc</em> file, summary (e.g.&nbsp;total value per box integrated over all layers) is also written to the <em>outTOT.nc</em> file</li>
+</ol>
+<p>The term “<strong>tracer</strong>” will be used often throughout the manual. Most of the variables belong to this category. They include temperature, salinity, oxygen, nutrients (NO_[3], NH_[3], organic nitrogen), bacteria, pelagic organisms and description of age structured groups. Most tracers, like bacteria_N, cod1_numbers are dynamic, which means they participate in the processes and change through time. The <em>initial_conditions.nc</em> file includes some important characteristics of these tracers (Table 4). Other tracers are in fact processes, such as Nitrification, Denitrification, Light adaptation, Sediment Porosity and others. They are initiated as tracers in order to create arrays for them, so Atlantis has a dedicated place to write the output for them.</p>
+<p>Table 4. Parameters used to describe characteristics of Atlantis variables in the <em>initial_conditions.nc</em> file. These parameters are read in by the <em>readBMTracerInfo()</em> in <u>attracerIO.c</u></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 3%">
-<col style="width: 37%">
-<col style="width: 59%">
+<col style="width: 25%">
+<col style="width: 34%">
+<col style="width: 40%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Parameter</strong></th>
-<th><strong>What it means</strong></th>
-<th><strong>Where is it used</strong></th>
+<th>Parameter</th>
+<th>What it means</th>
+<th>Where is it used</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>inwc</td>
-<td>Tracer present in water column<sup>1</sup></td>
-<td><p>Used in most routines that deal with processes in the water column. If a tracer is not present in water column in will be skipped in these routines.</p>
-<p>This is only important for tracers that are used by diffusion, decay, deposition, settling or injection routines (nutrients, sediments, plankton). They are not important for fully age structured groups</p></td>
+<td><code>inwc</code></td>
+<td>Tracer present in water column¹</td>
+<td>Used in most routines that deal with processes in the water column. If a tracer is not present in water column it will be skipped in these routines. This is only important for tracers that are used by diffusion, decay, deposition, settling or injection routines (nutrients, sediments, plankton). They are not important for fully age structured groups</td>
 </tr>
 <tr class="even">
-<td>insed</td>
-<td><p>Tracer present in sediments<sup>1</sup></p>
-<p><sup>1</sup>A tracer can be present both in water column <strong>AND</strong> in sediments</p></td>
+<td><code>insed</code></td>
+<td>Tracer present in sediments¹ ¹A tracer can be present both in water column <strong>AND</strong> in sediments</td>
 <td>Used in most routines that deal with sediment processes. For example, if a tracer is not allowed in the sediments the deposition routine will not deposit it in the sediment, but will leave it in the bottom water layer</td>
 </tr>
 <tr class="odd">
-<td>dissol</td>
-<td>Tracer dissolved in water <sup>2</sup></td>
+<td><code>dissol</code></td>
+<td>Tracer dissolved in water²</td>
 <td>Used in routines that deal with diffusion and advection processes</td>
 </tr>
 <tr class="even">
-<td>partic</td>
-<td><p>Tracer is particulate<sup>2</sup></p>
-<p><sup>2</sup>A tracer can only be “dissolved” OR “particulate”</p></td>
-<td><p>Used in routines that deal with particulate tracers.</p>
-<p>It is recommended to put this value to 1 for all tracers that are not dissolved (which naturally includes biological group tracers)</p></td>
+<td><code>partic</code></td>
+<td>Tracer is particulate² ²A tracer can only be “dissolved” OR “particulate”</td>
+<td>Used in routines that deal with particulate tracers. It is recommended to put this value to 1 for all tracers that are not dissolved (which naturally includes biological group tracers)</td>
 </tr>
 <tr class="odd">
-<td>passive</td>
+<td><code>passive</code></td>
 <td>Tracer can be passively advected</td>
-<td><p>Important for particulate tracers. Only passive particulate tracers are advected (moved by water between cells).</p>
-<p>Anything that is particulate and passive also require – particle size, sedimentation velocity (svel), and extra settling velocity (xvel)</p></td>
+<td>Important for particulate tracers. Only passive particulate tracers are advected (moved by water between cells). Anything that is particulate and passive also require – particle size, sedimentation velocity (svel), and extra settling velocity (xvel)</td>
 </tr>
 <tr class="even">
-<td>decay</td>
-<td><p>exponent in the burial or removal rate per second</p>
-<p>Note, this is not an actual decomposition into other nutrients (like decay of organic nitrogen into NO3), but a complete removal of the variable from the system, such as burial in the sediments</p></td>
-<td><p>Used in the Physics submodel to calculate decay rates</p>
-<p>This parameter is very important and will determine <strong>the rate of tracer removal</strong> from the system. It is typically set to 0 for most tracers)</p></td>
+<td><code>decay</code></td>
+<td>exponent in the burial or removal rate per second. Note, this is not an actual decomposition into other nutrients (like decay of organic nitrogen into NO3), but a complete removal of the variable from the system, such as burial in the sediments</td>
+<td>Used in the Physics submodel to calculate decay rates. This parameter is very important and will determine <strong>the rate of tracer removal</strong> from the system. It is typically set to 0 for most tracers</td>
 </tr>
 <tr class="odd">
-<td>svel</td>
+<td><code>svel</code></td>
 <td>Sedimentation velocity, m/second</td>
 <td>Used in the Physics submodel to calculate sedimentation rate of particulate tracers</td>
 </tr>
 <tr class="even">
-<td>xvel</td>
+<td><code>xvel</code></td>
 <td>Extra settling velocity - due to migration of nutrient limitation. This parameter was inherited from PPIB and ERSEM models (see below) and is typically set to 0</td>
 <td>Used in the Physics submodel to calculate sedimentation rate of particulate tracers</td>
 </tr>
 <tr class="odd">
-<td>psize</td>
-<td><p>Particle size, in meters</p>
-<p>Particle size will determine deposition of particulate matter in sediments</p></td>
+<td><code>psize</code></td>
+<td>Particle size, in meters. Particle size will determine deposition of particulate matter in sediments</td>
 <td>Used in the Physics submodel to calculate sedimentation and resuspension rate</td>
 </tr>
 <tr class="even">
-<td>b_dens</td>
-<td>Particle bulk density (mg*m<sup>-3</sup>)</td>
+<td><code>b_dens</code></td>
+<td>Particle bulk density (mg*m⁻³)</td>
 <td>Used in the Physics submodel to calculate deposition and porosity. Used in <em>deposition()</em> and in calculating sediment density. These parameters in the real world dictate particle movements in real water, but in Atlantis default values would do, because sediment properties are not modelled in such detail.</td>
 </tr>
 <tr class="odd">
-<td>i_conc</td>
+<td><code>i_conc</code></td>
 <td>Particle initial concentration in the deposits</td>
 <td>Used in the Physics submodel to calculate deposition and porosity. It is used in <em>deposition()</em> routine only</td>
 </tr>
 <tr class="even">
-<td>f_conc</td>
+<td><code>f_conc</code></td>
 <td>Particle final concentration in the deposits, after compaction</td>
 <td><strong>This was only used in old models. Current code does not read this in.</strong></td>
 </tr>
 <tr class="odd">
-<td>FillValue</td>
+<td><code>FillValue</code></td>
 <td>Default value to use when automatically filling empty cells in the initial_conditions.nc arrays</td>
 <td>This is often used when tracer the initial concentration in most cells is identical</td>
 </tr>
 </tbody>
 </table>
-<p><span id="chapter29" class="anchor"></span></p>
 </section>
 <section id="tools-and-packages-to-view-and-analyse-atlantis-input-and-output-files" class="level2">
 <h2 class="anchored" data-anchor-id="tools-and-packages-to-view-and-analyse-atlantis-input-and-output-files"><strong>2.9 Tools and packages to view and analyse Atlantis input and output files</strong></h2>
 <p>The Atlantis community has developed a number of different tools to view and analyse these outputs. The main tools used currently include:</p>
-<p>1) An R package “atlantistools” contributed by Alexander Keth, available from https://github.com/alketh/atlantistools</p>
-<p>2) A number of excel template files, matlab and R scripts developed by different users and available on <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+Helper+Tools">Atlantis wiki</a></p>
-<p>3) An R package “rlantis”, available on <a href="https://github.com/mareframe/rlantis" class="uri">https://github.com/mareframe/rlantis</a></p>
-<p>4) netcdf viewing packages <a href="https://confluence.csiro.au/display/Atlantis/How+to+view">Olive and Dive</a> useful for spatial plotting of variables in the NC files</p>
-<p>5) R based Shiny application “shinyrAtlantis” contributed by Shane Richards and available on <a href="https://github.com/shanearichards/shinyrAtlantis" class="uri">https://github.com/shanearichards/shinyrAtlantis</a>. This package is very useful for visualising the <em>initial_conditions.nc</em> and parameter files in a spatial context.</p>
+<ol type="1">
+<li>An R package “atlantistools” contributed by Alexander Keth, available from https://github.com/alketh/atlantistools</li>
+<li>A number of excel template files, matlab and R scripts developed by different users and available on <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+Helper+Tools">Atlantis wiki</a></li>
+<li>An R package “rlantis”, available on <a href="https://github.com/mareframe/rlantis" class="uri">https://github.com/mareframe/rlantis</a></li>
+<li>netcdf viewing packages <a href="https://confluence.csiro.au/display/Atlantis/How+to+view">Olive and Dive</a> useful for spatial plotting of variables in the NC files</li>
+<li>R based Shiny application “shinyrAtlantis” contributed by Shane Richards and available on <a href="https://github.com/shanearichards/shinyrAtlantis" class="uri">https://github.com/shanearichards/shinyrAtlantis</a>. This package is very useful for visualising the <em>initial_conditions.nc</em> and parameter files in a spatial context.</li>
+</ol>
 <p>A number of other packages and tools are in different stages of development. So stay tuned with updates by joining the <a href="https://groups.google.com/forum/#!forum/atlantis-ecosystem-model">Atlantis google group</a> and regularly checking for updates on the Atlantis wiki. If you have a tool you think others would benefit from please feel free to share it via the wiki or the Atlantis google group.</p>
 </section>
 <section id="troubleshooting-on-installation-and-running" class="level2">
@@ -1143,7 +1140,7 @@ Good practice tip
 <p><img src="media/image17.tmp" style="width:4.84221in;height:3.152in"></p>
 <p><strong>2. “Can’t open input data file”.</strong> Make sure the paths specified in the <em>force.prm</em> file are correct.</p>
 <p>In the case below there was a typo in the path, the ‘inputs’ directory folder was misspelled</p>
-<p>hd0.name ../inputs<strong><u>s</u></strong>/forcisets/Baltic_2005_hydro_22May2014.nc</p>
+<p>hd0.name ../inputs<u><strong>s</strong></u>/forcisets/Baltic_2005_hydro_22May2014.nc</p>
 <p>Once this is fixed into</p>
 <p>hd0.name ../inputs/forcisets/Baltic_2005_hydro_22May2014.nc</p>
 <p>the run went smoothly</p>
