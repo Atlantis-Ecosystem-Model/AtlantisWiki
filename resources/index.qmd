@@ -1,0 +1,9 @@
+---
+title: "Resources"
+---
+
+# Resources
+
+*Coming soon*
+
+[← Back to main site](../index.qmd)

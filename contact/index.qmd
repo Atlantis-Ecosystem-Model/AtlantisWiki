@@ -1,0 +1,9 @@
+---
+title: "Contact"
+---
+
+# Contact
+
+*Coming soon*
+
+[← Back to main site](../index.qmd)

@@ -1,0 +1,9 @@
+---
+title: "Confluence Wiki"
+---
+
+# Confluence Wiki
+
+*Coming soon*
+
+[← Back to main site](../index.qmd)
