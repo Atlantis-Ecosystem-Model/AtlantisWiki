@@ -289,20 +289,20 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="introduction-to-functional-groups"><strong>6.1. Introduction to functional groups</strong></h2>
 <p><strong><em>Types of functional groups</em></strong></p>
 <p>Biological components are represented as <strong>biomass pools</strong> (most non-vertebrates), <strong>age-structured biomass pools</strong> (some invertebrates) or <strong>age-structured groups</strong> (vertebrates). These three group types are assigned according to the GroupType and NumCohorts parameters given in the <em>functional_groups.csv</em> file (Table 8). Group types FISH, FISH_INVERT, SHARK, MAMMAL, BIRD, REPTILE are assigned to the fully age-structured groups with the number of age groups given by NumCohorts. Other groups are assigned to biomass pools. If NumCohorts for a biomass pool is &gt;1 they will be assigned to an age-structured biomass pool. The age-structured biomass pools are similar to stanzas used in, for example, Ecosim and are used to allow for different juvenile and adult behaviour and parameters. All non-vertebrates that have NumCohorts=1 are assigned to simple biomass pools.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Can a non-vertebrate be modelled as an age-structured group?</strong></p>
-<p>Six GroupTypes (FISH, FISH_INVERT, MAMMAL, SHARK, BIRD and REPTILE) are currently modelled as age-structured groups. If full age-structure is needed for a non-vertebrate, it should be set as one of these groups, most likely as FISH_INVERT or FISH. FISH_INVERT currently uses the same code as FISH, but the intent is to use it to represent a size rather than age-based model, which is a more typical representation for key invertebrates (such as exploited species). Note however that setting a group as FISH_INVERT or FISH would not call typical non-vertebrate routines (see below).</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>Six GroupTypes (FISH, FISH_INVERT, MAMMAL, SHARK, BIRD and REPTILE) are currently modelled as age-structured groups. If full age-structure is needed for a non-vertebrate, it should be set as one of these groups, most likely as FISH_INVERT or FISH. FISH_INVERT currently uses the same code as FISH, but the intent is to use it to represent a size rather than age-based model, which is a more typical representation for key invertebrates (such as exploited species). Note however that setting a group as FISH_INVERT or FISH would not call typical non-vertebrate routines (see below).</p>
+</div>
+</div>
 <p>Atlantis does not explicitly model sex, but represents an average individual. This means that all individuals in a biomass pool and an age cohort (or a genotype in a cohort, if multiple genotypes are modelled) are considered identical in terms of their reproductive output. This may require some caution in parameterisation, e.g.&nbsp;number of offspring per mammal individual.</p>
 <p><strong><em>State variables tracked</em></strong></p>
 <p><em>Main model</em></p>
@@ -312,181 +312,158 @@ ul.task-list li input[type="checkbox"] {
 <p><strong><em>Allocation of pools throughout the vertical dimension: water column, epibenthos and sediment</em></strong></p>
 <p>Atlantis models 3-5 explicit distribution types of organisms and inanimate pools through the model domain – <strong>water column</strong>, <strong>epibenthic layer</strong> and <strong>sediments</strong> are tracked in all models and <strong>ice</strong> and <strong>land</strong> may also optionally be included. The water column and <strong>sediment</strong> are modelled as three dimensional spaces (units of variables are in m<sup>3</sup>), whereas the epibenthic layer is two-dimensional (units in m<sup>2</sup>). Most organisms are restricted to one type, such as sediments (infaunal invertebrates identified with INF in GroupType name), epibenthic layer (epibenthic organisms, identified with EP in the GroupType name) or water column (fully age-structured groups). Some of the smaller groups (e.g.&nbsp;microflora primary producers) and the inanimate pools can exist in both the sediments and water column (Table 8).</p>
 <p>In the Atlantis code the water column, epibenthic, sediment, ice and land distributionns are referred to as “habitatType”. However, remember that they are not the same as the ecological epibenthic habitats modelled in Atlantis (e.g.&nbsp;seagrass, corals, sponges etc.).</p>
+<div class="table-responsive">
+<div id="tbl-state-variables" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-state-variables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Table 8. State variables tracked in the main Atlantis model (no ice or land included). * indicates optional Si tracking in primary producers that are limited by Si. Primary producer Si limitation is set in <em>functional_groups.csv</em> file parameter IsSiliconDep (see Table 9). In models that include C and P, both C and P are tracked like N (so the number of variable tracked is three times larger).
+</figcaption>
+<div aria-describedby="tbl-state-variables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<caption><span id="_Toc526762760" class="anchor"></span>Table 8. State variables tracked in the main Atlantis model (no ice or land included). * indicates optional Si tracking in primary producers that are limited by Si. Primary producer Si limitation is set in <em>functional_groups.csv</em> file parameter IsSiliconDep (see Table 9). In models that include C and P, both C and P are tracked like N (so the number of variable tracked is three times larger).</caption>
 <thead>
 <tr class="header">
-<th><strong>Group</strong></th>
-<th><strong>State variables tracked</strong></th>
-<th><strong>GroupType in CSV file or <em>initial_conditions.nc</em></strong></th>
+<th style="text-align: left;"><strong>Group</strong></th>
+<th style="text-align: left;"><strong>State variables tracked</strong></th>
+<th style="text-align: left;"><strong>GroupType in CSV file or <em>initial_conditions.nc</em></strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong><em>Biomass pools</em></strong></td>
-<td></td>
-<td></td>
+<td style="text-align: left;"><strong>Biomass pools</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td>pelagic <strong>bacteria</strong></td>
-<td>N in water column</td>
-<td>PL_BACT</td>
+<td style="text-align: left;">pelagic <strong>bacteria</strong></td>
+<td style="text-align: left;">N in water column</td>
+<td style="text-align: left;">PL_BACT</td>
 </tr>
 <tr class="odd">
-<td>sediment <strong>bacteria</strong></td>
-<td>N in sediments</td>
-<td>SED_BACT</td>
+<td style="text-align: left;">sediment <strong>bacteria</strong></td>
+<td style="text-align: left;">N in sediments</td>
+<td style="text-align: left;">SED_BACT</td>
 </tr>
 <tr class="even">
-<td><p><strong><em>(Age-structured) biomass pools</em></strong></p>
-<p>These groups can be age structured if NumCohorts set &gt; 1</p></td>
-<td></td>
-<td></td>
+<td style="text-align: left;"><strong>Age-structured biomass pools</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td>non epibenthic <strong>primary producers</strong></td>
-<td><p>N in water column</p>
-<p>N in sediments</p>
-<p>*Si in water column</p>
-<p>*Si in sediments</p>
-<p>NOTE: Age-structure not recommended</p></td>
-<td><p>SM_PHY</p>
-<p>LG_PHY</p>
-<p>MICROPHTYBENTHOS</p>
-<p>DINOFLAG</p></td>
+<td style="text-align: left;"><em>These groups can be age structured if NumCohorts set &gt; 1</em></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td>epibenthic <strong>primary producers</strong></td>
-<td>N in epibenthic layer for each age group defined by NumCohorts parameter. If age-structure is selected for SEAGRASS it is not really age structure, but different parts of the plant – with “age 0” assumed to be the pool representing leaves, “age 1” the roots, and “age 2” the epiphytes on the leaves, see details <a href="https://confluence.csiro.au/display/Atlantis/2012/12/12/new+seagrass+modelling+option">here</a></td>
-<td><p>PHYTOBEN</p>
-<p>SEAGRASS</p></td>
+<td style="text-align: left;">non epibenthic <strong>primary producers</strong></td>
+<td style="text-align: left;">N in water column<br>N in sediments<br><em>Si in water column<br></em>Si in sediments<br>NOTE: Age-structure not recommended</td>
+<td style="text-align: left;">SM_PHY<br>LG_PHY<br>MICROPHTYBENTHOS<br>DINOFLAG</td>
 </tr>
 <tr class="odd">
-<td>infaunal <strong>invertebrates</strong></td>
-<td><p>N in sediments for each age group defined by the NumCohorts parameter.</p>
-<p>NOTE: Not typically age-structured</p></td>
-<td><p>SM_INF</p>
-<p>LG_INF</p></td>
+<td style="text-align: left;">epibenthic <strong>primary producers</strong></td>
+<td style="text-align: left;">N in epibenthic layer for each age group defined by NumCohorts parameter. If age-structure is selected for SEAGRASS it is not really age structure, but different parts of the plant – with “age 0” assumed to be the pool representing leaves, “age 1” the roots, and “age 2” the epiphytes on the leaves, see details <a href="https://confluence.csiro.au/display/Atlantis/2012/12/12/new+seagrass+modelling+option">here</a></td>
+<td style="text-align: left;">PHYTOBEN<br>SEAGRASS</td>
 </tr>
 <tr class="even">
-<td>epibenthic <strong>invertebrates</strong></td>
-<td>N in epibenthic layer for each age group defined by the NumCohorts parameter</td>
-<td><p>SED_EP_FF</p>
-<p>SED_EP_OTHER</p>
-<p>MOB_EP_OTHER</p>
-<p>CORAL</p>
-<p>SPONGE</p></td>
+<td style="text-align: left;">infaunal <strong>invertebrates</strong></td>
+<td style="text-align: left;">N in sediments for each age group defined by the NumCohorts parameter.<br>NOTE: Not typically age-structured</td>
+<td style="text-align: left;">SM_INF<br>LG_INF</td>
 </tr>
 <tr class="odd">
-<td>water column <strong>invertebrates</strong></td>
-<td>N in water column for each age group defined by the NumCohorts parameter</td>
-<td><p>SM_ZOO</p>
-<p>MED_ZOO</p>
-<p>LG_ZOO</p></td>
+<td style="text-align: left;">epibenthic <strong>invertebrates</strong></td>
+<td style="text-align: left;">N in epibenthic layer for each age group defined by the NumCohorts parameter</td>
+<td style="text-align: left;">SED_EP_FF<br>SED_EP_OTHER<br>MOB_EP_OTHER<br>CORAL<br>SPONGE</td>
 </tr>
 <tr class="even">
-<td>land <strong>plants</strong></td>
-<td>N on land for each age group defined by the NumCohorts parameter</td>
-<td><p>MARSH</p>
-<p>MANGROVE</p></td>
+<td style="text-align: left;">water column <strong>invertebrates</strong></td>
+<td style="text-align: left;">N in water column for each age group defined by the NumCohorts parameter</td>
+<td style="text-align: left;">SM_ZOO<br>MED_ZOO<br>LG_ZOO</td>
 </tr>
 <tr class="odd">
-<td>large invertebrates</td>
-<td>N in water column for each age group defined by NumCohorts parameter</td>
-<td><p>CEP</p>
-<p>PWN</p></td>
+<td style="text-align: left;">land <strong>plants</strong></td>
+<td style="text-align: left;">N on land for each age group defined by the NumCohorts parameter</td>
+<td style="text-align: left;">MARSH<br>MANGROVE</td>
 </tr>
 <tr class="even">
-<td><strong><em>Age-structured groups</em></strong></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">large invertebrates</td>
+<td style="text-align: left;">N in water column for each age group defined by NumCohorts parameter</td>
+<td style="text-align: left;">CEP<br>PWN</td>
 </tr>
 <tr class="odd">
-<td>vertebrates</td>
-<td><p>RN in water column</p>
-<p>SN in water column</p>
-<p>Num in water column</p>
-<p>for each cohort defined in</p>
-<p>NumCohorts parameter</p></td>
-<td><p>FISH</p>
-<p>SHARK</p>
-<p>MAMMAL</p>
-<p>BIRD</p>
-<p>REPTILE</p></td>
+<td style="text-align: left;"><strong>Age-structured groups</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td>size/age structured invertebrates of particular interest</td>
-<td><p>RN in water column</p>
-<p>SN in water column</p>
-<p>Num in water column</p>
-<p>for each cohort defined in</p>
-<p>NumCohorts parameter</p></td>
-<td>FISH_INVERT</td>
+<td style="text-align: left;">vertebrates</td>
+<td style="text-align: left;">RN in water column<br>SN in water column<br>Num in water column<br>for each cohort defined in NumCohorts parameter</td>
+<td style="text-align: left;">FISH<br>SHARK<br>MAMMAL<br>BIRD<br>REPTILE</td>
 </tr>
 <tr class="odd">
-<td><strong><em>Inanimate pools</em></strong></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">size/age structured invertebrates of particular interest</td>
+<td style="text-align: left;">RN in water column<br>SN in water column<br>Num in water column<br>for each cohort defined in NumCohorts parameter</td>
+<td style="text-align: left;">FISH_INVERT</td>
 </tr>
 <tr class="even">
-<td>Ammonia</td>
-<td><p>NH3 in water column</p>
-<p>NH3 in sediments</p></td>
-<td>NH</td>
+<td style="text-align: left;"><strong>Inanimate pools</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td>Nitrate</td>
-<td><p>NO3 in water column</p>
-<p>NO3 in sediments</p></td>
-<td>NO</td>
+<td style="text-align: left;">Ammonia</td>
+<td style="text-align: left;">NH3 in water column<br>NH3 in sediments</td>
+<td style="text-align: left;">NH</td>
 </tr>
 <tr class="even">
-<td>Oxygen</td>
-<td><p>O2 in water column</p>
-<p>O2 in sediments</p></td>
-<td>O2</td>
+<td style="text-align: left;">Nitrate</td>
+<td style="text-align: left;">NO3 in water column<br>NO3 in sediments</td>
+<td style="text-align: left;">NO</td>
 </tr>
 <tr class="odd">
-<td>Dissolved organic nitrogen</td>
-<td><p>DON in water column</p>
-<p>DON in sediments</p></td>
-<td>DON</td>
+<td style="text-align: left;">Oxygen</td>
+<td style="text-align: left;">O2 in water column<br>O2 in sediments</td>
+<td style="text-align: left;">O2</td>
 </tr>
 <tr class="even">
-<td>Dissolved silica</td>
-<td>Si in water column</td>
-<td>Si</td>
+<td style="text-align: left;">Dissolved organic nitrogen</td>
+<td style="text-align: left;">DON in water column<br>DON in sediments</td>
+<td style="text-align: left;">DON</td>
 </tr>
 <tr class="odd">
-<td>Detrital silica</td>
-<td>DSi in water column</td>
-<td>DSi</td>
+<td style="text-align: left;">Dissolved silica</td>
+<td style="text-align: left;">Si in water column</td>
+<td style="text-align: left;">Si</td>
 </tr>
 <tr class="even">
-<td>Labile detritus</td>
-<td><p>N in water column</p>
-<p>N in sediments</p></td>
-<td>LAB_DET</td>
+<td style="text-align: left;">Detrital silica</td>
+<td style="text-align: left;">DSi in water column</td>
+<td style="text-align: left;">DSi</td>
 </tr>
 <tr class="odd">
-<td>Refractory detritus</td>
-<td><p>N in water column</p>
-<p>N in sediments</p></td>
-<td>REF_DET</td>
+<td style="text-align: left;">Labile detritus</td>
+<td style="text-align: left;">N in water column<br>N in sediments</td>
+<td style="text-align: left;">LAB_DET</td>
 </tr>
 <tr class="even">
-<td>Carrion (only dynamically tracked if fisheries are active)</td>
-<td><p>N in water column</p>
-<p>N in sediments</p></td>
-<td>CARRION</td>
+<td style="text-align: left;">Refractory detritus</td>
+<td style="text-align: left;">N in water column<br>N in sediments</td>
+<td style="text-align: left;">REF_DET</td>
 </tr>
 <tr class="odd">
-<td>Sediment (only if flagIsEstuary=1)</td>
-<td>SED in water column</td>
-<td>SED</td>
+<td style="text-align: left;">Carrion (only dynamically tracked if fisheries are active)</td>
+<td style="text-align: left;">N in water column<br>N in sediments</td>
+<td style="text-align: left;">CARRION</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sediment (only if flagIsEstuary=1)</td>
+<td style="text-align: left;">SED in water column</td>
+<td style="text-align: left;">SED</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
+</div>
 <p><strong><em>Timestep of the model</em></strong></p>
 <p>The timestep at which most processes are repeated is typically an <em>adaptive</em> daily (24h) or diurnal (12h) timestep, though tidal models with shorter timesteps (3h or 6h) also exist. This timestep is specified as dt in the <em>run.prm</em> file. Reproduction, recruitment and migration occur less frequently, typically once per year.</p>
 <p>The <em>adaptive timestep</em> means that for most of the groups the processes are repeated once per timestep, but for small organisms, such as bacteria and phytoplankton the timestep is reduced to ensure that fluxes into and out of the component with the fastest turnover rates remain stable and numerical artifacts are not introduced into the mathematical solution scheme. The length of the adaptive timestep for such groups is determined to ensure that the relative change (flux) in any variable does not exceed a pre-specified proportion of the standing stock – this tolerance is set in the <em>biology.prm</em> file. The adaptive timestep changes through time, depending on the standing stock of these groups and the temperature, nutrient availability and other factors that affect the turnover rates in these “fast” variables.</p>
@@ -496,353 +473,276 @@ ul.task-list li input[type="checkbox"] {
 <section id="defining-functional-groups" class="level2">
 <h2 class="anchored" data-anchor-id="defining-functional-groups"><strong>6.2. Defining functional groups</strong></h2>
 <p>The functional group input file sets all the biological groups in the model. It can be set in CSV or XML format (see examples <a href="https://confluence.csiro.au/display/Atlantis/Functional+Group+Definition+File">here</a>). The number of groups is entirely flexible, but each model must include three obligatory detritus groups: carrion (CARRION), labile detritus (LAB_DET) and refractory detritus (REF_DET).</p>
-<table class="caption-top table">
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">The <em>functional_groups.csv</em> file defines the biological groups used in the model and some of their key characteristics. These characteristics are used throughout the code to apply different appropriate routines for the group. The number of groups in the <em>functional_groups.csv</em> file must match the number given in the K_num_tot_sp parameter in the <em>run.prm</em> file. The detritus groups must be defined as the last three groups in the file.</td>
-</tr>
-</tbody>
-</table>
-<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <em>functional_groups.csv</em> file defines the biological groups used in the model and some of their key characteristics. These characteristics are used throughout the code to apply different appropriate routines for the group. The number of groups in the <em>functional_groups.csv</em> file must match the number given in the K_num_tot_sp parameter in the <em>run.prm</em> file. The detritus groups must be defined as the last three groups in the file.</p>
+</div>
+</div>
 <p>Currently each group must have the following parameters (characteristics). For new updates, check the Atlantis wiki <a href="https://confluence.csiro.au/display/Atlantis/Functional+Group+Definition+File">functional group page</a></p>
+<div class="table-responsive">
+<div id="tbl-functional-group-parameters" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-functional-group-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Table 9. Parameters in the <em>functional_groups.csv</em> file.
+</figcaption>
+<div aria-describedby="tbl-functional-group-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<caption><span id="_Toc526762761" class="anchor"></span>Table 9. Parameters in the <em>functional_groups.csv</em> file.</caption>
 <thead>
 <tr class="header">
-<th><strong>Parameter name</strong></th>
-<th><strong>Description</strong></th>
+<th style="text-align: left;"><strong>Parameter name</strong></th>
+<th style="text-align: left;"><strong>Description</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>GroupCode</td>
-<td><u>2 or 3 letter code</u> of upper case letters used to identify each functional group. Atlantis will display an error message and quit if the group codes are not the correct format. This code is very important and applied to all functional group specific parameters</td>
+<td style="text-align: left;">GroupCode</td>
+<td style="text-align: left;"><strong>2 or 3 letter code</strong> of upper case letters used to identify each functional group. Atlantis will display an error message and quit if the group codes are not the correct format. This code is very important and applied to all functional group specific parameters</td>
 </tr>
 <tr class="even">
-<td>Index</td>
-<td>An index of the group. Atlantis doesn't actually read this in but it is helpful for modellers to see as it defines the order of read-in for species vectors and the group ID number if you are trying to activate some of the debug/calibration fprintf statements using whichcheck in the <em>run.prm</em> file. The index must start form 0, as this is how the C programing language counts</td>
+<td style="text-align: left;">Index</td>
+<td style="text-align: left;">An index of the group. Atlantis doesn’t actually read this in but it is helpful for modellers to see as it defines the order of read-in for species vectors and the group ID number if you are trying to activate some of the debug/calibration fprintf statements using whichcheck in the <em>run.prm</em> file. The index must start form 0, as this is how the C programing language counts</td>
 </tr>
 <tr class="odd">
-<td>IsTurnedOn</td>
-<td><p>A boolean value (either 0 (false) or 1 (true)) to indicate if the group is active in the current model run. If the group is not active it will be excluded from the model.</p>
-<p>This option allows the user to exclude some groups from the model without having to setup new initial conditions and parameter files.</p></td>
+<td style="text-align: left;">IsTurnedOn</td>
+<td style="text-align: left;">A boolean value (either 0 (false) or 1 (true)) to indicate if the group is active in the current model run. If the group is not active it will be excluded from the model.<br><br>This option allows the user to exclude some groups from the model without having to setup new initial conditions and parameter files.</td>
 </tr>
 <tr class="even">
-<td>Name</td>
-<td>Name of a group. This must match the tracer names in the <em>initial_conditions.nc</em> file as it used to find the tracers in the <em>initial_conditions.nc</em> input file.</td>
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">Name of a group. This must match the tracer names in the <em>initial_conditions.nc</em> file as it used to find the tracers in the <em>initial_conditions.nc</em> input file.</td>
 </tr>
 <tr class="odd">
-<td>LongName</td>
-<td>The long name written to the NetCDF output files. This name can be a few words long and ideally should be informative. This is especially important when sharing the model with others.</td>
+<td style="text-align: left;">LongName</td>
+<td style="text-align: left;">The long name written to the NetCDF output files. This name can be a few words long and ideally should be informative. This is especially important when sharing the model with others.</td>
 </tr>
 <tr class="even">
-<td>NumCohorts</td>
-<td><p>The number of cohorts in a functional group. If the value is &gt; 1 the groups is assumed to be age-structured (either an age-structured biomass pool or age-structured group).</p>
-<p>In the earlier Atlantis versions age structured groups all had to have 10 cohorts. This is now relaxed and there is no upper limit on the number of age-groups to model (but remember, the more age groups the slower the model will run).</p></td>
+<td style="text-align: left;">NumCohorts</td>
+<td style="text-align: left;">The number of cohorts in a functional group. If the value is &gt; 1 the groups is assumed to be age-structured (either an age-structured biomass pool or age-structured group).<br><br>In the earlier Atlantis versions age structured groups all had to have 10 cohorts. This is now relaxed and there is no upper limit on the number of age-groups to model (but remember, the more age groups the slower the model will run).</td>
 </tr>
 <tr class="odd">
-<td>NumGeneTypes</td>
-<td>Number of discrete phenotypes in each age group. This option is used when simulating evolution or multiple size-at-age representations and should only be set to &gt;1 if flag_do_evolution is set to 1 in <em>biology.prm</em> file. If more than one phenotype is present, initial conditions will be have to be set up for each phenotype.</td>
+<td style="text-align: left;">NumGeneTypes</td>
+<td style="text-align: left;">Number of discrete phenotypes in each age group. This option is used when simulating evolution or multiple size-at-age representations and should only be set to &gt;1 if flag_do_evolution is set to 1 in <em>biology.prm</em> file. If more than one phenotype is present, initial conditions will be have to be set up for each phenotype.</td>
 </tr>
 <tr class="even">
-<td>NumStages</td>
-<td>This parameter describes the number of separate stages in a functional group, which are set to 1 or 2 if juvenile and adult stages have separate parameters for distribution, mortality, migration, feeding and others. In principle, more than 2 stages are possible, although this has not been tested. Typically all age-structured groups have 2 stages, but age-structured biomass pools can also have separate parameters for juvenile and adult stages and thus have 2 stages.</td>
+<td style="text-align: left;">NumStages</td>
+<td style="text-align: left;">This parameter describes the number of separate stages in a functional group, which are set to 1 or 2 if juvenile and adult stages have separate parameters for distribution, mortality, migration, feeding and others. In principle, more than 2 stages are possible, although this has not been tested. Typically all age-structured groups have 2 stages, but age-structured biomass pools can also have separate parameters for juvenile and adult stages and thus have 2 stages.</td>
 </tr>
 <tr class="odd">
-<td>NumSpawns</td>
-<td>Number of spawns in the year. Typically one per year, but more than one is possible (especially for ages structured biomass pool groups). The timing of spawn is given in Time_Spawn_XXX parameter in <em>biology.prm</em> file (if NumSpawns is 1 it expects a single value, otherwise it expects a vector of length NumSpawns).</td>
+<td style="text-align: left;">NumSpawns</td>
+<td style="text-align: left;">Number of spawns in the year. Typically one per year, but more than one is possible (especially for ages structured biomass pool groups). The timing of spawn is given in Time_Spawn_XXX parameter in <em>biology.prm</em> file (if NumSpawns is 1 it expects a single value, otherwise it expects a vector of length NumSpawns).</td>
 </tr>
 <tr class="even">
-<td>NumAgeClassSize</td>
-<td>Number of calendar years in one age group. This can be set to be anything between a few months to many years and allows simulation of different longevity organisms without having to setup too many age groups (which reduces simulation speed). Note, all individuals in an age group are considered identical (unless different phenotypes are set in NumGeneTypes, in which case all individuals in one phenotype of one age group are identical). However, the proportion of an age group per annual cohort is tracked so that recruitment variation is represented through time and not homogenized away (see chapter 10.9.6).</td>
+<td style="text-align: left;">NumAgeClassSize</td>
+<td style="text-align: left;">Number of calendar years in one age group. This can be set to be anything between a few months to many years and allows simulation of different longevity organisms without having to setup too many age groups (which reduces simulation speed). Note, all individuals in an age group are considered identical (unless different phenotypes are set in NumGeneTypes, in which case all individuals in one phenotype of one age group are identical). However, the proportion of an age group per annual cohort is tracked so that recruitment variation is represented through time and not homogenized away (see chapter 10.9.6).</td>
 </tr>
 <tr class="odd">
-<td>NumStocks</td>
-<td><p>This sets the number of geographically distinct stocks for age-structured groups and age-structured biomass pools. The stocks must occupy different boxes or layers, i.e.&nbsp;they do not spatially overlap.</p>
-<p>Some biological parameters, like vulnerability to prey can be set as stock specific, which allows for better tuning. It has been applied to some groups that are known to include ecologically distinct stocks in different geographic areas. If NumStocks &gt;1 then the corresponding number of stock specific parameters will be required in the <em>biology.prm</em> input file</p></td>
+<td style="text-align: left;">NumStocks</td>
+<td style="text-align: left;">This sets the number of geographically distinct stocks for age-structured groups and age-structured biomass pools. The stocks must occupy different boxes or layers, i.e.&nbsp;they do not spatially overlap.<br><br>Some biological parameters, like vulnerability to prey can be set as stock specific, which allows for better tuning. It has been applied to some groups that are known to include ecologically distinct stocks in different geographic areas. If NumStocks &gt;1 then the corresponding number of stock specific parameters will be required in the <em>biology.prm</em> input file</td>
 </tr>
 <tr class="even">
-<td>VerticallyMigrates</td>
-<td>If true then the group can move vertically through the water column. This should be set to 1 except for debugging purposes. If this is set to 0, no vertical movement will happen even if it is specified in the <em>biology.prm</em> file and the vertical distribution of individuals in the <em>initial_conditions.nc</em> file will be retained throughout the simulation.</td>
+<td style="text-align: left;">VerticallyMigrates</td>
+<td style="text-align: left;">If true then the group can move vertically through the water column. This should be set to 1 except for debugging purposes. If this is set to 0, no vertical movement will happen even if it is specified in the <em>biology.prm</em> file and the vertical distribution of individuals in the <em>initial_conditions.nc</em> file will be retained throughout the simulation.</td>
 </tr>
 <tr class="odd">
-<td>HorizontallyMigrates</td>
-<td>If true then the group can move horizontally throughout the model as well as migrate out of the model. No migration will happen if this is set to 0. Biomass pool groups which are marked as passive in the <em>initial_conditions.nc</em> will still be advected even if HorizontallyMigrates is set to 0.</td>
+<td style="text-align: left;">HorizontallyMigrates</td>
+<td style="text-align: left;">If true then the group can move horizontally throughout the model as well as migrate out of the model. No migration will happen if this is set to 0. Biomass pool groups which are marked as passive in the <em>initial_conditions.nc</em> will still be advected even if HorizontallyMigrates is set to 0.</td>
 </tr>
 <tr class="even">
-<td>NumMigrations</td>
-<td>The number of migrations per calendar year</td>
+<td style="text-align: left;">NumMigrations</td>
+<td style="text-align: left;">The number of migrations per calendar year</td>
 </tr>
 <tr class="odd">
-<td>MultiYrMigrations</td>
-<td>Whether any of the migrations are multi-year (1) or simply annual (0). While this column is always required in the groups definition file the associated code will not function unless flag_multiyr_migs is also set to 1 in the <em>run.prm</em> file</td>
+<td style="text-align: left;">MultiYrMigrations</td>
+<td style="text-align: left;">Whether any of the migrations are multi-year (1) or simply annual (0). While this column is always required in the groups definition file the associated code will not function unless flag_multiyr_migs is also set to 1 in the <em>run.prm</em> file</td>
 </tr>
 <tr class="even">
-<td>ExternalReproduction</td>
-<td>This is whether the group reproduces outside the model (i.e.&nbsp;the value for Time_Spawn_XXX parameter in <em>biology.prm</em> file is set during a day of the year when the species should be outside the model)</td>
+<td style="text-align: left;">ExternalReproduction</td>
+<td style="text-align: left;">This is whether the group reproduces outside the model (i.e.&nbsp;the value for Time_Spawn_XXX parameter in <em>biology.prm</em> file is set during a day of the year when the species should be outside the model)</td>
 </tr>
 <tr class="odd">
-<td>RecruitType</td>
-<td><p>This is where you set the recruitment typ:</p>
-<p>0 = independent distribution (use recruit_hdistrib)</p>
-<p>1 = at parental locations</p>
-<p>2 = external (into Migration Array)</p>
-<p>3 = using a forced larval dispersal matrix</p>
-<p>4 = external reproducer who has parental care</p></td>
+<td style="text-align: left;">RecruitType</td>
+<td style="text-align: left;">This is where you set the recruitment typ:<br><br>0 = independent distribution (use recruit_hdistrib)<br>1 = at parental locations<br>2 = external (into Migration Array)<br>3 = using a forced larval dispersal matrix<br>4 = external reproducer who has parental care</td>
 </tr>
 <tr class="even">
-<td>IsFished</td>
-<td>If set to 1 the group can be fished (targeted) by commercial or recreational fisheries and the catch will be reported in the output files, and is analysed in the assessment model. Note that if set to 0, dynamic fishing will still occur if parameters are given in the <em>harvest.prm</em> file.</td>
+<td style="text-align: left;">IsFished</td>
+<td style="text-align: left;">If set to 1 the group can be fished (targeted) by commercial or recreational fisheries and the catch will be reported in the output files, and is analysed in the assessment model. Note that if set to 0, dynamic fishing will still occur if parameters are given in the <em>harvest.prm</em> file.</td>
 </tr>
 <tr class="odd">
-<td>IsImpacted</td>
-<td><p>If true then the group can be impacted by fishing, bycatch or incidental fishing related mortality (e.g.&nbsp;destruction of living habitats). This parameter differentiates between targeted and accidental interactions; it is not reported in the landings. This means there must be values in the harvest files for this group. Note the group can be impacted by bycatch/incidental mortality even if no explicit targeted fishing is setup. This means the bycatch/incidental mortality parameters should be assessed carefully in the <em>harvest.prm</em> file.</p>
-<p>If both this value and IsFished are set to 0 then all fisheries related impacts on the group are disabled.</p></td>
+<td style="text-align: left;">IsImpacted</td>
+<td style="text-align: left;">If true then the group can be impacted by fishing, bycatch or incidental fishing related mortality (e.g.&nbsp;destruction of living habitats). This parameter differentiates between targeted and accidental interactions; it is not reported in the landings. This means there must be values in the harvest files for this group. Note the group can be impacted by bycatch/incidental mortality even if no explicit targeted fishing is setup. This means the bycatch/incidental mortality parameters should be assessed carefully in the <em>harvest.prm</em> file.<br><br>If both this value and IsFished are set to 0 then all fisheries related impacts on the group are disabled.</td>
 </tr>
 <tr class="even">
-<td>isTAC</td>
-<td>If true, the group will be under total allowable catch (TAC) management. It will activate specific TAC related code in the Harvest submodel.</td>
+<td style="text-align: left;">isTAC</td>
+<td style="text-align: left;">If true, the group will be under total allowable catch (TAC) management. It will activate specific TAC related code in the Harvest submodel.</td>
 </tr>
 <tr class="odd">
-<td>GroupType</td>
-<td><p>The type of species. This is one of the most important parameters, as it tells Atlantis what kind of organism the functional group is representing and what kind of processes should be applied to it. Six group types are allowed for age-structured groups. A lot more group types are available to define invertebrate biomass pool types and these group types are used to dictate the adaptive timestep for simulating proceses, and all of them have some specialized ecological routines applied (see some details about their characteristics <a href="https://confluence.csiro.au/display/Atlantis/AtlantisGroupTypes">here</a>).</p>
-<p>The main Atlantis model groups include:</p>
-<p><em>AGE STRUCTURED GROUPS</em></p>
-<ol type="1">
-<li><p>Standard fin-fish or generic vertebrate FISH</p></li>
-<li><p>Size/age-structured invertebrate FISH_INVERT</p></li>
-<li><p>Chondrichthyans SHARK</p></li>
-<li><p>Birds BIRD</p></li>
-<li><p>Marine mammanls (potentially terrestrial mammals in the future) MAMMAL</p></li>
-<li><p>Reptiles (can be present in the water and on land) REPTILE.</p></li>
-</ol>
-<p><em>BIOMASS POOL GROUPS</em></p>
-<p><strong>Phytoplankton</strong></p>
-<ol start="7" type="1">
-<li><p>Small Phytoplankton SM_PHY</p></li>
-<li><p>Large Phytoplankton LG_PHY (used in combination with IsSiliconDep to define diatoms)</p></li>
-<li><p>Trichodesmium and Cyanobacteria TRICHO (N fixers)</p></li>
-</ol>
-<p><strong>Other primary producers</strong></p>
-<ol start="10" type="1">
-<li><p>Microphtybenthos MICROPHTYBENTHOS</p></li>
-<li><p>Dinoflagellates DINOFLAG</p></li>
-<li><p>Phytoben PHYTOBEN (typically used to represent macroalgae)</p></li>
-<li><p>Seagrass SEAGRASS</p></li>
-<li><p>Turf TURF</p></li>
-</ol>
-<p><strong>Zooplankton</strong></p>
-<ol start="15" type="1">
-<li><p>Small Zooplankton SM_ZOO</p></li>
-<li><p>Medium Zooplankton MED_ZOO</p></li>
-<li><p>Large Zooplankton LG_ZOO</p></li>
-<li><p>Jellyfish JELLIES (in the past represented as LG_ZOO)</p></li>
-</ol>
-<p><strong>Large pelagic invetebrates</strong></p>
-<ol start="19" type="1">
-<li><p>Cephalopod CEP</p></li>
-<li><p>Prawns PWN</p></li>
-</ol>
-<p><strong>Infauna</strong></p>
-<ol start="21" type="1">
-<li><p>Small Infauna SM_INF</p></li>
-<li><p>Large Infauna LG_INF</p></li>
-</ol>
-<p><strong>Epibenthic organisms</strong></p>
-<ol start="23" type="1">
-<li><p>Sediment epibenthic filter feeders SED_EP_FF (often used for bivalves, sponges)</p></li>
-<li><p>Benthic grazers SED_EP_OTHER</p></li>
-<li><p>Mobile epibenthos MOB_EP_OTHER (often used for crabs, lobster, octopus)</p></li>
-<li><p>Corals CORAL</p></li>
-<li><p>Sponges SPONGE</p></li>
-</ol>
-<p><strong>Bacteria</strong></p>
-<ol start="28" type="1">
-<li><p>Pelagic Bacteria PL_BACT</p></li>
-<li><p>Sediment Bacteria SED_BACT</p></li>
-</ol>
-<p><strong>Obligatory detritus groups</strong></p>
-<ol start="30" type="1">
-<li><p>Carrion CARRION</p></li>
-<li><p>Labile detritus LAB_DET</p></li>
-<li><p>Refractory detritus REF_DET</p></li>
-<li><p>Additional ice and land based groups are also available.</p></li>
-</ol>
-<p><strong>Ice dwelling</strong></p>
-<ol start="34" type="1">
-<li><p>ICE_BACT</p></li>
-<li><p>ICE_MIXOTROPHS</p></li>
-<li><p>ICE_DIATOMS</p></li>
-<li><p>ICE_ZOOBIOTA</p></li>
-</ol>
-<p><strong>Land dwelling</strong> (vegetation only for now)</p>
-<ol start="38" type="1">
-<li><p>MARSH</p></li>
-<li><p>MANGROVE</p></li>
-</ol></td>
+<td style="text-align: left;">GroupType</td>
+<td style="text-align: left;">The type of species. This is one of the most important parameters, as it tells Atlantis what kind of organism the functional group is representing and what kind of processes should be applied to it. Six group types are allowed for age-structured groups. A lot more group types are available to define invertebrate biomass pool types and these group types are used to dictate the adaptive timestep for simulating proceses, and all of them have some specialized ecological routines applied (see some details about their characteristics <a href="https://confluence.csiro.au/display/Atlantis/AtlantisGroupTypes">here</a>).<br><br>The main Atlantis model groups include:<br><br><strong>AGE STRUCTURED GROUPS</strong><br><br>1) Standard fin-fish or generic vertebrate FISH<br>2) Size/age-structured invertebrate FISH_INVERT<br>3) Chondrichthyans SHARK<br>4) Birds BIRD<br>5) Marine mammanls (potentially terrestrial mammals in the future) MAMMAL<br>6) Reptiles (can be present in the water and on land) REPTILE.<br><br><strong>BIOMASS POOL GROUPS</strong><br><br><strong>Phytoplankton</strong><br><br>7) Small Phytoplankton SM_PHY<br>8) Large Phytoplankton LG_PHY (used in combination with IsSiliconDep to define diatoms)<br>9) Trichodesmium and Cyanobacteria TRICHO (N fixers)<br><br><strong>Other primary producers</strong><br><br>10) Microphtybenthos MICROPHTYBENTHOS<br>11) Dinoflagellates DINOFLAG<br>12) Phytoben PHYTOBEN (typically used to represent macroalgae)<br>13) Seagrass SEAGRASS<br>14) Turf TURF<br><br><strong>Zooplankton</strong><br><br>15) Small Zooplankton SM_ZOO<br>16) Medium Zooplankton MED_ZOO<br>17) Large Zooplankton LG_ZOO<br>18) Jellyfish JELLIES (in the past represented as LG_ZOO)<br><br><strong>Large pelagic invetebrates</strong><br><br>19) Cephalopod CEP<br>20) Prawns PWN<br><br><strong>Infauna</strong><br><br>21) Small Infauna SM_INF<br>22) Large Infauna LG_INF<br><br><strong>Epibenthic organisms</strong><br><br>23) Sediment epibenthic filter feeders SED_EP_FF (often used for bivalves, sponges)<br>24) Benthic grazers SED_EP_OTHER<br>25) Mobile epibenthos MOB_EP_OTHER (often used for crabs, lobster, octopus)<br>26) Corals CORAL<br>27) Sponges SPONGE<br><br><strong>Bacteria</strong><br><br>28) Pelagic Bacteria PL_BACT<br>29) Sediment Bacteria SED_BACT<br><br><strong>Obligatory detritus groups</strong><br><br>30) Carrion CARRION<br>31) Labile detritus LAB_DET<br>32) Refractory detritus REF_DET<br>33) Additional ice and land based groups are also available.<br><br><strong>Ice dwelling</strong><br><br>34) ICE_BACT<br>35) ICE_MIXOTROPHS<br>36) ICE_DIATOMS<br>37) ICE_ZOOBIOTA<br><br><strong>Land dwelling</strong> (vegetation only for now)<br><br>38) MARSH<br>39) MANGROVE</td>
 </tr>
 <tr class="even">
-<td>IsPredator</td>
-<td>If true then the group is assumed to eat other groups by the assessment code (for the purposes of defining network indices etc), it does not affect the ecological model.</td>
+<td style="text-align: left;">IsPredator</td>
+<td style="text-align: left;">If true then the group is assumed to eat other groups by the assessment code (for the purposes of defining network indices etc), it does not affect the ecological model.</td>
 </tr>
 <tr class="odd">
-<td>IsCover</td>
-<td><p>If true the group is classified as a habitat. This means that the group becomes a unique habitat type, that can be used by other groups in the model for shelter etc, in addition to the general four geological habitat types included by default (<strong>reef, flat, soft, canyon).</strong></p>
-<p>For example, if IsCover is set to 1 for three functional groups (e.g.&nbsp;BFS, BFF, and MA), the model has a total of seven habitat types. In this case the habitat dependency parameter habitat_XXX in the <em>biology.prm</em> file must have 7 values for each functional group. The living habitats are always the first entries and the geological classes always the last 4 entries. So in this example, the first three entries will refer to the IsCover groups in the order they are listed in the <em>functional_groups.csv</em> file and the last four entries will refer to reef, flat, soft, canyon habitats.</p></td>
+<td style="text-align: left;">IsCover</td>
+<td style="text-align: left;">If true the group is classified as a habitat. This means that the group becomes a unique habitat type, that can be used by other groups in the model for shelter etc, in addition to the general four geological habitat types included by default (<strong>reef, flat, soft, canyon)</strong>.<br><br>For example, if IsCover is set to 1 for three functional groups (e.g.&nbsp;BFS, BFF, and MA), the model has a total of seven habitat types. In this case the habitat dependency parameter habitat_XXX in the <em>biology.prm</em> file must have 7 values for each functional group. The living habitats are always the first entries and the geological classes always the last 4 entries. So in this example, the first three entries will refer to the IsCover groups in the order they are listed in the <em>functional_groups.csv</em> file and the last four entries will refer to reef, flat, soft, canyon habitats.</td>
 </tr>
 <tr class="even">
-<td>IsSiliconDep</td>
-<td>If true, the group is assumed to be Si limited and its energy flows are tracked both through nitrogen and silicon. All Si limited groups must have separate Si tracers set in the <em>initial_conditions.nc</em>, in addition to the usual Nitrogen tracers. At present most models have this set to true for Diatoms and MicroPhytopbenthos.</td>
+<td style="text-align: left;">IsSiliconDep</td>
+<td style="text-align: left;">If true, the group is assumed to be Si limited and its energy flows are tracked both through nitrogen and silicon. All Si limited groups must have separate Si tracers set in the <em>initial_conditions.nc</em>, in addition to the usual Nitrogen tracers. At present most models have this set to true for Diatoms and MicroPhytopbenthos.</td>
 </tr>
 <tr class="odd">
-<td>IsAssessed</td>
-<td>If true then this group will be assessed in the Assessment submodel. This submodel will generate a number of assessment indices.</td>
+<td style="text-align: left;">IsAssessed</td>
+<td style="text-align: left;">If true then this group will be assessed in the Assessment submodel. This submodel will generate a number of assessment indices.</td>
 </tr>
 <tr class="even">
-<td>IsCatchGrazer</td>
-<td>If true, the group grazes on catch, for instance pinnipeds that eat fish from nets. If set to 1 for a functional group XXX, then availability of catch of each functional group should be given for this group in the pFCXXX parameter in the <em>biology.prm</em> file. The pFC parameters are not required for groups that are not catch grazers.</td>
+<td style="text-align: left;">IsCatchGrazer</td>
+<td style="text-align: left;">If true, the group grazes on catch, for instance pinnipeds that eat fish from nets. If set to 1 for a functional group XXX, then availability of catch of each functional group should be given for this group in the pFCXXX parameter in the <em>biology.prm</em> file. The pFC parameters are not required for groups that are not catch grazers.</td>
 </tr>
 <tr class="odd">
-<td>OverWinters</td>
-<td>If true, this group will go into hiatus over winter. The overwintering can be triggered and ended by time of the year or temperature. This is set using overwinterStartTofY_XXX, overwinterEndTofY_XXX, overwinterStartTemp_XXX, overwinterEndTemp_XXX parameters in the <em>biology.prm</em> file. These parameters only have to be set for overwintering groups.</td>
+<td style="text-align: left;">OverWinters</td>
+<td style="text-align: left;">If true, this group will go into hiatus over winter. The overwintering can be triggered and ended by time of the year or temperature. This is set using overwinterStartTofY_XXX, overwinterEndTofY_XXX, overwinterStartTemp_XXX, overwinterEndTemp_XXX parameters in the <em>biology.prm</em> file. These parameters only have to be set for overwintering groups.</td>
 </tr>
 <tr class="even">
-<td>isCultured</td>
-<td>This identifies aquaculture groups, and applies aquaculture processes to them. Parameters required for aquaculture groups are described <a href="https://confluence.csiro.au/display/Atlantis/2014/03/06/Aquaculture">here</a>.</td>
+<td style="text-align: left;">isCultured</td>
+<td style="text-align: left;">This identifies aquaculture groups, and applies aquaculture processes to them. Parameters required for aquaculture groups are described <a href="https://confluence.csiro.au/display/Atlantis/2014/03/06/Aquaculture">here</a>.</td>
 </tr>
 <tr class="odd">
-<td>isHabDepend</td>
-<td>Identifies groups that are habitat dependent. Note, this value takes precedence over habitat preference parameters in the <em>biology.prm</em> file. If isHabDepend is set to 0 then the group is not affected by habitats, even if appropriate parameters are given in the <em>biology.prm</em></td>
+<td style="text-align: left;">isHabDepend</td>
+<td style="text-align: left;">Identifies groups that are habitat dependent. Note, this value takes precedence over habitat preference parameters in the <em>biology.prm</em> file. If isHabDepend is set to 0 then the group is not affected by habitats, even if appropriate parameters are given in the <em>biology.prm</em></td>
 </tr>
 <tr class="even">
-<td>numMoveEntries</td>
-<td>The number of movement time periods you would like the group to have. Historically this has been fixed at 4 to allow for seasonal movement, but currently any number of moves is allowed. See further details on parameters in <em>biology.prm</em> <a href="https://confluence.csiro.au/pages/viewpage.action?pageId=346916326">here</a></td>
+<td style="text-align: left;">numMoveEntries</td>
+<td style="text-align: left;">The number of movement time periods you would like the group to have. Historically this has been fixed at 4 to allow for seasonal movement, but currently any number of moves is allowed. See further details on parameters in <em>biology.prm</em> <a href="https://confluence.csiro.au/pages/viewpage.action?pageId=346916326">here</a></td>
 </tr>
 <tr class="odd">
-<td>isBioEroder</td>
-<td>Whether the group bioerodes corals (i.e.&nbsp;sponges). This allows for boring sponges and bioeroder activities in reef models including corals and sponges</td>
+<td style="text-align: left;">isBioEroder</td>
+<td style="text-align: left;">Whether the group bioerodes corals (i.e.&nbsp;sponges). This allows for boring sponges and bioeroder activities in reef models including corals and sponges</td>
 </tr>
 <tr class="even">
-<td>isSupplemented</td>
-<td>Whether the group feeds on material from outside the model. If this is set to 1, the group will be assumed to be eating insects or pellets or something from outside the model domain. The proportion of their diet gained in this way (per box) must be set using the Supp_XXX in the <em>biology.prm</em> file.</td>
+<td style="text-align: left;">isSupplemented</td>
+<td style="text-align: left;">Whether the group feeds on material from outside the model. If this is set to 1, the group will be assumed to be eating insects or pellets or something from outside the model domain. The proportion of their diet gained in this way (per box) must be set using the Supp_XXX in the <em>biology.prm</em> file.</td>
 </tr>
 <tr class="odd">
-<td>isExternal</td>
-<td>Flag to indicate whether the group uses the external population model option (instead of simply holding individuals in hiatus when they have migrated out of the model).</td>
+<td style="text-align: left;">isExternal</td>
+<td style="text-align: left;">Flag to indicate whether the group uses the external population model option (instead of simply holding individuals in hiatus when they have migrated out of the model).</td>
 </tr>
 <tr class="even">
-<td>isLandActive</td>
-<td>Marks the group as able to be on land (for models with land and sea). Only required if flagAllowLand is set to 1 in the <em>run.prm</em> file.</td>
+<td style="text-align: left;">isLandActive</td>
+<td style="text-align: left;">Marks the group as able to be on land (for models with land and sea). Only required if flagAllowLand is set to 1 in the <em>run.prm</em> file.</td>
 </tr>
 <tr class="odd">
-<td>isLightEffected</td>
-<td>Marks the group as susceptible to light pollution. Only required if flag_pollutant_impacts is set to 1 in the <em>run.prm</em> file.</td>
+<td style="text-align: left;">isLightEffected</td>
+<td style="text-align: left;">Marks the group as susceptible to light pollution. Only required if flag_pollutant_impacts is set to 1 in the <em>run.prm</em> file.</td>
 </tr>
 <tr class="even">
-<td>isNoiseEffected</td>
-<td>Marks the group as susceptible to noise pollution. Only required if flag_pollutant_impacts is set to 1 in the <em>run.prm</em> file.</td>
+<td style="text-align: left;">isNoiseEffected</td>
+<td style="text-align: left;">Marks the group as susceptible to noise pollution. Only required if flag_pollutant_impacts is set to 1 in the <em>run.prm</em> file.</td>
 </tr>
 </tbody>
 </table>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>What is the role of detritus in an ecosystem model? An excerpt from Murray and Parslow (1997) PPBIM report:</strong></p>
 <p>“The detrital pool acts as a store of fixed nutrient, which introduces a delay into nutrient recycling. Particulate detritus sinks and thereby transports nutrients out of the surface layer into deep water or to the sediment. Dissolved organic matter (DOM) does not sink, and very large pools of refractory DOM are found in the open ocean and in coastal waters. Horizontal transport of particulate detritus and DOM from regions of high production to more oligotrophic areas can also be important”</p>
 <p>“Three forms of non-living organic matter are included in the model: labile particulate detritus, refractory particulate detritus and dissolved organic matter [NOTE – these same pools, plus Carrion, are included in Atlantis, which is based on the PPBIM]. These are represented by the symbols DL, DR and DON respectively. The particulate detrital pool [in nature] contains a wide variety of particles, with diverse sources, ages, sizes and chemical composition. The model includes two functional components: fresh labile detritus breaking down on time scales of a few days, and semi-refractory detritus turning over on time scales of a year. This allows the model to treat perturbations to the nutrient cycle on time scales of days to years.”</p>
-<p>“[In nature] The pool of dissolved organic matter also contains a variety of compounds with diverse turnover rates. In oceanic waters there is a large pool of highly refractory DOM, whose average age has been estimated to be as much as 3400 years (Williams 1975). The bulk of this material is essentially irrelevant for the cycling of nutrients on the time scales of [model] interest. However the DOM pool also includes much more labile components. Highly labile sugars and amino acids released through cell lysis or messy feeding may be consumed by bacteria or break down on time scales of hours (Fuhrman 1987) to days (Holibaugh and Azam 1983). This material is not modelled explicitly, but is treated as though it was remineralised immediately to form dissolved inorganic nutrient. The model includes a single DOM pool with an assumed turnover time of the order of a hundred days. … Because it turns over on time scales, which are long compared with both phytoplankton uptake of inorganic N, and transport within the Bay, it plays a role in reducing N sequestration in coastal waters.”</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>“[In nature] The pool of dissolved organic matter also contains a variety of compounds with diverse turnover rates. In oceanic waters there is a large pool of highly refractory DOM, whose average age has been estimated to be as much as 3400 years (Williams 1975). The bulk of this material is essentially irrelevant for the cycling of nutrients on the time scales of [model] interest. However the DOM pool also includes much more labile components. Highly labile sugars and amino acids released through cell lysis or messy feeding may be consumed by bacteria or break down on time scales of hours (Fuhrman 1987) to days (Holibaugh and Azam 1983). This material is not modelled explicitly, but is treated as though it was remineralised immediately to form dissolved inorganic nutrient. The model includes a single DOM pool with an assumed turnover time of the order of a hundred days. … Because it turns over on time scales, which are long compared with both phytoplankton uptake of inorganic N, and transport within the Bay, it plays a role in reducing N sequestration in coastal waters.”</p>
+</div>
+</div>
 </section>
 <section id="defining-the-grouptype-correctly" class="level2">
 <h2 class="anchored" data-anchor-id="defining-the-grouptype-correctly"><strong>6.3. Defining the GroupType correctly</strong></h2>
 <p>The definition of a group is very important as it will determine the ecological routines and the adaptive timestep applied for the group (see timestep description in chapter 6.1). Table 10 shows routines that are called for different group types. The routines are further modified depending on whether consumers live in the water column or sediment.</p>
+<div id="tbl-atlantis-routines" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-atlantis-routines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Table 10. Routines called for different non-vertebrate GroupTypes in Atlantis code. The <em>Call_Group_Process_Function()</em> routine in atecology.c determines the specific routine used from the atGroupProcess.c file non vertebrate groups. Note, that the greatest diversity ofroutines are called for different benthic invertebrate types (for clarity benthic invertebrates are shown in <strong>bold</strong>).
+</figcaption>
+<div aria-describedby="tbl-atlantis-routines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<caption><span id="_Toc526762762" class="anchor"></span>Table 10. Routines called for different non-vertebrate GroupTypes in Atlantis code. The <em>Call_Group_Process_Function()</em> routine in atecology.c determines the specific routine used from the atGroupProcess.c file non vertebrate groups. Note, that the greatest diversity ofroutines are called for different benthic invertebrate types (for clarity benthic invertebrates are shown in <em>bold italics</em>).</caption>
 <colgroup>
 <col style="width: 42%">
 <col style="width: 57%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Routine name in Atlantis code</strong></th>
-<th><strong>GroupType for which the routine is applied</strong></th>
+<th style="text-align: left;"><strong>Routine name in Atlantis code</strong></th>
+<th style="text-align: left;"><strong>GroupType for which the routine is applied</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><em>Dinoflag_Process()</em></td>
-<td><p>DINOFLAG</p>
-<p>ICE_MIXOTROPHS</p></td>
+<td style="text-align: left;"><em>Dinoflag_Process()</em></td>
+<td style="text-align: left;">DINOFLAG<br>ICE_MIXOTROPHS</td>
 </tr>
 <tr class="even">
-<td><em>Phytoplankton_Process()</em></td>
-<td><p>LG_PHY</p>
-<p>SM_PHY</p>
-<p>PHYTOBEN</p>
-<p>SEAGRASS</p>
-<p>MICROPHTYBENTHOS</p>
-<p>TURF</p>
-<p>ICE_DIATOMS</p></td>
+<td style="text-align: left;"><em>Phytoplankton_Process()</em></td>
+<td style="text-align: left;">LG_PHY<br>SM_PHY<br>PHYTOBEN<br>SEAGRASS<br>MICROPHTYBENTHOS<br>TURF<br>ICE_DIATOMS</td>
 </tr>
 <tr class="odd">
-<td><em>Invert_Consumers_Process()</em></td>
-<td><p><strong><em>SM_INF</em></strong></p>
-<p><strong><em>LG_INF</em></strong></p>
-<p>SM_ZOO</p>
-<p>MED_ZOO</p>
-<p>LG_ZOO</p>
-<p>CEP</p>
-<p>PWN</p>
-<p>ICE_ZOOBIOTA</p></td>
+<td style="text-align: left;"><em>Invert_Consumers_Process()</em></td>
+<td style="text-align: left;"><strong>SM_INF</strong><br><strong>LG_INF</strong><br>SM_ZOO<br>MED_ZOO<br>LG_ZOO<br>CEP<br>PWN<br>ICE_ZOOBIOTA</td>
 </tr>
 <tr class="even">
-<td><em>Epibenthic_Invert_Process()</em></td>
-<td><p><strong><em>SED_EP_FF</em></strong></p>
-<p><strong><em>MOB_EP_OTHER</em></strong></p></td>
+<td style="text-align: left;"><em>Epibenthic_Invert_Process()</em></td>
+<td style="text-align: left;"><strong>SED_EP_FF</strong><br><strong>MOB_EP_OTHER</strong></td>
 </tr>
 <tr class="odd">
-<td><em>Sediment_Epi_Other_Process()</em></td>
-<td><strong><em>SED_EP_OTHER</em></strong></td>
+<td style="text-align: left;"><em>Sediment_Epi_Other_Process()</em></td>
+<td style="text-align: left;"><strong>SED_EP_OTHER</strong></td>
 </tr>
 <tr class="even">
-<td><em>Coral_Process()</em></td>
-<td><p>CORAL</p>
-<p>SPONGE</p></td>
+<td style="text-align: left;"><em>Coral_Process()</em></td>
+<td style="text-align: left;">CORAL<br>SPONGE</td>
 </tr>
 <tr class="odd">
-<td><em>Pelagic_Bacteria_Process()</em></td>
-<td>PL_BACT</td>
+<td style="text-align: left;"><em>Pelagic_Bacteria_Process()</em></td>
+<td style="text-align: left;">PL_BACT</td>
 </tr>
 <tr class="even">
-<td><em>Ice_Bacteria_Process()</em></td>
-<td>ICE_BACT</td>
+<td style="text-align: left;"><em>Ice_Bacteria_Process()</em></td>
+<td style="text-align: left;">ICE_BACT</td>
 </tr>
 <tr class="odd">
-<td><em>Sediment_Bacterica_Process()</em></td>
-<td>SED_BACT</td>
+<td style="text-align: left;"><em>Sediment_Bacterica_Process()</em></td>
+<td style="text-align: left;">SED_BACT</td>
 </tr>
 <tr class="even">
-<td><em>Labile_Detritus_Process()</em></td>
-<td>LAB_DET</td>
+<td style="text-align: left;"><em>Labile_Detritus_Process()</em></td>
+<td style="text-align: left;">LAB_DET</td>
 </tr>
 <tr class="odd">
-<td><em>Refractory_Detritus_Process()</em></td>
-<td>REF_DET</td>
+<td style="text-align: left;"><em>Refractory_Detritus_Process()</em></td>
+<td style="text-align: left;">REF_DET</td>
 </tr>
 <tr class="even">
-<td><em>Carrion_Process()</em></td>
-<td>CARRION</td>
+<td style="text-align: left;"><em>Carrion_Process()</em></td>
+<td style="text-align: left;">CARRION</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="modifying-functional-groups-in-parameterised-models" class="level2">
 <h2 class="anchored" data-anchor-id="modifying-functional-groups-in-parameterised-models"><strong>6.4. Modifying functional groups in parameterised models</strong></h2>
