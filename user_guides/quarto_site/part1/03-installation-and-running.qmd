@@ -572,5 +572,3 @@ A document compiling error messages is available on Google Doc file (available o
 <https://docs.google.com/document/d/1B3X6_Y29gZxtKzjZY2oyylAJBxVtYXXu72pVbwv6mWw/edit>
 
 Please check this document for further information and to contribute to it by posting error messages you get.
-
-\*\*\*\*

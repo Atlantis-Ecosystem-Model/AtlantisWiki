@@ -293,143 +293,145 @@ ul.task-list li input[type="checkbox"] {
 <p>In principal users can setup very complex shaped polygons, however, the number of polygons and faces between them will determine the speed of calculations. Remember that all biological and fisheries process calculations are repeated in each layer of each polygon!</p>
 <p><img src="media/image21.jpeg" style="width:5.80208in;height:3.48619in"></p>
 <p><img src="media/image22.png" style="width:6.21661in;height:4.38904in"></p>
-<p><span id="_Toc526762784" class="anchor"></span>Figure 4. Top: An example cross section of an Atlantis model, showing water column and sediment layers. Oceanic boxes have an open water boundary at the bottom of the deepest water layer. The depths of vertical layers do not have to be the same in all boxes, although most models keep them identical for simplicity (shown with horizontal dashed line). The depth of the bottom water column layer varies depending on the geography of the marine system. Bottom: An example of the horizontal Atlantis model domain (set in the BGM file)</p>
+<p><span id="_Toc526762784" class="anchor"></span><strong>Figure 4</strong>. Top: An example cross section of an Atlantis model, showing water column and sediment layers. Oceanic boxes have an open water boundary at the bottom of the deepest water layer. The depths of vertical layers do not have to be the same in all boxes, although most models keep them identical for simplicity (shown with horizontal dashed line). The depth of the bottom water column layer varies depending on the geography of the marine system. Bottom: An example of the horizontal Atlantis model domain (set in the BGM file)</p>
 </section>
 <section id="how-to-define-a-geometry-file-for-a-new-model" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-define-a-geometry-file-for-a-new-model"><strong>3.2. How to define a geometry file for a new model?</strong></h2>
 <p>The first step in developing a new model is to define the two-dimensional domain specified in the BGM file. Atlantis was created prior to the development of shapefiles that have now become a standard in GIS applications. Hence Atlantis uses its own BGM file format (see <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+BGM+Files">wiki</a> BGM file page), which was a common format for many early box models. These days the developers of new Atlantis applications typically define model geometry and shapes of the polygons using GIS tools, but any other alternative approaches that can provide geographic representation can be used. The GIS tools can export shapefiles, which are converted into the Atlantis-specific BGM file using specially written packages. A new R tool (rbgm, see below) is also being developed to enable users to convert files from GIS or other spatial editing applications directly to BGM files, skipping the shapefile stage (see below). The BGM file is also used by some software packages, such as Dive or Olive, for spatial visualisation of Atlantis outputs.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Details of the model geometry are defined in the <strong>BGM</strong> and <em>intial_conditions.nc</em> files.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Details of the model geometry are defined in the <strong>BGM</strong> and <em>intial_conditions.nc</em> files.</p>
 <p>The <strong>BGM</strong> file defines the <strong>two-dimensional</strong> geometry of the model domain. It includes information on boxes, their shapes, midpoints, faces. It also specifies the maximum depth of the modelled ecosystem and maximum depth of each box.</p>
 <p>The <strong><em>initial_condition.nc</em></strong> file includes further information on the <strong>three-dimensional geometry</strong>, specifying numbers and depth of the vertical layers in each box. The maximum number of water column and sediment layers is set in the global attribute section in the <em>initial_conditions.nc</em> file (wcnz and sednz parameters). The actual number of water column and the ID of the top active sediment layer (typically 0) in each box is then given in the numlayers and topk parameters given for each box.</p>
 <p>Nominal or initial <strong>depths of the water column and sediment layers</strong> are set in the <em>initial_ condition.nc</em> nominal_dz parameter. Typically they are set to be identical among boxes (see Fig. 4 top panel), except for the bottom layer, but this is not strictly required. The actual depths of the water column and sediment layers can change dynamically through the simulation and are stored in the dz variable. The maximum change in water column depth is set in wc_dz_tol , whereas minimum and maximum depth of the sediments layer(s) is set in the minseddz and maxseddz parameters in the <em>physics.prm.</em></p>
-<p>The optional ice layers are included as a fourth dimension in the <em>initial_conditions.nc</em> file. Modelling ice in Atlantis is still under development, see chapter 5.5.2</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>The optional ice layers are included as a fourth dimension in the <em>initial_conditions.nc</em> file. Modelling ice in Atlantis is still under development, see chapter 5.5.2.</p>
+</div>
+</div>
 <p>There are <strong>two main types of boxes: dynamic and boundary</strong>. The corners of each polygon are defined by <strong>vertices</strong> and the lines connecting these corners are called <strong>faces</strong>.</p>
-<p><span id="_Toc446445864" class="anchor"></span>Figure 5. Example of an Atlantis model geometry (part of a model domain). Boxes are numbered in bold, grey boxes indicate boundary or island (land) boxes. Faces are numbered in <em>italic</em> numbers. Vertices are shown as dots; vertices P1 and P2 describe face 5.</p>
-<p><strong>Dynamic boxes</strong> make up the model domain; all biological and socio-economic processes are modelled in them. Dynamic boxes must satisfy the (approximate) requirement of mass onservation[^4], although their volume can change slightly due to currents and tides (just as seen in the real world). In dynamic boxes numeric fluxes of a tracer (e.g.&nbsp;NO3, phytoplankton) due to ecological processes (such as growth and mortality) cannot exceed a certain proportion of its standing biomass. This proportion is set by the RelTol parameter in the <em>biology.prm</em> file (but see the note below on relax_tol).</p>
+<p><img src="media/image23.jpg" style="width:6in;height:6in"></p>
+<p><span id="_Toc446445864" class="anchor"></span><strong>Figure 5</strong>. Example of an Atlantis model geometry (part of a model domain). Boxes are numbered in bold, grey boxes indicate boundary or island (land) boxes. Faces are numbered in <em>italic</em> numbers. Vertices are shown as dots; vertices P1 and P2 describe face 5.</p>
+<p><strong>Dynamic boxes</strong> make up the model domain; all biological and socio-economic processes are modelled in them. Dynamic boxes must satisfy the (approximate) requirement of mass conservation<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, although their volume can change slightly due to currents and tides (just as seen in the real world). In dynamic boxes numeric fluxes of a tracer (e.g.&nbsp;NO3, phytoplankton) due to ecological processes (such as growth and mortality) cannot exceed a certain proportion of its standing biomass. This proportion is set by the RelTol parameter in the <em>biology.prm</em> file (but see the note below on relax_tol).</p>
 <p><strong>Boundary boxes</strong> are used only as sources and sinks for advective transport. They represent the “outer world” or the system beyond the model domain and don’t have the requirement of mass conservation. The areas of boundary boxes play no role (they can be set as tiny slivers or large boxes) and there are no water or tracer movements between boundary boxes. Islands inside the model domain are modelled as boundary boxes (unless land has been activated in the model by setting flagAllowLand to 1 in the <em>run.prm</em> file). In models where land is not active islands and other land boxes have zero depth (box 8 in the Fig. 5). However, when land is active (only in the most recently development versions of Atlantis) explicit modelling of land is allowed (see chapter 5.5.1), these boxes use a positive value for total box depth (botz) rather than the negative values used for aquatic boxes.</p>
-<p>In the vertical dimension the polygons can be either <strong>non-oceanic</strong> or <strong>oceanic</strong>. Sometimes the Atlantis model does not capture the full depth of the marine ecosystem. For example, the actual maximum depth in the modelled ocean area can be 3500m (shown in the maxbotz parameter in the BGM file), but the model domain only includes the top 2000m (box-specific botz parameters in the BGM file). The polygons for which botz is greater or equal to maxbotz are classified as oceanic (e.g.&nbsp;a maxbotz of -2000 versus a botz of -3500). This means that the bottom water layer in these polygons has an open water boundary with deeper (not explicitly modelled) waters rather than with a sediment layer. In oceanic boxes the sediment layer is still included in the setup (for simplicity) but sediment calculations are not performed in these boxes when the model is run and the biomass of organisms in the sediments are not included in the total biomass calculations. Further, the deepest layers of the oceanic boxes receive nutrient input from “outside” of the model domain, designed to simulate nutrient mixing from deeper layers not included in the model domain.</p>
+<p>In the vertical dimension the polygons can be either <strong>non-oceanic</strong> or <strong>oceanic</strong>. Sometimes the Atlantis model does not capture the full depth of the marine ecosystem. For example, the actual maximum depth in the modelled ocean area can be 3500 m (shown in the maxbotz parameter in the BGM file), but the model domain only includes the top 2000m (box-specific botz parameters in the BGM file). The polygons for which botz is greater or equal to maxbotz are classified as oceanic (e.g.&nbsp;a maxbotz of -2000 versus a botz of -3500). This means that the bottom water layer in these polygons has an open water boundary with deeper (not explicitly modelled) waters rather than with a sediment layer. In oceanic boxes the sediment layer is still included in the setup (for simplicity) but sediment calculations are not performed in these boxes when the model is run and the biomass of organisms in the sediments are not included in the total biomass calculations. Further, the deepest layers of the oceanic boxes receive nutrient input from “outside” of the model domain, designed to simulate nutrient mixing from deeper layers not included in the model domain.</p>
 <p>Below is an example of a BGM file with explanations of parameters given after #</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p># box model geometry based on VMPA_setas_20051216.bgm</p>
-<p><em># conversion from lat/long space to x-y space of the model domain. Required for mapping and light level</em></p>
-<p><em># calculations (when lim_sum_hours is turned on in the biology.prm file). Definition is based on GIS standards</em></p>
-<p><em># The parameters should be <strong>space separated</strong></em></p>
-<p>projection proj=aea lat_1=-18 lat_2=-36 lat_0=0 lon_0=134 x_0=3000000 y_0=6000000 ellps=GRS80 towgs84=0,0,0,0,0,0,0 units=m no_defs</p>
-<p><em># Number of boxes in horizontal plane</em></p>
-<p>nbox 11</p>
-<p><em># Number of faces in horizontal plane</em></p>
-<p>nface 22</p>
-<p><em># Maximum bottom depth (m) of the model domain (not the real ecosystem)</em></p>
-<p>maxwcbotz -5000</p>
-<p><em># vertices of the polygon defining the boundary of the dynamic model space throughout the total geographical</em></p>
-<p><em># extent of the model, creating one big polygon. They are ordered <strong>sequentially in either clockwise or</strong></em></p>
-<p><em><strong># anticlockwise</strong> direction (it doesn’t matter which so long as it remains consistent)= in (x,y) format, where x,y is</em></p>
-<p><em># in projected (linear transformation) of longitude and latitude</em></p>
-<p>bnd_vert 4227984.241 1449270.8</p>
-<p>bnd_vert 4279136.436 1451037.995</p>
-<p>bnd_vert 4684173.263 1362498.346</p>
-<p><strong><em>… and so on for all vertices</em></strong></p>
-<p><em># Data for box number 0 ## user defined box number identifier</em></p>
-<p>box0.label Box0 <em>##users reference box name, e.g.&nbsp;Box0 or Sydney Harbour</em></p>
-<p>box0.inside 4043667.571 1150676.493 <em>## midpoint of polygon</em></p>
-<p>box0.nconn 5 <em>## number of faces shared with other dynamic boxes</em></p>
-<p>box0.iface 1 10 11 13 17 <em>## id numbers of shared faces, each face has a unique id</em></p>
-<p>box0.ibox 0 2 2 2 2 <em>## box that each shared face corresponds to</em></p>
-<p>box0.botz -370 <em>## maximum depth of the polygon in the real ecosystem</em></p>
-<p>box0.area 3261982282 <em>## area of the box, m<sup>2</sup></em></p>
-<p>box0.vertmix 0.000001 <em>## vertical mixing scalar for the polygon</em></p>
-<p>box0.horizmix 1 <em>## horizontal transport scalar for the polygon</em></p>
-<p>box0.relax_tol 0 <em>## whether relaxing flux tolerance for this box</em></p>
-<p>box0.vert 4005591.597 1198429.099 <em>## List of vertices (x,y) in clockwise or counter clockwise order</em></p>
-<p>box0.vert 3998613.455 1174049.433</p>
-<p>box0.vert 4065533.389 1102640.49</p>
-<p>box0.vert 4095090.658 1128446.461</p>
-<p>box0.vert 4095245.855 1128504.676</p>
-<p>box0.vert 4005591.597 1198429.099</p>
-<p><strong><em>… and so on for all boxes</em></strong></p>
-<p><em># This section describes each dynamic face (faces of all non-boundary boxes)</em></p>
-<p><em># Data for face number 0</em></p>
-<p>face0.p1 4005591.597 1198429.099 <em>## one endpoint of face (x1,y1)</em></p>
-<p>face0.p2 4095245.855 1128504.676 <em>## other endpoint of face (x2,y2)</em></p>
-<p>face0.length 113698.3335 <em>## length of face</em></p>
-<p>face0.cs -0.788527462 0.614999546 <em>## Cosine and sine of the slope of the face (slope=sine/cosine)</em></p>
-<p>face0.lr 2 0 <em>## Number of the box to the left and to the right as you look</em></p>
-<p><em>## from point 1 to point 2. <strong>Correct orientation is crucial!</strong> (see</em></p>
-<p><em>## below)</em></p>
-<p><strong><em>… and so on for all faces</em></strong></p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
-<p><strong>Relaxing the flux tolerance check for an individual box</strong></p>
-<p>There are times (e.g.&nbsp;during an extreme event, which might be implemented for a specific scenario, or if including restocking/replanting of seagrass for example) when the flux of a variable can legitimately be at a level that would breach the flux tolerance checks in place to ensure numerical stability (as conditioned by RelTol set in the <em>biology.prm</em>). To allow for this there is a property per box in the BGM file, box#.relax_tol , which is typically set to 0 unless absolutely required.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<pre><code># box model geometry based on VMPA_setas_20051216.bgm
+
+# conversion from lat/long space to x-y space of the model domain. Required for mapping and light level
+# calculations (when lim_sum_hours is turned on in the biology.prm file). Definition is based on GIS standards
+# The parameters should be space separated
+projection proj=aea lat_1=-18 lat_2=-36 lat_0=0 lon_0=134 x_0=3000000 y_0=6000000 ellps=GRS80 towgs84=0,0,0,0,0,0,0 units=m no_defs
+
+# Number of boxes in horizontal plane
+nbox 11
+
+# Number of faces in horizontal plane
+nface 22
+
+# Maximum bottom depth (m) of the model domain (not the real ecosystem)
+maxwcbotz -5000
+
+# vertices of the polygon defining the boundary of the dynamic model space throughout the total geographical
+# extent of the model, creating one big polygon. They are ordered sequentially in either clockwise or
+# anticlockwise direction (it doesn't matter which so long as it remains consistent) in (x,y) format, where x,y is
+# in projected (linear transformation) of longitude and latitude
+bnd_vert 4227984.241 1449270.8
+bnd_vert 4279136.436 1451037.995
+bnd_vert 4684173.263 1362498.346
+# ... and so on for all vertices
+
+# Data for box number 0 ## user defined box number identifier
+box0.label Box0  ## users reference box name, e.g. Box0 or Sydney Harbour
+box0.inside 4043667.571 1150676.493  ## midpoint of polygon
+box0.nconn 5  ## number of faces shared with other dynamic boxes
+box0.iface 1 10 11 13 17  ## id numbers of shared faces, each face has a unique id
+box0.ibox 0 2 2 2 2  ## box that each shared face corresponds to
+box0.botz -370  ## maximum depth of the polygon in the real ecosystem
+box0.area 3261982282  ## area of the box, m²
+box0.vertmix 0.000001  ## vertical mixing scalar for the polygon
+box0.horizmix 1  ## horizontal transport scalar for the polygon
+box0.relax_tol 0  ## whether relaxing flux tolerance for this box
+box0.vert 4005591.597 1198429.099  ## List of vertices (x,y) in clockwise or counter clockwise order
+box0.vert 3998613.455 1174049.433
+box0.vert 4065533.389 1102640.49
+box0.vert 4095090.658 1128446.461
+box0.vert 4095245.855 1128504.676
+box0.vert 4005591.597 1198429.099
+
+# ... and so on for all boxes
+
+# This section describes each dynamic face (faces of all non-boundary boxes)
+# Data for face number 0
+face0.p1 4005591.597 1198429.099  ## one endpoint of face (x1,y1)
+face0.p2 4095245.855 1128504.676  ## other endpoint of face (x2,y2)
+face0.length 113698.3335  ## length of face
+face0.cs -0.788527462 0.614999546  ## Cosine and sine of the slope of the face (slope=sine/cosine)
+face0.lr 2 0  ## Number of the box to the left and to the right as you look
+## from point 1 to point 2. Correct orientation is crucial! (see below)
+
+# ... and so on for all faces</code></pre>
+<div class="callout callout-style-default callout-caution callout-titled" title="Relaxing the flux tolerance check for an individual box">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Relaxing the flux tolerance check for an individual box
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are times (e.g.&nbsp;during an extreme event, which might be implemented for a specific scenario, or if including restocking/replanting of seagrass for example) when the flux of a variable can legitimately be at a level that would breach the flux tolerance checks in place to ensure numerical stability (as conditioned by RelTol set in the <em>biology.prm</em>). To allow for this there is a property per box in the BGM file, box#.relax_tol , which is typically set to 0 unless absolutely required.</p>
+</div>
+</div>
 <p><strong>Below are some strict rules and best practice suggestions on setting up the model geometry.</strong> These rules are provided here to give general insights into how the geometry file is setup. If you are developing a BGM file for a new model, check more detailed instructions on Atlantis wiki (links given below).</p>
 <p><strong>Rules:</strong></p>
-<p>1) Box 0 <strong>must</strong> be a <strong>boundary</strong> box and Box 1 <strong>must</strong> be a <strong>dynamic</strong> box.</p>
-<p>This rule is a developmental legacy and determined by the way the Atlantis code and oceanographic file conversion was setup during the model development. Box 0 is special because it is set up to have water and nutrient fluxes to nearly all other model boxes. This is set to simulate supply of advective tracers to the oceanic boxes and accommodate any missing water fluxes due to conversion of oceanographic files into Atlantis input files (see chapter 4). While the model is running it also acts as a store for information on any migrating groups currently outside the model domain.</p>
-<p>2) <strong>Doughnut shaped boxes are not allowed</strong>.</p>
-<p>For example, you cannot have one box around an island. This is because such boxes have their midpoint on land, which would affect calculations of a number of processes relying on midpoint values.</p>
-<p>3) The description of boxes, faces and vertices in the BGM file (iface, ibox, bnd_vert parameters) <strong>must be done in the same orientation</strong> – clockwise or counter clockwise. It doesn’t matter which you chose, just make sure it is consistent throughout.</p>
-<p>The orientation can be checked using the <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> package developed by Cameron Ainsworth and available from the Atlantis wiki.</p>
-<p>4) Islands <strong>must</strong> be represented as boxes with a depth of 0 (or &gt;0 if land is active), not as empty regions. By default the land boxes are either treated as boundary boxes, but can also be modelled as land, if the land option is activated (see chapter 5.5.1).</p>
-<p>5) It is of utmost importance to <strong>correctly identify the boxes to the left and to the right of a face</strong> in the face#.lr parameter (where # stands for the box number). The points P1 and P2 in the Figure 3 describe face 5 between boxes 2 and 6. If face5.p1 is given as P1 and face5.p2 is P2, then left and right boxes are designated as you look from P1 to P2. This means the right box is 6 and the left box is 2 and face5.lr must be set as 2 6. Setting the direction incorrectly inverts the direction of the flow in the hydrodynamics forcing file! <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> package will check the file for correct right/left designation.</p>
-<p>6) The <strong>midpoint</strong> of a polygon is defined in the box#.inside parameter. It is used to: i) calculate the temperature in a box when temperature forcing data is not provided and we are in the southern hemisphere; ii) calculate the sunrise and sunset values based on lat/long when lim_sun_hours is set to 1; iii) calculate distance between boxes and invasion speed if the invasion option is active; iv) calculate distance from a box to a port in the dynamic fishing code. <strong>If the midpoint of the box is misplaced and is not within the actual box, Atlantis will quit when trying to read time series that deposit something into that box or when running dynamic fishing routines.</strong></p>
+<ol type="1">
+<li><p>Box 0 <strong>must</strong> be a <strong>boundary</strong> box and Box 1 <strong>must</strong> be a <strong>dynamic</strong> box. This rule is a developmental legacy and determined by the way the Atlantis code and oceanographic file conversion was setup during the model development. Box 0 is special because it is set up to have water and nutrient fluxes to nearly all other model boxes. This is set to simulate supply of advective tracers to the oceanic boxes and accommodate any missing water fluxes due to conversion of oceanographic files into Atlantis input files (see chapter 4). While the model is running it also acts as a store for information on any migrating groups currently outside the model domain.</p></li>
+<li><p><strong>Doughnut shaped boxes are not allowed</strong>. For example, you cannot have one box around an island. This is because such boxes have their midpoint on land, which would affect calculations of a number of processes relying on midpoint values.</p></li>
+<li><p>The description of boxes, faces and vertices in the BGM file (iface, ibox, bnd_vert parameters) <strong>must be done in the same orientation</strong> – clockwise or counter clockwise. It doesn’t matter which you chose, just make sure it is consistent throughout. The orientation can be checked using the <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> package developed by Cameron Ainsworth and available from the Atlantis wiki.</p></li>
+<li><p>Islands <strong>must</strong> be represented as boxes with a depth of 0 (or &gt;0 if land is active), not as empty regions. By default the land boxes are either treated as boundary boxes, but can also be modelled as land, if the land option is activated (see chapter 5.5.1).</p></li>
+<li><p>It is of utmost importance to <strong>correctly identify the boxes to the left and to the right of a face</strong> in the <code>face#.lr</code> parameter (where # stands for the box number). The points P1 and P2 in the Figure 3 describe face 5 between boxes 2 and 6. If <code>face5.p1</code> is given as P1 and <code>face5.p2</code> is P2, then left and right boxes are designated as you look from P1 to P2. This means the right box is 6 and the left box is 2 and <code>face5.lr</code> must be set as 2 6. Setting the direction incorrectly inverts the direction of the flow in the hydrodynamics forcing file! <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> package will check the file for correct right/left designation.</p></li>
+<li><p>The <strong>midpoint</strong> of a polygon is defined in the <code>box#.inside</code> parameter. It is used to: i) calculate the temperature in a box when temperature forcing data is not provided and we are in the southern hemisphere; ii) calculate the sunrise and sunset values based on lat/long when lim_sun_hours is set to 1; iii) calculate distance between boxes and invasion speed if the invasion option is active; iv) calculate distance from a box to a port in the dynamic fishing code. <strong>If the midpoint of the box is misplaced and is not within the actual box, Atlantis will quit when trying to read time series that deposit something into that box or when running dynamic fishing routines.</strong></p></li>
+</ol>
 <p><strong>Suggestions:</strong></p>
-<p>7) Keep the number of boxes as small as possible (fewer than 90 is good), remember the fewer the boxes the faster the model will run (e.g.&nbsp;models with 20-30 boxes will run three to four times faster than one with 90 boxes!)</p>
-<p>8) Keep the number of dynamic faces (those corresponding to non-boundary boxes) to less than 400, but 100-200 would be even better! It is not recommended to have boxes with very complex shapes (i.e.&nbsp;do not slavishly follow complex isobaths in the GIS when drawing up the box shapes). This is because complex box shapes are 1) is prone to error and 2) may give a false impression of reality. Simple shaped boxes serve as a good reminder that the spatial results presented are only model simulations and should be treated as such</p>
-<p>9) When setting up box shapes in GIS, make sure the topology is perfect, which means no gaps or overlaps between polygons. If the shapefile has overlaps or gaps it won’t convert to the BGM file</p>
-<p>10) In some cases conversion of water fluxes from oceanographic files to Atlantis hydrodynamic forcing files leaves small coastal boxes isolated, i.e.&nbsp;no water fluxes enter or leave them. This will be covered in more detail in Chapter 5.4. The BGM file has two box-specific water mixing parameters that are used in some physics routines, including those used to correct for the lack of mixing. These parameters allow box-specific mixing scalars to be setup and help to tune vertical and horizontal water flows in the model domain:</p>
-<p>box#.vertmix - vertical mixing scalar used only when vert_diffusion or vert_mix are turned on in the <em>physics.prm</em>.</p>
-<p>box#.horizmix – horizontal mixing scalar that can be used to correct for hyperdifusion (if insufficient correction was done during the file conversion stage, see Chapter 5.4). It is also used as a box-specific scalar if fill_zero_exchange or horiz_diffusion flags are turned on (set to 1) in the <em>physics.prm</em> file (see Chapter 5 for further details).</p>
+<ol start="7" type="1">
+<li><p>Keep the number of boxes as small as possible (fewer than 90 is good), remember the fewer the boxes the faster the model will run (e.g.&nbsp;models with 20-30 boxes will run three to four times faster than one with 90 boxes!)</p></li>
+<li><p>Keep the number of dynamic faces (those corresponding to non-boundary boxes) to less than 400, but 100-200 would be even better! It is not recommended to have boxes with very complex shapes (i.e.&nbsp;do not slavishly follow complex isobaths in the GIS when drawing up the box shapes). This is because complex box shapes are 1) is prone to error and 2) may give a false impression of reality. Simple shaped boxes serve as a good reminder that the spatial results presented are only model simulations and should be treated as such.</p></li>
+<li><p>When setting up box shapes in GIS, make sure the topology is perfect, which means no gaps or overlaps between polygons. If the shapefile has overlaps or gaps it won’t convert to the BGM file.</p></li>
+</ol>
+<p><img src="media/image25.png" style="width:4in;height:2.5in"></p>
+<ol start="10" type="1">
+<li>In some cases conversion of water fluxes from oceanographic files to Atlantis hydrodynamic forcing files leaves small coastal boxes isolated, i.e.&nbsp;no water fluxes enter or leave them. This will be covered in more detail in Chapter 5.4. The BGM file has two box-specific water mixing parameters that are used in some physics routines, including those used to correct for the lack of mixing. These parameters allow box-specific mixing scalars to be setup and help to tune vertical and horizontal water flows in the model domain:</li>
+</ol>
+<p><code>box#.vertmix</code> - vertical mixing scalar used only when vert_diffusion or vert_mix are turned on in the <em>physics.prm</em>.</p>
+<p><code>box#.horizmix</code> – horizontal mixing scalar that can be used to correct for hyperdifusion (if insufficient correction was done during the file conversion stage, see Chapter 5.4). It is also used as a box-specific scalar if fill_zero_exchange or horiz_diffusion flags are turned on (set to 1) in the <em>physics.prm</em> file (see Chapter 5 for further details).</p>
 </section>
 <section id="practical-steps-for-building-the-bgm-files-from-gis-shapefiles" class="level2">
 <h2 class="anchored" data-anchor-id="practical-steps-for-building-the-bgm-files-from-gis-shapefiles"><strong>3.3. Practical steps for building the BGM files from GIS shapefiles</strong></h2>
-<p><strong>1.</strong> Define polygons using QGIS or similar GIS package. This will produce a shapefile of the model domain. The shapefile is the master of the model geometry, any changes should be made to the shapefile and the BGM should be recreated from that master. Hand editing of the BGM should be avoided[^5], other than to manually set the box-specific mixing values, or to correct any issues resulting from BGM generation (like misplacement of the inside point). See the <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+BGM+Files">Atlantis wiki</a> BGM file page for more information.</p>
+<p><strong>1.</strong> Define polygons using QGIS or similar GIS package. This will produce a shapefile of the model domain. The shapefile is the master of the model geometry, any changes should be made to the shapefile and the BGM should be recreated from that master. Hand editing of the BGM should be avoided<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, other than to manually set the box-specific mixing values, or to correct any issues resulting from BGM generation (like misplacement of the inside point). See the <a href="https://confluence.csiro.au/display/Atlantis/Atlantis+BGM+Files">Atlantis wiki</a> BGM file page for more information.</p>
 <p><strong>2.</strong> Run the BGMeriser package, to convert shapefiles into BGM files. Details on access and installation are given on the wiki (<a href="https://confluence.csiro.au/display/Atlantis/Technical+Information">here)</a> as are details on how to run it (<a href="https://confluence.csiro.au/display/Atlantis/BGMEditor">here</a>).</p>
 <p><strong>3.</strong> If the shapefiles do not pass through the BGMeriser, they probably have issues with gaps or overlapping polygons and should be cleaned. Check the <a href="https://confluence.csiro.au/display/Atlantis/Using+QGIS+to+clean+Atlantis+BGM+Shapefiles">instructions</a> on the wiki for tips on cleaning up the shapefiles using QGIS.</p>
 <p><strong>4.</strong> Use <a href="https://confluence.csiro.au/display/Atlantis/Checkwinding">Checkwinding</a> to check the orientation of boxes and faces in the BGM file</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
-<p>Please keep in mind that <strong>shapefiles do not preserve all information about the faces</strong> among the boxes (see chapter 3.5). Shapefiles only enumerate faces, but they do not give information about their orientation. They also do not preserve topological information among boxes, i.e.&nbsp;their relationship to one another. Correctly created shapefiles include user defined extra attributes to contain the additional information required to generate a BGM file. However, when shapefiles are edited in a GIS, all face information may change, especially if some boxes are added or deleted. This is why BGMeriser must be run after each shapefile amendment. This is an important disadvantage of using shapefiles for Atlantis model geometry and a <strong>new R package is being developed</strong> to allow users create BGM files directly from GIS or other applications, without having to use shapefiles (see chapter 3.5).</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please keep in mind that <strong>shapefiles do not preserve all information about the faces</strong> among the boxes (see chapter 3.5). Shapefiles only enumerate faces, but they do not give information about their orientation. They also do not preserve topological information among boxes, i.e.&nbsp;their relationship to one another. Correctly created shapefiles include user defined extra attributes to contain the additional information required to generate a BGM file. However, when shapefiles are edited in a GIS, all face information may change, especially if some boxes are added or deleted. This is why BGMeriser must be run after each shapefile amendment. This is an important disadvantage of using shapefiles for Atlantis model geometry and a <strong>new R package is being developed</strong> to allow users create BGM files directly from GIS or other applications, without having to use shapefiles (see chapter 3.5).</p>
+</div>
+</div>
 </section>
 <section id="how-to-view-your-model-geometry" class="level2">
 <h2 class="anchored" data-anchor-id="how-to-view-your-model-geometry"><strong>3.4. How to view your model geometry?</strong></h2>
@@ -451,7 +453,14 @@ ul.task-list li input[type="checkbox"] {
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>A small amount of mismatch (typically to cover rounding error) is allowed over the total fluxes in a cell in any one time step, but if it becomes too large (i.e.&nbsp;exceeds the flux tolerance set in the biology.prm file, with typical values being on the order of 0.2 mgN*m-3 per second) the model will quit and provide a warning message, as this indicates that there is a problem with the parameterisation<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Expert users may be able to tinker directly with the BGM file, but extreme care should be taken and it should be documented so any future users can understand the changes made (as the master shapefile file will no longer 100% match the model geometry).<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

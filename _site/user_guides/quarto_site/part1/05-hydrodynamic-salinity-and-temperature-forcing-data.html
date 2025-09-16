@@ -97,6 +97,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -319,265 +320,260 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="general-introduction-to-forcing-of-atlantis-models"><strong>4.1. General introduction to forcing of Atlantis models</strong></h2>
 <p>Like most other ecosystem models, Atlantis does not calculate water fluxes (current, circulation) itself, but uses outputs from specialised oceanographic models such as <a href="https://www.myroms.org/wiki/Documentation_Portal">ROMS</a> (Regional Ocean Modeling System) (Shchepetkin and McWilliams 2005; Haidvogel et al.&nbsp;2008), <a href="http://wp.csiro.au/bluelink/global/">BLUELINK</a> (Brassington et al.&nbsp;2007) or <a href="https://hycom.org/">HYCOM</a> (Chassignet et al.&nbsp;2006). In other words, Atlantis models are forced with hydrodynamic data from oceanographic models. At the minimum level Atlantis requires only a hydrodynamic forcing input file defining water fluxes across boxes and layers. The model will then use simple routines to calculate temperature and salinity conditions in each cell at each simulation time step. However, most Atlantis models, and other ecosystem models (Fiechter et al.&nbsp;2014; Rose et al.&nbsp;2015), also use oceanographic model output to force temperature and salinity conditions (and in some cases also oxygen, pH or other tracers). This is because oceanographic models are specialised to model temperature and salinity conditions, and their calculation of these parameters are deemed to be more accurate than those used in Atlantis. Moreover, taking the physical properties from the oceanographic model means they are consistent with the exchanges (currents) being read in from the oceanographic model. In rare cases, if oceanographic models are not available, water flux information can be pieced together from observations or literature to generate hydrodynamic forcing files manually. Table 5 lists some of the spatial domains and forcing characteristics of example model applications.</p>
 <p>Oceanographic models simulate processes on their native grid, which is typically of much higher spatial resolution than Atlantis. The temporal scale in oceanographic models is also often in the range of seconds rather than the 6h, 12h or 24h used in Atlantis. Further, most oceanographic models use the same number of water column layers regardless of total depth (called sigma layers) (Fig. 6). This means that the depth of a layer in oceanographic models is very different in shallow and deep waters, while in Atlantis, water layer depths remain relatively stable (with small variations due to tides). This means that water fluxes and values of all forced parameters must be interpolated onto Atlantis model polygons and cells.</p>
+<p><strong>Table 5.</strong> Hydrodynamic structure of some example Atlantis models. Advect = advection, temp = temperature, salt = salinity.</p>
+<div class="table-responsive">
 <table class="caption-top table">
-<caption><span id="_Toc526762757" class="anchor"></span>Table 5. Hydrodynamic structure of some example Atlantis models. Advect = advection, temp = temperature, salt = salinity.</caption>
 <colgroup>
-<col style="width: 13%">
-<col style="width: 18%">
-<col style="width: 9%">
-<col style="width: 10%">
-<col style="width: 8%">
-<col style="width: 10%">
-<col style="width: 9%">
+<col style="width: 1%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 5%">
+<col style="width: 17%">
 <col style="width: 17%">
 </colgroup>
 <thead>
 <tr class="header">
 <th></th>
-<th style="text-align: center;">SE Australia</th>
-<th style="text-align: center;">Eastern Tasmania</th>
-<th style="text-align: center;">Port Phillip Bay</th>
-<th style="text-align: center;">Western-port</th>
-<th style="text-align: center;">NEUS</th>
-<th style="text-align: center;">California current</th>
-<th style="text-align: center;">Gulf of California</th>
+<th>SE Australia</th>
+<th>Eastern Tasmania</th>
+<th>Port Phillip Bay</th>
+<th>Western-port</th>
+<th>NEUS</th>
+<th>California current</th>
+<th>Gulf of California</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Key oceanographic effects</td>
-<td style="text-align: center;">Boundary currents</td>
-<td style="text-align: center;">Boundary current, upwelling</td>
-<td style="text-align: center;">River input and slow flushing</td>
-<td style="text-align: center;">River input and flushing</td>
-<td style="text-align: center;"><p>Gulf Stream,</p>
-<p>Boundary current, Georges Bank</p></td>
-<td style="text-align: center;"><p>Boundary current, upwelling,</p>
-<p>El Nino</p></td>
-<td style="text-align: center;">Colorado River input, tidal mixing / stratification</td>
+<td><strong>Key oceanographic effects</strong></td>
+<td>Boundary currents</td>
+<td>Boundary current, upwelling</td>
+<td>River input and slow flushing</td>
+<td>River input and flushing</td>
+<td>Gulf Stream, Boundary current, Georges Bank</td>
+<td>Boundary current, upwelling, El Nino</td>
+<td>Colorado River input, tidal mixing / stratification</td>
 </tr>
 <tr class="even">
-<td>Number of boxes</td>
-<td style="text-align: center;">71</td>
-<td style="text-align: center;">11</td>
-<td style="text-align: center;">60</td>
-<td style="text-align: center;">27</td>
-<td style="text-align: center;">30</td>
-<td style="text-align: center;">62</td>
-<td style="text-align: center;">66</td>
+<td><strong>Number of boxes</strong></td>
+<td>71</td>
+<td>11</td>
+<td>60</td>
+<td>27</td>
+<td>30</td>
+<td>62</td>
+<td>66</td>
 </tr>
 <tr class="odd">
-<td>Max number of water column layers</td>
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">6</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">6</td>
+<td><strong>Max number of water column layers</strong></td>
+<td>5</td>
+<td>6</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>7</td>
+<td>6</td>
 </tr>
 <tr class="even">
-<td>Ocean boundary depth</td>
-<td style="text-align: center;">2400m</td>
-<td style="text-align: center;">2400m</td>
-<td style="text-align: center;">45m</td>
-<td style="text-align: center;">30m</td>
-<td style="text-align: center;">200m</td>
-<td style="text-align: center;">1200m</td>
-<td style="text-align: center;">2025m</td>
+<td><strong>Ocean boundary depth</strong></td>
+<td>2400m</td>
+<td>2400m</td>
+<td>45m</td>
+<td>30m</td>
+<td>200m</td>
+<td>1200m</td>
+<td>2025m</td>
 </tr>
 <tr class="odd">
-<td>Hydrodynamic model used to supply flows</td>
-<td style="text-align: center;">OFAM-Bluelink<sup>1</sup></td>
-<td style="text-align: center;">OFAM-Bluelink</td>
-<td style="text-align: center;">3D hyrdro model<sup>2</sup></td>
-<td style="text-align: center;">Empirically defined</td>
-<td style="text-align: center;">HYCOM<sup>3</sup></td>
-<td style="text-align: center;">ROMS<sup>4</sup></td>
-<td style="text-align: center;">ROMS<sup>5</sup></td>
+<td><strong>Hydrodynamic model used to supply flows</strong></td>
+<td>OFAM-Bluelink¹</td>
+<td>OFAM-Bluelink</td>
+<td>3D hyrdro model²</td>
+<td>Empirically defined</td>
+<td>HYCOM³</td>
+<td>ROMS⁴</td>
+<td>ROMS⁵</td>
 </tr>
 <tr class="even">
-<td>Hydrodynamic time series length (years)</td>
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">10</td>
-<td style="text-align: center;">5</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">7</td>
-<td style="text-align: center;">23</td>
+<td><strong>Hydrodynamic time series length (years)</strong></td>
+<td>10</td>
+<td>10</td>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td>7</td>
+<td>23</td>
 </tr>
 <tr class="odd">
-<td>Transport model variables</td>
-<td style="text-align: center;">Advect, temp, salt</td>
-<td style="text-align: center;">Advect, temp, salt</td>
-<td style="text-align: center;">Advect</td>
-<td style="text-align: center;">Advect</td>
-<td style="text-align: center;">Advect, temp, salt</td>
-<td style="text-align: center;">Advect, temp, salt</td>
-<td style="text-align: center;">Advect, temp, salt</td>
+<td><strong>Transport model variables</strong></td>
+<td>Advect, temp, salt</td>
+<td>Advect, temp, salt</td>
+<td>Advect</td>
+<td>Advect</td>
+<td>Advect, temp, salt</td>
+<td>Advect, temp, salt</td>
+<td>Advect, temp, salt</td>
 </tr>
 <tr class="even">
-<td>Environmental drivers</td>
-<td style="text-align: center;">Inshore sediment change, temp, pH, nutrients, river flow</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">Nutrients</td>
-<td style="text-align: center;">Nutrients</td>
-<td style="text-align: center;">Nutrients</td>
-<td style="text-align: center;">Temp, nutrients</td>
-<td style="text-align: center;">Temp, nutrients, river flow</td>
+<td><strong>Environmental drivers</strong></td>
+<td>Inshore sediment change, temp, pH, nutrients, river flow</td>
+<td></td>
+<td>Nutrients</td>
+<td>Nutrients</td>
+<td>Nutrients</td>
+<td>Temp, nutrients</td>
+<td>Temp, nutrients, river flow</td>
 </tr>
 <tr class="odd">
-<td>Climate change</td>
-<td style="text-align: center;">Yes</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes (impl.) <sup>6</sup></td>
-<td style="text-align: center;">No</td>
+<td><strong>Climate change</strong></td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Yes (impl.)⁶</td>
+<td>No</td>
 </tr>
 <tr class="even">
-<td>Explicit larval advection</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">No</td>
-<td style="text-align: center;">Yes</td>
+<td><strong>Explicit larval advection</strong></td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
 </tr>
 </tbody>
 </table>
-<p>1. Oke et al 2005,</p>
-<p>2. Walker 1997a, 1997b,</p>
-<p>3. hycom.rsmas.miami.edu/las/,</p>
-<p>4. ROMS Hermann – NOAA PMEL/JISAO, Seattle,</p>
-<p>5. ROMS Pares-Sierra - Centro de Investigación Científica y de Educación Superior de Ensenada.</p>
-<p>6 Implicit handling of climate change means that extra mortality terms (related to acidification) or forced changes (e.g.&nbsp;for temperature) are used rather than flows from down scaled global circulation models.</p>
-<p><span id="_Toc526762786" class="anchor"></span>Figure 6. An example of oceanographic sigma depth layers (grey lines) with an overlay of Atlantis spatial structure. Figure by Javier Porobic Garate</p>
+</div>
+<p><strong>Notes:</strong> - ¹ Oke et al 2005 - ² Walker 1997a, 1997b - ³ hycom.rsmas.miami.edu/las/ - ⁴ ROMS Hermann – NOAA PMEL/JISAO, Seattle - ⁵ ROMS Pares-Sierra - Centro de Investigación Científica y de Educación Superior de Ensenada - ⁶ Implicit handling of climate change means that extra mortality terms (related to acidification) or forced changes (e.g.&nbsp;for temperature) are used rather than flows from down scaled global circulation models</p>
+<p><img src="media/image26.png" style="width:4in;height:6in"></p>
+<p><span id="_Toc526762786" class="anchor"></span><strong>Figure 6.</strong> An example of oceanographic sigma depth layers (grey lines) with an overlay of Atlantis spatial structure. Figure by Javier Porobic Garate</p>
 </section>
 <section id="transforming-oceanographic-model-output-into-atlantis-forcing-files" class="level2">
 <h2 class="anchored" data-anchor-id="transforming-oceanographic-model-output-into-atlantis-forcing-files"><strong>4.2. Transforming oceanographic model output into Atlantis forcing files</strong></h2>
 <p>The interpolation of the oceanographic output into Atlantis forcing files requires transformation across different shaped grids and depth layers. Water fluxes must be transformed from the oceanographic grid to Atlantis faces, whereas temperature and salinity values must be averaged onto Atlantis cells and time steps. The transformation must also account for hyperdiffusion, which is caused by the different spatial scales of oceanographic and Atlantis models. Because concentration of tracers within a layer of a box is assumed to be uniform, a tracer that enters a box is instantaneously assumed to be equally distributed throughout the entire box. This means that flow of tracers in large boxes would be overstated by orders of magnitude if this hyperdifussion phenomenon is not taken into account. The (crude) correction simply divides the east-west water flows by the width of the box (in metres) in the east-west orientation and north-south flows by the width of the box in the north-south orientation. This is a simple and a standard approach to correct for hyperdifusion and can be further refined using the horiz_mix scalar in the BGM file.</p>
 <p>Fortunately, the transformation of oceanographic files is increasingly streamlined. Until recently most model developers used two codes contributed by CSIRO. We will describe them in a more detail below. However, new codes are currently being developed by the Atlantis community, i.e.&nbsp;an <a href="https://confluence.csiro.au/display/Atlantis/R+code+to+process+ROMS+into+Hydro">R script by Cecilia Hansen</a> to construct hydrodynamic files from ROMS files. Please check the Atlantis wiki <a href="https://confluence.csiro.au/display/Atlantis/Forcing+Files">forcing files page</a> and Atlantis google group for any new developments in this area.</p>
 <p>The interpolation of oceanographic data onto the Atlantis model geometry requires three main conversions (Fig. 7):</p>
-<p>1. Calculate <strong>horizontal</strong> water fluxes across Atlantis polygon faces, i.e.&nbsp;from one polygon to another</p>
-<p>2. Calculate <strong>vertical</strong> water fluxes within Atlantis polygons.</p>
-<p>3. Calculate <strong>state variables</strong> used for optional forcing, such as salinity and temperature for each cell and time step. For this step temperature and salinity values from high resolution oceanographic models are mapped onto Atlantis cells and a weighted average for each cell is calculated</p>
+<ol type="1">
+<li>Calculate <strong>horizontal</strong> water fluxes across Atlantis polygon faces, i.e.&nbsp;from one polygon to another</li>
+<li>Calculate <strong>vertical</strong> water fluxes within Atlantis polygons.</li>
+<li>Calculate <strong>state variables</strong> used for optional forcing, such as salinity and temperature for each cell and time step. For this step temperature and salinity values from high resolution oceanographic models are mapped onto Atlantis cells and a weighted average for each cell is calculated</li>
+</ol>
 <p>These three steps constitute the main conversion and are conducted using the <a href="https://confluence.csiro.au/display/Atlantis/Matlab+-+Hydro"><em>Hydro</em></a> Matlab script (follow the link for further instructions on installation and use of the <em>Hydro</em> script and also check <a href="https://confluence.csiro.au/display/Atlantis/Hydro+FAQ"><em>Hydro</em> FAQ</a> for more information). <em>Hydro</em> produces two NC files which are then used by <a href="https://confluence.csiro.au/display/Atlantis/HydroConstruct"><em>Hydroconstruct</em></a> to produce the final Atlantis forcing files. <em>Hydroconstruct</em> makes sure the order of water columns is in the right direction, transforms the water flux data into per layer per box fluxes and also corrects for hyperdifussion (using either area based scaling or area and box shape based scaling). The <em>Hydroconstruct</em> <a href="https://confluence.csiro.au/display/Atlantis/Running+Hydroconstruct">running</a> page and <a href="https://confluence.csiro.au/display/Atlantis/Running+Hydroconstruct?preview=/43155480/43156182/params_17July2012.prm">parameter</a> file provides further information on the script and how to run it.</p>
 <p><img src="media/image27.jpeg" style="width:6.88958in;height:2.22639in"></p>
-<p><span id="_Toc526762787" class="anchor"></span>Figure 7. Main steps in converting oceanographic files into Atlantis input files, as done using two CSIRO contributed scripts <em>Hydro</em> and <em>Hydroconstruct</em>. Figure by Javier Porobic Garate</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Good practice tip 3</strong></p>
-<p>Interpolation and interpretation of the oceanographic data is one of the main challenges for Atlantis models developers and users, because usually they are biologists and not oceanographers. It is therefore highly recommended to include an oceanographer in the Atlantis team, at least during the model development stage, but also if and when long term forcing of environmental trends is needed.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p><span id="_Toc526762787" class="anchor"></span><strong>Figure 7.</strong> Main steps in converting oceanographic files into Atlantis input files, as done using two CSIRO contributed scripts <em>Hydro</em> and <em>Hydroconstruct</em>. Figure by Javier Porobic Garate</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Good practice tip 3">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Good practice tip 3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Interpolation and interpretation of the oceanographic data is one of the main challenges for Atlantis models developers and users, because usually they are biologists and not oceanographers. It is therefore highly recommended to include an oceanographer in the Atlantis team, at least during the model development stage, but also if and when long term forcing of environmental trends is needed.</p>
+</div>
+</div>
 </section>
 <section id="things-to-keep-in-mind-about-hydrodynamic-forcing-files" class="level2">
 <h2 class="anchored" data-anchor-id="things-to-keep-in-mind-about-hydrodynamic-forcing-files"><strong>4.3. Things to keep in mind about hydrodynamic forcing files</strong></h2>
 <p>Oceanographic modelling has made rapid progress in recent years and availability of high resolution data is increasing, but there are still a <strong>few issued that should be kept in mind:</strong></p>
-<p>1. <strong>Absence of long term oceanographic data to study long term trends.</strong> Oceanographers rarely conduct 50+ years of high resolution simulations, yet such time frames are often needed for Atlantis simulations. The length of oceanographic data time series usually more on the order of 1 to 25 years (see Table 5 for examples) and a common practice among Atlantis users is to ‘loop’ over the available oceanographic input years. One should be aware that if long term trends are present in the oceanographic data, they will be seen as jumps in average variable values every time the file is recycled. Also, such recycling alone is not suitable for studying long term environmental trends. Ideally long term forcing files should be obtained directly from long term oceanographic simulations.</p>
+<ol type="1">
+<li><strong>Absence of long term oceanographic data to study long term trends.</strong> Oceanographers rarely conduct 50+ years of high resolution simulations, yet such time frames are often needed for Atlantis simulations. The length of oceanographic data time series usually more on the order of 1 to 25 years (see Table 5 for examples) and a common practice among Atlantis users is to ‘loop’ over the available oceanographic input years. One should be aware that if long term trends are present in the oceanographic data, they will be seen as jumps in average variable values every time the file is recycled. Also, such recycling alone is not suitable for studying long term environmental trends. Ideally long term forcing files should be obtained directly from long term oceanographic simulations.</li>
+</ol>
 <p>As a crude approximation, <strong>long term trends can be forced</strong> onto hydrodynamic files using an <a href="https://confluence.csiro.au/display/Atlantis/R+code%2C+add+climate+trends+to+Hydro.NC">R script</a> contributed by Hem Nalini Morzaria Luna and used for the Gulf of California model. Alternatively, trends in temperature, salinity and pH can be added in the biology.prm file using several Tchange, Schange and PHchange parameters (see below)</p>
-<p>2. <strong>Insufficient resolution in coastal areas</strong>. Most oceanographic global and publicly available models do not include coastal areas at sufficiently high resolution (in many old models they are not represented at all). Yet this is where a lot of important processes of nutrient input, recycling, spawning and larval dispersal take place. It is therefore very important to assess the water fluxes in small or shallow coastal areas and make sure that they are sufficiently accurate (see below).</p>
-<p>3. <strong>Loss of resolution to represent eddies and upwelling.</strong> Translating high resolution oceanographic models to the Atlantis polygons means that transformed forcing files may not capture the true magnitude of eddy strength or local upwelling, both of which are important for driving local productivity. To compensate for this loss of resolution it is recommended that local forcing of productivity be included using eddy parameters (see below) and/or forcing additional nutrient loading into coastal waters (to simulate upwelling; Brand et al.&nbsp;2007).</p>
-<p>4. <strong>Oceanographic models can include ‘drift’</strong>, temporal artefact trends that bias long-term oceanographic outputs. If ‘drift’ is seen to be a problem, modellers can choose a limited set of years of oceanographic output and loop these years.</p>
-<p>5. <strong>Artificially inflated vertical fluxes.</strong> Sometimes oceanographic models can inflate the vertical fluxes (they are used for tuning the horizontal fluxes), which can lead to too much vertical mixing. This is becoming less of a problem as the skill of oceanographic models improves with time, but it is still recommended to check the intensity of vertical fluxes. If vertical fluxes appear to be too strong they can be downscaled using vertical diffusion and vertical mixing routines (see below) or by using an R script contributed by Raphael Girardin (details and a link will be added when available, but also check the wiki). Similat ‘jets’ can appear in horizontal fluxes (particularly in older models and most often close to the boundary of the oceanographic model domain).</p>
-<p>6. <strong>Underestimated diffusion of tracers between boxes</strong>. In real world there are lots of bi-directional flows between spatial domains that are modelled as distinct Atlantis boxes. However, when these flows are converted into hydrodynamic forcing files, all flows are averaged for each pair of cells, so that only one-directional flow occurs between two cells at each time step. This might under-represent diffusion of tracers between boxes, especially if boxes are large and if averages all go in the same direction in all layers of the two boxes.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
-<p>The <strong>hydrodynamic forcing files</strong> <strong>are automatically</strong> recycled or <strong>looped</strong> for the entire model simulation run. This is <strong>not the case</strong> with other forcing files, such as temperature, salinity or other optional forcing files. To rewind the temperature and salinity forcing files set the flags temp_rewind and salt_rewind to 1 in the force.prm file. If the flags are set to 0 then the simulations will use the last temperature and salinity value once the forcing file time series ends. To rewind any other optional forced tracers make sure you set TracerName_rewind (e.g.&nbsp;pH_rewind) parameter to 1.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<ol start="2" type="1">
+<li><p><strong>Insufficient resolution in coastal areas</strong>. Most oceanographic global and publicly available models do not include coastal areas at sufficiently high resolution (in many old models they are not represented at all). Yet this is where a lot of important processes of nutrient input, recycling, spawning and larval dispersal take place. It is therefore very important to assess the water fluxes in small or shallow coastal areas and make sure that they are sufficiently accurate (see below).</p></li>
+<li><p><strong>Loss of resolution to represent eddies and upwelling.</strong> Translating high resolution oceanographic models to the Atlantis polygons means that transformed forcing files may not capture the true magnitude of eddy strength or local upwelling, both of which are important for driving local productivity. To compensate for this loss of resolution it is recommended that local forcing of productivity be included using eddy parameters (see below) and/or forcing additional nutrient loading into coastal waters (to simulate upwelling; Brand et al.&nbsp;2007).</p></li>
+<li><p><strong>Oceanographic models can include ‘drift’</strong>, temporal artefact trends that bias long-term oceanographic outputs. If ‘drift’ is seen to be a problem, modellers can choose a limited set of years of oceanographic output and loop these years.</p></li>
+<li><p><strong>Artificially inflated vertical fluxes.</strong> Sometimes oceanographic models can inflate the vertical fluxes (they are used for tuning the horizontal fluxes), which can lead to too much vertical mixing. This is becoming less of a problem as the skill of oceanographic models improves with time, but it is still recommended to check the intensity of vertical fluxes. If vertical fluxes appear to be too strong they can be downscaled using vertical diffusion and vertical mixing routines (see below) or by using an R script contributed by Raphael Girardin (details and a link will be added when available, but also check the wiki). Similat ‘jets’ can appear in horizontal fluxes (particularly in older models and most often close to the boundary of the oceanographic model domain).</p></li>
+<li><p><strong>Underestimated diffusion of tracers between boxes</strong>. In real world there are lots of bi-directional flows between spatial domains that are modelled as distinct Atlantis boxes. However, when these flows are converted into hydrodynamic forcing files, all flows are averaged for each pair of cells, so that only one-directional flow occurs between two cells at each time step. This might under-represent diffusion of tracers between boxes, especially if boxes are large and if averages all go in the same direction in all layers of the two boxes.</p></li>
+</ol>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>NOTE!</strong></p>
+<p>The <strong>hydrodynamic forcing files</strong> <strong>are automatically</strong> recycled or <strong>looped</strong> for the entire model simulation run. This is <strong>not the case</strong> with other forcing files, such as temperature, salinity or other optional forcing files. To rewind the temperature and salinity forcing files set the flags temp_rewind and salt_rewind to 1 in the force.prm file. If the flags are set to 0 then the simulations will use the last temperature and salinity value once the forcing file time series ends. To rewind any other optional forced tracers make sure you set TracerName_rewind (e.g.&nbsp;pH_rewind) parameter to 1.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>NOTE!</strong></p>
 <p>The hydrodynamic forcing files <strong>are not necessarily the final water transport</strong> in your model. They provide the horizontal and vertical water fluxes, which are then used in the transport model described in the <em>(transportBM)</em> routine in the attransport.c file.</p>
 <p>The transport model uses the water exchanges from the hydrodynamic forcing files, but can also:</p>
-<p>1) apply water flow corrections to isolated boxes according to specified parameters</p>
-<p>2) add local water inputs or sinks, such as river flows or outflows</p>
-<p>3) apply water exchanges through the surface layer due to precipitation and evaporation</p>
-<p>The final flows of water are given in the output.nc file listed in hdsource, hdsink, eflux and vflux (see description of the ouput file parameters in chapter 5.6). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-<p><img src="media/image29.png" style="width:1.18889in;height:4.32292in"></p>
+<ol type="1">
+<li>apply water flow corrections to isolated boxes according to specified parameters</li>
+<li>add local water inputs or sinks, such as river flows or outflows</li>
+<li>apply water exchanges through the surface layer due to precipitation and evaporation</li>
+</ol>
+<p>The final flows of water are given in the output.nc file listed in hdsource, hdsink, eflux and vflux (see description of the ouput file parameters in chapter 5.6). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.</p>
+</div>
+</div>
 </section>
 <section id="numbering-of-vertical-layers-in-the-input-and-output-nc-files" class="level2">
 <h2 class="anchored" data-anchor-id="numbering-of-vertical-layers-in-the-input-and-output-nc-files"><strong>4.4. Numbering of vertical layers in the input and output NC files</strong></h2>
+<p><img src="media/image29.png" style="width:1.18889in;height:4.32292in"></p>
 <p>Atlantis allows users to define several water column and sediment layers, although most applications have only one sediment layer.</p>
 <p>Layer counting starts from the sediment-water interface.</p>
 <p>The water layer 0 is always closest to the sediment, the next layer up is layer 1 and so on. Sediment layer 0 is closest to the water, the next layer down is 1 and so on.</p>
 <p>In the.nc files water column layers are listed first, followed by the sediment layers.</p>
 <p><em>layer 0, layer 1, layer 2, layer 3, layer 4, layer 5, sediment 0</em></p>
 <p>In the model setup shown here, the layer corresponding to the water column’s surface layer can be anything from layer 0 to layer 5, depending on the total depth of a box. In deep boxes the surface layer will be layer 5, while for the shallowest boxes the surface will have layer 0 as their surface layer.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>NOTE!</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>NOTE!</p>
 <p>The ordering of layers in output files is opposite to that in the input file. This is a development legacy aimed to improve the viewing of output files with NC file viewers. This also means that the position of missing water column layers in arrays describing boxes with fewer than maximum layers is reversed between the input and output files.</p>
 <p>In the input.nc file a shallow water box with three water layers will look like:</p>
 <p><em>layer 0, layer 1, layer 2, 0, 0, 0, sediment 0</em></p>
 <p>In the output.nc file the same box will look like:</p>
-<p><em>0, 0, 0, layer 0, layer 1, layer 2, sediment 0</em></p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p><em>0, 0, 0, layer 0, layer 1, layer 2, sediment 0</em></p>
+</div>
+</div>
 <p>A good way to understand this is to look at temperature variables. Note that warmer water is on the surface.</p>
-<table class="caption-top">
+<table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 49%">
+<col style="width: 48%">
+<col style="width: 51%">
 </colgroup>
 <thead>
 <tr class="header">
-<th><p>Input.nc file:</p>
-<p>Temp =<br>
-15.75, 18.54, 18.55, 0, 0, 0, 11.85,<br>
-16.38, 17.64, 17.49, 0, 0, 0, 11.77,<br>
-15.66, 17.34, 17.31, 0, 0, 0, 11.57,<br>
-16.05, 16.92, 16.87, 0, 0, 0, 11.29,<br>
-5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,<br>
-5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,</p>
-<p>…</p></th>
-<th><p>Output.nc file:</p>
-<p>Temp =</p>
-<p>0, 0, 0, 15.75, 18.54, 18.55, 11.85,</p>
-<p>0, 0, 0, 16.38, 17.64, 17.49, 11.77,</p>
-<p>0, 0, 0, 15.66, 17.34, 17.31, 11.57,</p>
-<p>0, 0, 0, 16.05, 16.92, 16.87, 11.29,</p>
-<p>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,</p>
-<p>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,</p>
-<p>…</p></th>
+<th>Input.nc file:</th>
+<th>Output.nc file:</th>
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td>Temp =<br>15.75, 18.54, 18.55, 0, 0, 0, 11.85,<br>16.38, 17.64, 17.49, 0, 0, 0, 11.77,<br>15.66, 17.34, 17.31, 0, 0, 0, 11.57,<br>16.05, 16.92, 16.87, 0, 0, 0, 11.29,<br>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,<br>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,<br><br>…</td>
+<td>Temp =<br><br>0, 0, 0, 15.75, 18.54, 18.55, 11.85,<br><br>0, 0, 0, 16.38, 17.64, 17.49, 11.77,<br><br>0, 0, 0, 15.66, 17.34, 17.31, 11.57,<br><br>0, 0, 0, 16.05, 16.92, 16.87, 11.29,<br><br>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,<br><br>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,<br><br>…</td>
+</tr>
 </tbody>
 </table>
 </section>
