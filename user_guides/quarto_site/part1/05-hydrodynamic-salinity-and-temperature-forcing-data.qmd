@@ -134,13 +134,20 @@ A good way to understand this is to look at temperature variables. Note that war
 
 | Input.nc file: | Output.nc file: |
 |----------------|-----------------|
-| Temp =<br>15.75, 18.54, 18.55, 0, 0, 0, 11.85,<br>16.38, 17.64, 17.49, 0, 0, 0, 11.77,<br>15.66, 17.34, 17.31, 0, 0, 0, 11.57,<br>16.05, 16.92, 16.87, 0, 0, 0, 11.29,<br>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,<br>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,<br><br>... | Temp =<br><br>0, 0, 0, 15.75, 18.54, 18.55, 11.85,<br><br>0, 0, 0, 16.38, 17.64, 17.49, 11.77,<br><br>0, 0, 0, 15.66, 17.34, 17.31, 11.57,<br><br>0, 0, 0, 16.05, 16.92, 16.87, 11.29,<br><br>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,<br><br>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,<br><br>... |
+| **Temp =** | **Temp =** |
+| 15.75, 18.54, 18.55, 0, 0, 0, 11.85, | 0, 0, 0, 15.75, 18.54, 18.55, 11.85, |
+| 16.38, 17.64, 17.49, 0, 0, 0, 11.77, | 0, 0, 0, 16.38, 17.64, 17.49, 11.77, |
+| 15.66, 17.34, 17.31, 0, 0, 0, 11.57, | 0, 0, 0, 15.66, 17.34, 17.31, 11.57, |
+| 16.05, 16.92, 16.87, 0, 0, 0, 11.29, | 0, 0, 0, 16.05, 16.92, 16.87, 11.29, |
+| 5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32, | 5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32, |
+| 5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93, | 5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93, |
+| ... | ... |
 
 ## **4.5. Viewing and checking forcing input files with R**
 
 An R-package ***shinyrAtlantis*** is available on <https://github.com/shanearichards/shinyrAtlantis> and provides a number of shiny applications to help with viewing Atlantis forcing and parameter files.
 
-For exploring hydrodynamic forcing files the package provides a function 'make.exchange.object\' that reads in the BGM file containing box geometries and the NC file containing the exchanges. The function 'make.exchange.object' also needs to be provided with the cumulative layer depths. It then produces a data object that can be fed into the shiny application 'sh.exchange'. The 'sh.exchange' provides a visual description of the exchange data. It visualises connections and exchanges among boxes and layers and helps to identify if any boxes are isolated. A time-series of exchanges for each box can also be generated, as well as a two-dimensional visualisation of the horizontal flow throughout the domain. Development is under way to add visualisation of the salinity and temperature forcing files.
+For exploring hydrodynamic forcing files the package provides a function 'make.exchange.object' that reads in the BGM file containing box geometries and the NC file containing the exchanges. The function 'make.exchange.object' also needs to be provided with the cumulative layer depths. It then produces a data object that can be fed into the shiny application 'sh.exchange'. The 'sh.exchange' provides a visual description of the exchange data. It visualises connections and exchanges among boxes and layers and helps to identify if any boxes are isolated. A time-series of exchanges for each box can also be generated, as well as a two-dimensional visualisation of the horizontal flow throughout the domain. Development is under way to add visualisation of the salinity and temperature forcing files.
 
 ## **4.6. Light and noise pollution**
 

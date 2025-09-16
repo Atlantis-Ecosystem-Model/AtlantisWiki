@@ -571,8 +571,36 @@ Caution
 </thead>
 <tbody>
 <tr class="odd">
-<td>Temp =<br>15.75, 18.54, 18.55, 0, 0, 0, 11.85,<br>16.38, 17.64, 17.49, 0, 0, 0, 11.77,<br>15.66, 17.34, 17.31, 0, 0, 0, 11.57,<br>16.05, 16.92, 16.87, 0, 0, 0, 11.29,<br>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,<br>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,<br><br>…</td>
-<td>Temp =<br><br>0, 0, 0, 15.75, 18.54, 18.55, 11.85,<br><br>0, 0, 0, 16.38, 17.64, 17.49, 11.77,<br><br>0, 0, 0, 15.66, 17.34, 17.31, 11.57,<br><br>0, 0, 0, 16.05, 16.92, 16.87, 11.29,<br><br>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,<br><br>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,<br><br>…</td>
+<td><strong>Temp =</strong></td>
+<td><strong>Temp =</strong></td>
+</tr>
+<tr class="even">
+<td>15.75, 18.54, 18.55, 0, 0, 0, 11.85,</td>
+<td>0, 0, 0, 15.75, 18.54, 18.55, 11.85,</td>
+</tr>
+<tr class="odd">
+<td>16.38, 17.64, 17.49, 0, 0, 0, 11.77,</td>
+<td>0, 0, 0, 16.38, 17.64, 17.49, 11.77,</td>
+</tr>
+<tr class="even">
+<td>15.66, 17.34, 17.31, 0, 0, 0, 11.57,</td>
+<td>0, 0, 0, 15.66, 17.34, 17.31, 11.57,</td>
+</tr>
+<tr class="odd">
+<td>16.05, 16.92, 16.87, 0, 0, 0, 11.29,</td>
+<td>0, 0, 0, 16.05, 16.92, 16.87, 11.29,</td>
+</tr>
+<tr class="even">
+<td>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,</td>
+<td>5.15, 11.85, 13.92, 17.02, 19.01, 19.83, 0.32,</td>
+</tr>
+<tr class="odd">
+<td>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,</td>
+<td>5.29, 11.91, 13.85, 16.39, 18.50, 19.48, 0.93,</td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
 </tr>
 </tbody>
 </table>
@@ -580,7 +608,7 @@ Caution
 <section id="viewing-and-checking-forcing-input-files-with-r" class="level2">
 <h2 class="anchored" data-anchor-id="viewing-and-checking-forcing-input-files-with-r"><strong>4.5. Viewing and checking forcing input files with R</strong></h2>
 <p>An R-package <strong><em>shinyrAtlantis</em></strong> is available on <a href="https://github.com/shanearichards/shinyrAtlantis" class="uri">https://github.com/shanearichards/shinyrAtlantis</a> and provides a number of shiny applications to help with viewing Atlantis forcing and parameter files.</p>
-<p>For exploring hydrodynamic forcing files the package provides a function ‘make.exchange.object' that reads in the BGM file containing box geometries and the NC file containing the exchanges. The function ’make.exchange.object’ also needs to be provided with the cumulative layer depths. It then produces a data object that can be fed into the shiny application ‘sh.exchange’. The ‘sh.exchange’ provides a visual description of the exchange data. It visualises connections and exchanges among boxes and layers and helps to identify if any boxes are isolated. A time-series of exchanges for each box can also be generated, as well as a two-dimensional visualisation of the horizontal flow throughout the domain. Development is under way to add visualisation of the salinity and temperature forcing files.</p>
+<p>For exploring hydrodynamic forcing files the package provides a function ‘make.exchange.object’ that reads in the BGM file containing box geometries and the NC file containing the exchanges. The function ‘make.exchange.object’ also needs to be provided with the cumulative layer depths. It then produces a data object that can be fed into the shiny application ‘sh.exchange’. The ‘sh.exchange’ provides a visual description of the exchange data. It visualises connections and exchanges among boxes and layers and helps to identify if any boxes are isolated. A time-series of exchanges for each box can also be generated, as well as a two-dimensional visualisation of the horizontal flow throughout the domain. Development is under way to add visualisation of the salinity and temperature forcing files.</p>
 </section>
 <section id="light-and-noise-pollution" class="level2">
 <h2 class="anchored" data-anchor-id="light-and-noise-pollution"><strong>4.6. Light and noise pollution</strong></h2>
