@@ -1,6 +1,6 @@
 name: Render and Publish Quarto Site
 on:
-  workflow_dispatch:  # Adds manual trigger button
+  workflow_dispatch:  # Manual trigger
   push:
     branches: [main]
 
@@ -23,10 +23,10 @@ jobs:
         uses: quarto-dev/quarto-actions/render@v2
       
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _site
       
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
