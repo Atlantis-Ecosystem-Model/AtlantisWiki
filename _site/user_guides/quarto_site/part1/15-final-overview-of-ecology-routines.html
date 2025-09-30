@@ -68,6 +68,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -101,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Part I - Atlantis User Guide</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../user_guides/quarto_site/part2/index.qmd">
+    <a class="dropdown-item" href="../../../user_guides/quarto_site/part2/index.html">
  <span class="dropdown-text">Part II - [Coming Soon]</span></a>
   </li>  
     </ul>
@@ -169,7 +170,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user_guides/quarto_site/part1/05-hydrodynamic-salinity-and-temperat.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../../user_guides/quarto_site/part1/05-hydrodynamic-salinity-and-temperature-forcing-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4. Hydrodynamic, Salinity and Temperature Forcing Data</span></a>
   </div>
 </li>
@@ -217,13 +218,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user_guides/quarto_site/part1/13-processes-in-bacterial-and-inanimate.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../../user_guides/quarto_site/part1/13-processes-in-bacterial-and-inanimate-pools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">12. Processes in Bacterial and Inanimate Pools</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user_guides/quarto_site/part1/14-influence-of-environmental-factors-o.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../../user_guides/quarto_site/part1/14-influence-of-environmental-factors-on-ecological-p.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">13. Influence of Environmental Factors on Ecological Processes</span></a>
   </div>
 </li>
@@ -241,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user_guides/quarto_site/part1/17-appendix-1-tips-for-calibrating-biolo.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../../user_guides/quarto_site/part1/17-appendix-1-tips-for-calibrating-biological-model-n.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Appendix 1: Tips for Calibrating Biological Model</span></a>
   </div>
 </li>
@@ -283,8 +284,9 @@ ul.task-list li input[type="checkbox"] {
 <p><span id="_Toc526762779" class="anchor"></span>Table 27. List of key ecological processes run in the three main distribution types: water colum, sediment, and epibenthic layer. List of the pools tracked in the three types is given in table 8.</p>
 <p>PP – phytoplankton (including dinoflagelates), ZP – zooplankton, MA – macroalgae and seagrasses, BI – benthic invertebrates, PI – cephalopods and prawns (nektonic pelagic invertebrates), VE – vertebrates, MB - microphytobenthos</p>
 <table class="caption-top table">
+<caption><span id="_Toc526762780" class="anchor"></span>Table 28. Basic assumptions and formulations in the Atlantis model (modified after Fulton et al.&nbsp;2004b).</caption>
 <colgroup>
-<col style="width: 10%">
+<col style="width: 18%">
 <col style="width: 6%">
 <col style="width: 6%">
 <col style="width: 6%">
@@ -301,918 +303,880 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Process</strong></th>
-<th><strong>N</strong></th>
-<th><strong>Si</strong></th>
-<th><strong>PB</strong></th>
-<th><strong>BB</strong></th>
-<th><strong>DL</strong></th>
-<th><strong>DR</strong></th>
-<th><strong>PP</strong></th>
-<th><strong>ZP</strong></th>
-<th><strong>MA</strong></th>
-<th><strong>BI</strong></th>
-<th><strong>PI</strong></th>
-<th><strong>VE</strong></th>
-<th><strong>MB</strong></th>
+<th style="text-align: left;">Process</th>
+<th style="text-align: center;">N</th>
+<th style="text-align: center;">Si</th>
+<th style="text-align: center;">PB</th>
+<th style="text-align: center;">BB</th>
+<th style="text-align: center;">DL</th>
+<th style="text-align: center;">DR</th>
+<th style="text-align: center;">PP</th>
+<th style="text-align: center;">ZP</th>
+<th style="text-align: center;">MA</th>
+<th style="text-align: center;">BI</th>
+<th style="text-align: center;">PI</th>
+<th style="text-align: center;">VE</th>
+<th style="text-align: center;">MB</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td colspan="14"><em>Water column processes</em></td>
+<td style="text-align: left;"><strong>Water column processes</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Used by phytoplankton</td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Used by phytoplankton</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Used by bacteria</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Used by bacteria</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Input from wastes</td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Input from wastes</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Mineralisation</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Mineralisation</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Nitrification</td>
-<td>+</td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Nitrification</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Oxygen production</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Oxygen production</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Nutrient uptake</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Nutrient uptake</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Lysis (nutrient stress)</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Lysis (nutrient stress)</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Feeding</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
+<td style="text-align: left;">Feeding</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Growth</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
+<td style="text-align: left;">Growth</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Respiration</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>(+)</td>
-<td></td>
+<td style="text-align: left;">Respiration</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">(+)</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Predation mortality/losses</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
+<td style="text-align: left;">Predation mortality/losses</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Other mortality</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
+<td style="text-align: left;">Other mortality</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Waste production</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
+<td style="text-align: left;">Waste production</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td colspan="14"><em>Sediment processes</em></td>
+<td style="text-align: left;"><strong>Sediment processes</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td><strong>Process</strong></td>
-<td><strong>N</strong></td>
-<td><strong>Si</strong></td>
-<td><strong>PB</strong></td>
-<td><strong>BB</strong></td>
-<td><strong>DL</strong></td>
-<td><strong>DR</strong></td>
-<td><strong>PP</strong></td>
-<td><strong>ZP</strong></td>
-<td><strong>MA</strong></td>
-<td><strong>BI</strong></td>
-<td><strong>PI</strong></td>
-<td><strong>VE</strong></td>
-<td><strong>MB</strong></td>
+<td style="text-align: left;"><strong>Process</strong></td>
+<td style="text-align: center;"><strong>N</strong></td>
+<td style="text-align: center;"><strong>Si</strong></td>
+<td style="text-align: center;"><strong>PB</strong></td>
+<td style="text-align: center;"><strong>BB</strong></td>
+<td style="text-align: center;"><strong>DL</strong></td>
+<td style="text-align: center;"><strong>DR</strong></td>
+<td style="text-align: center;"><strong>PP</strong></td>
+<td style="text-align: center;"><strong>ZP</strong></td>
+<td style="text-align: center;"><strong>MA</strong></td>
+<td style="text-align: center;"><strong>BI</strong></td>
+<td style="text-align: center;"><strong>PI</strong></td>
+<td style="text-align: center;"><strong>VE</strong></td>
+<td style="text-align: center;"><strong>MB</strong></td>
 </tr>
 <tr class="even">
-<td>Used by microphytobenthos</td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Used by microphytobenthos</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Used by bacteria</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Used by bacteria</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Input from wastes</td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Input from wastes</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Mineralisation</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Mineralisation</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Nitrification</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Nitrification</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Denitrification</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Denitrification</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Oxygen production</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
+<td style="text-align: left;">Oxygen production</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
 </tr>
 <tr class="odd">
-<td>Nutrient uptake</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
+<td style="text-align: left;">Nutrient uptake</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
 </tr>
 <tr class="even">
-<td>Feeding</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Feeding</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Growth</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
+<td style="text-align: left;">Growth</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
 </tr>
 <tr class="even">
-<td>Predation mortality/losses</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
+<td style="text-align: left;">Predation mortality/losses</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
 </tr>
 <tr class="odd">
-<td>Other mortality</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
+<td style="text-align: left;">Other mortality</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
 </tr>
 <tr class="even">
-<td>Waste production</td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Waste production</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Bio turbation/irrigation</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Bio turbation/irrigation</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td colspan="14"><em>Epibenthic processes</em></td>
+<td style="text-align: left;"><strong>Epibenthic processes</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td><strong>Process</strong></td>
-<td><strong>N</strong></td>
-<td><strong>Si</strong></td>
-<td><strong>PB</strong></td>
-<td><strong>BB</strong></td>
-<td><strong>DL</strong></td>
-<td><strong>DR</strong></td>
-<td><strong>PP</strong></td>
-<td><strong>ZP</strong></td>
-<td><strong>MA</strong></td>
-<td><strong>BI</strong></td>
-<td><strong>PI</strong></td>
-<td><strong>VE</strong></td>
-<td><strong>MB</strong></td>
+<td style="text-align: left;"><strong>Process</strong></td>
+<td style="text-align: center;"><strong>N</strong></td>
+<td style="text-align: center;"><strong>Si</strong></td>
+<td style="text-align: center;"><strong>PB</strong></td>
+<td style="text-align: center;"><strong>BB</strong></td>
+<td style="text-align: center;"><strong>DL</strong></td>
+<td style="text-align: center;"><strong>DR</strong></td>
+<td style="text-align: center;"><strong>PP</strong></td>
+<td style="text-align: center;"><strong>ZP</strong></td>
+<td style="text-align: center;"><strong>MA</strong></td>
+<td style="text-align: center;"><strong>BI</strong></td>
+<td style="text-align: center;"><strong>PI</strong></td>
+<td style="text-align: center;"><strong>VE</strong></td>
+<td style="text-align: center;"><strong>MB</strong></td>
 </tr>
 <tr class="even">
-<td>Used by macrophytes</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Used by macrophytes</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Input from wastes</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Input from wastes</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Mineralisation</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Mineralisation</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Oxygen production</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Oxygen production</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Nutrient uptake</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Nutrient uptake</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Feeding</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Feeding</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Growth</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Growth</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Predation mortality/losses</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Predation mortality/losses</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Other mortality</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Other mortality</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td>Waste production</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Waste production</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td>Bio turbation/irrigation</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>+</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td style="text-align: left;">Bio turbation/irrigation</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">+</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
 <table class="caption-top table">
-<caption><span id="_Toc526762780" class="anchor"></span>Table 28. Basic assumptions and formulations in the Atlantis model (modified after Fulton et al.&nbsp;2004b).</caption>
 <colgroup>
-<col style="width: 23%">
-<col style="width: 76%">
+<col style="width: 19%">
+<col style="width: 80%">
 </colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">Assumptions and/or formulation notes</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><strong>Feature</strong></td>
-<td style="text-align: center;"><strong>Assumptions and/or formulation notes</strong></td>
+<td style="text-align: left;"><strong>General features</strong></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">General features</td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">biomass units</td>
+<td style="text-align: left;">mg N/m³</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>biomass units</p>
-</blockquote></td>
-<td style="text-align: center;">mg N/m3</td>
+<td style="text-align: left;">input forcing</td>
+<td style="text-align: left;">nutrients, temperature and physics on interannual, seasonal, tidal frequencies</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>input forcing</p>
-</blockquote></td>
-<td style="text-align: center;">nutrients, temperature and physics on interannual, seasonal, tidal frequencies</td>
+<td style="text-align: left;">level of group detail</td>
+<td style="text-align: left;">functional group (with a small number of individual species)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>level of group detail</p>
-</blockquote></td>
-<td style="text-align: center;">functional group (with a small number of individual species)</td>
+<td style="text-align: left;">resolution of the formulation used for the biomass pool groups</td>
+<td style="text-align: left;">follow the dynamics of the entire biomass pool of the functional group (or species) in the cell</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>resolution of the formulation used for the biomass pool groups</p>
-</blockquote></td>
-<td style="text-align: center;">follow the dynamics of the entire biomass pool of the functional group (or species) in the cell</td>
+<td style="text-align: left;">resolution of the formulation used for the age structured group groups</td>
+<td style="text-align: left;">follow the biomass dynamics (structural and reserve weight) of the ‘average individual’ for the functional group (or species) in the cell and the number of individuals in the cell</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>resolution of the formulation used for the age structured group groups</p>
-</blockquote></td>
-<td style="text-align: center;">follow the biomass dynamics (structural and reserve weight) of the ‘average individual’ for the functional group (or species) in the cell and the number of individuals in the cell</td>
+<td style="text-align: left;">timestep</td>
+<td style="text-align: left;">adaptive* daily or diurnal time step</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>timestep</p>
-</blockquote></td>
-<td style="text-align: center;">adaptive* daily or diurnal time step</td>
+<td style="text-align: left;"><strong>Process related</strong></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Process related</td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">bioturbation and bioirrigation</td>
+<td style="text-align: left;">yes, simple exchange between layers</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>bioturbation and bioirrigation</p>
-</blockquote></td>
-<td style="text-align: center;">yes, simple exchange between layers</td>
+<td style="text-align: left;">consumption formulation</td>
+<td style="text-align: left;">type II (asymptotic), with an availability parameter which can be habitat dependent</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>consumption formulation</p>
-</blockquote></td>
-<td style="text-align: center;">type II (asymptotic), with an availability parameter which can be habitat dependent</td>
+<td style="text-align: left;">equations</td>
+<td style="text-align: left;">five general sets of rate of change equations used (autrophs, biomass pool and age structured consumer, bacteria, inanimate)</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>equations</p>
-</blockquote></td>
-<td style="text-align: center;">five general sets of rate of change equations used (autrophs, biomass pool and age structured consumer, bacteria, inanimate)</td>
+<td style="text-align: left;">formulation detail</td>
+<td style="text-align: left;">general: only growth, mortality and excretion explicit</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>formulation detail</p>
-</blockquote></td>
-<td style="text-align: center;">general: only growth, mortality and excretion explicit</td>
+<td style="text-align: left;">light limitation</td>
+<td style="text-align: left;">optimal irradiance fixed</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>light limitation</p>
-</blockquote></td>
-<td style="text-align: center;">optimal irradiance fixed</td>
+<td style="text-align: left;">mixotrophy</td>
+<td style="text-align: left;">yes, for dinoflagellates (if present)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>mixotrophy</p>
-</blockquote></td>
-<td style="text-align: center;">yes, for dinoflagellates (if present)</td>
+<td style="text-align: left;">nutrient limitation</td>
+<td style="text-align: left;">external nutrients determine uptake</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>nutrient limitation</p>
-</blockquote></td>
-<td style="text-align: center;">external nutrients determine uptake</td>
+<td style="text-align: left;">nutrient ratio</td>
+<td style="text-align: left;">Redfield</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>nutrient ratio</p>
-</blockquote></td>
-<td style="text-align: center;">Redfield</td>
+<td style="text-align: left;">oxygen limitation</td>
+<td style="text-align: left;">yes</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>oxygen limitation</p>
-</blockquote></td>
-<td style="text-align: center;">yes</td>
+<td style="text-align: left;">sediment burial</td>
+<td style="text-align: left;">very low background rate included</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>sediment burial</p>
-</blockquote></td>
-<td style="text-align: center;">very low background rate included</td>
+<td style="text-align: left;">sediment chemistry</td>
+<td style="text-align: left;">dynamic, with sediment bacteria</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>sediment chemistry</p>
-</blockquote></td>
-<td style="text-align: center;">dynamic, with sediment bacteria</td>
+<td style="text-align: left;">shading of primary producers</td>
+<td style="text-align: left;">yes</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>shading of primary producers</p>
-</blockquote></td>
-<td style="text-align: center;">yes</td>
+<td style="text-align: left;">spatial (or habitat) limitation</td>
+<td style="text-align: left;">yes (for benthic or demersal groups (and species))</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>spatial (or habitat) limitation</p>
-</blockquote></td>
-<td style="text-align: center;">yes (for benthic or demersal groups (and species))</td>
+<td style="text-align: left;">spatial structure</td>
+<td style="text-align: left;">flexible with the potential for multiple vertical and horizontal cells</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>spatial structure</p>
-</blockquote></td>
-<td style="text-align: center;">flexible with the potential for multiple vertical and horizontal cells</td>
+<td style="text-align: left;">temperature dependency</td>
+<td style="text-align: left;">yes</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>temperature dependency</p>
-</blockquote></td>
-<td style="text-align: center;">yes</td>
+<td style="text-align: left;">transport model used for hydrodynamics flows</td>
+<td style="text-align: left;">yes</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>transport model used for hydrodynamics flows</p>
-</blockquote></td>
-<td style="text-align: center;">yes</td>
+<td style="text-align: left;"><strong>Model closure</strong></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Model closure</td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">top predators represented by static loss terms</td>
+<td style="text-align: left;">some top predators are included explicitly, but predators not explicitly included in the foodweb are represented using quadratic mortality terms</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>top predators represented by static loss terms</p>
-</blockquote></td>
-<td style="text-align: center;">some top predators are included explicitly, but predators not explicitly included in the foodweb are represented using quadratic mortality terms</td>
+<td style="text-align: left;">mortality terms</td>
+<td style="text-align: left;">linear and quadratic</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>mortality terms</p>
-</blockquote></td>
-<td style="text-align: center;">linear and quadratic</td>
+<td style="text-align: left;"><strong>Vertebrate and fisheries related</strong></td>
+<td style="text-align: left;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">Vertebrate and fisheries related</td>
-<td style="text-align: center;"></td>
+<td style="text-align: left;">age structure</td>
+<td style="text-align: left;">multiple age classes (or stages, which equate to life phases), with final age class of each group a “plus group”</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>age structure</p>
-</blockquote></td>
-<td style="text-align: center;">multiple age classes (or stages, which equate to life phases), with final age class of each group a “plus group”</td>
+<td style="text-align: left;">fishery discards</td>
+<td style="text-align: left;">target and bycatch groups (and species)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>fishery discards</p>
-</blockquote></td>
-<td style="text-align: center;">target and bycatch groups (and species)</td>
+<td style="text-align: left;">incidental mortality due to fishing</td>
+<td style="text-align: left;">yes</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>incidental mortality due to fishing</p>
-</blockquote></td>
-<td style="text-align: center;">yes</td>
+<td style="text-align: left;">biomass pool fisheries</td>
+<td style="text-align: left;">yes</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>biomass pool fisheries</p>
-</blockquote></td>
-<td style="text-align: center;">yes</td>
+<td style="text-align: left;">management</td>
+<td style="text-align: left;">variable, may be via effort limitations, gear limitations, minimum legal size, area or temporal closures and may be based on target or endangered stocks</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>management</p>
-</blockquote></td>
-<td style="text-align: center;">variable, may be via effort limitations, gear limitations, minimum legal size, area or temporal closures and may be based on target or endangered stocks</td>
+<td style="text-align: left;">stock-recruit relationship</td>
+<td style="text-align: left;">Beverton-Holt, productivity-based or constant recruitment</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>stock-recruit relationship</p>
-</blockquote></td>
-<td style="text-align: center;">Beverton-Holt, productivity-based or constant recruitment</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><blockquote class="blockquote">
-<p>stock structure</p>
-</blockquote></td>
-<td style="text-align: center;">depends on recruitment function chosen – may be internal (all the stock within the bay and self-seeds) or external (the reproductive stock outside the bay produces the recruits and the oldest age classes migrate out of the bay to join this stock)</td>
+<td style="text-align: left;">stock structure</td>
+<td style="text-align: left;">depends on recruitment function chosen – may be internal (all the stock within the bay and self-seeds) or external (the reproductive stock outside the bay produces the recruits and the oldest age classes migrate out of the bay to join this stock)</td>
 </tr>
 </tbody>
 </table>

@@ -97,6 +97,7 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -130,7 +131,7 @@ window.Quarto = {
  <span class="dropdown-text">Part I - Atlantis User Guide</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../../user_guides/quarto_site/part2/index.qmd">
+    <a class="dropdown-item" href="../../../user_guides/quarto_site/part2/index.html">
  <span class="dropdown-text">Part II - [Coming Soon]</span></a>
   </li>  
     </ul>
@@ -198,7 +199,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user_guides/quarto_site/part1/05-hydrodynamic-salinity-and-temperat.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../../user_guides/quarto_site/part1/05-hydrodynamic-salinity-and-temperature-forcing-data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4. Hydrodynamic, Salinity and Temperature Forcing Data</span></a>
   </div>
 </li>
@@ -246,13 +247,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user_guides/quarto_site/part1/13-processes-in-bacterial-and-inanimate.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../../user_guides/quarto_site/part1/13-processes-in-bacterial-and-inanimate-pools.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">12. Processes in Bacterial and Inanimate Pools</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user_guides/quarto_site/part1/14-influence-of-environmental-factors-o.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../../user_guides/quarto_site/part1/14-influence-of-environmental-factors-on-ecological-p.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">13. Influence of Environmental Factors on Ecological Processes</span></a>
   </div>
 </li>
@@ -270,7 +271,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../user_guides/quarto_site/part1/17-appendix-1-tips-for-calibrating-biolo.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../../../user_guides/quarto_site/part1/17-appendix-1-tips-for-calibrating-biological-model-n.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Appendix 1: Tips for Calibrating Biological Model</span></a>
   </div>
 </li>
@@ -332,188 +333,178 @@ window.Quarto = {
 <p>Atlantis updates horizontal and vertical distribution of species at each time step. When no density dependent or migratory movement is used, this is simply done by interpolating the proportion of biomass provided by the user in each box for each quarter of the year given in the FXXX_SY (typically FXXX_S1 to FXXX_S4) parameters. Note, that for the remainder of this discussion it will be assumed that numMoveEntries is set to 4 (representing traditional quarterly shifts in movement distributions). The same logic applies if numMoveEntries does not equal 4, just adjust the frequency and number of entries accordingly.</p>
 <p>The horizontal distributions are given separately for adult and juvenile stages of the species, and the transition from juveniles to adults is given by the XXX_age_mat parameter, indicating the first mature age class (this does not mean that all individuals in that age class are mature or will spawn, see the chapter on Spawning for further details).</p>
 <p>The abundance of species CX (juvenile or adult) in a cell j (<em>Abund<sub>j</sub></em>) at a given timestep is calculated as</p>
-<p><span class="math display">\[Abund_{j} = Abund_{total} \bullet \left( \varepsilon \bullet \left( F_{Q + 1,j} - F_{Q,j} \right) + F_{Q,j} \right)\]</span></p>
+<p><span class="math display">\[Abund_{j} = Abund_{total} \cdot \left( \varepsilon \cdot \left( F_{Q + 1,j} - F_{Q,j} \right) + F_{Q,j} \right)\]</span></p>
 <p>where <em>Abund<sub>total&nbsp;</sub></em>is the abundance of the species in the entire model domain (in biomass for biomass pools and in numbers), <em>ɛ</em> is the proportion of the quarter of the year that has passed, whereas F<sub>Q</sub> and F<sub>Q+1</sub> is the proportion of biomass in a cell j in quarter Q and Q+1 provided by the user (FXXX_S1 to FXXX_S4 parameters). Note that if Q is the last quarter of the year, then Q+1 is the first quarter of the year.</p>
 <p>The equation above can be illustrated with a simple example, where <em>Abund<sub>total&nbsp;</sub></em>=100, F<sub>Q</sub> =0.1, F<sub>Q+1</sub> =0.2, and <em>ɛ</em> =0.5 (the current time step is half way between the start of the quarter Q and quarter Q+1. In this case the <em>Abund<sub>j</sub></em> = 100·(0.5· (0.2-0.1)+0.1)=100·(0.05+0.1)=15. This shows that while at the start of the quarter Q the proportion of the total biomass in box j is 0.1 and at the start of the quarter Q+1 it is 0.2, at the timestep half way through the quarter Q the proportion will be 0.15.</p>
 <p>Once Atlantis calculates the horizontal distribution for a given time step it will then apply the vertical distribution VERTnight_XXX and VERTday_XXX parameters to distribute the individuals (or biomass) in each box among the vertical layers.</p>
 <p>For epibenthic biomass pool groups it is possible to freeze their distribution based on the distribution in the initial conditions using the flag flagconstrain_epiwander. It is preferable for the distribution to emerge based on the settings of other constrains (like temperature tolerances or depth constraints). However, if all else fails and epibenthos has to be constrained but are growing in boxes that aren’t desired then set flagconstrain_epiwander to 1. This will then mean that non-mobile epibenthic groups (HorizontallyMigrates set to 0 in the <em>functional_groups.csv</em> file) will only be allowed in boxes where their biomass was non-zero in the initial conditions file.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Effects of environmental sensitivity on spatial distribution</strong></p>
 <p>To activate temperature dependent movement set flagtempdepend_move to 1. Similarly, for salinity to affect any species set flagsaltdepend to 1 and for oxygen dependent movement set flagO2depend to 1. Once these overall flags are set in <em>biology.prm</em> file, then to detail how those effects are expressed set the species level parameters as described immediately below.</p>
 <p>If a species is sensitive to temperature (flagtempsensitiveXXX), salinity (flagSaltSensitive_XXX) or oxygen (flagO2depend global parameter that affects all species), then its spatial distribution will be affected by the values of these environmental variables in a cell.</p>
 <p>The setting of these sensitivity flags indicates what form of tolerance to include. If set to zero there is no sensitivity. If set to 1 then if the values in the cell are outside the tolerated range of the species – given by the min_move_temp_XXX, max_move_temp_XXX, min_move_salt_XXX, max_move_salt_XXX, min_O2_XXX parameters – then the abundance of the species in that cell will be set to 0 and the species distribution will be contracted to cells that have suitable conditions. If the flags are set to 2 then a more Gaussian curve is used to set tolerated environmental conditions. In that case you use the min and max values a for the hard edge option, but you must also include a parameter to scale the maximum possible suitability of conditions – XXX_K_temp_const, XXX_K_salt_const and XXX_K_o2_const – which is typically set to 2.0 to allow for relative preference under peak conditions being 1.0 (with poorer conditions having a value less than 1.0). This relative preference then scales the movement distribution calculated based on other movement settings. If this scalar has a value of 0 then conditions are considered beyond tolerable conditions and the group will avoid that cell. If flagenviro_displace is set to 0 then the species will be distributed smoothly over all suitable remaining cells. If flagenviro_displace is set to 1 then the individuals from the cell that is now unsuitable will be moved to adjacent cells only.</p>
-<p>If flagenviro_kill is set to 0 then the individuals displaced by the environment will not die but simply move. <strong>If none of the cells have suitable conditions the species will disappear from the model domain.</strong> If flagenviro_kill is set to 1 then any individuals that do not find suitable cells die and are added to water column detritus in their source cell.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>If flagenviro_kill is set to 0 then the individuals displaced by the environment will not die but simply move. <strong>If none of the cells have suitable conditions the species will disappear from the model domain.</strong> If flagenviro_kill is set to 1 then any individuals that do not find suitable cells die and are added to water column detritus in their source cell.</p>
+</div>
+</div>
 </section>
 <section id="spatial-distribution-with-density-dependent-movement" class="level2">
 <h2 class="anchored" data-anchor-id="spatial-distribution-with-density-dependent-movement"><strong>11.2 Spatial distribution with density dependent movement</strong></h2>
 <p>Vertebrates and pelagic invertebrates can have density dependent movement, which means that the spatial distribution will be determined by the food availability in different boxes. At each time step Atlantis will evaluate potential feeding rates of each age group of a species (for which density dependent movement is turned on) in each box of the model. This will construct a spatial landscape of boxes determined by the potential feeding possibilities they provide. The distribution at each step will then be determined according to this landscape and two parameters, setting the threshold difference and ranking (see below). Two types of density dependent movement are available in Atlantis – basic (XXX_ddepend_move=2) and “sticky” (XXX_ddepend_move=3). We first describe how the basic density depdent movement works.</p>
 <p>First, Atlantis calculates potential consumption (amount of assimilated food) for each age group in each of the model cells j:</p>
-<p><span class="math display">\[A_{potential,j} = A_{potential,j} \bullet E_{1}\]</span></p>
+<p><span class="math display">\[A_{potential,j} = A_{potential,j} \cdot E_{1}\]</span></p>
 <p>where <em>Gr<sub>potential.j&nbsp;</sub></em>is the potential grazing term of an age group if it was in the box j and E<sub>1</sub> is the assimilation efficiency on the live prey.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Currently, potential consumption is calculated assuming the modified Holling type II response (predcase=0) and hard feeding window. If other feeding functional responses are used, be aware that the density dependent movement might not be exactly right (though the relative forage field may be sufficient that it makes little difference). If you are concerned about this please contact the model developers as they do intend to allow for more functional responses in the movement code.</p>
-<p>Also, currently the roc_wgt is a global parameter, which means that the same weighting of the potential growth rate surface (i.e.&nbsp;how clumpy to make it around hotspots) is applied to all species regardless of their identity, life history stage or size.</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>Also, currently the roc_wgt is a global parameter, which means that the same weighting of the potential growth rate surface (i.e.&nbsp;how clumpy to make it around hotspots) is applied to all species regardless of their identity, life history stage or size.</p>
+</div>
+</div>
 <p>Next, Atlantis assess whether this food amount is higher than the threshold <em>γ<sub>thresh</sub></em> that would trigger movement. This threshold set with global k_roc_food parameter and SN amount in the age group <em>i</em>:</p>
-<p><span class="math display">\[\gamma_{thresh} = SN_{i}\  \bullet kroc_{food}\]</span></p>
+<p><span class="math display">\[\gamma_{thresh} = SN_{i}\  \cdot kroc_{food}\]</span></p>
 <p>The k_roc_food parameter is a proportional increase of SN weight (new weight / old weight) that would trigger movement into a better box, and it should always be &gt;1 (as fish should not move to boxes where food conditions are worse)</p>
 <p>The spatial cells in the model are then ranked depending on whether the <em>A<sub>potential</sub></em> is larger or smaller than the threshold <em>γ<sub>thresh</sub></em></p>
-<p><span class="math display">\[A_{potential,j}^{*} = A_{potential,j} \bullet roc_{wgt}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ A_{potential,j\ \ } &gt; \ \gamma_{thresh}\]</span></p>
+<p><span class="math display">\[A_{potential,j}^{*} = A_{potential,j} \cdot roc_{wgt}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ A_{potential,j\ \ } &gt; \ \gamma_{thresh}\]</span></p>
 <p><span class="math display">\[A_{potential,j}^{*} = \frac{A_{potential,j}}{roc_{wgt}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ A_{potential,j\ \ } &lt; \ \gamma_{thresh}\]</span></p>
 <p>New proportional abundance F<sub>j,t+1</sub> in the cell j is then calculated as</p>
 <p><span class="math display">\[F_{j,t + 1} = \frac{A_{potential,j}^{*}}{\sum_{}^{}A_{potential,j}^{*}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \]</span></p>
 <p>This can be illustrated with a hypothetical 4 box example with different food availability (potential assimilation rate) and an age cohort that has SN=100, k_roc_food=1.5, and roc_wgt=100</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 51%">
-<col style="width: 10%">
-<col style="width: 8%">
-<col style="width: 13%">
-<col style="width: 14%">
+<col style="width: 35%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th><strong>Box1</strong></th>
-<th><strong>Box2</strong></th>
-<th><strong>Box3</strong></th>
-<th><strong>Box4</strong></th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: right;">Box1</th>
+<th style="text-align: right;">Box2</th>
+<th style="text-align: right;">Box3</th>
+<th style="text-align: right;">Box4</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Hypothetical potential assimilated food amount (A<sub>potential</sub> )</td>
-<td>100</td>
-<td>50</td>
-<td>200</td>
-<td>1000</td>
+<td style="text-align: left;">Hypothetical potential assimilated food amount (<span class="math inline">\(A_{potential}\)</span>)</td>
+<td style="text-align: right;">100</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">1000</td>
 </tr>
 <tr class="even">
-<td>Current proportional distribution</td>
-<td>0.25</td>
-<td>0.25</td>
-<td>0.25</td>
-<td>0.25</td>
+<td style="text-align: left;">Current proportional distribution</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.25</td>
 </tr>
 <tr class="odd">
-<td>Threshold values for each box (γ<sub>thresh</sub>) assuming k_roc_food=1.5</td>
-<td>150</td>
-<td>150</td>
-<td>150</td>
-<td>150</td>
+<td style="text-align: left;">Threshold values for each box (<span class="math inline">\(\gamma_{thresh}\)</span>) assuming <span class="math inline">\(k_{roc\_food}=1.5\)</span></td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">150</td>
 </tr>
 <tr class="even">
-<td>The threshold condition A<sub>potential</sub> versus γ<sub>thresh</sub></td>
-<td>100&lt;150</td>
-<td>50&lt;150</td>
-<td>200&gt;150</td>
-<td>1000&gt;150</td>
+<td style="text-align: left;">The threshold condition <span class="math inline">\(A_{potential}\)</span> versus <span class="math inline">\(\gamma_{thresh}\)</span></td>
+<td style="text-align: right;">100&lt;150</td>
+<td style="text-align: right;">50&lt;150</td>
+<td style="text-align: right;">200&gt;150</td>
+<td style="text-align: right;">1000&gt;150</td>
 </tr>
 <tr class="odd">
-<td><p>Modified A*<sub>potential</sub> after evaluating the threshold condition,</p>
-<p>where roc_wgt=100 (A<sub>potential</sub>*roc_wgt or A<sub>potential</sub>/roc_wgt)</p></td>
-<td>100/100 = 1</td>
-<td><p>50/100</p>
-<p>=0.5</p></td>
-<td>200*100 =20000</td>
-<td>1000*100 =10<sup>5</sup></td>
+<td style="text-align: left;">Modified <span class="math inline">\(A^*_{potential}\)</span> after evaluating the threshold condition, where <span class="math inline">\(roc_{wgt}=100\)</span> (<span class="math inline">\(A_{potential} \times roc_{wgt}\)</span> or <span class="math inline">\(A_{potential}/roc_{wgt}\)</span>)</td>
+<td style="text-align: right;">100/100 = 1</td>
+<td style="text-align: right;">50/100 = 0.5</td>
+<td style="text-align: right;">200×100 = 20000</td>
+<td style="text-align: right;">1000×100 = 10<sup>5</sup></td>
 </tr>
 <tr class="even">
-<td><p>New distribution A*<sub>potential</sub> / ∑A*<sub>potential,j</sub></p>
-<p>(where ∑A*<sub>potential,j</sub>=120001.5)</p></td>
-<td>0.00</td>
-<td>0.00</td>
-<td>0.17</td>
-<td>0.83</td>
+<td style="text-align: left;">New distribution <span class="math inline">\(A^*_{potential} / \sum A^*_{potential,j}\)</span> (where <span class="math inline">\(\sum A^*_{potential,j}=120001.5\)</span>)</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.83</td>
 </tr>
 </tbody>
 </table>
 <p>It can be seen that after one time step the distribution can shift quite drastically. Atlantis users are encouraged to explore different values of roc_wgt and k_roc_food parameters on possible changes in the distributions. To prevent species teleporting about the model based on short term forage field shifts, the movement rate is adjusted by the swimming speed given in Speed_XXX parameter. The rate at which individuals (biomass) can move from one box to another is scaled by this swimming speed divided by the width of the box they are currently in.</p>
 <p>It is also possible to use a more conservative approach to density dependent movement by using “sticky” movement XXX_ddepend_move=3. In this case the same test calculating the potential food assimilation is applied to all boxes. However, instead of redistributing all individuals across the model domain, the individuals that are in boxes where A<sub>potential,j</sub> &gt; γ<sub>thresh</sub> remain where they are and only the individuals from boxes where A<sub>potential,j</sub> &lt; γ<sub>thresh</sub> move throughout the model domain. So in the example above, the Box 3 has passed the test yet the proportion of individuals in this box still decreased from 0.25 to 0.17, because Box 4 is better. When “sticky” density dependent movement is used, only individuals from Box 1 and Box2 are redistributed.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Spawning will affect density dependence movement</strong></p>
 <p>The density dependent movement mostly overrides the prescribed movement parameters given in the FXXX_S1 to FXXX_S4 (etc) parameters. However, for species that do not feed while spawning (feed_while_spawnXXX=0) the proportion of the age group spawning will not migrate according to the density dependence rules but according to the prescribed movement rules.</p>
 <p>There are two options to control this for the simple (not “sticky”) density dependence movement by setting XXX_ddepend_move to 5 or 7.</p>
 <p>When XXX_ddepend_move=5 only prescribed movement for the entire species will be used during the spawning period and only simple (non “sticky”) density dependent movement will be used at other times. When XXX_ddepend_move=7 the prescribed movement will be completely ignored and only simple density dependent movement will be applied at all times.</p>
-<p>Note, that currently there is no way to eliminate prescribed movement during spawning for “sticky” density dependent movement. This can however be set by selecting a flag feed_while_spawn=1</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+<p>Note, that currently there is no way to eliminate prescribed movement during spawning for “sticky” density dependent movement. This can however be set by selecting a flag feed_while_spawn=1</p>
+</div>
+</div>
 </section>
 <section id="forcing-the-model-distributions-with-species-distribution-models" class="level2">
 <h2 class="anchored" data-anchor-id="forcing-the-model-distributions-with-species-distribution-models"><strong>11.3. Forcing the model distributions with species distribution models</strong></h2>
 <p>You may want to change the species distributions through time based on the output of another model, such as a species distribution model. This can be done by loading in forcing files for the new distributions. To do this in <em>force.prm</em> set use_move_entries 1 and then provide the information on the groups to influence and files to use as follows (this example has two groups, FXX and FYY, and 2 stages)</p>
 <p>nforceMoveGroups 4</p>
-<p>MoveGroupCodes 4</p>
-<p>FXX_stage_0</p>
-<p>FXX_stage_1</p>
-<p>FYY_stage_0</p>
-<p>FYY_stage_1</p>
+<p>MoveGroupCodes 4 FXX_stage_0 FXX_stage_1 FYY_stage_0 FYY_stage_1</p>
 <p>Also list the distribution nc files - 1 file per "MoveGroupCode"</p>
-<p>FXX_stage_0_File.name DistribFilename1.nc</p>
-<p>FXX_stage_1_File.name DistribFilename2.nc</p>
-<p>FYY_stage_0_File.name DistribFilename3.nc</p>
-<p>FYY_stage_1_File.name DistribFilename4.nc</p>
+<p>FXX_stage_0_File.name DistribFilename1.nc FXX_stage_1_File.name DistribFilename2.nc FYY_stage_0_File.name DistribFilename3.nc FYY_stage_1_File.name DistribFilename4.nc</p>
 <p>You must also provide the starting time for using the forcing (so it does not have to start on day 0 of the model simulation)</p>
-<p>FXX_stage_0_tstart 0</p>
-<p>FXX_stage_1_tstart 0</p>
-<p>FYY_stage_0_tstart 0</p>
-<p>FYY_stage_1_tstart 0</p>
+<p>FXX_stage_0_tstart 0 FXX_stage_1_tstart 0 FYY_stage_0_tstart 0 FYY_stage_1_tstart 0</p>
 <p>An example of the format of each forcing nc file is shown below – for an example with 6 boxes and 3 time steps. You need one file per Group_Stage combination being forced.</p>
-<p>netcdf filename {</p>
-<p>dimensions:</p>
-<p>b = 6 ;</p>
-<p>t = UNLIMITED ; // (3 currently)</p>
-<p>variables:</p>
-<p>double t(t) ;</p>
-<p>t:long_name = "time" ;</p>
-<p>t:units = "seconds since 2005-01-01 00:00:00 +10" ; ## must be the same as the model</p>
-<p>t:dt = 21600. ; ## must be entered but not actually used</p>
-<p>double RAT_stage_0(t, b) ;</p>
-<p>FXX_stage_0:units = " " ;</p>
-<p>FXX_stage_0:_FillValue = 0.0 ;</p>
-<p>FXX_stage_0:missing_value = 0.0;</p>
-<p>FXX_stage_0:valid_min = 0.0;</p>
-<p>FXX_stage_0:valid_max = 1.0;</p>
-<p>// global attributes:</p>
-<p>:geometry = "model.bgm" ;</p>
-<p>data:</p>
-<p>t =</p>
-<p>0, 2592000, 5184000; ## See Note below about the fact the model does not really check alignment of these times and model time so use the forced tstart time sensibly.</p>
-<p>FXX_stage_0 =</p>
-<p>0, 0.2, 0.5, 0.1, 0.1, 0.1, ## There must be a value for each box for each time slice included in the file</p>
-<p>0, 0.3, 0.2, 0.2, 0.2, 0.1, ## The distribution values for any one time slice must sum to 1.0</p>
-<p>0, 0.5, 0.1, 0.1, 0.1, 0.2;</p>
-<p>}</p>
+<pre class="netcdf"><code>netcdf filename {
+dimensions:
+    b = 6 ;
+    t = UNLIMITED ; // (3 currently)
+variables:
+    double t(t) ;
+        t:long_name = "time" ;
+        t:units = "seconds since 2005-01-01 00:00:00 +10" ; ## must be the same as the model
+        t:dt = 21600. ; ## must be entered but not actually used
+    double RAT_stage_0(t, b) ;
+        FXX_stage_0:units = " " ;
+        FXX_stage_0:_FillValue = 0.0 ;
+        FXX_stage_0:missing_value = 0.0;
+        FXX_stage_0:valid_min = 0.0;
+        FXX_stage_0:valid_max = 1.0;
+// global attributes:
+    :geometry = "model.bgm" ;
+data:
+    t = 
+        0, 2592000, 5184000; ## See Note below about the fact the model does not really check 
+                             ## alignment of these times and model time so use the forced 
+                             ## tstart time sensibly.
+    FXX_stage_0 =
+        0, 0.2, 0.5, 0.1, 0.1, 0.1, ## There must be a value for each box for each time slice 
+                                     ## included in the file
+        0, 0.3, 0.2, 0.2, 0.2, 0.1, ## The distribution values for any one time slice must sum to 1.0
+        0, 0.5, 0.1, 0.1, 0.1, 0.2;
+}</code></pre>
 <p>Note that for biomass pool groups (i.e.&nbsp;groups without age structure), treat it as having one cohort (cohort 0). So the distribution should be listed as for “stage_0” (so use: XXX_stage_0, XXX_stage_0.nc, XXX_stage_0_tstart for group XXX).</p>
 <p>Also note that regardless of the t values provided in the forcing file it will start applying the distributions at the tstart value listed in <em>force.prm</em>. This means that if you give it a tstart value that is midway through a year it will use the first entry in the file as the distribution for that time of year (irrespective of what the t value is in the file, sorry this is an artifact of how the forcing works for tracers in the model). The model expects the distributions provided for each time slice to sum to 1.0. No more distributions will be read in once the end of the file is reached - <strong>it will not rewind</strong> it will just use the final years’ worth of distributions repeatedly into the future.</p>
 <p>The number of time slices per year to include in the forcing file must match the value for numMoveEntries in <em>functional_groups.csv</em> to ensure that the species distribution model slices are correctly read in Atlantis. The number of time slices per year should also be reflected by the initial seasonal distributions in the <em>biology.prm</em> file seasonal distributions. For instance, in the case of a monthly-resolved species distribution model FXXX_S1 to FXXX_S12 should be provided.</p>
@@ -527,672 +518,278 @@ window.Quarto = {
 <p>In <em>functional_groups.csv</em> set whether a group is migrating by setting: NumMigrations &gt; 1. This is the number of migrations initiated per calendar year. Also set whether those migrations are multiyear or not (MultiYrMigrations = 1 means at least one of the migrations started per year can last for many years).</p>
 <p>An example of the format of <em>migrations.csv is shown below</em>, but for each migration you must set each of the following parameters. Note that if multiple stages migrate at the same time please provide an entry for each stage for that migration. If an animal matures into another stage while it has migrated away that is fine without an additional entry as it is covered by the original StartStage. If a biomass pool there is simply one entry for each migration for the group.</p>
 <ul>
-<li><p>StartStage for each migration.</p></li>
-<li><p>MigID is the ID number for each migration per year for that stage and group. The order is based on the StartTofY (i.e.&nbsp;in order of the migrations based on when individuals leave the model domain). This ID starts with 0 and then increments from there (so if there were 3 migrations per year for example these would have IDs 0, 1, 2). The numbering resets for each stage.</p></li>
-<li><p>StartTofY for each migration. This is the day of the year (calendar day) when that stage of the group migrates out of the model.</p></li>
-<li><p>EndTofY for each migration. This is the day of the year (calendar day) when migration ends and the individuals return to the model domain.</p></li>
-<li><p>Leave_Period is the number of days over which individuals leave the system as they migrate away</p></li>
-<li><p>Return_Period is the number of days over which individuals return to the system</p></li>
-<li><p>IsAnnualMigration is whether this particular migration happens annually (1) or stretches for multiple years (0)</p></li>
-<li><p>MinTimeAway while a value is required for all migrations, the value is really only used for multi-year migrations. It is the minimum number of years that migrants stay out of the model.</p></li>
-<li><p>MaxTimeAway while a value is required for all migrations, the value is really only used for multi-year migrations. It is the maximum number of years that migrants stay out of the model.</p></li>
-<li><p>MigrateStockReturn specifies which stock the migrants return to. In most models there is only one stock so simply set it to 0 here.</p></li>
-<li><p>MigPropSizeInc indicates whether the species has grown while outside the model domain. For age structured groups this indicates the proportional increase in both SN and RN while outside the model domain, for biomass groups it is straight biomass change. Growth outside the model domain adds nitrogen into the system.</p></li>
-<li><p>MigPropSurvive is the survivorship of migrants (proportion of biomass or numbers returning back into the model domain). The remaining nitrogen (1-FSM) is lost from the model.</p></li>
-<li><p>PartialExit is whether for the multi-year migrations only some of the age group leaves and for those that don’t leave they remain resident rather than attempt to leave in subsequent years.</p></li>
-<li><p>MinAgeLeave if the model has a mix of leaving and resident in multi-year migrations (i.e.&nbsp;PartialExit = 1) this is the youngest cohort leaving. If only the youngest age group migrating set this to 0.</p></li>
-<li><p>MaxAgeLeave if the model has a mix of leaving and resident in multi-year migrations (i.e.&nbsp;PartialExit = 1) this is the oldest cohort leaving. If only the youngest age group migrating set this to 0 (or other juvenile residents will leave in subsequent years).</p></li>
-<li><p>ReprodAllowed is whether individuals participating in this migration can spawn when they reach maturity (1 = yes, 0 = no). If set to 0 then in multi year spawners (like salmon), the individuals will not spawn even if they reach adult ages during that migration.</p></li>
+<li>StartStage for each migration.</li>
+<li>MigID is the ID number for each migration per year for that stage and group. The order is based on the StartTofY (i.e.&nbsp;in order of the migrations based on when individuals leave the model domain). This ID starts with 0 and then increments from there (so if there were 3 migrations per year for example these would have IDs 0, 1, 2). The numbering resets for each stage.</li>
+<li>StartTofY for each migration. This is the day of the year (calendar day) when that stage of the group migrates out of the model.</li>
+<li>EndTofY for each migration. This is the day of the year (calendar day) when migration ends and the individuals return to the model domain.</li>
+<li>Leave_Period is the number of days over which individuals leave the system as they migrate away</li>
+<li>Return_Period is the number of days over which individuals return to the system</li>
+<li>IsAnnualMigration is whether this particular migration happens annually (1) or stretches for multiple years (0)</li>
+<li>MinTimeAway while a value is required for all migrations, the value is really only used for multi-year migrations. It is the minimum number of years that migrants stay out of the model.</li>
+<li>MaxTimeAway while a value is required for all migrations, the value is really only used for multi-year migrations. It is the maximum number of years that migrants stay out of the model.</li>
+<li>MigrateStockReturn specifies which stock the migrants return to. In most models there is only one stock so simply set it to 0 here.</li>
+<li>MigPropSizeInc indicates whether the species has grown while outside the model domain. For age structured groups this indicates the proportional increase in both SN and RN while outside the model domain, for biomass groups it is straight biomass change. Growth outside the model domain adds nitrogen into the system.</li>
+<li>MigPropSurvive is the survivorship of migrants (proportion of biomass or numbers returning back into the model domain). The remaining nitrogen (1-FSM) is lost from the model.</li>
+<li>PartialExit is whether for the multi-year migrations only some of the age group leaves and for those that don’t leave they remain resident rather than attempt to leave in subsequent years.</li>
+<li>MinAgeLeave if the model has a mix of leaving and resident in multi-year migrations (i.e.&nbsp;PartialExit = 1) this is the youngest cohort leaving. If only the youngest age group migrating set this to 0.</li>
+<li>MaxAgeLeave if the model has a mix of leaving and resident in multi-year migrations (i.e.&nbsp;PartialExit = 1) this is the oldest cohort leaving. If only the youngest age group migrating set this to 0 (or other juvenile residents will leave in subsequent years).</li>
+<li>ReprodAllowed is whether individuals participating in this migration can spawn when they reach maturity (1 = yes, 0 = no). If set to 0 then in multi year spawners (like salmon), the individuals will not spawn even if they reach adult ages during that migration.</li>
 </ul>
 <p>In the <em>biology.prm</em> file you also need to set k_migslow to indicate if the species migrates all at once or gradually. If k_migslow is set to 1 then there will be gradual migration using the Leave_Period and Return_Period (if it is set to 0 then the migrants leave or return in 1 time step). If k_migslow=1 and Leave_Period and Return_Period must be &gt;0 or else Atlantis will quit with an error message.</p>
 <p>Within the model, when it is a migration time, the code checks what proportion of the age class migrates out of each box and take that number (biomass) out of the model. This value set in the vector MigIOBox_XXX (with a value given per box in the model) in the <em>biology.prm</em> file. Separate vectors are required juveniles and adults in age-structured groups. The amount removed from the model is stored in the MIGRATION array.</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 100%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>NOTE!</strong></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>Example of the migrations.csv file</strong></p>
-<table>
+<table class="caption-top table">
 <colgroup>
 <col style="width: 5%">
 <col style="width: 5%">
 <col style="width: 3%">
 <col style="width: 5%">
 <col style="width: 4%">
-<col style="width: 7%">
-<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 6%">
 <col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 9%">
 <col style="width: 7%">
 <col style="width: 7%">
-<col style="width: 7%">
-<col style="width: 4%">
-<col style="width: 8%">
-<col style="width: 5%">
+<col style="width: 6%">
 <col style="width: 6%">
 <col style="width: 6%">
 </colgroup>
 <thead>
-<tr>
-<th style="text-align: center;">
-GroupCode
-</th>
-<th style="text-align: center;">
-StartStage
-</th>
-<th style="text-align: center;">
-MigID
-</th>
-<th style="text-align: center;">
-StartTofY
-</th>
-<th style="text-align: center;">
-EndTofY
-</th>
-<th style="text-align: center;">
-Leave_Period
-</th>
-<th style="text-align: center;">
-Return_Period
-</th>
-<th style="text-align: center;">
-isAnnualMigration
-</th>
-<th style="text-align: center;">
-MinTimeAway
-</th>
-<th style="text-align: center;">
-MaxTimeAway
-</th>
-<th style="text-align: center;">
-<p>
-MigrateStock
-</p>
-<p>
-Return
-</p>
-</th>
-<th style="text-align: center;">
-<p>
-MigProp
-</p>
-<p>
-SizeInc
-</p>
-</th>
-<th style="text-align: center;">
-MigPropSurvive
-</th>
-<th style="text-align: center;">
-PartialExit
-</th>
-<th style="text-align: center;">
-MinAgeLeave
-</th>
-<th style="text-align: center;">
-MaxAgeLeave
-</th>
+<tr class="header">
+<th style="text-align: center;">GroupCode</th>
+<th style="text-align: right;">StartStage</th>
+<th style="text-align: right;">MigID</th>
+<th style="text-align: right;">StartTofY</th>
+<th style="text-align: right;">EndTofY</th>
+<th style="text-align: right;">Leave_Period</th>
+<th style="text-align: right;">Return_Period</th>
+<th style="text-align: right;">isAnnualMigration</th>
+<th style="text-align: right;">MinTimeAway</th>
+<th style="text-align: right;">MaxTimeAway</th>
+<th style="text-align: right;">MigrateStockReturn</th>
+<th style="text-align: right;">MigPropSizeInc</th>
+<th style="text-align: right;">MigPropSurvive</th>
+<th style="text-align: right;">PartialExit</th>
+<th style="text-align: right;">MinAgeLeave</th>
+<th style="text-align: right;">MaxAgeLeave</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align: center;">
-FAA
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-182
-</td>
-<td style="text-align: center;">
-258
-</td>
-<td style="text-align: center;">
-15
-</td>
-<td style="text-align: center;">
-15
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-2.7
-</td>
-<td style="text-align: center;">
-0.72
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="odd">
+<td style="text-align: center;">FAA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">0.72</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FAA
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-182
-</td>
-<td style="text-align: center;">
-258
-</td>
-<td style="text-align: center;">
-15
-</td>
-<td style="text-align: center;">
-15
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.67
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="even">
+<td style="text-align: center;">FAA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">182</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.67</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FBB
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-227
-</td>
-<td style="text-align: center;">
-90
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-5
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.05
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="odd">
+<td style="text-align: center;">FBB</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">227</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FCC
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-213
-</td>
-<td style="text-align: center;">
-67
-</td>
-<td style="text-align: center;">
-24
-</td>
-<td style="text-align: center;">
-18
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-3
-</td>
-<td style="text-align: center;">
-6
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-1.5
-</td>
-<td style="text-align: center;">
-0.9
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-1
-</td>
+<tr class="even">
+<td style="text-align: center;">FCC</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">213</td>
+<td style="text-align: right;">67</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FCC
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-120
-</td>
-<td style="text-align: center;">
-160
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.98
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="odd">
+<td style="text-align: center;">FCC</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FCC
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-200
-</td>
-<td style="text-align: center;">
-250
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.05
-</td>
-<td style="text-align: center;">
-0.95
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="even">
+<td style="text-align: center;">FCC</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">250</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FCC
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-2
-</td>
-<td style="text-align: center;">
-280
-</td>
-<td style="text-align: center;">
-330
-</td>
-<td style="text-align: center;">
-17
-</td>
-<td style="text-align: center;">
-10
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.9
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="odd">
+<td style="text-align: center;">FCC</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">280</td>
+<td style="text-align: right;">330</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FXX
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-30
-</td>
-<td style="text-align: center;">
-151
-</td>
-<td style="text-align: center;">
-10
-</td>
-<td style="text-align: center;">
-15
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.1
-</td>
-<td style="text-align: center;">
-0.75
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="even">
+<td style="text-align: center;">FXX</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">151</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FXX
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-60
-</td>
-<td style="text-align: center;">
-107
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.05
-</td>
-<td style="text-align: center;">
-0.93
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="odd">
+<td style="text-align: center;">FXX</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">107</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FXX
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-190
-</td>
-<td style="text-align: center;">
-240
-</td>
-<td style="text-align: center;">
-15
-</td>
-<td style="text-align: center;">
-15
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.1
-</td>
-<td style="text-align: center;">
-0.755
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="even">
+<td style="text-align: center;">FXX</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">190</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.755</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-<tr>
-<td style="text-align: center;">
-FXX
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-250
-</td>
-<td style="text-align: center;">
-324
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-12
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0.05
-</td>
-<td style="text-align: center;">
-1
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
-<td style="text-align: center;">
-0
-</td>
+<tr class="odd">
+<td style="text-align: center;">FXX</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">250</td>
+<td style="text-align: right;">324</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
 </tr>
-</tbody>
-</table></th>
-</tr>
-</thead>
-<tbody>
 </tbody>
 </table>
+</div>
+</div>
 </section>
 <section id="multi-year-migrations" class="level3">
 <h3 class="anchored" data-anchor-id="multi-year-migrations"><strong><em>11.4.2. Multi-year migrations</em></strong></h3>
@@ -1210,84 +807,13 @@ FXX
 <p>XXX_mLext – the base back ground mortality applied in the external population model</p>
 <p>XXX_mPext – the “P” external mortality rate</p>
 <p>These mortalities are applied as to give total external mortality (Next_mort) as:</p>
-<p><span class="math display">\[N_{ext\_ mort} = \left( m_{l\_ ext} + m_{p\_ ext} \right) \bullet N_{t}\]</span></p>
+<p><span class="math display">\[N_{ext\_ mort} = \left( m_{l\_ ext} + m_{p\_ ext} \right) \cdot N_{t}\]</span></p>
 <p>where <em>N<sub>t</sub></em> is the number of individuals in an age class at time <em>t</em> and the mortality rates mLext and mPext. This population model also uses the existing Atlantis parameters li_a_XXX, li_b_XXX, pR_XXX and age_mat_XXX.</p>
 </section>
 <section id="invading-species" class="level2">
 <h2 class="anchored" data-anchor-id="invading-species"><strong>11.6. Invading species</strong></h2>
 <p>It is possible to allow for an invading species (functional group) to enter the model domain. At present only a couple of simple representations of invasion exist, but further may come later (please check the wiki for the latest options). The parameters required by the current invasion models are given in Table 25.</p>
-<p><span id="_Toc526762777" class="anchor"></span></p>
-<table class="caption-top table">
-<caption>Table 25. Parameters used in the invading species sub-model</caption>
-<colgroup>
-<col style="width: 4%">
-<col style="width: 94%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"><strong>Parameter</strong></th>
-<th style="text-align: left;"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">invading_sp_model</td>
-<td style="text-align: left;">0 = no invader; 1 = simple drip-feed entry into one box and spread from there); 2 = points of invasion and spread are determined by habitat and environmental conditions; 3 = complex invasion model (currently not implemented)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">InvaderIndex</td>
-<td style="text-align: left;">ID number of the guild that is invading (i.e.&nbsp;the ID for the group in the <em>functional_groups.csv</em> file)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">minInvaderAge</td>
-<td style="text-align: left;">Minimum age class invading</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">maxInvaderAge</td>
-<td style="text-align: left;">Maximum age class invading</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">InvaderEntryBox</td>
-<td style="text-align: left;">Box that marks the point of entry for the invading group</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">InvaderMinDepth</td>
-<td style="text-align: left;">Minimum depth invader tolerates</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">InvaderMaxDepth</td>
-<td style="text-align: left;">Maximum depth invader tolerates</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">InvaderStartDay</td>
-<td style="text-align: left;">Day of the run the invasion begins</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">InvaderEndDay</td>
-<td style="text-align: left;">Day of run invasion ends</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">InvaderScalar</td>
-<td style="text-align: left;">Proportional scalar to represent drip feed of invaders to existing population – used if invading_sp_model is set to 1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">InvaderSpeed</td>
-<td style="text-align: left;">Rate of spread of front of the invading species (m hr-1)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">InvadersEntering</td>
-<td style="text-align: left;">1 = if invaders begin from 0 baseline (in which case the starting numbers entering the model domain must be specified in InvaderStartNums); 0 = a small number of the invading species (functional group) are already in the model when the run begins and the invasion represents a range shift (or expansion of the population) or a turnover in the species composition of a functional group so the numbers group based on invaders</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">InvaderStartNums</td>
-<td style="text-align: left;">The number of invaders entering (per age class) on first day of the invasion. If not all age classes are invading then set the numbers in the non-invading age classes to 0.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">InvaderEntryLayer</td>
-<td style="text-align: left;">The water column layer the invaders enter through in the case where InvadersEntering is set to 1</td>
-</tr>
-</tbody>
-</table>
+<p><span id="_Toc526762777" class="anchor"></span> Table 25. Parameters used in the invading species sub-model. | Parameter | Description | |:———-|:————| | invading_sp_model | 0 = no invader; 1 = simple drip-feed entry into one box and spread from there; 2 = points of invasion and spread are determined by habitat and environmental conditions; 3 = complex invasion model (currently not implemented) | | InvaderIndex | ID number of the guild that is invading (i.e.&nbsp;the ID for the group in the <em>functional_groups.csv</em> file) | | minInvaderAge | Minimum age class invading | | maxInvaderAge | Maximum age class invading | | InvaderEntryBox | Box that marks the point of entry for the invading group | | InvaderMinDepth | Minimum depth invader tolerates | | InvaderMaxDepth | Maximum depth invader tolerates | | InvaderStartDay | Day of the run the invasion begins | | InvaderEndDay | Day of run invasion ends | | InvaderScalar | Proportional scalar to represent drip feed of invaders to existing population – used if invading_sp_model is set to 1 | | InvaderSpeed | Rate of spread of front of the invading species (m hr<sup>-1</sup>) | | InvadersEntering | 1 = if invaders begin from 0 baseline (in which case the starting numbers entering the model domain must be specified in InvaderStartNums); 0 = a small number of the invading species (functional group) are already in the model when the run begins and the invasion represents a range shift (or expansion of the population) or a turnover in the species composition of a functional group so the numbers group based on invaders | | InvaderStartNums | The number of invaders entering (per age class) on first day of the invasion. If not all age classes are invading then set the numbers in the non-invading age classes to 0. | | InvaderEntryLayer | The water column layer the invaders enter through in the case where InvadersEntering is set to 1 |</p>
 <p>In all cases invasion is represented via scaling the numbers (or biomass if a biomass pool) in the InvaderEntryBox (between days InvaderStartDay and InvaderEndDay). If invading_sp_model is set to 1 then the dispersal of invaders is given by standard movement for age structured groups and via spilling into adjacent cells for biomass pools (with new cells added once biomasses reach saturation points). If invading_sp_model is set to 2 the dispersal is based on depth, temperature and salinity preferences, habitat and prey fields.</p>
 
 
