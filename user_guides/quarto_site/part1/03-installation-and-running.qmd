@@ -97,7 +97,7 @@ A good practice Atlantis run directory is uncluttered and contains separate fold
 
 It is a good idea to give parameter files meaningful names. For example, it would be hard to remember what *A.prm* refers to, whereas *Biol_noclimate_change.prm* is a lot more informative. However, there is a limit to the length of a filename Atlantis will read-in so if your model won't run because it can't find a file and that file does exist but has a long name try shortening the name and see if that helps.
 
-![](media/image50.png){width="4.76in" height="2.73in"}
+![](media/atlantisexe.png){width="4.76in" height="2.73in"}
 :::
 
 ## Input files {#sec-input-files}

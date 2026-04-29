@@ -116,7 +116,7 @@ More recently Atlantis has been used to consider the impacts of marine and coast
 
 | System | Complexity | Understanding | System-level MSE | Fisheries | Nutrients | Mining | Climate impacts | Catchments | Indicators | Management | Reference |
 |--------|------------|---------------|------------------|-----------|-----------|--------|-----------------|------------|------------|------------|-----------|
-| *Australia* | | | | | | | | | | | |
+| **Australia** | | | | | | | | | | | |
 | 1. SE Australia | | P | P | P | | | S | | P | P | Fulton et al 2007 |
 | 2. Victoria/Tasmania | | P | | S | S | | S | | P | P | Smith et al. 2010 |
 | 3. Port Phillip Bay | P | | | S | S | | | | P | | Fulton et al 2004b |
@@ -126,7 +126,7 @@ More recently Atlantis has been used to consider the impacts of marine and coast
 | 7. Derwent-Huon | | P | E | E | E | | E | E | | E | Savina 2009 |
 | 8. New South Wales | P | P | | P | | S | | | | S | Savina et al 2008 |
 | 9. Clarence River | | P | | E | E | | E | P | P | E | Hayes et al 2007 |
-| *North America* | | | | | | | | | | | |
+| **North America** | | | | | | | | | | | |
 | 10. NE USA | | P | P | P | | | | | S | P | Link et al 2010 |
 | 11. California Current | | P | P | P | | | S | | S | P | Brand et al 2007 |
 | 12. Central California | | P | | S | | | | | | P | Horne et al. 2010 |
@@ -135,7 +135,7 @@ More recently Atlantis has been used to consider the impacts of marine and coast
 | 15. Gulf of Mexico | | P | P | P | S | | | | S | P | Ainsworth et al. 2015 |
 | 16. Campeche Bay | | P | P | P | | | | | | P | Ortega-Ortiz and Ainsworth in prep. |
 | 17. Desoto Bay | | P | | P | | | | | | | Gosnell S., unpubl. |
-| *Other areas* | | | | | | | | | | | |
+| **Other areas** | | | | | | | | | | | |
 | 18. Guam | | P | | P | P | | P | P | S | P | Weijerman et al 2015 |
 : Examples of Atlantis model applications and their main purposes: P = primary use of the model, S = secondary use, E = exploratory use beginning (modified after Fulton et al. 2011). Some of the model descriptions are included in the [useful reading](https://confluence.csiro.au/display/Atlantis/Useful+Reading) page on the wiki. An updated list of models under development is also available on Atlantis [webpage](http://atlantis.cmar.csiro.au/). {#tbl-atlantis-applications .small tbl-colwidths=[16,7,8,7,7,7,5,7,7,7,7,15]}
 

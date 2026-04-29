@@ -10,6 +10,7 @@ Atlantis runs the water column, sediment or epibenthic processes depending on wh
 
 ![](media/image62.jpg){width="6.6in" height="8.6in"}
 
+::: {.scroll-frozen style="overflow-x: auto;"}
 | Process | N | Si | PB | BB | DL | DR | PP | ZP | MA | BI | PI | VE | MB |
 |:--------|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 | **Water column processes** | | | | | | | | | | | | | |
@@ -56,7 +57,9 @@ Atlantis runs the water column, sediment or epibenthic processes depending on wh
 | Bioturbation/irrigation | | | | | | | | | | + | | | |
 
 : List of key ecological processes run in the three main distribution types: water column, sediment, and epibenthic layer. List of the pools tracked in the three types is given in @tbl-state-variables. **Tracer codes:** N = dissolved nitrogen, Si = silicate, PB = pelagic bacteria, BB = benthic bacteria, DL = labile detritus, DR = refractory detritus. **Organism codes:** PP = phytoplankton (including dinoflagellates), ZP = zooplankton, MA = macroalgae and seagrasses, BI = benthic invertebrates, PI = cephalopods and prawns (nektonic pelagic invertebrates), VE = vertebrates, MB = microphytobenthos. {#tbl-ecological-processes}
+:::
 
+::: {.scroll-frozen style="overflow-x: auto;"}
 | Feature | Assumptions and/or formulation notes |
 |:--------|:-------------------------------------|
 | **General features** | |
@@ -96,3 +99,4 @@ Atlantis runs the water column, sediment or epibenthic processes depending on wh
 | Stock structure | depends on recruitment function chosen — may be internal (all the stock within the bay and self-seeds) or external (the reproductive stock outside the bay produces the recruits and the oldest age classes migrate out of the bay to join this stock) |
 
 : Basic assumptions and formulations in the Atlantis model (modified after Fulton et al. 2004b). {#tbl-atlantis-assumptions tbl-colwidths=[35,65]}
+:::

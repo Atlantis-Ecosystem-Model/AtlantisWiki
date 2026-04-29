@@ -488,17 +488,21 @@ The modified Holling type functional responses use age-specific *C* and *mum* pa
 
 Unlike *C* and *mum*, however, the search volume and handling time parameters are always set **based on mass specific structural ash-free dry weight** (not nitrogen!). This means that only one value is provided in the parameter file, and the age specific values for age-structured groups are calculated based on the individual's body weight. For biomass pools the units of [vl_XXX]{style="color: orange;"} are in m^3^ mgN^-1^ day^-1^. For age structured groups [vla_XXX]{style="color: orange;"} and [vlb_XXX]{style="color: orange;"} determine an allometric search volume-mass relationship, and they are converted to individual nitrogen-based values in *Determine_Fish_Feeding_Prms()* in **atvertprocesses.c** where 
 
-![](media/image39.png) 
+$$
+VL = vla \cdot (SN \cdot XNC)^{vlb}
+$$
 
 where SN is the structural nitrogen of an age class and XCN is the C:N Redfield ratio (X_CN in the biology.prm) typically set to 5.7 used to convert nitrogen mass to total ash-free dry mass.
 
 For demersal species (flagdem=1) the search volume VL is halved (VL=VL/2).
 
-The handling time HT is calculated as 
+The handling time HT is calculated as:
 
-![](media/image40.png)
+$$
+HT = δ_{starve} \cdot hta \cdot (SN \cdot XNC)^{-htb}
+$$
 
-where δ~starve~ is a scalar that reduces the handling time when an individual is starving (see @sec-starvation on the effects of starvation).
+where δ_{starve} is a scalar that reduces the handling time when an individual is starving (see @sec-starvation on the effects of starvation).
 
 **Note, that only SN and not total nitrogen values are used for search volume and handling time calculations.**
 :::
@@ -707,11 +711,14 @@ $$\delta_{space} = \frac{1 - B_{CP}}{Max_{CP} \cdot habitat}$$
 
 where *Max~CP~* is the [XXXmax]{style="color: orange;"} parameter defining maximum biomass mgN m^-2^ and *habitat* is the proportion of habitat suitable for the consumer (area of the habitat available for the species while accounting for its optional degradation). The *B~CP~* is the consumer biomass (mgN per m^2^).
 
-The Crowding effect is applied when [flagXXXlim]{style="color: orange;"}=2. It is based on ERSEM II model (Blackford 1997) and requires three extra parameters ([XXX_low]{style="color: orange;"}, [XXX_sat]{style="color: orange;"}, [XXXthresh]{style="color: orange;"}). The Crowing effect is **applied on** **clearance rates and not on biomass**.
+The Crowding effect is applied when [flagXXXlim]{style="color: orange;"}=2. It is based on ERSEM II model (Blackford 1997) and requires three extra parameters ([XXX_low]{style="color: orange;"}, [XXX_sat]{style="color: orange;"}, [XXXthresh]{style="color: orange;"}). The Crowding effect is **applied on clearance rates and not on biomass**.
 
-![](media/image55.png)
+$$\mathrm{CrowdingEffect} = \begin{cases}
+1 - \dfrac{\delta_{\text{substrate}} \cdot \delta_{\text{habdegrad}} \cdot (CX - \theta_{CXlow}) \cdot \left(\dfrac{CX - \theta_{CXlow}}{CX - \theta_{CXlow} + \kappa_{CXsat}}\right)}{\delta_{\text{substrate}} \cdot \delta_{\text{habdegrad}} \cdot (CX - \theta_{CXlow}) \cdot \left(\dfrac{CX - \theta_{CXlow}}{CX - \theta_{CXlow} + \kappa_{CXsat}}\right) + \kappa_{CXthresh}}, & CX > \theta_{CXlow} \\[10pt]
+1, & \text{otherwise}
+\end{cases}$$
 
-where *θ*~CXlow~ is the crowding lower threshold ([XXX_low]{style="color: orange;"}, mgN m^-2^), *κ*~CXsat~ is the crowding half saturation level ([XXX_sat]{style="color: orange;"}, mgN m^-2^), *κ*~CXthresh~ is the crowding threshold ([XXXthresh]{style="color: orange;"}, mgN m^-2^)
+where *θ*~CXlow~ is the crowding lower threshold ([XXX_low]{style="color: orange;"}, mgN m^-2^), *κ*~CXsat~ is the crowding half saturation level ([XXX_sat]{style="color: orange;"}, mgN m^-2^), *κ*~CXthresh~ is the crowding threshold ([XXXthresh]{style="color: orange;"}, mgN m^-2^).
 
 By default a consumer can only have intraspecific (intra functional group) competition. However, if [flag_competing_epiff]{style="color: orange;"}=1 then interspecies competition is included and *B~CP\ ~*is calculated as the total biomass of all corals (CORAL), sponges (SPONGE), epibenthic macrophytes (PHYTOBEN, SEAGRASS) and filter feeders (SED_EP_FF), which means that all epifauna will compete for space. When [flag_competing_epiff]{style="color: orange;"}=1 the user can also allow the maximum available habitat area to be higher than 1. This means that the epifaunal groups can grow on top of each other (as happens in complex reef structures). This option is set with the [max_available_habitat]{style="color: orange;"} parameter, which acts as a scalar on the available habitat. Only set this value to \>1 when you have good reasons to increase the habitat availability to the epifauna.
 
@@ -759,10 +766,11 @@ During the first few months inside the model domain, salmon will stay close to s
 1.  Set [isSupplemented]{style="color: orange;"} to a value greater than 0 in *functional_groups.csv*. A value of 1 means all life history stages will consume the supplemental feed, a value of 2 is juveniles only and a value of 3 is adults only.
 2.  Add a vector to the *biology.prm* file to indicate the degree of supplemental feeding occurring per box. The individual values in this vector must have values between 0 and 1 (as the value indicates for that box how much of the potential supplemental feed is actually accessed). Note the vector does not need to sum to 1.0, just that each individual value in it must be \< 1.0. For example, for group XXX in a 5 box model it would look like:
 
-```
-Supp_XXX 5
-0.0 0.1 0.0 0.0 0.8
-```
+::: {.callout-note}
+[Supp_XXX]{style="color: orange;"} 5  
+`0.0 0.1 0.0 0.0 0.8`
+:::
+
 
 At present this proportional access is assumed to match across all ages undertaking supplemental feeding. If this is not the case contact the Atlantis model developers for an update to the code. Also note that supplemental feeding only occurs in surface waters.
 
@@ -956,10 +964,11 @@ To activate this effect (i) [flagIsEstuary]{style="color: orange;"} must be set 
 
 These vectors have the format like:
 
-```
-[XXX_turbid_L] 2
-1.0 0.8
-```
+::: {.callout-note}
+[XXX_turbid_L]{style="color: orange;"} 2  
+`1.0 0.8`
+:::
+
 
 | **Parameter** | **Description** |
 |:--------------|:----------------|
@@ -1387,6 +1396,7 @@ If [flag_modify_KWSR]{style="color: orange;"} is set to 1 then the model will lo
 
 The format of the *KWSR_filename.ts* is as follows for the scalar ([flag_modify_KWSR]{style="color: orange;"} set to 1) option (shown for 1 species, if multiple species are being forced in this way add an additional column for each species)
 
+```
 \# Scalar for structural sizes of recruits
 \#
 \# COLUMNS 2
@@ -1402,9 +1412,11 @@ The format of the *KWSR_filename.ts* is as follows for the scalar ([flag_modify_
 \# COLUMN2.missing_value 0.0
 1 0.8
 2 2.0
+```
 
 If the absolute value case ([flag_modify_KWSR]{style="color: orange;"} set to 2) is being used then the file format is as follows
 
+```
 \# Structural sizes of recruits
 \#
 \# COLUMNS 2
@@ -1420,6 +1432,7 @@ If the absolute value case ([flag_modify_KWSR]{style="color: orange;"} set to 2)
 \# COLUMN2.missing_value 0.0
 1 110.8
 2 112.1
+```
 
 ### Stochastic variation around mean recruitment
 

@@ -15,13 +15,13 @@ Most of the details in the Atlantis Physics submodel are based on the Port Phill
 4. optional forcing NC and TS input files, such as temperature, salinity, pH, oxygen, contaminants, point source inputs, solar radiation, evaporation, precipitation and others.
 :::
 
-In this chapter we will:
+This chapter will:
 
-1\) introduce physics and biogeochemical tracers and their properties,
-2\) describe the routines executed in the main *physics()* routine and parameters in the *physics.prm* file
-3\) explain why in some cases the user might need to correct for the lack of the vertical and horizontal mixing in hydrodynamic forcing files
-4\) give a brief introduction to the latest Atlantis developments allowing for the modelling of ice, land and contaminants
-5\) provide a small example demonstrating the importance of the optional physics routines
+- introduce physics and biogeochemical tracers and their properties,
+- describe the routines executed in the main *physics()* routine and parameters in the *physics.prm* file,
+- explain why in some cases the user might need to correct for the lack of the vertical and horizontal mixing in hydrodynamic forcing files,
+- give a brief introduction to the latest Atlantis developments allowing for the modelling of ice, land and contaminants,
+- provide a small example demonstrating the importance of the optional physics routines.
 
 ## Physical and biogeochemical variables and their characteristics 
 
@@ -59,7 +59,7 @@ From this we can see that Det_Si is a three-dimentional variable (t,b,z), found 
 
 These tracers participate in ecological processes and change as a result. It is very important to get the characteristics of these tracers correct in the *initial_conditions.nc* file as Atlantis will use them for dynamic calculations.
 
-::: {#tbl-initial-conditions-tracers}
+::: {.scroll-frozen style="overflow-x: auto;" #tbl-initial-conditions-tracers}
 | Tracer | Name | In water | In sed | Dissolved | Particulate | Decay | Svel | Psize |
 |--------|------|----------|--------|-----------|-------------|-------|------|-------|
 | `NH3` | Ammonia | x | x | x | | 1.e-007 | NA | NA |
@@ -73,19 +73,23 @@ These tracers participate in ecological processes and change as a result. It is 
 
 ### Optional tracers for dynamic properties
 
-Required only if:
-
-- ¹ [trackAtomicRatio]{style="color: orange;"} flag is set to 1, or
-- ² [flagIsEstuary]{style="color: orange;"} flag is set to 1 in the *run.prm* file
-
 | Tracer | Name | In water | In sed | Dissolved | Particulate | Decay | Svel | Psize |
 |--------|------|----------|--------|-----------|-------------|-------|------|-------|
-| `P`¹ | Phosphorus | x | x | x | | | | |
-| `TOP`¹ | Total organic phosphorus | x | x | x | | | | |
-| `Carbon`¹ | Carbon | x | x | x | | | | |
-| `CO2`¹ | Carbon dioxide | x | x | x | | | | |
-| `SED`² | Sediments | x | x | | x | 0 | -2.0e-005 | 5.0e-006 |
+| `P`<sup>a</sup> | Phosphorus | x | x | x | | | | |
+| `TOP`<sup>a</sup> | Total organic phosphorus | x | x | x | | | | |
+| `Carbon`<sup>a</sup> | Carbon | x | x | x | | | | |
+| `CO2`<sup>a</sup> | Carbon dioxide | x | x | x | | | | |
+| `SED`<sup>b</sup> | Sediments | x | x | | x | 0 | -2.0e-005 | 5.0e-006 |
 : Optional tracers for dynamic properties. {#tbl-tracers-optional-dynamic}
+
+::: {.callout-note}
+**Required only if**:
+
+<sup>a</sup> [trackAtomicRatio]{style="color: orange;"} flag is set to 1  
+
+<sup>b</sup> [flagIsEstuary]{style="color: orange;"} flag is set to 1 in the *run.prm* file
+:::
+
 
 ### Obligatory diagnostic tracers for physical properties and reporting of biogeochemical processes
 
@@ -162,7 +166,7 @@ Bioturbation and bioirrigation are simulated as exchange in thin water and sedim
 | Process | Description |
 |---------|-------------|
 | **Horizontal diffusion**<br><br>*hdiffBMwc()* in **athdiff.c**<br><br>[horiz_diffusion]{style="color: orange;"}<br><br>0 | **Horizontal diffusion is done before the main transport model is run. This was mostly needed in the past, when oceanographic models and their conversion to Atlantis forcing files did not provide sufficient horizontal mixing.** |
-| **Filler horizontal diffusion applied for boxes that have not had any water exchanges for a set period of time**<br><br>*filler_hdiffBMwc()* in **athdiff.c**<br><br>[fill_zero_exchange]{style="color: orange;"}<br><br>0 | Hydrodynamic models don't always resolve coastlines well, which can lead to some small coastal boxes being left isolated (no water fluxes into or out of them). This optional routine is used to correct for this. It is activated if there is no flux for a set threshold of days, provided in the [flush_threshold]{style="color: orange;"} (often set to 1 day). The routine will force mixing between the isolated box and matching layers of the adjacent boxes.<br><br>The routine will apply a constant water column mixing coefficient [wc_kz]{style="color: orange;"}, which indicates the proportion of volume to be mixed (a reasonable value is within a range of 1e-9) and scale it by the relative box volumes.<br><br>> The horizontal mixing can be further tuned using box-specific horizontal mixing parameter [boxID:horizmix]{style="color: orange;"} from the BGM file.<br>><br>> To activate this box specific mixing set [use_fill_horizmix]{style="color: orange;"} to 1. Otherwise the baseline diffusion rate among boxes is used. |
+| **Filler horizontal diffusion applied for boxes that have not had any water exchanges for a set period of time**<br><br>*filler_hdiffBMwc()* in **athdiff.c**<br><br>[fill_zero_exchange]{style="color: orange;"}<br><br>0 | Hydrodynamic models don't always resolve coastlines well, which can lead to some small coastal boxes being left isolated (no water fluxes into or out of them). This optional routine is used to correct for this. It is activated if there is no flux for a set threshold of days, provided in the [flush_threshold]{style="color: orange;"} (often set to 1 day). The routine will force mixing between the isolated box and matching layers of the adjacent boxes.<br><br>The routine will apply a constant water column mixing coefficient [wc_kz]{style="color: orange;"}, which indicates the proportion of volume to be mixed (a reasonable value is within a range of 1e-9) and scale it by the relative box volumes.<br><br> The horizontal mixing can be further tuned using box-specific horizontal mixing parameter [boxID:horizmix]{style="color: orange;"} from the BGM file.<br>><br> To activate this box specific mixing set [use_fill_horizmix]{style="color: orange;"} to 1. Otherwise the baseline diffusion rate among boxes is used. |
 | **Vertical diffusion added to correct for the lack of vertical circulation (this is not the same as vertical mixing used to imitate eddies, see below)**<br><br>*atvdiffBMwc()* in **atvdiff.c**<br><br>[vert_diffusion]{style="color: orange;"}<br><br>0 | Vertical diffusion executed throughout the water layers before the main transport model.<br><br>Setting flag [mix_deep]{style="color: orange;"} to 1 activates the replenishment of nutrients in the deep layers of oceanic boxes (those that have open water boundary with deep waters) and set the depth value for deep ocean layers in [mix_deep_depth]{style="color: orange;"} parameter. Nutrient values in the bottom layer of boxes that are deeper than [mix_deep_depth]{style="color: orange;"} will be reset to the original value given in the *initial_conditions.nc*<br><br>The nutrients that will be reset are: NH3, NO3, Si, MicroNut and also Phosphorus and Carbon if they are tracked throughout the simulations ([trackAtomicRatio]{style="color: orange;"} flag is set to 1 in the *run.prm*) |
 | **Vertical mixing added to simulate upwelling and increased mixing by eddies**<br><br>*vertical_mixing()* in **atvmix.c**<br><br>[vert_mix]{style="color: orange;"}<br><br>1 | Because processes within one cell are considered uniform, explicit representation of eddies and upwelling would require a lot of small boxes, untenable for Atlantis models. Instead the supply of nutrients from deeper water levels by eddies and upwelling can be represented with this optional vertical mixing routine. The routine applies season and box specific vertical water column mixing, in addition to the vertical exchange forced through hydrodynamic files.<br><br>The main difference between vertical diffusion routine above and vertical mixing is that diffusion is typically a slower process of movement from high to low concentration rates. Mixing in turn simulates advection (movement by water currents) and is usually much faster than diffusion. Also vertical mixing can be customised to vary across boxes and seasons.<br><br>The total mixing rate (in m³s⁻¹) is calculated from lower layer up as a product of<br><br>- [mix_injection]{style="color: orange;"} coefficient (1e-3)<br><br>- Box specific :[vertmix]{style="color: orange;"} scalar defined in the BGM file<br><br>- seasonal scale<br><br>- eddy scale<br><br>- volume of the box<br><br>Note that the sign of the global [mix_injection]{style="color: orange;"} and box-specific :[vertmix]{style="color: orange;"} parameters defines the **direction of vertical mixing**. Usually these coefficients are positive, which means the water will flow upwards, but in theory they can also be negative. Either way, **in vertical mixing routine water flows only in one vertical direction** **(up or down)**.<br><br>The seasonal scale is modelled as a sine shaped wave (sin(2.0*3.1415*(day_of_the_year-31.0)/365.0) and it's fluctuations can be increased by setting the [mix_season_kz]{style="color: orange;"} multiplier (set to 10 in SETas model).<br><br>The effect of eddies (eddy scale) is activated with [eddy_vertmix]{style="color: orange;"} flag. It can be tuned with two parameters. First, box-specific eddy strengths per each quarter of the year (the model linearly interpolates between these to get eddy strength on any one day) are set with [eddy_S1]{style="color: orange;"} to [eddy_S4.]{style="color: orange;"} These eddy parameters are used also in scaling *Primary_Production()* in **atprocess.c** in the **atecology** library. Therefore, to allow for different effect on primary production and vertical mixing by eddies, the vertical mixing has specific parameter [eddy_vertmix.]{style="color: orange;"} Vertical mixing can further be further scaled with the global scaling coefficient [eddy_mixscale]{style="color: orange;"}<br><br>As in the vertical diffusion routine above, activating the flag [mix_deep]{style="color: orange;"} will reset nutrient concentrations in the deepest layers of oceanic boxes<br><br>The vertical mixing code within Atlantis to represent exchange between vertical layers is used to represent changes in upwelling or changes in mixing due to (seasonal or long term) modifications of mixed-layer depth that is not sufficiently captured in the hydrodynamics file.<br><br>To activate this code set [vert_mix]{style="color: orange;"} to 1 in the *physics.prm* file. Then in the *forcing.prm* file add the pointers to the relevant file of scalars:<br><br># Vertical mixing scalar files<br><br>[use_VertMixFiles]{style="color: orange;"} 1<br><br>[vertMixScalar_rewind]{style="color: orange;"} 0<br><br>[nvertMixScalarfiles]{style="color: orange;"} 1<br><br>[vertMixScalar0.name]{style="color: orange;"} inputs/Filename_VertMix.nc<br><br>The structure of the Filename_VertMix.nc is the same as for the temperature or salinity files -- i.e. a value per layer per box per timestep included in the file. The equation used to apply the modified vertical mixing is<br><br>$$mix_{rate} = mix_{injection}*vertmix*vertmix_{scale}*eddy_{scale}*seasonal_{scale}*{vol}_{box,layer}$$ |
 
@@ -191,8 +195,7 @@ If [scale_transport]{style="color: orange;"} flag is set to 2, all transport is 
 | Process | Description |
 |---------|-------------|
 | **Read in forcing files for temperature, salinity, pH or other forced tracers and overwrite calculated values**<br><br>*tracerForcingBM()* in **attempsalt.c**<br><br>[use_tempfiles]{style="color: orange;"}\* 1<br><br>[use_saltfiles]{style="color: orange;"}\* 1<br><br>[use_pHfiles]{style="color: orange;"}\* 0<br><br>[use_force_tracers]{style="color: orange;"}\* 0 | The calculations of tracer values done in the *transportBM()* routine are overwritten if forced values are provided and appropriate flags activated in the *force.prm* file<br><br>Typically, Atlantis models include temperature and salinity forcing (@tbl-hydrodynamic-structure), but also pH, oxygen and other tracers set in the *initial_conditions.nc* can be forced. Such forcing is done if calculations of tracer concentrations done in Atlantis are deemed to be of insufficient accuracy and better information is available from more specialised models or observations (see [tracer forcing](https://confluence.csiro.au/display/Atlantis/2013/07/10/Read+in+forcing+data+for+tracers) on the wiki)<br><br>The number and names of all tracer forcing files must be listed in the *force.prm* parameters [nforceTracers]{style="color: orange;"}* and [tracerNames]{style="color: orange;"}\*, eg:<br><br>[nforceTracers]{style="color: orange;"} 2<br><br>[tracerNames]{style="color: orange;"} 2<br><br>Oxygen Light<br><br>This is followed by the actual files and parameter indicating whether the tracer values should be looped (rewound) or not.<br><br>[Oxygen_nFiles]{style="color: orange;"} 1<br><br>Oxygen_File0.name inputs/forcisets/oxygen.nc<br><br>[Oxygen_rewind]{style="color: orange;"} 1<br><br>[Oxygen_wgt_coefft]{style="color: orange;"} 0.7<br><br>The weighting coefficient is what weight to put on the values being read into Atlantis (using a weighted average of Atlantis value and value from the forcing file -- so a 1.0 means the read in value is used in place of the native Atlantis value, 0.0 means Atlantis value is used, a value between is a mix of the two)<br><br>(see [instructions](https://confluence.csiro.au/display/Atlantis/2013/07/10/Read+in+forcing+data+for+tracers) also on the wiki).<br><br>Note, that the names of tracers provided in the [tracerNames]{style="color: orange;"} MUST exactly match the names in the *initial_conditions.nc* file, so that Atlantis knows which tracers to overwrite.<br><br>**NOTE! Forcing of tracers, especially those containing nitrogen, should be done with care, as it can easily affect the conservation of mass in the model** |
-
-| **Forcing species distributions**<br><br>[use_move_entries]{style="color: orange;"} 1 | To change the distribution of species (for movement) you need to set the flag and then provide the following information for each group you wish to force (this example has two groups, FXX and FYY, and 2 stages)<br><br>[nforceMoveGroups]{style="color: orange;"} 4<br><br>[MoveGroupCodes]{style="color: orange;"} 4<br><br>FXX_stage_0<br><br>FXX_stage_1<br><br>FYY_stage_0<br><br>FYY_stage_1<br><br>Also list the distribution nc files - 1 file per "MoveGroupCode"<br><br>[FXX_stage_0_File.name]{style="color: orange;"} DistribFilename1.nc<br><br>[FXX_stage_1_File.name]{style="color: orange;"} DistribFilename2.nc<br><br>[FYY_stage_0_File.name]{style="color: orange;"} DistribFilename3.nc<br><br>[FYY_stage_1_File.name]{style="color: orange;"} DistribFilename4.nc<br><br>You must also provide the starting time for using the forcing (so it does not have to start on day 0 of the model simulation)<br><br>[FXX_stage_0_tstart]{style="color: orange;"} 0<br><br>[FXX_stage_1_tstart]{style="color: orange;"} 0<br><br>[FYY_stage_0_tstart]{style="color: orange;"} 0<br><br>[FYY_stage_1_tstart]{style="color: orange;"} 0<br><br>The format of the nc files and other relevant information is available in the section *Forcing the model distributions with species distribution models*. |
+| **Forcing species distributions**<br><br>[use_move_entries]{style="color: orange;"} 1 | To change the distribution of species (for movement) you need to set the flag and then provide the following information for each group you wish to force (this example has two groups, FXX and FYY, and 2 stages)<br><br>[nforceMoveGroups]{style="color: orange;"} 4<br><br>[MoveGroupCodes]{style="color: orange;"} 4<br>FXX_stage_0<br>FXX_stage_1<br>FYY_stage_0<br>FYY_stage_1<br><br>Also list the distribution nc files - 1 file per "MoveGroupCode"<br>[FXX_stage_0_File.name]{style="color: orange;"} DistribFilename1.nc<br>[FXX_stage_1_File.name]{style="color: orange;"} DistribFilename2.nc<br>[FYY_stage_0_File.name]{style="color: orange;"} DistribFilename3.nc<br>[FYY_stage_1_File.name]{style="color: orange;"} DistribFilename4.nc<br><br>You must also provide the starting time for using the forcing (so it does not have to start on day 0 of the model simulation)<br>[FXX_stage_0_tstart]{style="color: orange;"} 0<br>[FXX_stage_1_tstart]{style="color: orange;"} 0<br>[FYY_stage_0_tstart]{style="color: orange;"} 0<br>[FYY_stage_1_tstart]{style="color: orange;"} 0<br><br>The format of the nc files and other relevant information is available in the section *Forcing the model distributions with species distribution models*. |
 
 **VI. Do final corrections and scaling**    
 
@@ -282,13 +285,13 @@ The exploration of vertical and horizontal water fluxes is strongly recommended,
 
 New functionality is added to Atlantis almost every month. At the time of writing of this manual (April 2016) three significant new features were being tested: land, ice and contaminants. They are described here briefly, but the users are advised to check Atlantis wiki for further developments and instructions.
 
-### Land* {#sec-land}
+### Land {#sec-land}
 
 It is now possible to include [land](https://atlantis-ecosystem-model.github.io/atlantis-wiki/land-in-atlantis.html) in Atlantis. The key reason to include this functionality is to allow explicit modelling of the movement of nutrients, organisms and human activity between land and water (groups can only make this transition if they are marked as being able to live on land and in the water in the *functional_groups.csv* file). It also allows for the future development of Atlantis into an integrated water-land model (so you can model land organisms). Currently this may be useful for shallow water areas, harbours and estuaries that have a lot of islands.
 
 The optional land model is turned on by activating the flag [flagAllowLand]{style="color: orange;"} in the *run.prm* file. Land boxes are set up in the BGM file as having positive [botz]{style="color: orange;"} value. Land occupies water column layer 0 (bottom layer) and processes on land boxes are modelled in two-dimensional space, just like those for epibenthos. To obtain the total biomass, tracer values on land boxes are not multiplied by depth. It is also possible to include specific terrestrial tracers, by setting their [bmtype]{style="color: orange;"} = \"terrestrial\" in the *initial_conditions.nc* file. The values for these tracers would be stored in a different place than those for the water column tracers.
 
-### Ice* {#sec-ice}
+### Ice {#sec-ice}
 
 Atlantis applications for the northernmost and southernmost domains (Barents Sea, Baltic Sea, Antarctica and others) have prompted the development of an explicit [ice](https://atlantis-ecosystem-model.github.io/atlantis-wiki/ice-in-atlantis.html) model.
 
@@ -296,7 +299,7 @@ The optional ice model is activated when the *initial_conditions.nc* file has th
 
 The [key characteristics of ice are described](https://atlantis-ecosystem-model.github.io/atlantis-wiki/changed-to-prm-files.html) in the wiki along with the additional parameters added to the *physics.prm* - these include maximum and minimum depth of an ice layer ([maxicedz]{style="color: orange;"} and [minicedz]{style="color: orange;"}), the number of ice classes, presence of slush, and specification of the ice model to use. The biological [groups](https://atlantis-ecosystem-model.github.io/atlantis-wiki/ice-groups.html) that are allowed in the ice include bacteria, diatoms, mixotrophs and small zooplankton. Activating the ice model requires a number of [new parameters in the *biology.prm*](https://atlantis-ecosystem-model.github.io/atlantis-wiki/changed-to-prm-files.html) file too. These describe how to handle albedo, light attenuation, the depth consumers can dig into ice (the ice penetration depth of predators).
 
-### Contaminants* 
+### Contaminants
 
 It is now possible to track an unlimited number of [contaminants](https://atlantis-ecosystem-model.github.io/atlantis-wiki/contaminants-in-atlantis.html) through the food chain. However, each contaminant requires specific new tracers tracking contaminant concentrations in each functional group (and each age group of fully age structured functional groups), which means significant changes to the input files and longer simulation run times. Each contaminant in the *initial_conditions.nc* is setup as a separate tracer (e.g. Arsenic). Because contaminants are tracked through all functional groups, a new contaminant tracer must be added for all tracked functional groups, e.g. Sed_Bact_Arsenic, Zoo_Arsenic, Cod1_Arsenic, Cod2_Arsenic, Cod3_Arsenic and so on.
 
@@ -390,7 +393,7 @@ data:
 }
 ```
 
-To identify the forcing file enter the following into the force.prm file:
+To identify the forcing file enter the following into the *force.prm* file:
 
 ```
 [use_force_tracers]{style="color: orange;"} 1
@@ -528,7 +531,7 @@ It is recommended that while developing the model, users conduct a range of simu
 
 In some instances you may want to track whether the transports are matching current patterns. To use it, update the code and
 
-1.  In run.prm add
+1.  In *run.prm* add
 
 flagpassivetracer     1    \# Flag indicating whether a passive tracer is needed for tracking tranpsorts or not (1 = yes, 0 = no)
 

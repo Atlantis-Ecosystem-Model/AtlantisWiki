@@ -50,8 +50,9 @@ Below is an example of a BGM file with explanations of parameters given after #.
 ```
 # box model geometry based on VMPA_setas_20051216.bgm
 
-# conversion from lat/long space to x-y space of the model domain. Required for mapping and light level
-# calculations (when lim_sum_hours is turned on in the biology.prm file). Definition is based on GIS standards
+# conversion from lat/long space to x-y space of the model domain. Required for mapping and 
+# light level calculations (when lim_sum_hours is turned on in the biology.prm file). Definition 
+# is based on GIS standards
 # The parameters should be space separated
 projection proj=aea lat_1=-18 lat_2=-36 lat_0=0 lon_0=134 x_0=3000000 y_0=6000000 ellps=GRS80 towgs84=0,0,0,0,0,0,0 units=m no_defs
 
@@ -64,10 +65,11 @@ nface 22
 # Maximum bottom depth (m) of the model domain (not the real ecosystem)
 maxwcbotz -5000
 
-# vertices of the polygon defining the boundary of the dynamic model space throughout the total geographical
-# extent of the model, creating one big polygon. They are ordered sequentially in either clockwise or
-# anticlockwise direction (it doesn't matter which so long as it remains consistent) in (x,y) format, where x,y is
-# in projected (linear transformation) of longitude and latitude
+# vertices of the polygon defining the boundary of the dynamic model space throughout the total 
+# geographical extent of the model, creating one big polygon. They are ordered sequentially in 
+# either clockwise or anticlockwise direction (it doesn't matter which so long as it remains 
+# consistent) in (x,y) format, where x,y is in projected (linear transformation) of longitude 
+# and latitude
 bnd_vert 4227984.241 1449270.8
 bnd_vert 4279136.436 1451037.995
 bnd_vert 4684173.263 1362498.346

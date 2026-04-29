@@ -56,11 +56,11 @@ The stock assessment options are not further described in the manual. For furthe
 
 Stock adaptive and total allowable catch (TAC) based management is set through [flagmanage]{style="color: orange;"} flags. These settings limit, or completely stop, the fishing effort if stocks fall below a set threshold (stock adaptive management) or if the TAC has been reached. To allow for this management for each fishery select the specific management option with the [YYY_flagmanage]{style="color: orange;"} parameter.
 
-### No management on effort or catch applied* {#sec-no-management-effort-catch}
+### No management on effort or catch applied {#sec-no-management-effort-catch}
 
 When [YYY_flagmanage]{style="color: orange;"} = 0, the fishery will not be affected by stock size related management actions or TACs. The effort of the fishery is set based on effortmodel options only (or imposed catch or user defined fishing mortality) and will stay in place regardless of the stock abundance or quotas.
 
-### Adaptive management based on reference limits of stock biomass* {#sec-adaptive-management-stock-biomass}
+### Adaptive management based on reference limits of stock biomass {#sec-adaptive-management-stock-biomass}
 
 When [YYY_flagmanage]{style="color: orange;"} = 1, fishing effort is controlled by the stock abundance. The effort reduction is triggered when the stock falls below the level given by the [FC_threshold_XXX]{style="color: orange;"} -- a proportion of the "virgin" biomass. This virgin biomass can be either the biomass at the start of the run or after a burn-in period. To setup the burn-in period set the global [flagreinitpop]{style="color: orange;"}=1 and give the day (in the days of simulation run) which should be used as the point in the simulation to define virgin biomass in the [reinit_pop_day]{style="color: orange;"} parameter. The burn-in period might be useful if biomasses fluctuate a lot during the early years of the simulation and are not useful as a stock management reference point.
 
@@ -90,6 +90,7 @@ Forced changes are implemented in the same way as other forced changes in Atlant
 Dynamic changes are applied if users have at least one of the three available stock assessment versions applied. This means that Atlantis will try to simulate the real-world situation where stocks are assessed at set time intervals (typically annually) and the TACs are updated dynamically based on the stock status, set stock biomass targets and harvest control rules (see Note! @sec-mgmt-intro)
 :::
 
+::: {.scroll-frozen style="overflow-x: auto;"}
 | | **Species level TAC allocation** | | | **Spatial TAC allocation** | |
 |:---|:---:|:---:|:---:|:---:|:---:|
 | *[YYY_flagmanage]{style="color: orange;"} value and its "name" in the code* | *TAC: one species* | *TAC: companion species* | *TAC: basket quota* | *Global TAC* | *Regional TAC* |
@@ -100,12 +101,12 @@ Dynamic changes are applied if users have at least one of the three available st
 | 6 coBTAC_mgmt | | X | X | X | |
 | 7 RbasketTAC_mgmt | | | X | | X |
 | 8 coBRTAC_mgmt | | X | X | | X |
-
 : Options for the [YYY_flagmanage]{style="color: orange;"} parameter. {#tbl-flagmanage-options tbl-colwidths=[30,14,14,14,14,14]}
+:::
 
 The [YYY_flagmanage]{style="color: orange;"}=10 sets the USA-style management that was applied in the early 2000s (see Kaplan et al. 2013 for an example study). It involved cumulative trip limits based off TACs (often regional), and once the TAC was exhausted then spatial management actions were triggered. This system was deemed to be complicated and was replaced with transferable quotas in 2011. The option is not described here in further detail as it is specific to the historical fisheries management of the West Coast of the US. If its use is desired for historical hindcasts consult Kaplan et al. 2013 for explanations.
 
-### Species level TAC allocation* {#sec-species-tac}
+### Species level TAC allocation {#sec-species-tac}
 
 The TAC for each species XXX and fishery is given in the [TAC_XXX]{style="color: orange;"} array, which must have as many values as there are fisheries. However, the [TAC_XXX]{style="color: orange;"} parameter can be used differently depending on whether a species is managed through a single or multiple species TAC.
 
@@ -139,13 +140,18 @@ This approach is used in situations where catch of one species result in bycatch
 6)  For each species set their individual number of companion species [max_co_sp_XXX]{style="color: orange;"}. This needs to be less than or equal to [K_max_co_sp]{style="color: orange;"}. This controls the loops for the individual species so as to maximise speed of execution.
 7)  For each target species give the ID numbers (in the *functional_groups.csv* order) of the companion species in the [co_sp_XXX]{style="color: orange;"} vector. This parameter can be seen as a representation of which species usually school or occur together and hence will be caught together (fisheries data is sometimes available on this, either from catch composition records or observers). These parameters are vectors and must have as many values as the number given by the [max_co_sp_XXX]{style="color: orange;"} parameter (it will actually tell you that it needs [K_max_co_sp]{style="color: orange;"} entries, but it only uses the first [max_co_sp_XXX]{style="color: orange;"}. If you want to play it safe enter [K_max_co_sp]{style="color: orange;"} and if [max_co_sp_XXX]{style="color: orange;"} is less than [K_max_co_sp]{style="color: orange;"} fill up the spare entries either with -1 or a number larger than the ID of the companion species with the largest ID. So for example, if you only had one companion species occurs for species XXX and [K_max_co_sp]{style="color: orange;"} is set to 2, then the second value in the parameter [co_sp_XXX]{style="color: orange;"} should be set to -1, e.g. 
 
-[co_sp_XXX]{style="color: orange;"} 2 
-2 -1 
+::: {.callout-note}
+[co_sp_XXX]{style="color: orange;"} `2`  
+`2 -1`
+:::
+
 
 shows that only species ID 2 is caught together with species XXX. Alternatively, if across all the species the highest ID of any companion species was (say) 46. Then you could put 
 
-[co_sp_XXX]{style="color: orange;"} 2
-2 48 
+::: {.callout-note}
+[co_sp_XXX]{style="color: orange;"} `2`  
+`2 48`
+:::
 
 Either of these case will be treated in the same way -- the second entry will never execute on the code, only the companion species with ID 2 will be processed. 
 
@@ -190,7 +196,7 @@ Irrespective of how the basket is made up, if the cumulative catch of shark (i.e
 9)  Make sure that the parameters above are consistent for all basket species, as currently Atlantis does not have internal checks for this. This means that if species A is in a basket with species B and C, the parameters for all three species should show that they are in the basket quota with each other.
 :::
 
-### Spatial TAC allocation: global or regional* {#sec-spatial-tac}
+### Spatial TAC allocation: global or regional {#sec-spatial-tac}
 
 TAC based management also allows users to either use a basic global TAC applied to the entire model domain (e.g. [YYY_flagmanage]{style="color: orange;"}=2, @tbl-flagmanage-options), or use regional TAC management (e.g. [YYY_flagmanage]{style="color: orange;"}=4, @tbl-flagmanage-options). The **regions can be defined based on fisheries stocks** identified in the biology.prm file **or based on management areas** (see NOTE! below). Parameter [manage_reg]{style="color: orange;"} identifies whether regional fisheries management is done based on stocks ([manage_reg]{style="color: orange;"} =0) or based on regions ([manage_reg]{style="color: orange;"} =1).
 
@@ -200,9 +206,10 @@ If **regions are defined by stocks,** then allocation of the TAC among stocks is
 
 Alternatively, if TACs are based on **management areas**, then users must identify whether species XXX should be managed by regional quotas in the parameter [regionalSPXXX]{style="color: orange;"} (where a value of 1 means regional management is in place). Then the TACs (in tons per year) for each region are given in the [RegTAC_XXX]{style="color: orange;"} parameter, which must have as many value as there are regions or management areas. Note, even if some regions are managed through a TAC, it does not mean that ALL regions must participate in the TAC management. Such situations exist in real life, where for example, different regions belong to different jurisdictions (countries or states). To allow for this situation, regions that do not have a quota should have a TAC value of 10^12^ in the [RegTAC_XXX]{style="color: orange;"} parameter. For example, for a species that is managed through 4 regions the parameter may look like:
 
-[RegTAC_XXX]{style="color: orange;"}
-
-500 1000 5000 10E+12
+::: {.callout-note}
+[RegTAC_XXX]{style="color: orange;"}  
+`500 1000 5000 10E+12`
+:::
 
 When regional management is in place, the TAC limit is assessed for each region separately. If the TAC in a region is exceeded, then any catch of species XXX taken in that region is discarded (remember, the discards can survive, and this setting will affect the final fishing mortality). However, the fishery itself is not closed at this point. The fishery is only closed when the overall TAC is exceeded and a **fishery is considered as over TAC only when it exceeds TAC in ALL regions** for the number of species given in the [YYY_max_num_sp]{style="color: orange;"} parameter. If fishing effort is distributed proportionally to biomass and relative box biomass of the species does not change through time, then regional TACs will lead to the same catch as the global TAC. However, this is not usually the case, which means that applying regional TACs can lead to higher fishing mortality than applying a global TAC depending on species and fleet movements. For instance, if the fishery is required to land all the catch rather than discard anything ([YYY_landallTAC_sp]{style="color: orange;"}=1), the landings for some regions will usually exceed that regional TACs.
 
@@ -226,7 +233,7 @@ Remember that even if one defines separate stocks, they can still be managed as 
 The management regions are defined in the *biology.prm* in [regID]{style="color: orange;"} file where one box can be assigned only to one region. The management region can represent a separate TAC based region or other management unit. The biomass per group per region is output in the *BiomReg.txt* file.
 :::
 
-### Shared total allowable catch allocation across fisheries* {#sec-shared-tac}
+### Shared total allowable catch allocation across fisheries {#sec-shared-tac}
 
 The [TAC_XXX]{style="color: orange;"} parameter is given for each species and fishery combination, and usually each fishery is only affected by its own TAC. However, it is possible to set up a shared TAC for several (or all) fisheries using [flagTACparticipate_YYY]{style="color: orange;"}=1 parameter. In that case only one common TAC pool is allowed, so a fishery can either participate in this pool or have its own independent TAC ([flagTACparticipate_YYY]{style="color: orange;"}=0). The shared TAC is independent of the [YYY_flagmanage]{style="color: orange;"} options discussed above.
 
@@ -239,7 +246,7 @@ A hypothetical example of three fisheries participating in a common TAC pool (@t
 | TAC of fishery III | - | - | 1000 | 1000 | - | - | - | 1 | No |
 | **Total TAC (sum)** | **300** | **200** | **1000** | **1100** | **250** | **150** | **100** | | |
 | *Catch* | *320* | *180* | *1000* | *1000* | *200* | *160* | *20* | | |
-| Status | ⚠ | | | | | ⚠ | | | |
+| Status | ⚠ | |⚠ | | | ⚠ | | | |
 
 : An example of how shared TACs among three fisheries might affect catch and fishery closures. Species marked with ⚠ are those for which catch exceeded total TAC. The three fisheries target different species but all participate in a shared common pool TAC. {#tbl-shared-tac-example tbl-colwidths=[18,8,8,8,8,8,8,8,13,13]}
 
@@ -253,17 +260,17 @@ The multi-year TAC can be applied in two cases:
 
 2)  If some form of assessment model is used (see Note! @sec-mgmt-intro) TACs are dynamic. In this case the multi year TAC option with [bulkTAC]{style="color: orange;"}=0 means that TACs are annual, as usual, but new assessments and new TACs are only done every few years, with the frequency given in the [tac_resetperiodYYY]{style="color: orange;"} parameter.
 
-### Trading closure after exceeding TAC with MPAs* {#sec-trading-tac-MPAs}
+### Trading closure after exceeding TAC with MPAs {#sec-trading-tac-MPAs}
 
 When some form of assessment is used (see Note! @sec-mgmt-intro) and TACs are dynamic, then a fishery might be given an option of imposed MPAs instead of reduction in TACs. This is based on the real-life situation where fishers prefer an imposition of MPAs instead of a reduction in TACs. To simulate this option in Atlantis, one must have dynamic TACs (and some form of stock assessment included) and set parameter [flagTradeTACvsMPA]{style="color: orange;"}=1. Further, to set up this option properly it is important to check that the correct options for [YYY_flagmpa]{style="color: orange;"} have been selected (see @sec-spatial-MPAs).
 
-### Temporal changes in TAC* {#sec-temporal-tac-changes}
+### Temporal changes in TAC {#sec-temporal-tac-changes}
 
 As with other harvest and management parameters, the user can allow for temporal changes in TACs. This can be done in a standard forced way ([YYY_TACchange]{style="color: orange;"}=2) or dynamically through the Assessment or pseudoassessment submodel ([YYY_TACchange]{style="color: orange;"}=1). The dynamic TAC change through the Assessment submodel aims to simulate real world assessment and decision making processes, where TACs are updated based on the stock assessments. The Assessment submodel is currently not covered in this version of the manual. Users are currently advised to consult the wiki, the Atlantis code and Atlantis developers for further details -- as assessment type, parameters, frequency of data collection and meta-rules around TAC setting (e.g. degree of political lobbying, buffers imposed at various decision steps) must also be set.
 
 When changes in TAC are forced, the changes are implemented in the same way as with other temporal changes in a parameter. [XXX_TAC_changes]{style="color: orange;"} indicates the number of TAC changes for each fishery and species XXX. The start day of each change is given in [TACchange_start_XXX]{style="color: orange;"}, the period over which the change occurs is given in [TACchange_period_XXX]{style="color: orange;"} and the multiplier for the TAC change to be achieved by the end of the change period is given in [TACchange_mult_XXX]{style="color: orange;"}. **At the end of the change period, the new TAC scalar applies for the rest of the simulation (or until another change takes place).**
 
-### Frame based TAC* {#sec-frame-tac}
+### Frame based TAC {#sec-frame-tac}
 
 Some species are managed using biomass thresholds, if biomass is above a specific level then fishing is allowed. To represent that in Atlantis for fishery YYY:
 

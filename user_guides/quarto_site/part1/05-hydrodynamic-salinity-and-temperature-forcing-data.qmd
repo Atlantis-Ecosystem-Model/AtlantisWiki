@@ -6,29 +6,29 @@ Like most other ecosystem models, Atlantis does not calculate water fluxes (curr
 
 Oceanographic models simulate processes on their native grid, which is typically of much higher spatial resolution than Atlantis. The temporal scale in oceanographic models is also often in the range of seconds rather than the 6h, 12h or 24h used in Atlantis. Further, most oceanographic models use the same number of water column layers regardless of total depth (called sigma layers) (@fig-sigma-layers). This means that the depth of a layer in oceanographic models is very different in shallow and deep waters, while in Atlantis water layer depths remain relatively stable (with small variations due to tides). This means that water fluxes and values of all forced parameters must be interpolated onto Atlantis model polygons and cells.
 
+::: {.scroll-frozen style="overflow-x: auto;"}
 |  | SE Australia | Eastern Tasmania | Port Phillip Bay | Western-port | NEUS | California current | Gulf of California |
 |--|--------------|------------------|------------------|--------------|------|--------------------|--------------------|
 | **Key oceanographic effects** | Boundary currents | Boundary current, upwelling | River input and slow flushing | River input and flushing | Gulf Stream, Boundary current, Georges Bank | Boundary current, upwelling, El Nino | Colorado River input, tidal mixing / stratification |
 | **Number of boxes** | 71 | 11 | 60 | 27 | 30 | 62 | 66 |
 | **Max number of water column layers** | 5 | 6 | 1 | 1 | 4 | 7 | 6 |
 | **Ocean boundary depth** | 2400m | 2400m | 45m | 30m | 200m | 1200m | 2025m |
-| **Hydrodynamic model used to supply flows** | OFAM-Bluelink¹ | OFAM-Bluelink | 3D hydro model² | Empirically defined | HYCOM³ | ROMS⁴ | ROMS⁵ |
+| **Hydrodynamic model used to supply flows** | OFAM-Bluelink[^oke] | OFAM-Bluelink | 3D hydro model[^walker] | Empirically defined | HYCOM[^hycom] | ROMS[^romsh] | ROMS[^romsp] |
 | **Hydrodynamic time series length (years)** | 10 | 10 | 5 | 1 | 1 | 7 | 23 |
 | **Transport model variables** | Advect, temp, salt | Advect, temp, salt | Advect | Advect | Advect, temp, salt | Advect, temp, salt | Advect, temp, salt |
 | **Environmental drivers** | Inshore sediment change, temp, pH, nutrients, river flow | | Nutrients | Nutrients | Nutrients | Temp, nutrients | Temp, nutrients, river flow |
-| **Climate change** | Yes | No | No | No | No | Yes (impl.)⁶ | No |
+| **Climate change** | Yes | No | No | No | No | Yes (impl.)[^implicit] | No |
 | **Explicit larval advection** | No | No | No | No | No | No | Yes |
-
 : Hydrodynamic structure of some example Atlantis models. Advect = advection, temp = temperature, salt = salinity. {#tbl-hydrodynamic-structure}
+::: 
 
-**Notes:**
 
-- ¹ Oke et al 2005
-- ² Walker 1997a, 1997b
-- ³ hycom.rsmas.miami.edu/las/
-- ⁴ ROMS Hermann — NOAA PMEL/JISAO, Seattle
-- ⁵ ROMS Pares-Sierra — Centro de Investigación Científica y de Educación Superior de Ensenada
-- ⁶ Implicit handling of climate change means that extra mortality terms (related to acidification) or forced changes (e.g. for temperature) are used rather than flows from downscaled global circulation models.
+[^oke]:Oke et al 2005
+[^walker]: Walker 1997a, 1997b
+[^hycom]: hycom.rsmas.miami.edu/las/
+[^romsh]: ROMS Hermann — NOAA PMEL/JISAO, Seattle
+[^romsp]: ROMS Pares-Sierra — Centro de Investigación Científica y de Educación Superior de Ensenada
+[^implicit]: Implicit handling of climate change means that extra mortality terms (related to acidification) or forced changes (e.g. for temperature) are used rather than flows from downscaled global circulation models.
 
 ![An example of oceanographic sigma depth layers (grey lines) with an overlay of Atlantis spatial structure. Figure by Javier Porobic Garate.](media/image26.png){#fig-sigma-layers width=4in height=6in}
 
