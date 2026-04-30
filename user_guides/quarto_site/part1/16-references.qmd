@@ -1,6 +1,6 @@
-# Refences {#sec-part1-refs}
+# References {#sec-part1-refs}
 
-Abrams, Peter A. \"The Fallacies of\" Ratio‐Dependent\" Predation.\" Ecology 75, no. 6 (1994): 1842-1850.
+Abrams, Peter A. "The Fallacies of 'Ratio-Dependent' Predation." Ecology 75, no. 6 (1994): 1842-1850.
 
 Ainsworth, C.H. and Walters, C.J. (2015) Ten common mistakes made in Ecopath with Ecosim modelling. Ecological Modelling 308, 14--17.
 
@@ -8,18 +8,18 @@ Ainsworth, C.H., Morzaria-Luna, H., Kaplan, I.C., Levin, P.S., Fulton, E.A., Cud
 
 Ainsworth, C.H., Morzaria-Luna, H.N., Kaplan, I.C., Levin, P.S., and Fulton, E.A. 2012b. Full compliance with harvest regulations yields ecological benefits: Northern Gulf of California case study. J. Appl. Ecol. 49(1): 63--72.
 
-Ainsworth, C.H., Schirripa, M.J. and Morzaria Luna, H. (2015) An Atlantis Ecosystem Model for the Gulf of Mexico supporting Integrated Ecosystem Assessment. NOAA Technical Memorandum NMFS-SEFSC-676. Miami, USA.Available from http://dx.doi.org/10.7289/V5X63JVH \[accessed 21 December 2015\].
+Ainsworth, C.H., Schirripa, M.J. and Morzaria Luna, H. (2015) An Atlantis Ecosystem Model for the Gulf of Mexico supporting Integrated Ecosystem Assessment. NOAA Technical Memorandum NMFS-SEFSC-676. Miami, USA. Available from <https://doi.org/10.7289/V5X63JVH> [accessed 21 December 2015].
 
 Alin, S.R., Feely, R.A., Dickson, A., Hernandez-Ayon, J.M., Juranek, L.W., Ohman, M.D. and Goericke, R. (in revision) Robust empirical relationships for estimating the carbonate system in the southern California Current System using hydrographic data and application to CalCOFI hydrographic cruise data (2005--2011). Journal of Geophysical Research.
 
 Arditi, R., & Ginzburg, L. R. (1989). Coupling in predator-prey dynamics: ratio-dependence. Journal of theoretical biology, 139(3), 311-326.
 
-Audzijonyte, A., Kuparinen A., Gorton R., Fulton E.A. (2013) Ecological consequences of body size decline in harvested fish species: positive feedback loops in trophic interactions amplify human impact. Biology Letters, 9(2):1103
+Audzijonyte, A., Kuparinen A., Gorton R., Fulton E.A. (2013) Ecological consequences of body size decline in harvested fish species: positive feedback loops in trophic interactions amplify human impact. Biology Letters, 9(2):20121103
 
 Audzijonyte, A., Kuparinen, A., Fulton, E.A. (2014) Ecosystem effects of contemporary life-history changes are comparable to those of fishing. Marine Ecology Progress Series 495: 219-231
 
-Aydin, K., Gaichas, S., Ortiz, I., Kinzey, D. and Friday, N. (2007) A Comparison of the Bering Sea, Gulf of Alaska, and Aleutian Islands Large Marine Ecosystems Through Food Web Modeling.
-
+Aydin, K.Y. & Gaichas, Sarah & Ortiz, Ivonne & Kinzey, Douglas & Friday, N. (2007). A Comparison of the Bering Sea, Gulf of Alaska, and Aleutian Islands Large Marine Ecosystems Through Food Web Modeling. NOAA Tech Memo. 178. 
+## Jacob stop
 Behrenfeld, M.J. and Falkowski, P.G. (1997a) A consumer's guide to phytoplankton primary productivity models. Limnology and Oceanography 42, 1479--1491.
 
 Behrenfeld, M.J. and Falkowski, P.G. (1997b) Photosynthetic rates derived from satellite-based chlorophyll concentration. Limnology and oceanography 42, 1--20.

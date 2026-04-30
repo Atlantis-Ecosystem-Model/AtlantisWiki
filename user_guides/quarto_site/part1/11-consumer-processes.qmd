@@ -1315,7 +1315,7 @@ Rc=Rc\*[intersp_depend_scale]{style="color: orange;"}/biomassY
 If several stocks per species are used (identified with [NumStocks]{style="color: orange;"} parameter in the *functional_group.csv* file) the procedures described above calculate recruitment for each stock separately, using the biomass of that stock rather than the total species biomass. The user also has an option to use stock specific recruitment scalars [recSTOCK_XXX]{style="color: orange;"} to upscale or downscale recruitment in different stocks.
 :::
 
-### Environmental, habitat and external recruitment scalar {#sec-envio-habitat-recruitment}
+### Environmental, habitat, and external recruitment scalar {#sec-enviro-habitat-recruitment}
 
 The recruitment value *Rc* calculated above can be further modified by habitat availability, biomass of other species, environmental conditions, and additional recruit supplementing (stocking). All of these factors are optional and will be applied as multipliers on the base recruitment. Most of them affect recruitment in a negative way. When several scalars are applied (pH, temperature, contaminants), the user must be careful about the multiplicative nature of all these scalars, as they can drastically reduce recruitment.
 

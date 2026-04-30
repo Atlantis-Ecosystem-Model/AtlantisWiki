@@ -125,7 +125,7 @@ Examples of currently used obligatory and optional physics and biogeochemical tr
 
 The routine *physics()* defined in **atphysics.c** is the main physics routine, run at each timestep of the simulation. It is described below in the order of execution. The first column lists the routines, the flags to activate them, and shows which flags are active in the example SETas model. The second column describes routines and parameters. Remember that (as elsewhere in this manual) routines are listed in *italics() and* files containing these routines are bold and **[underlined]{.underline}** and libraries are **bold**. Parameter names from *physics.prm* are given [in orange]{style="color: orange;"} and those from *force.prm* file are also marked with an asterisk \*.
 
-**I. Execute explicit optional physics processes.**
+### Execute explicit optional physics processes
 
 ::: {.table-responsive}
 | **Process** | **Description** |
@@ -138,7 +138,7 @@ The routine *physics()* defined in **atphysics.c** is the main physics routine, 
 | **Settling of particulate tracers from the water column** — *settleBMwc()* in **atsettle.c** — [settling]{style="color: orange;"} — 1 | Calculates settling (**downward or upward!**) of **particulate** tracers from the water column depending on their settling velocity [:svel]{style="color: orange;"} parameter in *initial_conditions.nc*. **Only tracers with non-zero [:svel]{style="color: orange;"} and [:psize]{style="color: orange;"} will be acted upon**. This typically includes particulate biogeochemical tracers (Detrital Si) and some phyto- and zooplankton. If settling velocity is positive, particles are buoyant and rise up through the water column (done in the *advect_up()* routine). If settling velocity is negative, particles sink towards the bottom (done in the *advect_down()* routine). The flux of tracers from the lowest water column layer is added to the uppermost sediment layer if the tracer is allowed to exist in the sediments ([:insed]{style="color: orange;"} parameter in *initial_conditions.nc*). The deposition to sediments is done in the *deposit()* routine in **atdeposition.c**. The deposition depends on the sediment's and tracer's porosity. The porosity of the tracers is calculated in the *calc_por()* routine in **atsedprops.c** using the [:psize]{style="color: orange;"} (particle size) and [:b_dens]{style="color: orange;"} (bulk density) parameters from *initial_conditions.nc*. Sediment porosity is set as a "phys" variable in *initial_conditions.nc*. However, if the settling routine is turned on sediment porosity is calculated dynamically through the simulation in the *deposit()* routine, as a ratio of the new water volume in the sediment after deposition and the total sediment volume after deposition. If a particulate tracer is not allowed to exist in the sediment ([:insed]{style="color: orange;"} is 0 in *initial_conditions.nc*), it is retained in the lowest water column layer. The *deposit()* routine uses the [maxseddz]{style="color: orange;"} and [minseddz]{style="color: orange;"} parameters to define the maximum and minimum depth of one sediment layer. If the [maxseddz]{style="color: orange;"} is exceeded everything extra will stay in the bottom water layer and no more deposition will occur |
 :::
 
-**II. Execute optional biological sediment processes -- bioirrigation and bioturbation:** 
+### Execute optional biological sediment processes; bioirrigation and bioturbation {#sec-bioirrig-bioturb}
 
 The bioirrigation and bioturbation routines simulate exchange of dissolved and particulate tracers respectively between sediment layers and between the bottom water column layer and the sediment. The baseline bioirrigation and bioturbation routines have been adopted from the PPBIM. However, Atlantis now also applies a multiplier to the baseline rate, which depends on the biomass of the living organisms in the sediment layers. The multiplier is calculated in the Biology submodel and will be described in the relevant chapter. 
 
@@ -161,7 +161,7 @@ Bioturbation and bioirrigation are simulated as exchange in thin water and sedim
 | **Bioturbation: movement of particulate tracers throughout the sediment layers and into the water column due to biological activity. This routine works only if more than one sediment layer is present** — *bioturb()* in **[atbioturb.c]{.underline}** — [bioturbation]{style="color: orange;"} — 1 | Only **particulate** tracers that are not macrobenthos and are allowed in the sediments, i.e. sediment grains, settled phytoplankton, microphytobenthos, meiobenthos, detritus and sediment bacteria, can be acted upon by bioturbation. The *bioturb()* routine includes three subroutines (like the *bioirrig()* routine described above): *partic_diff()* implements particulate tracer diffusion within the sediments and is implemented in the same way as diffusion of dissolved tracers in the *dissol_diff()* subroutine described above. The diffusion rate is calculated as a product of: - the diffusion constant [bt_partic_kz]{style="color: orange;"} (m^2^s^-1^ per animal per m^2^); - density of biological activity; - scalar of biological activity as a function of depth (which depends on the profile described in the [biosedprofile]{style="color: orange;"}); - scalar of bioturbation enhancement. *expul()* applies expulsion of particulate tracers from sediments into the bottom water column. Like above, its constant is set by the [bt_expulsion]{style="color: orange;"} parameter (ms^-1^ per animal per m^2^), which is modified by the biomass density, scaling by depth and the bioturbation enhancement scalar. *mix_in()* applies exchange of particulate matter across sediment layers. The exchange constant is set in [bt_exchange]{style="color: orange;"} (ms^-1^ per animal per m^2^) which is modified by biomass density, scaling by depth, and bioturbation enhancement scalar |
 :::
 
-**III. Execute optional routines to enhance horizontal and vertical diffusion and mixing (@sec-vert-horz-transport for why these routines may be needed):**  
+### Execute optional routines to enhance horizontal and vertical diffusion and mixing (@sec-vert-horz-transport for why these routines may be needed)
 
 | Process | Description |
 |---------|-------------|
@@ -172,7 +172,7 @@ Bioturbation and bioirrigation are simulated as exchange in thin water and sedim
 
 ![Illustration of optional physics routines described in detail above. Some boxes have two sediment layers. Vertical mixing can also be set as downwelling, but only one direction is possible in a given simulation.](media/image31.jpeg){#fig-physics-routines width=7.07in height=4.27in}
 
-**IV. Execute the main transport model** 
+### Execute the main transport model
 
 Although there is an option to turn the transport model off ([advect_diffusion]{style="color: orange;"} 0) this should **only be done for debugging purposes** as it **stops all water fluxes** in the model domain. Also note that if you turn off the transport model this will stop the t.hd timestep from incrementing. The timestep is the timestep from the hydro model. It is also used to read in data from the point source input files. So if you turn off the transport model the values read in from the point source files will always be the value corresponding to the first hydro timestep (the first time value in the first hydro forcing file). 
 
@@ -190,14 +190,14 @@ If [scale_transport]{style="color: orange;"} flag is set to 2, all transport is 
 |---------|-------------|
 | **Main (advective) transport model**<br><br>*transportBM()* in **attransport.c**<br><br>[advect_diffusion]{style="color: orange;"}<br><br>1 | This routine executes all forced water fluxes (moves water across cells) and calculates new concentrations of tracers.<br><br>Transport model also has a [cascade_flows]{style="color: orange;"} flag which executes transport among boxes with large differences in vertical layers. If [cascade_flows]{style="color: orange;"} is set to 0 the loop calculating transport will only go through the number of water columns in the existing box, if it is set to 1 it will go through the number of water columns in both of the exchanging boxes.<br><br>The *transportBM()* routine calculates new concentrations of tracers, including temperature, salinity and pH. These calculations are done separately in the *Properties_At_Depth()* routine in **atbiophysics.c** in the **atecology** library. The calculated values are then overwritten if temperature, salinity, pH or other forcing files are provided (see below). The temperature calculations use [baseline_temp]{style="color: orange;"} and [temp_amplitude]{style="color: orange;"} parameters and will be described in chapters dealing with Biology submodel. |
 
-**V. Read in temperature, salinity and other tracer forcing values and overwrite values calculated in the transport model** 
+### Read in temperature, salinity and other tracer forcing values and overwrite values calculated in the transport model
 
 | Process | Description |
 |---------|-------------|
 | **Read in forcing files for temperature, salinity, pH or other forced tracers and overwrite calculated values**<br><br>*tracerForcingBM()* in **attempsalt.c**<br><br>[use_tempfiles]{style="color: orange;"}\* 1<br><br>[use_saltfiles]{style="color: orange;"}\* 1<br><br>[use_pHfiles]{style="color: orange;"}\* 0<br><br>[use_force_tracers]{style="color: orange;"}\* 0 | The calculations of tracer values done in the *transportBM()* routine are overwritten if forced values are provided and appropriate flags activated in the *force.prm* file<br><br>Typically, Atlantis models include temperature and salinity forcing (@tbl-hydrodynamic-structure), but also pH, oxygen and other tracers set in the *initial_conditions.nc* can be forced. Such forcing is done if calculations of tracer concentrations done in Atlantis are deemed to be of insufficient accuracy and better information is available from more specialised models or observations (see [tracer forcing](https://confluence.csiro.au/display/Atlantis/2013/07/10/Read+in+forcing+data+for+tracers) on the wiki)<br><br>The number and names of all tracer forcing files must be listed in the *force.prm* parameters [nforceTracers]{style="color: orange;"}* and [tracerNames]{style="color: orange;"}\*, eg:<br><br>[nforceTracers]{style="color: orange;"} 2<br><br>[tracerNames]{style="color: orange;"} 2<br><br>Oxygen Light<br><br>This is followed by the actual files and parameter indicating whether the tracer values should be looped (rewound) or not.<br><br>[Oxygen_nFiles]{style="color: orange;"} 1<br><br>Oxygen_File0.name inputs/forcisets/oxygen.nc<br><br>[Oxygen_rewind]{style="color: orange;"} 1<br><br>[Oxygen_wgt_coefft]{style="color: orange;"} 0.7<br><br>The weighting coefficient is what weight to put on the values being read into Atlantis (using a weighted average of Atlantis value and value from the forcing file -- so a 1.0 means the read in value is used in place of the native Atlantis value, 0.0 means Atlantis value is used, a value between is a mix of the two)<br><br>(see [instructions](https://confluence.csiro.au/display/Atlantis/2013/07/10/Read+in+forcing+data+for+tracers) also on the wiki).<br><br>Note, that the names of tracers provided in the [tracerNames]{style="color: orange;"} MUST exactly match the names in the *initial_conditions.nc* file, so that Atlantis knows which tracers to overwrite.<br><br>**NOTE! Forcing of tracers, especially those containing nitrogen, should be done with care, as it can easily affect the conservation of mass in the model** |
 | **Forcing species distributions**<br><br>[use_move_entries]{style="color: orange;"} 1 | To change the distribution of species (for movement) you need to set the flag and then provide the following information for each group you wish to force (this example has two groups, FXX and FYY, and 2 stages)<br><br>[nforceMoveGroups]{style="color: orange;"} 4<br><br>[MoveGroupCodes]{style="color: orange;"} 4<br>FXX_stage_0<br>FXX_stage_1<br>FYY_stage_0<br>FYY_stage_1<br><br>Also list the distribution nc files - 1 file per "MoveGroupCode"<br>[FXX_stage_0_File.name]{style="color: orange;"} DistribFilename1.nc<br>[FXX_stage_1_File.name]{style="color: orange;"} DistribFilename2.nc<br>[FYY_stage_0_File.name]{style="color: orange;"} DistribFilename3.nc<br>[FYY_stage_1_File.name]{style="color: orange;"} DistribFilename4.nc<br><br>You must also provide the starting time for using the forcing (so it does not have to start on day 0 of the model simulation)<br>[FXX_stage_0_tstart]{style="color: orange;"} 0<br>[FXX_stage_1_tstart]{style="color: orange;"} 0<br>[FYY_stage_0_tstart]{style="color: orange;"} 0<br>[FYY_stage_1_tstart]{style="color: orange;"} 0<br><br>The format of the nc files and other relevant information is available in the section *Forcing the model distributions with species distribution models*. |
 
-**VI. Do final corrections and scaling**    
+### Do final corrections and scaling
 
 | Process | Description |
 |---------|-------------|
@@ -211,17 +211,17 @@ If [scale_transport]{style="color: orange;"} flag is set to 2, all transport is 
 
 Below are the remaining parameters and physics processes that were not described in the main *physics()* routine.
 
-*I. Resetting water column depths*
+### Resetting water column depths
 
 [wc_dz_tol]{style="color: orange;"}: This parameter is used by *check_wc_dz()* routine in the **atvertgeom.c** file of the **atphysics** library. The routine checks the depth of water layers. Transport of water fluxes can in some cases cause too much flux into certain layers. This can be controlled by setting the maximum change in depth allowed in the [wc_dz_tol]{style="color: orange;"} parameter. The model will only allow this much fractional change before [dz]{style="color: orange;"} is reset to nominal value given in the *initial_conditions.nc* file by the [nominal_dz]{style="color: orange;"} variable. The [wc_dz_tol]{style="color: orange;"} parameter in many models is set to 0.2.
 
 [constrain_wc]{style="color: orange;"}: This is a flag that is called in the *box_bio_process()* routine in **atbiology.c** and it resets the minimum water column depth to 1m if it becomes any shallower due to water fluxes. Turning this flag on is recommended in models that have a lot of shallow water areas and do not model sediment processes through multiple sediment layers explicitly. This avoids difficulties in modelling nutrient fluxes in very shallow waters.
 
-*II. Checks for the depth of sediment layer(s)*
+### Checks for the depth of sediment layer(s)
 
 Same checks are done for the depth of sediment layers, which are controlled by [maxseddz]{style="color: orange;"} and [minseddz]{style="color: orange;"} parameters. The depth of the sediment layer(s) is controlled by the *check_sed_dz()* routine in **atvertgeom.c**. If the sediment layer depth gets too small the layer is merged with an adjacent sediment layer. If the sediment layer depth becomes too large it is split in two (made up of the original layer and a new inserted sediment layer). **This is only used in models that have \>1 sediment layer!** In models with only one sediment layer, there are no constraints on the thickness of the sediment layer.
 
-*III. Atmospheric deposition of gases and nutrients trapped in particulate matter*
+### Atmospheric deposition of gases and nutrients trapped in particulate matter
 
 Atlantis has always allowed for atmospheric deposition of NH and NO, but this new functionality makes this explicit and allows users to modify atmospheric concentrations (mg per m^3^) of nutrients and gases trapped in particulate matter. Note, **this is not the diffusion of gases through the water's surface**, which is dealt with in the *gasExchange()* routine. The atmospheric deposition is handled in respective nutrient routines in the **atNutrient.c** file in **atecology** library. To apply the atmospheric deposition, set [include_atmosphere]{style="color: orange;"} flag to 1 in the *physics.prm*. If the flag is set to 0 there will be no implicit deposition from the atmosphere.
 
@@ -235,11 +235,11 @@ If [include_atmosphere]{style="color: orange;"} is active then atmospheric conce
 [atmospheric_O2]{style="color: orange;"} 198.9
 [atmospheric_CO2]{style="color: orange;"} 0.0
 
-*IV. Scaling of point sources*
+### Scaling of point sources
 
 It is possible to scale the input of nutrients from point sources given in the TS files. This scaling might be useful if simulating increase or decrease of nutrient input through time. The scaling routines are activated with the flag [nutrientchange]{style="color: orange;"}. If the flag is set to 1, then a number of additional parameters should be provided, telling Atlantis how to scale the nutrients. The parameters required for scaling allow detailed scaling of each nutrient in each point source and are explained further on the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/scaling-point-sources.html).
 
-*V. Other parameters from old functionality*
+### Other parameters from old functionality
 
 [vdiffwt_wc]{style="color: orange;"}: sets the scalar of water column diffusion and is used in the optional and currently rarely activated vertical and horizontal diffusion routines.
 
