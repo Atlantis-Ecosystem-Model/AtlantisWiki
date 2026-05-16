@@ -75,20 +75,16 @@ These tracers participate in ecological processes and change as a result. It is 
 
 | Tracer | Name | In water | In sed | Dissolved | Particulate | Decay | Svel | Psize |
 |--------|------|----------|--------|-----------|-------------|-------|------|-------|
-| `P`<sup>a</sup> | Phosphorus | x | x | x | | | | |
-| `TOP`<sup>a</sup> | Total organic phosphorus | x | x | x | | | | |
-| `Carbon`<sup>a</sup> | Carbon | x | x | x | | | | |
-| `CO2`<sup>a</sup> | Carbon dioxide | x | x | x | | | | |
-| `SED`<sup>b</sup> | Sediments | x | x | | x | 0 | -2.0e-005 | 5.0e-006 |
+| `P`[^tbl-tracers-atomic] | Phosphorus | x | x | x | | | | |
+| `TOP`[^tbl-tracers-atomic] | Total organic phosphorus | x | x | x | | | | |
+| `Carbon`[^tbl-tracers-atomic] | Carbon | x | x | x | | | | |
+| `CO2`[^tbl-tracers-atomic] | Carbon dioxide | x | x | x | | | | |
+| `SED`[^tbl-tracers-estuary] | Sediments | x | x | | x | 0 | -2.0e-005 | 5.0e-006 |
 : Optional tracers for dynamic properties. {#tbl-tracers-optional-dynamic}
 
-::: {.callout-note}
-**Required only if**:
+[^tbl-tracers-atomic]: Required only if [trackAtomicRatio]{style="color: orange;"} flag is set to 1
 
-<sup>a</sup> [trackAtomicRatio]{style="color: orange;"} flag is set to 1  
-
-<sup>b</sup> [flagIsEstuary]{style="color: orange;"} flag is set to 1 in the *run.prm* file
-:::
+[^tbl-tracers-estuary]: Required only if [flagIsEstuary]{style="color: orange;"} flag is set to 1 in the *run.prm* file
 
 
 ### Obligatory diagnostic tracers for physical properties and reporting of biogeochemical processes
