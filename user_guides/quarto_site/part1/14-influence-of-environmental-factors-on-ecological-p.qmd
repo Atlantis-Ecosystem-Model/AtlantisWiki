@@ -1,4 +1,4 @@
-﻿# Influence of Environmental Factors on Ecological Processes {#sec-environmental-factors}
+# Influence of Environmental Factors on Ecological Processes {#sec-environmental-factors}
 
 ## Temperature: two methods to get temperature scalar 
 

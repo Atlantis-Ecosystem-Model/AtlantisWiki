@@ -1,4 +1,4 @@
-﻿# Definitions of Functional Groups  {#sec-functional-groups}
+# Definitions of Functional Groups  {#sec-functional-groups}
 
 ## Introduction to functional groups {#sec-intro-functional-groups}
 

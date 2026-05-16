@@ -1,4 +1,4 @@
-﻿# The Physics Submodel {#sec-physics-submodel}
+# The Physics Submodel {#sec-physics-submodel}
 
 The Physics submodel deals with most physical and some biogeochemical processes in Atlantis, such as water and gas exchanges and mixing, nutrient inputs, deposition and resuspension of particulate matter, as well as some biological processes in the sediments, such as bioturbation and bioirrigation.
 

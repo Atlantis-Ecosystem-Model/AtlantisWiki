@@ -1,4 +1,4 @@
-﻿# Management {#sec-management}
+# Management {#sec-management}
 
 ## General introduction to management {#sec-mgmt-intro}
 

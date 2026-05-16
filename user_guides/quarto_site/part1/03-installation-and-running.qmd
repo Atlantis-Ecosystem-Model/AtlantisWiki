@@ -1,4 +1,4 @@
-﻿# Installation and Running {#sec-installation}
+# Installation and Running {#sec-installation}
 
 ## How to check out and install the code {#sec-checkout-install}
 

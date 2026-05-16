@@ -1,4 +1,4 @@
-﻿# Fishing mortality {#sec-F-intro}
+# Fishing mortality {#sec-F-intro}
 
 ## General description of the fishing mortality 
 

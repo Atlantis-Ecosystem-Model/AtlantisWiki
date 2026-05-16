@@ -1,4 +1,4 @@
-﻿# Force Parameters {#sec-force-parameters}
+# Force Parameters {#sec-force-parameters}
 
 Atlantis can take a lot of externally forced tracer and parameter values. Details on such forcing files are given in the *force.prm* file.
 

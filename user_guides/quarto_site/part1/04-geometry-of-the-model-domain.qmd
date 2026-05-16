@@ -1,4 +1,4 @@
-﻿# Geometry of the Model Domain {#sec-geometry-model-domain}
+# Geometry of the Model Domain {#sec-geometry-model-domain}
 
 ## Boxes and layers defining the geometry of the model 
 

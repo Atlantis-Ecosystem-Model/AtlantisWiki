@@ -1,4 +1,4 @@
-﻿# Hydrodynamic, Salinity, and Temperature Forcing Data {#sec-forcing-files}
+# Hydrodynamic, Salinity, and Temperature Forcing Data {#sec-forcing-files}
 
 ## General introduction to forcing of Atlantis models 
 

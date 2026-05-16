@@ -1,4 +1,4 @@
-﻿# Economics {#sec-economics-intro}
+# Economics {#sec-economics-intro}
 
 ## Introduction into the Economics submodel and its main principles 
 
