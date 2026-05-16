@@ -219,7 +219,7 @@ Below are the remaining parameters and physics processes that were not described
 
 ### Checks for the depth of sediment layer(s)
 
-Same checks are done for the depth of sediment layers, which are controlled by [maxseddz]{style="color: orange;"} and [minseddz]{style="color: orange;"} parameters. The depth of the sediment layer(s) is controlled by the *check_sed_dz()* routine in **atvertgeom.c**. If the sediment layer depth gets too small the layer is merged with an adjacent sediment layer. If the sediment layer depth becomes too large it is split in two (made up of the original layer and a new inserted sediment layer). **This is only used in models that have \>1 sediment layer!** In models with only one sediment layer, there are no constraints on the thickness of the sediment layer.
+Same checks are done for the depth of sediment layers, which are controlled by [maxseddz]{style="color: orange;"} and [minseddz]{style="color: orange;"} parameters. The depth of the sediment layer(s) is controlled by the *check_sed_dz()* routine in **atvertgeom.c**. If the sediment layer depth gets too small the layer is merged with an adjacent sediment layer. If the sediment layer depth becomes too large it is split in two (made up of the original layer and a new inserted sediment layer). **This is only used in models that have >1 sediment layer!** In models with only one sediment layer, there are no constraints on the thickness of the sediment layer.
 
 ### Atmospheric deposition of gases and nutrients trapped in particulate matter
 

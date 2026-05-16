@@ -74,7 +74,7 @@ When **[flagq10effXXX]{style="color: orange;"} = 1** the **efficiency is poorer 
 
 If **[flagq10effXXX]{style="color: orange;"}= 2** the **efficiency is poorer in warmer water** and the Tcorr scalar (@fig-humped-temperature-response) is applied **only** if water temperature is higher than the optimum or reference level (depending on the [q10_method_XXX]{style="color: orange;"} used).
 
-In the calculations above if the Tcorr is \>1 then the Tcorr=1/T_scalar. This means that Tcorr is always <1, which ensures that efficiency is decreased when correcting for temperature effects.
+In the calculations above if the Tcorr is >1 then the Tcorr=1/T_scalar. This means that Tcorr is always <1, which ensures that efficiency is decreased when correcting for temperature effects.
 
 *D) Mortality*
 

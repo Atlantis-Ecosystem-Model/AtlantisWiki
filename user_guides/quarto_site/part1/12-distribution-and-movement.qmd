@@ -68,7 +68,7 @@ Next, Atlantis assesses whether this food amount is higher than the threshold *�
 
 $$\gamma_{thresh} = SN_{i}\  \cdot kroc_{food}$$
 
-The [k_roc_food]{style="color: orange;"} parameter is a proportional increase of SN weight (new weight / old weight) that would trigger movement into a better box, and it should always be \>1 (as fish should not move to boxes where food conditions are worse)
+The [k_roc_food]{style="color: orange;"} parameter is a proportional increase of SN weight (new weight / old weight) that would trigger movement into a better box, and it should always be >1 (as fish should not move to boxes where food conditions are worse)
 
 The spatial cells in the model are then ranked depending on whether the *A~potential~* is larger or smaller than the threshold *γ~thresh~*
 
@@ -96,7 +96,7 @@ This can be illustrated with a hypothetical 4 box example with different food av
 
 It can be seen that after one time step the distribution can shift quite drastically. Atlantis users are encouraged to explore different values of [roc_wgt]{style="color: orange;"} and [k_roc_food]{style="color: orange;"} parameters and their effect on possible changes in the distributions. To prevent species teleporting about the model based on short term forage field shifts, the movement rate is adjusted by the swimming speed given in [Speed_XXX]{style="color: orange;"} parameter. The rate at which individuals (biomass) can move from one box to another is scaled by this swimming speed divided by the width of the box they are currently in.
 
-It is also possible to use a more conservative approach to density dependent movement by using "sticky" movement [XXX_ddepend_move]{style="color: orange;"}=3. In this case the same test calculating the potential food assimilation is applied to all boxes. However, instead of redistributing all individuals across the model domain, the individuals that are in boxes where A~potential,j~ \> γ~thresh~ remain where they are and only the individuals from boxes where A~potential,j~ \< γ~thresh~ move throughout the model domain. So in the example above, the Box 3 has passed the test yet proportion of individuals in this box still decreased from 0.25 to 0.17, because Box 4 is better. When "sticky" density dependent movement is used, only individuals from Box 1 and Box2 are redistributed.
+It is also possible to use a more conservative approach to density dependent movement by using "sticky" movement [XXX_ddepend_move]{style="color: orange;"}=3. In this case the same test calculating the potential food assimilation is applied to all boxes. However, instead of redistributing all individuals across the model domain, the individuals that are in boxes where A~potential,j~ > γ~thresh~ remain where they are and only the individuals from boxes where A~potential,j~ < γ~thresh~ move throughout the model domain. So in the example above, the Box 3 has passed the test yet proportion of individuals in this box still decreased from 0.25 to 0.17, because Box 4 is better. When "sticky" density dependent movement is used, only individuals from Box 1 and Box2 are redistributed.
 
 
 ::: {.callout-caution}
@@ -189,7 +189,7 @@ It is possible to allow a part or all of an age cohort or biomass pool to leave 
 
 The relevant parameters defining the migration are detailed in the *functional_groups.csv* and *migrations.csv* files.
 
-In *functional_groups.csv* set whether a group is migrating by setting: [NumMigrations]{style="color: orange;"} \> 1. This is the number of migrations initiated per calendar year. Also set whether those migrations are multiyear or not ([MultiYrMigrations]{style="color: orange;"} = 1 means at least one of the migrations started per year can last for many years).
+In *functional_groups.csv* set whether a group is migrating by setting: [NumMigrations]{style="color: orange;"} > 1. This is the number of migrations initiated per calendar year. Also set whether those migrations are multiyear or not ([MultiYrMigrations]{style="color: orange;"} = 1 means at least one of the migrations started per year can last for many years).
 
 An example of the format of *migrations.csv* is shown below, but for each migration you must set the parameters listed in @tbl-migration-parameters. If multiple stages migrate at the same time, provide an entry for each stage for that migration. If an animal matures into another stage while it has migrated away that is fine without an additional entry, as it is covered by the original [StartStage]{style="color: orange;"}. For a biomass pool there is simply one entry for each migration for the group.
 
@@ -214,7 +214,7 @@ An example of the format of *migrations.csv* is shown below, but for each migrat
 
 : Parameters required for each migration in the *migrations.csv* file. {#tbl-migration-parameters tbl-colwidths=[25,75]}
 
-In the *biology.prm* file you also need to set [k_migslow]{style="color: orange;"} to indicate if the species migrates all at once or gradually. If [k_migslow]{style="color: orange;"} is set to 1 then there will be gradual migration using the [Leave_Period]{style="color: orange;"} and [Return_Period]{style="color: orange;"} (if it is set to 0 then the migrants leave or return in 1 time step). If [k_migslow]{style="color: orange;"}=1 and [Leave_Period]{style="color: orange;"} and [Return_Period]{style="color: orange;"} must be \>0 or else Atlantis will quit with an error message.
+In the *biology.prm* file you also need to set [k_migslow]{style="color: orange;"} to indicate if the species migrates all at once or gradually. If [k_migslow]{style="color: orange;"} is set to 1 then there will be gradual migration using the [Leave_Period]{style="color: orange;"} and [Return_Period]{style="color: orange;"} (if it is set to 0 then the migrants leave or return in 1 time step). If [k_migslow]{style="color: orange;"}=1 and [Leave_Period]{style="color: orange;"} and [Return_Period]{style="color: orange;"} must be >0 or else Atlantis will quit with an error message.
 
 Within the model, when it is a migration time, the code checks what proportion of the age class migrates out of each box and takes that number (biomass) out of the model. This value set in the vector [MigIOBox_XXX]{style="color: orange;"} (with a value given per box in the model) in the *biology.prm* file. Separate vectors are required for juveniles and adults in age-structured groups. The amount removed from the model is stored in the MIGRATION array.
 

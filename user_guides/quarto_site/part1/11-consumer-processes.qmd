@@ -174,7 +174,7 @@ This means that the available prey biomass depends on:
 ::: {.callout-caution}
 **What is *p~prey,CX~*?** 
 
-This parameter defines the maximum proportion of the prey biomass available to a consumer at a given time. If \< 1 then it means that at any given time the consumer cannot access all the prey biomass even if it can fit the prey into its mouth and the prey is not protected by a refuge.
+This parameter defines the maximum proportion of the prey biomass available to a consumer at a given time. If < 1 then it means that at any given time the consumer cannot access all the prey biomass even if it can fit the prey into its mouth and the prey is not protected by a refuge.
 
 The parameter is similar to the vulnerability parameter in EwE and is influenced by the feeding arena theory.
 :::
@@ -263,7 +263,7 @@ When habitat dependency and refuge are used then the models are often parameteri
 3)  This approach ignores the use of cover by predators, where improved cover can actually lead to higher predation.
 :::
 
-For **biomass pools** (CP) the *δ~habitat\ ~*refuge is available only for prey living in the **sediments** and is calculated by the depth the predators can dig into (set in [KDEP_XXX]{style="color: orange;"}) and depth of the oxygenated layer [sedoxdepth]{style="color: orange;"}, calculated and reported in the *output.nc* file, @sec-output-physical-tracers. If [sedoxdepth]{style="color: orange;"} \< [KDEP]{style="color: orange;"} then no refuge is provided by the sediment (*δ~habitat~* = 1), if [sedoxdepth]{style="color: orange;"} > [KDEP]{style="color: orange;"} then
+For **biomass pools** (CP) the *δ~habitat\ ~*refuge is available only for prey living in the **sediments** and is calculated by the depth the predators can dig into (set in [KDEP_XXX]{style="color: orange;"}) and depth of the oxygenated layer [sedoxdepth]{style="color: orange;"}, calculated and reported in the *output.nc* file, @sec-output-physical-tracers. If [sedoxdepth]{style="color: orange;"} < [KDEP]{style="color: orange;"} then no refuge is provided by the sediment (*δ~habitat~* = 1), if [sedoxdepth]{style="color: orange;"} > [KDEP]{style="color: orange;"} then
 
 *δ~habitat~* = (sedoxdepth - KDEP)/sedoxdepth.
 
@@ -720,7 +720,7 @@ $$\mathrm{CrowdingEffect} = \begin{cases}
 
 where *θ*~CXlow~ is the crowding lower threshold ([XXX_low]{style="color: orange;"}, mgN m^-2^), *κ*~CXsat~ is the crowding half saturation level ([XXX_sat]{style="color: orange;"}, mgN m^-2^), *κ*~CXthresh~ is the crowding threshold ([XXXthresh]{style="color: orange;"}, mgN m^-2^).
 
-By default a consumer can only have intraspecific (intra functional group) competition. However, if [flag_competing_epiff]{style="color: orange;"}=1 then interspecies competition is included and *B~CP\ ~*is calculated as the total biomass of all corals (CORAL), sponges (SPONGE), epibenthic macrophytes (PHYTOBEN, SEAGRASS) and filter feeders (SED_EP_FF), which means that all epifauna will compete for space. When [flag_competing_epiff]{style="color: orange;"}=1 the user can also allow the maximum available habitat area to be higher than 1. This means that the epifaunal groups can grow on top of each other (as happens in complex reef structures). This option is set with the [max_available_habitat]{style="color: orange;"} parameter, which acts as a scalar on the available habitat. Only set this value to \>1 when you have good reasons to increase the habitat availability to the epifauna.
+By default a consumer can only have intraspecific (intra functional group) competition. However, if [flag_competing_epiff]{style="color: orange;"}=1 then interspecies competition is included and *B~CP\ ~*is calculated as the total biomass of all corals (CORAL), sponges (SPONGE), epibenthic macrophytes (PHYTOBEN, SEAGRASS) and filter feeders (SED_EP_FF), which means that all epifauna will compete for space. When [flag_competing_epiff]{style="color: orange;"}=1 the user can also allow the maximum available habitat area to be higher than 1. This means that the epifaunal groups can grow on top of each other (as happens in complex reef structures). This option is set with the [max_available_habitat]{style="color: orange;"} parameter, which acts as a scalar on the available habitat. Only set this value to >1 when you have good reasons to increase the habitat availability to the epifauna.
 
 The δ~space~ space limitation scalar is applied either to the biomass or to the clearance rate parameter *C* (see NOTE! box above). If more habitat limitation is needed, the *mum* values of invertebrate **epibenthic and sediment** biomass pool consumers (SM_INF, LG_INF, SED_EP_FF, SED_EP_OTHER, MOB_EP_OTHER) can be scaled by the available habitat. This scaling is applied by setting [flag_benthos_sediment_link]{style="color: orange;"}=1. If the scaling is applied the *mum* values of the epibenthic and sediment invertebrate biomass pool consumers will be multiplied (scaled) by the proportion of the cell with the suitable habitat (accounting for degradation effects)
 
@@ -750,7 +750,7 @@ m1 m2.... mN where m1, m2, mN etc are the multiplicative level of change
 
 Similarly for SOFT and FLAT.
 
-**Note, users must ensure that when multipliers are applied to habitat cover, the total cell cover of geological habitats must still sum to 1.** Otherwise, the suitable area in the cell will shrink or expand. So if a REEF habitat is degraded and, for example, a multiplier of 0.5 is applied, other habitats must have multipliers \>1 to compensate for the change.
+**Note, users must ensure that when multipliers are applied to habitat cover, the total cell cover of geological habitats must still sum to 1.** Otherwise, the suitable area in the cell will shrink or expand. So if a REEF habitat is degraded and, for example, a multiplier of 0.5 is applied, other habitats must have multipliers >1 to compensate for the change.
 
 Lastly the boxes where the change will occur will need to be identified (with the same change applied in all these boxes simultaneously)
 
@@ -764,7 +764,7 @@ where there are N entries, one for each box with 1 indicating changes occur in t
 During the first few months inside the model domain, salmon will stay close to shore and feed on terrestrial insects. To allow for this external input of food into salmon diet take the following steps
 
 1.  Set [isSupplemented]{style="color: orange;"} to a value greater than 0 in *functional_groups.csv*. A value of 1 means all life history stages will consume the supplemental feed, a value of 2 is juveniles only and a value of 3 is adults only.
-2.  Add a vector to the *biology.prm* file to indicate the degree of supplemental feeding occurring per box. The individual values in this vector must have values between 0 and 1 (as the value indicates for that box how much of the potential supplemental feed is actually accessed). Note the vector does not need to sum to 1.0, just that each individual value in it must be \< 1.0. For example, for group XXX in a 5 box model it would look like:
+2.  Add a vector to the *biology.prm* file to indicate the degree of supplemental feeding occurring per box. The individual values in this vector must have values between 0 and 1 (as the value indicates for that box how much of the potential supplemental feed is actually accessed). Note the vector does not need to sum to 1.0, just that each individual value in it must be < 1.0. For example, for group XXX in a 5 box model it would look like:
 
 ::: {.callout-note}
 [Supp_XXX]{style="color: orange;"} 5  
@@ -1054,7 +1054,7 @@ Spawning and recruitment is only explicitly modelled in age structured groups an
 
 ### Sexual maturation in age-structured groups 
 
-Maturation in age-structured groups is determined by two parameters. First, a fraction of each age class that is sexually mature is set in the [FSPB_XXX]{style="color: orange;"} parameter (ogive), with an option for gradual external change in this parameter through forcing files. Second, an optional minimum length (where the allometric length/weight conversion parameters [li_a_XXX]{style="color: orange;"} and [li_b_XXX]{style="color: orange;"} are used to get length) required for sexual maturation is set in [min_li_mat_XXX.]{style="color: orange;"} If this parameter is \> 0 then the no maturation will occur in an age class if it is below the maturation length even if FSPB parameter for that age class is \> 0.
+Maturation in age-structured groups is determined by two parameters. First, a fraction of each age class that is sexually mature is set in the [FSPB_XXX]{style="color: orange;"} parameter (ogive), with an option for gradual external change in this parameter through forcing files. Second, an optional minimum length (where the allometric length/weight conversion parameters [li_a_XXX]{style="color: orange;"} and [li_b_XXX]{style="color: orange;"} are used to get length) required for sexual maturation is set in [min_li_mat_XXX.]{style="color: orange;"} If this parameter is > 0 then the no maturation will occur in an age class if it is below the maturation length even if FSPB parameter for that age class is > 0.
 
 ::: {.callout-caution}
 **Juveniles, adults (life history stages) and sexual maturation (or spawning contributions)**
@@ -1078,7 +1078,7 @@ The amount of spawn (*Sp*, mgN) produced by an age group is calculated as
 
 $$Sp = \left( \left( W_{sp} \cdot FSP - KSPA \right) - \left( W_{sp} - W \right) \right) \cdot Num \cdot FSPB$$
 
-where (W~sp~ --W) is the weight difference between the optimal weight for spawn and the actual nitrogen based weight of an individual (W=SN+RN), *FSP* is the proportion of weight-for-spawn used for spawn ([FSP_XXX]{style="color: orange;"}; typically ranging between 0.25 to 0.42), *KSPA* is a constant used by the spawning formulation ([KSPA_XXX]{style="color: orange;"}), *Nm* is the number of individuals in an age group, and *FSBP* is the proportion of mature reproducing individuals in the age group ([FSPB_XXX]{style="color: orange;"}). For those groups where not every adult reproduces ever year this value should be set \<1 even for fully mature age classes. Note, that if individual's weight is smaller than the ideal weight at given age (defined by X_RS ratio), then the amount of spawn produced is decreased by the weight deficit (W~sp~ --W) is subtracted from the spawn that would be produced in case of ideal weight.
+where (W~sp~ --W) is the weight difference between the optimal weight for spawn and the actual nitrogen based weight of an individual (W=SN+RN), *FSP* is the proportion of weight-for-spawn used for spawn ([FSP_XXX]{style="color: orange;"}; typically ranging between 0.25 to 0.42), *KSPA* is a constant used by the spawning formulation ([KSPA_XXX]{style="color: orange;"}), *Nm* is the number of individuals in an age group, and *FSBP* is the proportion of mature reproducing individuals in the age group ([FSPB_XXX]{style="color: orange;"}). For those groups where not every adult reproduces ever year this value should be set <1 even for fully mature age classes. Note, that if individual's weight is smaller than the ideal weight at given age (defined by X_RS ratio), then the amount of spawn produced is decreased by the weight deficit (W~sp~ --W) is subtracted from the spawn that would be produced in case of ideal weight.
 
 The *KSPA* accounts for costs of reproduction or the amount of N taken out of weight but not included in the produced spawn. It is tuned during the parameterisation, and represents the base investment needed to build gonads and other reproductive materials. It is not however cohort specific, so the same cost is applied to each cohort.
 
@@ -1136,7 +1136,7 @@ Several routines in Atlantis are involved in obtaining the final number of recru
 
 1)  The *Ecology_Find_Embryos()* routine, which applies environmental scalars, such as scaling by plankton production. It also applies external recruitment forcing, for cases where recruitment time series are supplied. In the case of Beverton-Holt or Ricker recruitment, which are dependent on the spawn or species biomass, nothing is done in this routine.
 2)  The value above is then passed to the *Get_Recruits()* routine which calculates the recruitment (*Rs*) depending on the chosen recruitment option.
-3)  Next, two routines ***--** Get_Vertical_Recruit_Position()* and *Find_Final_Recruit_Distribution() **--***determine the horizontal and vertical distribution of new recruits, depending on the distribution parameters provided by the user, whether the group has maternal care, set as [flagmotherXXX]{style="color: orange;"} or bear live young, set as [flagbearliveXXX]{style="color: orange;"} (in which case the recruits arrive where the adults are), and any optional environmental limitations (salinity, temperature, oxygen). The [flagmotherXXX]{style="color: orange;"} parameter allows users to set semelparous reproduction, where value of \<0 kills reproducing ([FSPB_XXX]{style="color: orange;"} proportion) adults after reproduction.
+3)  Next, two routines ***--** Get_Vertical_Recruit_Position()* and *Find_Final_Recruit_Distribution() **--***determine the horizontal and vertical distribution of new recruits, depending on the distribution parameters provided by the user, whether the group has maternal care, set as [flagmotherXXX]{style="color: orange;"} or bear live young, set as [flagbearliveXXX]{style="color: orange;"} (in which case the recruits arrive where the adults are), and any optional environmental limitations (salinity, temperature, oxygen). The [flagmotherXXX]{style="color: orange;"} parameter allows users to set semelparous reproduction, where value of <0 kills reproducing ([FSPB_XXX]{style="color: orange;"} proportion) adults after reproduction.
 4)  Next, the routine *Get_Settlers()* distributes the recruits on the temporal scale, depending on the length recruitment period and shape of the recruitment distribution.
 5)  Finally, immediately before the recruits arrive, all other age groups age one year up. This is done in *Update_Ageing_Numbers()* and a few other routines in the **[atdem]{.underline}ography.c** (which track the relative proportions per annual age class per age group)
 
@@ -1251,7 +1251,7 @@ This option allows two levels of recruitment depending on the spawning stock bio
 
 $$B_{jack} = jack_{b} \cdot Biom$$
 
-If SSB \< *B~jack~*
+If SSB < *B~jack~*
 
 $$Rc = jack_{a} \cdot SSB$$
 
@@ -1327,11 +1327,11 @@ If a species is sensitive to pH ([flagfecundsensitive_XXX]{style="color: orange;
 
 pHscalar=1/pHcorr
 
-as it assumes that pH effect on recruitment will be negative (scalar will be \<1)
+as it assumes that pH effect on recruitment will be negative (scalar will be <1)
 
 **2. Temperature scalar**
 
-To activate temperature dependent recruitment for any species set [flagtempdepend_reprod]{style="color: orange;"} to 1 and then set species parameters to indicate how the dependency is expressed. If a species is sensitive to temperature ([flagtempsensitiveXXX]{style="color: orange;"}) **with the kind of effect dictated by the recruitment temperature dependency** ([flagq10receffXXX]{style="color: orange;"}=1 or 2 — 1 for poorer when cooler, 2 if poorer when warmer, 0 indicates no actual effect regardless of [flagtempsensitiveXXX]{style="color: orange;"} setting) then recruitment is scaled by a multiplicative effect of pH and temperature (pHscalar\*Tcorr). The pH effect will be 1 if a species is only sensitive to temperature and not pH. If species is temperature insensitive ([flagq10receffXXX]{style="color: orange;"}=0) only the pHscalar on recruitment is applied. If the pHscalar·Tcorr \> 1 then the inverse is applied to scale the recruitment (1/(pHscalar·Tcorr)) as the model assumes that effect of temperature and pH on recruitment will be negative
+To activate temperature dependent recruitment for any species set [flagtempdepend_reprod]{style="color: orange;"} to 1 and then set species parameters to indicate how the dependency is expressed. If a species is sensitive to temperature ([flagtempsensitiveXXX]{style="color: orange;"}) **with the kind of effect dictated by the recruitment temperature dependency** ([flagq10receffXXX]{style="color: orange;"}=1 or 2 — 1 for poorer when cooler, 2 if poorer when warmer, 0 indicates no actual effect regardless of [flagtempsensitiveXXX]{style="color: orange;"} setting) then recruitment is scaled by a multiplicative effect of pH and temperature (pHscalar\*Tcorr). The pH effect will be 1 if a species is only sensitive to temperature and not pH. If species is temperature insensitive ([flagq10receffXXX]{style="color: orange;"}=0) only the pHscalar on recruitment is applied. If the pHscalar·Tcorr > 1 then the inverse is applied to scale the recruitment (1/(pHscalar·Tcorr)) as the model assumes that effect of temperature and pH on recruitment will be negative
 
 The **effect of temperature** on recruitment of temperature sensitive species ([flagtempsensitiveXXX]{style="color: orange;"}=1) is also simulated through minimum and maximum spawn temperatures ([XXX_min_spawn_temp]{style="color: orange;"} and [XXX_max_spawn_temp]{style="color: orange;"}). If temperature in the cell is outside these ranges, then the scalar is set to 0 and recruitment **in that cell** will be zero.
 
