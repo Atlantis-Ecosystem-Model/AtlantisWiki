@@ -1194,7 +1194,7 @@ The various changes have been described in separate chapters, and this section o
 | Effort caps — whether effort per cell is capped | [flagchangecap]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period — typical 4 parameter description | @sec-effort-caps |
 | Populations of ports — relevant to recreational fishing models and Economics submodel | [flagchangepop]{style="color: orange;"} | Change occurs over a set period and remains in place after the change period — typical 4 parameter description | @sec-effort-model-6-12 |
 | Fisheries spatial coverage | [flagchangep]{style="color: orange;"} and [YYY_changeP]{style="color: orange;"} | Changes in spatial coverage are applied through the habitat overlap | @sec-fisheries-habitat-scalar |
-| Length of the fishing season | [YYY_changeseason]{style="color: orange;"} | Fishing season can be reduced if biomass of fishing stocks or endangered species fall below a threshold level | @sec-managment-seasonal-closures |
+| Length of the fishing season | [YYY_changeseason]{style="color: orange;"} | Fishing season can be reduced if biomass of fishing stocks or endangered species fall below a threshold level | @sec-management-seasonal-closures |
 | TAC of a fishery | [YYY_TACchange]{style="color: orange;"}<br><br>0 = no change<br>1 = dynamic change<br>2 = forced change | Forced TAC change is implemented in the same way as other parameter change — typical 4 parameter description<br><br>Dynamic change in TAC is implemented when some form of stock assessment is applied (see box in @sec-mgmt-intro) | C@sec-frame-tac |
 
 : Parameters and description of main fisheries features that can change through time. {#tbl-temporal-changes-parameters tbl-colwidths=[25,20,35,20]}
