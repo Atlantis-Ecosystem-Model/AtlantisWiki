@@ -396,7 +396,7 @@ $$Eff_{monthly,max} = monthSc \cdot \left( 1 - downTime_{J} \right) \cdot Nboats
 
 Where *monthSc* is the monthly scalar in the [month_scalar]{style="color: orange;"} global parameter giving a maximum number of days of effort a boat can apply (it can be bigger than 30 if for example one boat has several gears), and *downTime~J~* is the proportion of time a boat from a subfleet J must stay in the port for maintenance given in the [YYY_minDownTime]{style="color: orange;"} parameter. A hypothetical maximum monthly effort limit is shown with a dashed red horizontal line in the graph below.
 
-![The monthly effort scalar calculation. See explanation in the text above.](media/image14.png){#fig-monthly-effort-scalar width=5.0in height=3.93in}
+![The monthly effort scalar calculation. See explanation in the text above.](media/image14.png){#fig-monthly-effort-scalar width=5.0in height=3.9in}
 
 6)  Assess whether a subfleet has very high debt levels which will reduce its ability to fish. The tolerable debt levels for each subfleet are set in [YYY_TolDebt]{style="color: orange;"} parameter. If the expected monthly profit from fishing will not increase the debt above the tolerable levels then monthly planned effort is reduced by a proportion set in a global [effort_reduction]{style="color: orange;"} parameter.
 

@@ -123,7 +123,7 @@ All files except for NC files can be opened and edited using any basic text edit
 
 Detailed descriptions of Atlantis submodels and specific input files are provided in subsequent chapters. For a start you need to understand which of the files are required to set up a simple simulations and what they mean — see @fig-atlantis-structure a schematic of the Atlantis submodels overlaid one over another. At the very basis there is the model geometry, Physics and Biogeochemical (Biology and Ecology) submodels. The other, optional, submodels use their outputs to simulate the human domain.
 
-![Schematic representation of the Atlantis model structure and input files. Submodels coloured in green are obligatory. Files marked with \* are required, others are optional.](media/image7.jpg){#fig-atlantis-structure width=6.69in height=4.51in}
+![Schematic representation of the Atlantis model structure and input files. Submodels coloured in green are obligatory. Files marked with \* are required, others are optional.](media/image7.jpg){#fig-atlantis-structure width=6.7in height=4.5in}
 
 
 The 3D structure of your model domain, or **Model Geometry**, is described in the BGM file. The model geometry is used to simulate all processes in the five submodels.
@@ -136,7 +136,7 @@ In addition, all simulations require two supporting files *force.prm* and *run.p
 
 The *main()* routine is in the **atlantismain.c** file in the **atlantismain** library. It calls in a set order all other routines that initialise and run the requested submodels and routines and write output files. Each submodel and its main routines will be described in detail below (@fig-main-routine).
 
-![Brief overview of the Atlantis *main()* routine that calls other routines implemented in various submodels.](media/image8.jpeg){#fig-main-routine width=6.97in height=5.37in}
+![Brief overview of the Atlantis *main()* routine that calls other routines implemented in various submodels.](media/image8.jpeg){#fig-main-routine width=7.0in height=5.4in}
 
 ## Delving into the code: finding the files and routines that describe the processes you are interested in 
 

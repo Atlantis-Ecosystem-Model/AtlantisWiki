@@ -10,9 +10,9 @@ In principle users can set up very complex-shaped polygons, however, the number 
 
 ::: {#fig-model-cross-section layout-ncol=1}
 
-![Top: An example cross section of an Atlantis model, showing water column and sediment layers. Oceanic boxes have an open water boundary at the bottom of the deepest water layer. The depths of vertical layers do not have to be the same in all boxes, although most models keep them identical for simplicity (shown with horizontal dashed line). The depth of the bottom water column layer varies depending on the geography of the marine system.](media/image21.jpeg){#fig-cross-section-vertical width=5.80in height=3.49in}
+![Top: An example cross section of an Atlantis model, showing water column and sediment layers. Oceanic boxes have an open water boundary at the bottom of the deepest water layer. The depths of vertical layers do not have to be the same in all boxes, although most models keep them identical for simplicity (shown with horizontal dashed line). The depth of the bottom water column layer varies depending on the geography of the marine system.](media/image21.jpeg){#fig-cross-section-vertical width=5.8in height=3.5in}
 
-![Bottom: An example of the horizontal Atlantis model domain (set in the BGM file).](media/image22.png){#fig-cross-section-horizontal width=6.22in height=4.39in}
+![Bottom: An example of the horizontal Atlantis model domain (set in the BGM file).](media/image22.png){#fig-cross-section-horizontal width=6.2in height=4.4in}
 
 Top: vertical cross section. Bottom: horizontal domain.
 :::

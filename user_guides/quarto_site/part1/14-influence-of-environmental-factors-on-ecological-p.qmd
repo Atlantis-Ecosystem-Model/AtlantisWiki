@@ -12,7 +12,7 @@ $$T_{scalar} = q10^{\frac{T_{H2O} - 15}{10}}$$
 
 where q10 is a species-specific parameter provided in the [q10_XXX]{style="color: orange;"} and is typically set to 2. The effect of different [q10_XXX]{style="color: orange;"} values is shown in @fig-temperature-scalar.
 
-![The *T~scalar~* values at different water temperatures.](media/image60.png){#fig-temperature-scalar width=4.35in height=3.28in}
+![The *T~scalar~* values at different water temperatures.](media/image60.png){#fig-temperature-scalar width=4.4in height=3.3in}
 
 **Black**: q10=2\
 [**Orange**]{style="color: orange;"}: q10=2.5\
@@ -34,7 +34,7 @@ This function aims to imitate a humped response, where rates are highest at opti
 - Cons ([temp_exp]{style="color: orange;"}) = 3
 - ø~corr~ ([q10_correction_XXX]{style="color: orange;"}) = 1000
 
-![A humped temperature response used when [q10_method_XXX]{style="color: orange;"}=1.](media/image61.png){#fig-humped-temperature-response width=5.05in height=3.47in}
+![A humped temperature response used when [q10_method_XXX]{style="color: orange;"}=1.](media/image61.png){#fig-humped-temperature-response width=5.1in height=3.5in}
 
 **Black**: original values as shown in parentheses below
 
