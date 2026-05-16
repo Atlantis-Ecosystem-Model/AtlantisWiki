@@ -1105,9 +1105,9 @@ It is possible for fisheries to retain some of the undersized catch illegally. T
 
 If changes in discarding parameters are applied then two options can change:
 
-1)  The minimum size threshold can change and it is set through [DISCRDchange_threshmult_XXX]{style="color: orange;"}. This **multiplier will apply to the original size** given in the harvest.prm file, so if several changes are applied, make sure the multiplier refers to the original size.
+1)  The minimum size threshold can change and it is set through [DISCRDchange_threshmult_XXX]{style="color: orange;"}. This **multiplier will apply to the original size** given in the *harvest.prm* file, so if several changes are applied, make sure the multiplier refers to the original size.
 
-2)  The proportion of undersized fish that is retained illegally can also change and is set through DISCRDchange_retainmult_XXX. This **multiplier will apply to the original retain** proportion given in the harvest.prm file.
+2)  The proportion of undersized fish that is retained illegally can also change and is set through DISCRDchange_retainmult_XXX. This **multiplier will apply to the original retain** proportion given in the *harvest.prm* file.
 
 ### Discarding imposed through time series* (flagdiscard=3)
 

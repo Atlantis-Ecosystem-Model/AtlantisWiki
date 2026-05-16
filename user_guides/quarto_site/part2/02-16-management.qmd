@@ -76,7 +76,7 @@ The management response to reaching the quota will depend on whether the TACs ar
 
 The cumulative catch compared against the TAC can be calculated either based on landed catch only ([flagTACincludeDiscard]{style="color: orange;"} = 0) or based on both landed catch and discards ([flagTACincludeDiscard]{style="color: orange;"} = 1). Only the catch (and discards) accumulated in the current calendar year are used in the TAC comparison (i.e. the cumulative catch is zeroed at the start of each new calendar year in the simulation).
 
-All groups for which TACs are to be applied should have a value 1 in the [isTAC]{style="color: orange;"} parameter in the *functional_groups.csv* file, or else the TAC routine for the species is skipped. Also, all functional groups which are to be managed with TACs should be identified as [isFished]{style="color: orange;"} = 1 in the functional_groups.csv file; otherwise Atlantis overwrites their TACs with a very large number (10^12^) and considers them as non-quota species.
+All groups for which TACs are to be applied should have a value 1 in the [isTAC]{style="color: orange;"} parameter in the *functional_groups.csv* file, or else the TAC routine for the species is skipped. Also, all functional groups which are to be managed with TACs should be identified as [isFished]{style="color: orange;"} = 1 in the *functional_groups.csv* file; otherwise Atlantis overwrites their TACs with a very large number (10^12^) and considers them as non-quota species.
 
 The TAC calculations are done by the *TAC_Check()* routine in **atManage.c**.
 
@@ -198,7 +198,7 @@ Irrespective of how the basket is made up, if the cumulative catch of shark (i.e
 
 ### Spatial TAC allocation: global or regional {#sec-spatial-tac}
 
-TAC based management also allows users to either use a basic global TAC applied to the entire model domain (e.g. [YYY_flagmanage]{style="color: orange;"} = 2, @tbl-flagmanage-options), or use regional TAC management (e.g. [YYY_flagmanage]{style="color: orange;"} = 4, @tbl-flagmanage-options). The **regions can be defined based on fisheries stocks** identified in the biology.prm file **or based on management areas** (see NOTE! below). Parameter [manage_reg]{style="color: orange;"} identifies whether regional fisheries management is done based on stocks ([manage_reg]{style="color: orange;"} = 0) or based on regions ([manage_reg]{style="color: orange;"} = 1).
+TAC based management also allows users to either use a basic global TAC applied to the entire model domain (e.g. [YYY_flagmanage]{style="color: orange;"} = 2, @tbl-flagmanage-options), or use regional TAC management (e.g. [YYY_flagmanage]{style="color: orange;"} = 4, @tbl-flagmanage-options). The **regions can be defined based on fisheries stocks** identified in the *biology.prm* file **or based on management areas** (see NOTE! below). Parameter [manage_reg]{style="color: orange;"} identifies whether regional fisheries management is done based on stocks ([manage_reg]{style="color: orange;"} = 0) or based on regions ([manage_reg]{style="color: orange;"} = 1).
 
 In global TAC cases, a species TAC applies to its total catch (or landing) over the entire model domain. In the case of the regional management TACs are assessed for separate stocks or regions independently (see NOTE! below on how to set up different stocks or regions). In this case the TAC for a species/fishery is still set as usual for the entire domain in [TAC_XXX]{style="color: orange;"} parameter.
 

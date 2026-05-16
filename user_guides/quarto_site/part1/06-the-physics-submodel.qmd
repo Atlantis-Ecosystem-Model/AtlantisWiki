@@ -435,7 +435,7 @@ Some of the relevant parameters (which need to be added to the [*biology.prm*](
 
 *Other relevant parameters:*
 
-Contaminants can also affect movement. There is the potential for mobile species (defined by the [VerticallyMigrates]{style="color: orange;"} and [HorizontallyMigrates]{style="color: orange;"} settings for the species in the [functional_groups.csv]{style="color: orange;"} file) to avoid the contaminants. It is not always appropriate biomass pool groups to show this behaviour so to turn it off set [biopools_dodge_contam]{style="color: orange;"} 0 in the biology.prm.
+Contaminants can also affect movement. There is the potential for mobile species (defined by the [VerticallyMigrates]{style="color: orange;"} and [HorizontallyMigrates]{style="color: orange;"} settings for the species in the [functional_groups.csv]{style="color: orange;"} file) to avoid the contaminants. It is not always appropriate biomass pool groups to show this behaviour so to turn it off set [biopools_dodge_contam]{style="color: orange;"} 0 in the *biology.prm*.
 
 For each of the contaminants the following parameters is required. For contaminant ZZZZ the coefficient indicating degree of dissolubility of the material (used if [flag_dissolved_pollutants]{style="color: orange;"} is set to 1, and determined for each contaminant - 1 all, 0 none) is set using [ZZZZ_dissolv_coefft]{style="color: orange;"}. Half life in seconds is set using [ZZZZ_half_life]{style="color: orange;"}. The flag indicating whether the contaminant effect is temperature dependent is [ZZZZ_temp_depend]{style="color: orange;"}.
 

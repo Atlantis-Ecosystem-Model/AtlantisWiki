@@ -492,7 +492,7 @@ $$
 VL = vla \cdot (SN \cdot XNC)^{vlb}
 $$
 
-where SN is the structural nitrogen of an age class and XCN is the C:N Redfield ratio (X_CN in the biology.prm) typically set to 5.7 used to convert nitrogen mass to total ash-free dry mass.
+where SN is the structural nitrogen of an age class and XCN is the C:N Redfield ratio (X_CN in the *biology.prm*) typically set to 5.7 used to convert nitrogen mass to total ash-free dry mass.
 
 For demersal species (flagdem=1) the search volume VL is halved (VL=VL/2).
 
@@ -1298,7 +1298,7 @@ $$Rc = SSB \cdot e^{Ralpha \cdot \left( 1 - \frac{SSB}{Rbeta} \right)}$$
 ::: {.callout-caution}
 **Interspecies dependency scalar** 
 
-It is possible in Atlantis to scale recruitment by the biomass of another species Y. This could be used to simulate, for example, consumption of cod eggs by sprat in the Baltic Sea. The interspecies dependency of species XXX recruitment is set with a flag [intersp_depend_recruit_XXX]{style="color: orange;"}, where 1 means linear scaling and 2 is inverse scaling. Parameter [intersp_depend_sp_XXX]{style="color: orange;"} gives the ID number of species Y (from the functional_groups.csv file). The [intersp_depend_scale_XXX]{style="color: orange;"} is a scalar to apply to recruitment, showing the influence of the biomass of species group Y on the recruitment of XXX.
+It is possible in Atlantis to scale recruitment by the biomass of another species Y. This could be used to simulate, for example, consumption of cod eggs by sprat in the Baltic Sea. The interspecies dependency of species XXX recruitment is set with a flag [intersp_depend_recruit_XXX]{style="color: orange;"}, where 1 means linear scaling and 2 is inverse scaling. Parameter [intersp_depend_sp_XXX]{style="color: orange;"} gives the ID number of species Y (from the *functional_groups.csv* file). The [intersp_depend_scale_XXX]{style="color: orange;"} is a scalar to apply to recruitment, showing the influence of the biomass of species group Y on the recruitment of XXX.
 
 If recruitment of species XXX is dependent of species Y, and [intersp_depend_recruit_XXX]{style="color: orange;"} = 1 recruitment Rc of XXX is calculated as 
 

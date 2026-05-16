@@ -76,7 +76,7 @@ Oceanographic modelling has made rapid progress in recent years and availability
 ::: {.callout-caution}
 **NOTE!** 
 
-The **hydrodynamic forcing files** **are automatically** recycled or **looped** for the entire model simulation run. This is **not the case** with other forcing files, such as temperature, salinity or other optional forcing files. To rewind the temperature and salinity forcing files set the flags [temp_rewind]{style="color: orange;"} and [salt_rewind]{style="color: orange;"} to 1 in the force.prm file. If the flags are set to 0 then the simulations will use the last temperature and salinity value once the forcing file time series ends. To rewind any other optional forced tracers make sure you set [TracerName_rewind]{style="color: orange;"} (e.g. [pH_rewind]{style="color: orange;"}) parameter to 1.
+The **hydrodynamic forcing files** **are automatically** recycled or **looped** for the entire model simulation run. This is **not the case** with other forcing files, such as temperature, salinity or other optional forcing files. To rewind the temperature and salinity forcing files set the flags [temp_rewind]{style="color: orange;"} and [salt_rewind]{style="color: orange;"} to 1 in the *force.prm* file. If the flags are set to 0 then the simulations will use the last temperature and salinity value once the forcing file time series ends. To rewind any other optional forced tracers make sure you set [TracerName_rewind]{style="color: orange;"} (e.g. [pH_rewind]{style="color: orange;"}) parameter to 1.
 :::
 
 ::: {.callout-caution}
@@ -90,7 +90,7 @@ The transport model uses the water exchanges from the hydrodynamic forcing files
 2. add local water inputs or sinks, such as river flows or outflows
 3. apply water exchanges through the surface layer due to precipitation and evaporation 
 
-The final flows of water are given in the output.nc file listed in [hdsource]{style="color: orange;"}, [hdsink]{style="color: orange;"}, [eflux]{style="color: orange;"} and [vflux]{style="color: orange;"} (see description of the output file parameters in @sec-output-physical-tracers). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.
+The final flows of water are given in the *output.nc* file listed in [hdsource]{style="color: orange;"}, [hdsink]{style="color: orange;"}, [eflux]{style="color: orange;"} and [vflux]{style="color: orange;"} (see description of the output file parameters in @sec-output-physical-tracers). If some of the optional physics routines are used, then these final exhcanges may be different from the hydrodynamic forcing inputs.
 :::
 
 ## Numbering of vertical layers in the input and output NC files 
@@ -118,7 +118,7 @@ In the input.nc file a shallow water box with three water layers will look like:
 
 *layer 0, layer 1, layer 2, 0, 0, 0, sediment 0*
 
-In the output.nc file the same box will look like:
+In the *output.nc* file the same box will look like:
 
 *0, 0, 0, layer 0, layer 1, layer 2, sediment 0*
 :::

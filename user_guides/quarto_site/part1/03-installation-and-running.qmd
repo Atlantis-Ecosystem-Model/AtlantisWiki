@@ -215,7 +215,7 @@ While the *migrations.csv* file is marked as optional here, it is usually used a
 
 If the *--t <name of folder containing parameter files>* is omitted then Atlantis will expect to find the parameter files in the same directory as the batch file used to run the model. If the Atlantis executable is formally installed after it is compiled (e.g. using sudo make install in [Linux](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-linux.html)) or adding it to the Windows recognised path names, see the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/building-under-windows.html) then you do not need to copy the executable file to the run directory and you only need to type the name of your Atlantis executable (e.g. *atlantismain* in the example) rather than name.exe in the command line.
 
-Names of the parameter files must be given after an appropriate one letter argument which indicates what the following filename represents. For example, ***-i*** tells the executable that the following filename is the input file that details initial conditions. The actual names of the parameter files are flexible, as long as the file extensions are correct. For example, the initial conditions file could be named as initial_conditions.nc, start_of_the_run.nc, start_of_the_fun.nc, a.nc or fred.nc. It does not matter so long as it is an NC file. It is **only** the one letter flag command (e.g. -i, -o, -p and others) preceding the filename that tells Atlantis which kind of file to expect.
+Names of the parameter files must be given after an appropriate one letter argument which indicates what the following filename represents. For example, ***-i*** tells the executable that the following filename is the input file that details initial conditions. The actual names of the parameter files are flexible, as long as the file extensions are correct. For example, the initial conditions file could be named as *initial_conditions.nc*, start_of_the_run.nc, start_of_the_fun.nc, a.nc or fred.nc. It does not matter so long as it is an NC file. It is **only** the one letter flag command (e.g. -i, -o, -p and others) preceding the filename that tells Atlantis which kind of file to expect.
 
 ::: callout-note
 For example, your BAT file could look like the following and it will run perfectly well:
@@ -367,7 +367,7 @@ ncdump.exe My_Data.nc > My_Data.cdf ncgen.exe -b My_Data.cdf
 
 ![](media/image16.png){width="5.680555555555555in" height="2.6805555555555554in"}
 
-Once you converted the NC file into CDF, you can open it using a text editor. Here is an example of an output.nc file (comments after \## are added here for explanation):
+Once you converted the NC file into CDF, you can open it using a text editor. Here is an example of an *output.nc* file (comments after \## are added here for explanation):
 
 ```         
 netcdf example {  ## name of the file
@@ -491,7 +491,7 @@ The term "**tracer**" will be used often throughout the manual. Most of the vari
 | `b_dens` | Particle bulk density (mg·m⁻³) | Used in the Physics submodel to calculate deposition and porosity. Used in *deposition()* and in calculating sediment density. These parameters in the real world dictate particle movements in real water, but in Atlantis default values would do, because sediment properties are not modelled in such detail |
 | `i_conc` | Particle initial concentration in the deposits | Used in the Physics submodel to calculate deposition and porosity. It is used in *deposition()* routine only |
 | `f_conc` | Particle final concentration in the deposits, after compaction | **This was only used in old models. Current code does not read this in** |
-| `FillValue` | Default value to use when automatically filling empty cells in the initial_conditions.nc arrays | This is often used when the tracer initial concentration in most cells is identical |
+| `FillValue` | Default value to use when automatically filling empty cells in the *initial_conditions.nc* arrays | This is often used when the tracer initial concentration in most cells is identical |
 : Parameters used to describe characteristics of Atlantis variables in the *initial_conditions.nc* file. These parameters are read in by the *readBMTracerInfo()* in [attracerIO.c]{.underline}. {#tbl-initial-conditions-params tbl-colwidths=[15,45,40]}
 
 [^tracer-both]: A tracer can be present both in water column **AND** in sediments.

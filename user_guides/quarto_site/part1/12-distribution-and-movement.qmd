@@ -219,7 +219,7 @@ In the *biology.prm* file you also need to set [k_migslow]{style="color: orange;
 Within the model, when it is a migration time, the code checks what proportion of the age class migrates out of each box and takes that number (biomass) out of the model. This value set in the vector [MigIOBox_XXX]{style="color: orange;"} (with a value given per box in the model) in the *biology.prm* file. Separate vectors are required for juveniles and adults in age-structured groups. The amount removed from the model is stored in the MIGRATION array.
 
 ::: {.callout-caution}
-**Example of the migrations.csv file**
+**Example of the *migrations.csv* file**
 
 
 ::: {.scroll-frozen style="overflow-x: auto;"}
