@@ -1,4 +1,4 @@
-# Geometry of the Model Domain {#sec-geometry-model-domain}
+﻿# Geometry of the Model Domain {#sec-geometry-model-domain}
 
 ## Boxes and layers defining the geometry of the model 
 
@@ -138,7 +138,7 @@ There are times (e.g. during an extreme event, which might be implemented for a 
 
 [box#.vertmix]{style="color: orange;"} - vertical mixing scalar used only when [vert_diffusion]{style="color: orange;"} or [vert_mix]{style="color: orange;"} are turned on in the *physics.prm*.
 
-[box#.horizmix]{style="color: orange;"} -- horizontal mixing scalar that can be used to correct for hyperdifusion (if insufficient correction was done during the file conversion stage, @sec-vert-horz-transport). It is also used as a box-specific scalar if [fill_zero_exchange]{style="color: orange;"} or [horiz_diffusion]{style="color: orange;"} flags are turned on (set to 1) in the *physics.prm* file (@sec-physics-submodel).
+[box#.horizmix]{style="color: orange;"} — horizontal mixing scalar that can be used to correct for hyperdifusion (if insufficient correction was done during the file conversion stage, @sec-vert-horz-transport). It is also used as a box-specific scalar if [fill_zero_exchange]{style="color: orange;"} or [horiz_diffusion]{style="color: orange;"} flags are turned on (set to 1) in the *physics.prm* file (@sec-physics-submodel).
 
 ## Practical steps for building the BGM files from GIS shapefiles
 

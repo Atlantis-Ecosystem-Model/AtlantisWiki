@@ -1,4 +1,4 @@
-# Hydrodynamic, Salinity, and Temperature Forcing Data {#sec-forcing-files}
+﻿# Hydrodynamic, Salinity, and Temperature Forcing Data {#sec-forcing-files}
 
 ## General introduction to forcing of Atlantis models 
 
@@ -171,4 +171,4 @@ $\delta_{\mathbb{N}} = \frac{\kappa_{\eta,s}}{\mathbb{N}_{i,j}}$
 
 Where $\mathbb{N}_{i,j}$ represents the level of the pollutant (noise or light) in layer $j$ of polygon (box) $i$; and $\kappa_{\eta,s}$ is the coefficient for that pollutant type.
 
-In addition, metabolic parameters -- consumption ([C]{style="color: orange;"}) and growth rates ([mum]{style="color: orange;"}) -- are scaled in the same way; while starvation and background ([mL]{style="color: orange;"}, [mQ]{style="color: orange;"}) mortality rates are scaled by the inverse.
+In addition, metabolic parameters — consumption ([C]{style="color: orange;"}) and growth rates ([mum]{style="color: orange;"}) — are scaled in the same way; while starvation and background ([mL]{style="color: orange;"}, [mQ]{style="color: orange;"}) mortality rates are scaled by the inverse.

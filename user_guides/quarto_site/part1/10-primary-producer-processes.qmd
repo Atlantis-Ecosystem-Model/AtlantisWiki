@@ -1,4 +1,4 @@
-# Primary Producer Processes {#sec-primary-producer-processes}
+﻿# Primary Producer Processes {#sec-primary-producer-processes}
 
 The main Atlantis model has six different types of primary producers, including two sizes of phytoplankton (large phytoplankton LG_PHY and small phytoplankton SM_PHY), mixotrophic dinoflagellates (DINOFLAG), microphytobenthos (MICROPHTYBENTHOS) and two epibenthic groups (seagrasses SEAGRASS and other phytobenthos PHYTOBEN). In models including ice, specific ice primary producers are modelled. Similarly in models that dynamically represent land, the user can define terrestrial vegetation (primary producer) groups, which are restricted to land (e.g. MANGROVE, MARSH, with crops and agriculture also available as an industry if the land use model option is used). The description below will focus on the main model only.
 
@@ -69,7 +69,7 @@ where **DIN = NH3+NO3** (ammonia and nitrate concentration) and *KN* is the half
 
 Nutrient limitation is calculated by the *Nutrient_Lim()* routine in **atprocess.c**
 
-When phytoplankton is limited by multiple nutrients, such as N and Si in the case of diatoms, the choice of limitation equation is set by the [flagnut]{style="color: orange;"} parameter. This parameter calls three types of nutrient limitation options -- Liebig, multiplicative, and the ERSEM WQI based option. Only the first two options have been more widely used, whereas the third version has been implemented only for testing purposes. The nutrient limitation scalar for the three options is calculated as:
+When phytoplankton is limited by multiple nutrients, such as N and Si in the case of diatoms, the choice of limitation equation is set by the [flagnut]{style="color: orange;"} parameter. This parameter calls three types of nutrient limitation options — Liebig, multiplicative, and the ERSEM WQI based option. Only the first two options have been more widely used, whereas the third version has been implemented only for testing purposes. The nutrient limitation scalar for the three options is calculated as:
 
 $$\delta_{nutrient} = \min\left( \frac{DIN}{KN + DIN},\frac{Si}{KS + Si} \right)\ \ \ \ \ \ \ \ \ \ \ \ \ if\ Liebig\ limitation\ is\ used\ (flagnut = 0)$$
 
@@ -85,7 +85,7 @@ In models that track P and C ([trackAtomicRatio]{style="color: orange;"} =1 in *
 
 ### Primary producer light limitation
 
-Photosynthesis in the model is potentially light-limited and the available suitable light (W m^-2^) -- the photosynthetically active radiation (PAR) - in the water column and at the sediment surface is modelled explicitly. The **light limitation** *δ~light\ ~*factor is calculated in *Light_Lim()* in **atprocess.c** as:
+Photosynthesis in the model is potentially light-limited and the available suitable light (W m^-2^) — the photosynthetically active radiation (PAR) - in the water column and at the sediment surface is modelled explicitly. The **light limitation** *δ~light\ ~*factor is calculated in *Light_Lim()* in **atprocess.c** as:
 
 $$\delta_{light} = \min\left( \frac{IRR}{KI},1 \right)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ light\ adaptation\ is\ not\ used\ (flaglight = 0)$$
 
@@ -105,7 +105,7 @@ $$Kd = k_{w} + k_{IS} + k_{PN} \cdot \sum_{i = phytopl}^{}{B_{i} + k_{DON} \cdot
 
 The equation shows that light attenuation is simply defined by the background blue water light absorption coefficient (*k~w~*), additional light absorption due to tannins and other non-biological particulate matter that is important in coastal areas (set in *k~IS~*), and concentration or biomass of light attenuating organisms (plankton) or substances (DON, detritus, sediments) multiplied by the corresponding light attenuation coefficient. The attenuation is caused by:
 
-1. background light absorption by water itself (*k~w~*) -- used in the PPBIM model.
+1. background light absorption by water itself (*k~w~*) — used in the PPBIM model.
 2. additional background light absorption by water due to tannins and other non-biological particulate matter that is important in coastal areas (set in *k~IS~*). Different coefficients ([k_w_shallow]{style="color: orange;"} and [k_w_deep]{style="color: orange;"}) are used for coastal and oceanic water. This second term of light absorption was not used in PPBIM but was taken from ERSEM
 3. phytoplankton, with [k_PN]{style="color: orange;"} defining coefficient of light absorption by particulate matter, such as phytoplankton
 4. dissolved organic nitrogen and the relevant coefficient [k_DON]{style="color: orange;"}
@@ -135,7 +135,7 @@ Eddy strengths for each box and each quarter are set in the *physics.prm* file (
 
 There is good evidence to suggest that the presence of eddies significantly enhances primary production through vertical water column mixing creating spatial and seasonal variation. There are two ways to add this variation in Atlantis and users are encouraged to make use of these parameters.
 
-First, the effects of eddies on vertical mixing alone can be included through the parameters in the *physics.prm* ([eddy_vertmix]{style="color: orange;"}, [eddy_S1]{style="color: orange;"} to [eddy_S2]{style="color: orange;"}, [eddy_mixscale]{style="color: orange;"} -- @sec-main-physics-routine). This should increase vertical mixing in the water column and bring extra nutrients to the surface.
+First, the effects of eddies on vertical mixing alone can be included through the parameters in the *physics.prm* ([eddy_vertmix]{style="color: orange;"}, [eddy_S1]{style="color: orange;"} to [eddy_S2]{style="color: orange;"}, [eddy_mixscale]{style="color: orange;"} — @sec-main-physics-routine). This should increase vertical mixing in the water column and bring extra nutrients to the surface.
 
 Second, the user can add an extra scalar *δ~eddy\ ~*on primary production through the [eddy_scale]{style="color: orange;"} parameter in the *biology.prm* file. This scalar will take the eddy values and re-scale the primary production calculated for the available amount of light and nutrients based on eddy strength. The second approach assumes that additional nutrients are implicitly supplied through eddies, increasing primary production (these nutrients do not appear in the tracer values but represent just an assumed increase). This *ad hoc* approach can be taken if the model fails to accurately reflect spatial and seasonal variation in primary production, but the explicit dynamics of nutrient turnover is not resolved accurately enough to enhance primary production sufficiently through nutrient mixing alone. It is not recommended for models that focus on nutrient dynamics and lower trophic levels, but might be useful for models that focus on the dynamics at higher trophic levels and socio-economic aspects.
 :::
@@ -191,8 +191,8 @@ Both light saturation ([KI_XXX_T15]{style="color: orange;"}) and maximum growth 
 
 The **salinity** effect on light saturation and maximum growth rate are optional, where the *Scorr* is applied only when:
 
-1\) an organism is identified as sensitive to salinity, with [flagSaltSensitive_XXX]{style="color: orange;"}
-2\) an organism is outside the salinity limits defined with [XXX_min_move_salt]{style="color: orange;"} and [XXX_max_move_salt]{style="color: orange;"}
+1) an organism is identified as sensitive to salinity, with [flagSaltSensitive_XXX]{style="color: orange;"}
+2) an organism is outside the salinity limits defined with [XXX_min_move_salt]{style="color: orange;"} and [XXX_max_move_salt]{style="color: orange;"}
 
 If the two conditions are fulfilled, the *Scorr* scalar provided by the user as [salt_correction_XXX]{style="color: orange;"} parameter, is applied to [KI_XXX_T15]{style="color: orange;"} and [mum_XXX_T15]{style="color: orange;"} (along with the *Tcorr* described above).
 

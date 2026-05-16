@@ -1,4 +1,4 @@
-# Force Parameters {#sec-force-parameters}
+﻿# Force Parameters {#sec-force-parameters}
 
 Atlantis can take a lot of externally forced tracer and parameter values. Details on such forcing files are given in the *force.prm* file.
 
@@ -81,9 +81,9 @@ Make sure you choose the correct value for the rewind parameter, as that will de
 : Forcing parameters for Atlantis model configuration. {#tbl-forcing-parameters-1 tbl-colwidths=[20,80]}
 
 ::: {.callout-caution}
-**Note!** The location values (X Y Z) have three values -- coordinates to input the point source (3951091.3 1789202.7) and the depth **(-1).** To make sure the point source is deposited in the desired box it is a good idea to ensure the X Y values match the "inside" point of the box as given in the BGM file (@sec-geometry-model-domain).
+**Note!** The location values (X Y Z) have three values — coordinates to input the point source (3951091.3 1789202.7) and the depth **(-1).** To make sure the point source is deposited in the desired box it is a good idea to ensure the X Y values match the "inside" point of the box as given in the BGM file (@sec-geometry-model-domain).
 
-The **last number in the location is very important** as it will determine the correct reading of the forcing data. For point source data the depth must be a negative number for it to be deposited in the water. Other time series forcing files (e.g. for catch) follow a similar format to the PSS files -- requiring a name, location, data (filename) and rewind flag. However, **for these forcing files the third number gives the box ID number (from BGM file, @sec-geometry-model-domain) not a depth.**
+The **last number in the location is very important** as it will determine the correct reading of the forcing data. For point source data the depth must be a negative number for it to be deposited in the water. Other time series forcing files (e.g. for catch) follow a similar format to the PSS files — requiring a name, location, data (filename) and rewind flag. However, **for these forcing files the third number gives the box ID number (from BGM file, @sec-geometry-model-domain) not a depth.**
 :::
 
 | **Forcing** | **Parameters needed in *force.prm*** |

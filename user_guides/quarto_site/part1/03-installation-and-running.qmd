@@ -1,4 +1,4 @@
-# Installation and Running {#sec-installation}
+﻿# Installation and Running {#sec-installation}
 
 ## How to check out and install the code {#sec-checkout-install}
 
@@ -91,9 +91,9 @@ See the [wiki](https://atlantis-ecosystem-model.github.io/atlantis-wiki/windows-
 ::: {.callout-tip title="Good practice tip 1"}
 A good practice Atlantis run directory is uncluttered and contains separate folders for:
 
-1\) external forcing files or **inputs**. These files are referred to in *force.prm* file and will rarely need to be modified after the parameterisation of the model. They are usually placed in the 'inputs' directory
+1) external forcing files or **inputs**. These files are referred to in *force.prm* file and will rarely need to be modified after the parameterisation of the model. They are usually placed in the 'inputs' directory
 
-2\) other **parameter** files. These parameters will be listed in the *.bat* file used to initialise simulations. Depending on the research question, you will probably modify at least some of the biological, harvest or socio-economic parameters in each of the simulations. Although it is not obligatory we suggest that you keep all your parameters in a separate 'parameters' directory.
+2) other **parameter** files. These parameters will be listed in the *.bat* file used to initialise simulations. Depending on the research question, you will probably modify at least some of the biological, harvest or socio-economic parameters in each of the simulations. Although it is not obligatory we suggest that you keep all your parameters in a separate 'parameters' directory.
 
 It is a good idea to give parameter files meaningful names. For example, it would be hard to remember what *A.prm* refers to, whereas *Biol_noclimate_change.prm* is a lot more informative. However, there is a limit to the length of a filename Atlantis will read-in so if your model won't run because it can't find a file and that file does exist but has a long name try shortening the name and see if that helps.
 
@@ -159,7 +159,7 @@ As an example we will look at the formulation of the respiration processes in fu
 
 Once you open your solution file in Visual Studio C++, expand the submodel **atecology** (**1.**) and double click the **atvertprocesses.c** file (**2.**). The file will be opened (**3.**) and on the right side you have a drop-down menu to browse through the routines defined in the file (**4.**). By clicking on the *Fish_Respiration()* routine you will find the description of parameters and equations used to calculate it Note that the first reference to *Fish_Respiration()* in the drop-down menu has a small arrow next to it. By clicking on this option you will find where in the code the routine is called.
 
-By exploring the code for the routine (**5.**) you can see that the routine needs variables calculated or defined elsewhere in the code, such as *guildcase*, *SN*, *RN*, *Dens* and *\*respire*, these variables are described within the parentheses *( )* right after the routine name. The routine also uses six parameters -- *KA_id*, *KB_id*, *KST_id*, *Ktmp_id, Kthresh2* and *X_CN*. You can find them in the biological parameters file by replacing the '*id*' with your functional group abbreviation (e.g. *KA_FCD*), as defined in the functional group .csv file. Sometimes the *\_id* represents larger categories, such as \_fish or \_shark, as is the case for *KST_fish*, but you should be able to work it out by searching for the parameter name.
+By exploring the code for the routine (**5.**) you can see that the routine needs variables calculated or defined elsewhere in the code, such as *guildcase*, *SN*, *RN*, *Dens* and *\*respire*, these variables are described within the parentheses *( )* right after the routine name. The routine also uses six parameters — *KA_id*, *KB_id*, *KST_id*, *Ktmp_id, Kthresh2* and *X_CN*. You can find them in the biological parameters file by replacing the '*id*' with your functional group abbreviation (e.g. *KA_FCD*), as defined in the functional group .csv file. Sometimes the *\_id* represents larger categories, such as \_fish or \_shark, as is the case for *KST_fish*, but you should be able to work it out by searching for the parameter name.
 
 ![](media/image10.jpeg){width="6.9527777777777775in" height="5.214583333333334in"}
 
@@ -372,7 +372,7 @@ Once you converted the NC file into CDF, you can open it using a text editor. He
 ```         
 netcdf example {  ## name of the file
 
-## header section of the file -- describes file contents and dimensions
+## header section of the file — describes file contents and dimensions
 
 dimensions:
     t = UNLIMITED ; // (111 currently)  ## number of time steps
@@ -452,10 +452,10 @@ data:  ## start of the data for each variable
 There are three kinds of obligatory and two kinds of optional variables used in Atlantis. Variable types are defined by the `bmtype` parameter:
 
 1.  "phys" - physical properties of the model
-2.  "tracer" -- three-dimensional dynamic variables (either in the water column or the sediments) of the model domain
-3.  "epibenthos" -- two-dimensional dynamic benthic variables
-4.  ["icetracer"](https://atlantis-ecosystem-model.github.io/atlantis-wiki/changed-to-initial-conditions-netcdf-file.html) -- a variable that exists in ice layers (if the model explicitly includes ice)
-5.  "[terrestrial](https://atlantis-ecosystem-model.github.io/atlantis-wiki/land-in-atlantis.html)" -- tracers used to identify land variables (if the model explicitly includes land)
+2.  "tracer" — three-dimensional dynamic variables (either in the water column or the sediments) of the model domain
+3.  "epibenthos" — two-dimensional dynamic benthic variables
+4.  ["icetracer"](https://atlantis-ecosystem-model.github.io/atlantis-wiki/changed-to-initial-conditions-netcdf-file.html) — a variable that exists in ice layers (if the model explicitly includes ice)
+5.  "[terrestrial](https://atlantis-ecosystem-model.github.io/atlantis-wiki/land-in-atlantis.html)" — tracers used to identify land variables (if the model explicitly includes land)
 
 Each variable declaration includes the expected numerical precision. A few variables (e.g. numlayers) are marked as short, which means they are expecting integer input variables, but most variables are `doubles`, which indicates that they are a double precision floating point number format (a computer way saying this is a real number not simply an integer). The precision identifier is followed by the variable name and the expected dimensions. Variables can be one dimensional (time), two dimensional (time, box) or three dimensional (time, box, layer). It is important to make sure the data entered has this many dimensions (with no omissions) as Atlantis assumes the dimensions are fully filled when it loads the data.
 
