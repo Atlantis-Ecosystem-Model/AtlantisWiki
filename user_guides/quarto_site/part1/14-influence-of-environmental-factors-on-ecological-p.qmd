@@ -2,11 +2,11 @@
 
 ## Temperature: two methods to get temperature scalar 
 
-Temperature can have a large influence on many biogeochemical and ecological processes, but in Atlantis the user can turn the temperature effects off, by setting [flagq10]{style="color: orange;"}=0 (NOT recommended given the fundamental temperature dependence of most physiological processes). Temperature effects are mostly applied through the Tcorr scalar calculated in the *Get_Tcorr()* routine. Setting [flagq10]{style="color: orange;"}=0 means that Tcorr scalar will be set to 1.
+Temperature can have a large influence on many biogeochemical and ecological processes, but in Atlantis the user can turn the temperature effects off, by setting [flagq10]{style="color: orange;"} = 0 (NOT recommended given the fundamental temperature dependence of most physiological processes). Temperature effects are mostly applied through the Tcorr scalar calculated in the *Get_Tcorr()* routine. Setting [flagq10]{style="color: orange;"} = 0 means that Tcorr scalar will be set to 1.
 
 There are two ways to calculate the Tcorr scalar and different methods can be applied for different species, selected with the [q10_method_XXX]{style="color: orange;"} parameter. Some details on the calculations are given [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/effect-of-temperature-on-functional-groups.html).
 
-If the [q10_method_XXX]{style="color: orange;"}=0 then a simple Q10 based correction scalar is calculated, using the reference temperature of 15°C:
+If the [q10_method_XXX]{style="color: orange;"} = 0 then a simple Q10 based correction scalar is calculated, using the reference temperature of 15°C:
 
 $$T_{scalar} = q10^{\frac{T_{H2O} - 15}{10}}$$
 
@@ -19,7 +19,7 @@ where q10 is a species-specific parameter provided in the [q10_XXX]{style="color
 [**Red**]{style="color: red;"}: q10=3
 
 
-A more complicated six parameter function is used if [q10_method_XXX]{style="color: orange;"}=1 (based on Gary Griffiths PhD thesis)
+A more complicated six parameter function is used if [q10_method_XXX]{style="color: orange;"} = 1 (based on Gary Griffiths PhD thesis)
 
 $$Tcorr = \ln(2) \cdot \phi_A \cdot Cons_B^{Temp} \cdot \exp\left( - \phi_C \cdot \frac{\left| Temp - Temp_{OPT} \right|^{Cons}}{\phi_{corr}} \right)$$
 
@@ -34,7 +34,7 @@ This function aims to imitate a humped response, where rates are highest at opti
 - Cons ([temp_exp]{style="color: orange;"}) = 3
 - ø~corr~ ([q10_correction_XXX]{style="color: orange;"}) = 1000
 
-![A humped temperature response used when [q10_method_XXX]{style="color: orange;"}=1.](media/image61.png){#fig-humped-temperature-response width=5.1in height=3.5in}
+![A humped temperature response used when [q10_method_XXX]{style="color: orange;"} = 1.](media/image61.png){#fig-humped-temperature-response width=5.1in height=3.5in}
 
 **Black**: original values as shown in parentheses below
 
@@ -72,7 +72,7 @@ To allow for temperature effect on assimilation efficiency set [flagq10effXXX]{s
 
 When **[flagq10effXXX]{style="color: orange;"} = 1** the **efficiency is poorer in cooler water** and the Tcorr scalar (@fig-humped-temperature-response) is applied **only** if water temperature is lower than the optimum or reference level (depending on the [q10_method_XXX]{style="color: orange;"} used).
 
-If **[flagq10effXXX]{style="color: orange;"}= 2** the **efficiency is poorer in warmer water** and the Tcorr scalar (@fig-humped-temperature-response) is applied **only** if water temperature is higher than the optimum or reference level (depending on the [q10_method_XXX]{style="color: orange;"} used).
+If **[flagq10effXXX]{style="color: orange;"} = 2** the **efficiency is poorer in warmer water** and the Tcorr scalar (@fig-humped-temperature-response) is applied **only** if water temperature is higher than the optimum or reference level (depending on the [q10_method_XXX]{style="color: orange;"} used).
 
 In the calculations above if the Tcorr is >1 then the Tcorr=1/T_scalar. This means that Tcorr is always <1, which ensures that efficiency is decreased when correcting for temperature effects.
 
@@ -108,7 +108,7 @@ The calculation of the pH correction scalar (pHCorr) is described in detail on w
 
 Briefly, depending on the [pH_sensitivity_model]{style="color: orange;"} selected, Atlantis will calculate the pHCorr using monodynamic, non-linear, linear, piecewise or quadratic approaches (see link above for details). The scalar will be <1 at decreasing pH values. It can be based on the pH values of ∆ \[H+\] (set [flag_use_deltaH]{style="color: orange;"} to 1 to use ∆ \[H+\]).
 
-As for the Scorr scalar, **for age structured groups** the pHCorr will be applied to the processes affected by temperature (feeding rates, assimilation efficiency, mortality), **only if a species is sensitive to pH** ([flagpHsensitive_XXX]{style="color: orange;"}=1) **and sensitive to temperature.**
+As for the Scorr scalar, **for age structured groups** the pHCorr will be applied to the processes affected by temperature (feeding rates, assimilation efficiency, mortality), **only if a species is sensitive to pH** ([flagpHsensitive_XXX]{style="color: orange;"} = 1) **and sensitive to temperature.**
 
 
 The pH can also affect other processes, as listed in @tbl-pH-effects.
@@ -116,16 +116,16 @@ The pH can also affect other processes, as listed in @tbl-pH-effects.
 | What is affected | How to activate | How is it applied |
 |:-----------------|:----------------|:------------------|
 | **Processes for which pHCorr scalar is applied at the same time as the Tcorr scalar, described in @sec-temp-feeding-params** | | |
-| Growth and non-predation mortality rates | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>For age structured groups it is applied only if:<br><br>[flagtempsensitiveXXX]{style="color: orange;"}=1 | Growth and non-predation mortality are affected in opposite ways by pH. The unmodified [C]{style="color: orange;"} and [mum]{style="color: orange;"} will be multiplied by pHCorr (and decrease as a result) and the unmodified [mL]{style="color: orange;"} and [mQ]{style="color: orange;"} multiplied by 1.0/pHCorr (and increase) |
-| Search volume (if [predcase]{style="color: orange;"}=5) | [flagpHsensitive_XXX]{style="color: orange;"}=1 | The [vla_T15]{style="color: orange;"} is multiplied by pHCorr (and decreases)<br><br>This is only applied for age structured groups |
-| Assimilation efficiency | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagtempsensitiveXXX]{style="color: orange;"}=1<br><br>[flagq10eff_XXX]{style="color: orange;"}=1 or 2 | Four assimilation efficiencies are multiplied by pHCorr (and decrease) |
+| Growth and non-predation mortality rates | [flagpHsensitive_XXX]{style="color: orange;"} = 1<br><br>For age structured groups it is applied only if:<br><br>[flagtempsensitiveXXX]{style="color: orange;"} = 1 | Growth and non-predation mortality are affected in opposite ways by pH. The unmodified [C]{style="color: orange;"} and [mum]{style="color: orange;"} will be multiplied by pHCorr (and decrease as a result) and the unmodified [mL]{style="color: orange;"} and [mQ]{style="color: orange;"} multiplied by 1.0/pHCorr (and increase) |
+| Search volume (if [predcase]{style="color: orange;"} = 5) | [flagpHsensitive_XXX]{style="color: orange;"} = 1 | The [vla_T15]{style="color: orange;"} is multiplied by pHCorr (and decreases)<br><br>This is only applied for age structured groups |
+| Assimilation efficiency | [flagpHsensitive_XXX]{style="color: orange;"} = 1<br><br>[flagtempsensitiveXXX]{style="color: orange;"} = 1<br><br>[flagq10eff_XXX]{style="color: orange;"} = 1 or 2 | Four assimilation efficiencies are multiplied by pHCorr (and decrease) |
 | **Processes for which pHCorr scalar is applied differently from Tcorr scalar** | | |
-| Availability of prey to predators | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagpredavaileffect_XXX]{style="color: orange;"}=1 | For **biomass pool prey**, availability to predators (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is **increased** by multiplying by 1.0/pHCorr<br><br>For **age structured group prey**, availability to predators (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is **decreased** by multiplying by pHCorr |
-| Nutritional content of a species to its predators; mostly intended to simulate nutritional content of primary producers | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagnutvaleffect_XXX]{style="color: orange;"}=1 | The amount of prey biomass available to a predator (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is further multiplied by pHCorr (to represent that more must be eaten to get the same nutritional content) and in this way decreased, reflecting lower nutritional content |
-| Reduced larval survival before recruitment | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagfecundsensitive_XXX]{style="color: orange;"}=1 | The number of recruits is multiplied by pHCorr and therefore decreased |
-| Modifying thermal tolerance of a species | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagcontract_tol_XXX]{style="color: orange;"}=1 | The thermal tolerance decreases according to the [contract_tol_XXX]{style="color: orange;"} parameter, which defines the number of degrees to contract the temperature tolerances by as pH drops |
-| Additional mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[flagPHmortcase]{style="color: orange;"} > 0 | Extra mortality applied for ALL groups |
-| Extra mortality | [flagpHsensitive_XXX]{style="color: orange;"}=1<br><br>[pHmortstart]{style="color: orange;"}=1 | Another logistic extra mortality term is added, see details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/acidification-induced-mortality.html) |
+| Availability of prey to predators | [flagpHsensitive_XXX]{style="color: orange;"} = 1<br><br>[flagpredavaileffect_XXX]{style="color: orange;"} = 1 | For **biomass pool prey**, availability to predators (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is **increased** by multiplying by 1.0/pHCorr<br><br>For **age structured group prey**, availability to predators (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is **decreased** by multiplying by pHCorr |
+| Nutritional content of a species to its predators; mostly intended to simulate nutritional content of primary producers | [flagpHsensitive_XXX]{style="color: orange;"} = 1<br><br>[flagnutvaleffect_XXX]{style="color: orange;"} = 1 | The amount of prey biomass available to a predator (defined in [pPREY]{style="color: orange;"} or ontogenetic diet matrices) is further multiplied by pHCorr (to represent that more must be eaten to get the same nutritional content) and in this way decreased, reflecting lower nutritional content |
+| Reduced larval survival before recruitment | [flagpHsensitive_XXX]{style="color: orange;"} = 1<br><br>[flagfecundsensitive_XXX]{style="color: orange;"} = 1 | The number of recruits is multiplied by pHCorr and therefore decreased |
+| Modifying thermal tolerance of a species | [flagpHsensitive_XXX]{style="color: orange;"} = 1<br><br>[flagcontract_tol_XXX]{style="color: orange;"} = 1 | The thermal tolerance decreases according to the [contract_tol_XXX]{style="color: orange;"} parameter, which defines the number of degrees to contract the temperature tolerances by as pH drops |
+| Additional mortality | [flagpHsensitive_XXX]{style="color: orange;"} = 1<br><br>[flagPHmortcase]{style="color: orange;"} > 0 | Extra mortality applied for ALL groups |
+| Extra mortality | [flagpHsensitive_XXX]{style="color: orange;"} = 1<br><br>[pHmortstart]{style="color: orange;"} = 1 | Another logistic extra mortality term is added, see details [here](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/acidification-induced-mortality.html) |
 
 : Effects of pH on physiological and ecological processes. [See detailed description](https://atlantis-ecosystem-model.github.io/atlantis-wiki/posts/handling-effects-of-acidification.html). {#tbl-pH-effects tbl-colwidths=[25,25,50]}
 

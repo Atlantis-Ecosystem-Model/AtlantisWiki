@@ -4,7 +4,7 @@
 
 ### Types of functional groups
 
-Biological components are represented as **biomass pools** (most non-vertebrates), **age-structured biomass pools** (some invertebrates) or **age-structured groups** (vertebrates). These three group types are assigned according to the [GroupType]{style="color: orange;"} and [NumCohorts]{style="color: orange;"} parameters given in the *functional_groups.csv* file (@tbl-state-variables). Group types FISH, FISH_INVERT, SHARK, MAMMAL, BIRD, REPTILE are assigned to the fully age-structured groups with the number of age groups given by [NumCohorts]{style="color: orange;"}. Other groups are assigned to biomass pools. If [NumCohorts]{style="color: orange;"} for a biomass pool is >1 they will be assigned to an age-structured biomass pool. The age-structured biomass pools are similar to stanzas used in, for example, Ecosim and are used to allow for different juvenile and adult behaviour and parameters. All non-vertebrates that have [NumCohorts]{style="color: orange;"}=1 are assigned to simple biomass pools.
+Biological components are represented as **biomass pools** (most non-vertebrates), **age-structured biomass pools** (some invertebrates) or **age-structured groups** (vertebrates). These three group types are assigned according to the [GroupType]{style="color: orange;"} and [NumCohorts]{style="color: orange;"} parameters given in the *functional_groups.csv* file (@tbl-state-variables). Group types FISH, FISH_INVERT, SHARK, MAMMAL, BIRD, REPTILE are assigned to the fully age-structured groups with the number of age groups given by [NumCohorts]{style="color: orange;"}. Other groups are assigned to biomass pools. If [NumCohorts]{style="color: orange;"} for a biomass pool is >1 they will be assigned to an age-structured biomass pool. The age-structured biomass pools are similar to stanzas used in, for example, Ecosim and are used to allow for different juvenile and adult behaviour and parameters. All non-vertebrates that have [NumCohorts]{style="color: orange;"} = 1 are assigned to simple biomass pools.
 
 ::: {.callout-caution}
 **Can a non-vertebrate be modelled as an age-structured group?**
@@ -22,7 +22,7 @@ In models that are based on N only (i.e. do not explicitly track P and C) the on
 
 #### Extended models
 
-If the model also includes tracking of P and C ([trackAtomicRatio]{style="color: orange;"} is set to 1 in *run.prm*), then P and C pools are tracked for each functional group, together with N pools. Additional inanimate pools are for C and P are also required. If the model is of an estuary ([flagIsEstuary]{style="color: orange;"}=1 in *run.prm* file) a sediment (SED) inanimate pool is added for the water column. If the model tracks contaminants ([track_contaminants]{style="color: orange;"}=1 in *run.prm*) a separate pool is added for each contaminant for each nitrogen pool tracked, so that concentration of contaminants can be tracked throughout the entire food web. If the model spans polar regions ([flagIsPolar]{style="color: orange;"}=1 in *run.prm*) the model allows for 24 hours of night/daylight seasonally.
+If the model also includes tracking of P and C ([trackAtomicRatio]{style="color: orange;"} is set to 1 in *run.prm*), then P and C pools are tracked for each functional group, together with N pools. Additional inanimate pools are for C and P are also required. If the model is of an estuary ([flagIsEstuary]{style="color: orange;"} = 1 in *run.prm* file) a sediment (SED) inanimate pool is added for the water column. If the model tracks contaminants ([track_contaminants]{style="color: orange;"} = 1 in *run.prm*) a separate pool is added for each contaminant for each nitrogen pool tracked, so that concentration of contaminants can be tracked throughout the entire food web. If the model spans polar regions ([flagIsPolar]{style="color: orange;"} = 1 in *run.prm*) the model allows for 24 hours of night/daylight seasonally.
 
 ### Allocation of pools throughout the vertical dimension: water column, epibenthos and sediment
 
@@ -57,7 +57,7 @@ In the Atlantis code the water column, epibenthic, sediment, ice and land distri
 | Labile detritus | N in water column<br>N in sediments | LAB_DET |
 | Refractory detritus | N in water column<br>N in sediments | REF_DET |
 | Carrion (only dynamically tracked if fisheries are active) | N in water column<br>N in sediments | CARRION |
-| Sediment (only if [flagIsEstuary]{style="color: orange;"}=1) | SED in water column | SED |
+| Sediment (only if [flagIsEstuary]{style="color: orange;"} = 1) | SED in water column | SED |
 
 : State variables tracked in the main Atlantis model (no ice or land included). \* indicates optional Si tracking in primary producers that are limited by Si. Primary producer Si limitation is set in *functional_groups.csv* file parameter [IsSiliconDep]{style="color: orange;"} (see @tbl-functional-group-params). In models that include C and P, both C and P are tracked like N (so the number of variables tracked is three times larger). {#tbl-state-variables tbl-colwidths=[30,45,25]}
 

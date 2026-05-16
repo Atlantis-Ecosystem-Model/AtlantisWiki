@@ -52,7 +52,7 @@ double Det_Si(t, b, z) ;
 ...
 ```
 
-From this we can see that Det_Si is a three-dimentional variable (t,b,z), found in the water column ([inwc]{style="color: orange;"}=1) and the sediments ([insed]{style="color: orange;"}=1). It is not removed from the system through burial ([decay]{style="color: orange;"}=0), it is not dissolved in the water ([dissol]{style="color: orange;"}=0), but is present in a particulate form ([partic]{style="color: orange;"}=1). The sedimentation velocity of particles is [svel]{style="color: orange;"}=-2.894e-005, and its negative value shows that the particles sink (are not buoyant). The particle size is [psize]{style="color: orange;"} = 1.e-005 m.
+From this we can see that Det_Si is a three-dimentional variable (t,b,z), found in the water column ([inwc]{style="color: orange;"} = 1) and the sediments ([insed]{style="color: orange;"} = 1). It is not removed from the system through burial ([decay]{style="color: orange;"} = 0), it is not dissolved in the water ([dissol]{style="color: orange;"} = 0), but is present in a particulate form ([partic]{style="color: orange;"} = 1). The sedimentation velocity of particles is [svel]{style="color: orange;"} = -2.894e-005, and its negative value shows that the particles sink (are not buoyant). The particle size is [psize]{style="color: orange;"} = 1.e-005 m.
 
 ### Obligatory tracers for dynamic properties
 
