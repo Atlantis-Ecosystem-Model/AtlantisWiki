@@ -108,7 +108,7 @@ There are two options to control this for the simple (not "sticky") density depe
 
 When [XXX_ddepend_move]{style="color: orange;"} = 5 only prescribed movement for the entire species will be used during the spawning period and only simple (non "sticky") density dependent movement will be used at other times. When [XXX_ddepend_move]{style="color: orange;"} = 7 the prescribed movement will be completely ignored and only simple density dependent movement will be applied at all times.
 
-Note, that currently there is no way to eliminate prescribed movement during spawning for "sticky" density dependent movement. This can however be controlled by setting [feed_while_spawn]{style="color: orange;"} = 1 in the *biology.prm* file.
+Note, that currently there is no way to eliminate prescribed movement during spawning for "sticky" density dependent movement. This can however be controlled by setting [feed_while_spawnXXX]{style="color: orange;"} = 1 in the *biology.prm* file.
 :::
 
 ## Forcing the model distributions with species distribution models 
