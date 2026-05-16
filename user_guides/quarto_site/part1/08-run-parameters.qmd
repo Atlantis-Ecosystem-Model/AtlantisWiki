@@ -136,6 +136,7 @@ The [debug]{style="color: orange;"} parameter triggers `fprintf` lines in the co
 | 27 | C and P code |
 | 28 | SS3 tiered code |
 | 29 | External scaling |
+| 30 | External population model |
 
 : Values for the [debug]{style="color: orange;"} parameter. {#tbl-debug-values tbl-colwidths=[15,85]}
 
