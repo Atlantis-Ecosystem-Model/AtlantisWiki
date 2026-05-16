@@ -51,7 +51,7 @@ The Economics option is only available when dynamic fishing is used (so imposed 
 
 Number of boats, hold size, crew size, behaviour flexibility, costs of fishing, quota allocation
 
-*All fisheries related parameters defined in the* `harvest.prm` *file are identical among subfleets within a fishery, including:*
+*All fisheries related parameters defined in the* *harvest.prm* *file are identical among subfleets within a fishery, including:*
 
 Gear selectivity, target species, fish escapement, incidental mortality, discarding, minimum and maximum fishing depth, fishing habitat characteristics and so on
 :::
