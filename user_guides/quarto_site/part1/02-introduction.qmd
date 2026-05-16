@@ -68,6 +68,10 @@ Atlantis parameters can be grouped into **flags** and **parameters** (in narrow 
 
 Atlantis requires a lot of input files. Some of them are used for external forcing of the model (@fig-atlantis-structure) and will be referred to as **inputs**. They are all listed in the *force.prm* file (note names of files used to run the model will be given simply in italics, to avoid confusing them with code files). Other input files define parameters or groups used in the submodels or simulation conditions and are referred to as **parameter files**. They are all listed in the BAT file used to initialise the runs.
 
+::: {.callout-note}
+Several parameter and group names in Atlantis contain typos that are baked into the source code. Users must spell these names exactly as shown in this manual — matching the code — even when the spelling appears wrong. Known cases include [temp_ampltiude]{style="color: orange;"}, [isLightEffected]{style="color: orange;"}, [isNoiseEffected]{style="color: orange;"}, and `MICROPHTYBENTHOS`.
+:::
+
 Throughout the manual important messages and rules are placed in boxes that start with **NOTE!** Suggestions for good practice rules are given as **Good practice tips**. These tips give ideas on how to ensure reproducibility of your work and also highlight some common mistakes.
 
 Most terms will be explained in the relevant sections of the manual. Here we will introduce only absolutely key ones.
