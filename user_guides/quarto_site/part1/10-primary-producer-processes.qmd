@@ -1,12 +1,12 @@
 # Primary Producer Processes {#sec-primary-producer-processes}
 
-The main Atlantis model has six different types of primary producers, including two sizes of phytoplankton (large phytoplankton LG_PHY and small phytoplankton SM_PHY), mixotrophic dinoflagellates (DINOFLAG), microphytobenthos (MICROPHTYBENTHOS) and two epibenthic groups (seagrasses SEAGRASS and other phytobenthos PHYTOBEN). In models including ice, specific ice primary producers are modelled. Similarly in models that dynamically represent land, the user can define terrestrial vegetation (primary producer) groups, which are restricted to land (e.g. MANGROVE, MARSH, with crops and agriculture also available as an industry if the land use model option is used). The description below will focus on the main model only.
+The main Atlantis model has six different types of primary producers, including two sizes of phytoplankton (large phytoplankton LG_PHY and small phytoplankton SM_PHY), mixotrophic dinoflagellates (DINOFLAG), microphytobenthos (MICROPHYTOBENTHOS) and two epibenthic groups (seagrasses SEAGRASS and other phytobenthos PHYTOBEN). In models including ice, specific ice primary producers are modelled. Similarly in models that dynamically represent land, the user can define terrestrial vegetation (primary producer) groups, which are restricted to land (e.g. MANGROVE, MARSH, with crops and agriculture also available as an industry if the land use model option is used). The description below will focus on the main model only.
 
 ## Fluxes in primary producers 
 
 In primary producer pools the flux is determined by growth (*G~PP~*), natural mortality (*M~PP~*) and grazing (predation) (*Gr~PP,i~*). In addition, there is an optional encystment at certain times of the year or when temperatures (*Ec~out~*) reach a certain trigger level. Transfer back from cysts occurs when conditions are suitable (*Ec~in~*).
 
-Four types of primary producer groups are tracked separately in both the water column and sediments (SM_PHY, LG_PHY, DINOFLAG, MICROPHTYBENTHOS). Two groups are restricted to the epibenthic layer (PHYTOBEN, SEAGRASS). The general flux equation is:
+Four types of primary producer groups are tracked separately in both the water column and sediments (SM_PHY, LG_PHY, DINOFLAG, MICROPHYTOBENTHOS). Two groups are restricted to the epibenthic layer (PHYTOBEN, SEAGRASS). The general flux equation is:
 
 $$\frac{d(PP)}{dt} = G_{PP} - M_{PP} - \sum_{i = predators}{Gr_{PP,i}} - Ec_{out} + Ec_{in}$$
 
@@ -20,7 +20,7 @@ For SM_PHY, LG_PHY, DINOFLAG:
 **In the water column**: the processes executed are growth (primary production) and mortality due to lysis and grazing.
 **In the sediments**: there is no primary production (only mixotrophic production in DINOFLAG), no lysis mortality and no grazing, only linear mortality. 
 
-For MICROPHTYBENTHOS: 
+For MICROPHYTOBENTHOS: 
 **In the water column and sediments**: growth (primary production) and mortality due to grazing are carried out in both locations, with mortality due to lysis in water column or linear mortality in sediments.
 
 For SEAGRASS and PHYTOBEN: 
@@ -147,9 +147,9 @@ Second, the user can add an extra scalar *δ~eddy\ ~*on primary production throu
 
 Primary producer processes are handled differently depending on whether they are in the water column (WC), sediments (SED) or epibenthic layer (EPI).
 
-Four primary producer groups are tracked both in the WC and SED (SM_PHY, LG_PHY, DINOFLAG, MICROPHTYBENTHOS). Two groups are restricted to the epibenthic layer (PHYTOBEN, SEAGRASS) 
+Four primary producer groups are tracked both in the WC and SED (SM_PHY, LG_PHY, DINOFLAG, MICROPHYTOBENTHOS). Two groups are restricted to the epibenthic layer (PHYTOBEN, SEAGRASS) 
 
-**In WC:** phytoplankton groups (SM_PHY, LG_PHY) can only grow (photosynthesise) when they are in the WC. MICROPHTYBENTHOS can grow both in the WC and in SED; for photosynthesis in the SED they use light conditions at the top of the sediment. DINOFLAG do not photosynthesize in the SED, but they can have mixotrophic feeding. Mortality expressed depends on whether it is in the WC and SED: primary producers are affected by linear mortality ([mL_XXX]{style="color: orange;"}) and optional acidification mortality in both locations, but phytoplankton (SM_PHY and LG_PHY) only suffer lysis ([KLYS_XXX]{style="color: orange;"}) in the WC. DINOFLAG and MICROPHYTOBENTHOS have all mortality terms in both locations. Both lysis and other mortality terms are separately scaled by the ***external forced optional mortality scalar***. All mortality products are transferred into the WC or SED labile detritus pools respectively.
+**In WC:** phytoplankton groups (SM_PHY, LG_PHY) can only grow (photosynthesise) when they are in the WC. MICROPHYTOBENTHOS can grow both in the WC and in SED; for photosynthesis in the SED they use light conditions at the top of the sediment. DINOFLAG do not photosynthesize in the SED, but they can have mixotrophic feeding. Mortality expressed depends on whether it is in the WC and SED: primary producers are affected by linear mortality ([mL_XXX]{style="color: orange;"}) and optional acidification mortality in both locations, but phytoplankton (SM_PHY and LG_PHY) only suffer lysis ([KLYS_XXX]{style="color: orange;"}) in the WC. DINOFLAG and MICROPHYTOBENTHOS have all mortality terms in both locations. Both lysis and other mortality terms are separately scaled by the ***external forced optional mortality scalar***. All mortality products are transferred into the WC or SED labile detritus pools respectively.
 
 **In EPI**: epibenthic primary producers are affected by linear mortality ([mL_XXX]{style="color: orange;"}), extra mortality due to waves or fouling ([mS_XXX]{style="color: orange;"}) and optional acidification mortality. Mortality products are transferred to the SED labile and refractory detritus pools; the split between labile and refractory detritus is determined by the [FDL_benth]{style="color: orange;"} parameter.
 :::
