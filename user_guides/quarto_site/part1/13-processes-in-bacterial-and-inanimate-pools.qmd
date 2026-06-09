@@ -1,15 +1,15 @@
-# Process in Baterial and Inanimate Pools {#sec-bacterial-inanimate}
+# Processes in Bacterial and Inanimate Pools {#sec-bacterial-inanimate}
 
-## **Bacterial processes** 
+## Bacterial processes 
 
-sBacteria can be represented explicitly or implicitly in Atlantis. Not all early ecosystem models included bacteria, and PPBIM did not explicitly model bacteria. Below is an excerpt of the PPBIM report justifying the decision not to include bacteria:
+Bacteria can be represented explicitly or implicitly in Atlantis. Not all early ecosystem models included bacteria, and PPBIM did not explicitly model bacteria. Below is an excerpt of the PPBIM report justifying the decision not to include bacteria:
 
 ::: {.callout-note}
-**Reasons for excluding bacteria in PPBIM (from Muray and Parslow 1997)**
+**Reasons for excluding bacteria in PPBIM (from Murray and Parslow 1997)**
 
 "Heterotrophic bacteria have been included explicitly in a number of previous models, most notable Fasham et al. (1990). Bacteria in aquatic ecosystems play a number of important roles. The most important role is to attack, ingest and remineralise both particulate and dissolved organic matter, releasing dissolved inorganic nutrients. This role is represented implicitly in the model by assigning a breakdown rate to the detrital pools. Given the other uncertainties associated with the nature of detritus, and the lack of information on bacterial biomass, growth rates and loss rates in Port Phillip Bay, there is little reason to believe that an explicit model of bacterial dynamics would increase the accuracy of predicted detrital breakdown rates. 
 
-Bacteria can also serve as a food source for microzooplankton, and thereby divert organic matter which would otherwise be \"lost\" back to higher trophic levels. This alternative food source may have some impact on microzooplankton dynamics, and their interaction with small phytoplankton. The small phytoplankton -- microzooplankton interaction is important under oligotrophic conditions, but much less important under the higher nutrient loadings of concern in Port Phillip Bay. Moreover, owing to the inefficiency of the microbial loop, relatively little bacterial production finds it way to higher trophic levels (Ducklow 1991). Recent studies have suggested that a large fraction of water-column bacterial production is not grazed but is killed by viruses instead (Weinbauer and Peduzzi 1995) leading to a further reduction in utilisation of bacterial production by higher trophic levels (Murray and Eldridge 1994)."
+Bacteria can also serve as a food source for microzooplankton, and thereby divert organic matter which would otherwise be \"lost\" back to higher trophic levels. This alternative food source may have some impact on microzooplankton dynamics, and their interaction with small phytoplankton. The small phytoplankton — microzooplankton interaction is important under oligotrophic conditions, but much less important under the higher nutrient loadings of concern in Port Phillip Bay. Moreover, owing to the inefficiency of the microbial loop, relatively little bacterial production finds it way to higher trophic levels (Ducklow 1991). Recent studies have suggested that a large fraction of water-column bacterial production is not grazed but is killed by viruses instead (Weinbauer and Peduzzi 1995) leading to a further reduction in utilisation of bacterial production by higher trophic levels (Murray and Eldridge 1994)."
 :::
 
 Atlantis explicitly models aerobic bacteria in the water column and sediments, identified as pelagic bacteria (PB) and benthic bacteria (BB) respectively. This means that functional groups can feed on bacteria rather than on detritus. The representation of bacteria used in Atlantis does a much better job than old consumption-based representations, which treated bacteria as just another consumer. By making bacterial biomass dependent on the volume of detritus the bacterial processes are dynamically represented in a more rigorous way.
@@ -17,7 +17,7 @@ Atlantis explicitly models aerobic bacteria in the water column and sediments, i
 A precursor to Atlantis also included anaerobic bacteria. At present these are only implicitly represented in Atlantis, but a dynamic form will be added in a future release.
 
 ::: {.callout-note}
-**Key bacterial processes**                                         
+**Key bacterial processes**
 
 The growth of PB and BB bacteria is dynamically dependent on the concentration of labile and refractory detritus (DL and DR), where DL is typically considered a primary food source. **Bacteria uptake both DL and DR and produce DR, DON and NH3**. Bacterial wastes do not contribute to DL but convert detritus into nutrients as part of the nitrification-denitrification and remineralisation processes.
 
@@ -28,26 +28,26 @@ Pelagic bacteria processes are run by the routine *Pelagic_Bacteria_Processes()*
 
 The growth of pelagic bacteria is modelled as
 
-$G_{BP} = mum \cdot B \cdot \left( 1 - \frac{B}{XPB_{DL} \cdot DL + XPB_{DR} \cdot DR} \right)^{kBP}$
+$G_{BP} = mum \cdot B \cdot \left( 1 - \frac{B}{XPB_{DL} \cdot DL + XPB_{DR} \cdot DR} \right)^{k_{PB}}$
 
 where mum is the maximum growth rate ([mum_PB]{style="color: orange;"}), XPB~DL~ and XPB~DR~ is the maximum ratio of the bacteria to DL and DR biomass ([XPB_DL]{style="color: orange;"} and [XPB_DR]{style="color: orange;"} parameters), *B* is the biomass of the pelagic bacteria, *DL* and *DR* is the biomass of labile and refractory detritus and [k_PB]{style="color: orange;"} is the constant determining the exponent of growth (1- linear, 3-drop off before maximum, 5- drop off at maximum). The growth of sediment bacteria (BB) is modelled in the same way, except that [mum_BB]{style="color: orange;"} and [k_BB]{style="color: orange;"} parameters are used.
 
-There is an option to allow for stimulation of bacterial growth by bioirrigation and bioturbation. This option is turned setting [flagbactstim]{style="color: orange;"}=1 and will enhance growth depending on the biomass of infaunal organisms and porosity of the sediment (see @sec-focing-files).
+There is an option to allow for stimulation of bacterial growth by bioirrigation and bioturbation. This option is turned on by setting [flagbactstim]{style="color: orange;"} = 1 and will enhance growth depending on the biomass of infaunal organisms and porosity of the sediment (see @sec-bioirrig-bioturb).
 
 Mortality (non-predation) of pelagic and sediment bacteria is modelled as
 
-$M_{BP} = \ \left( \left( mL + \left( 1 - \delta_{O2} \right) \cdot mO + mA + mS \right) \cdot B_{BP} \right) \cdot mortsc$
+$M_{BP} = \left( \left( mL + \left( 1 - \delta_{O2} \right) \cdot mO + mA + mS \right) \cdot B_{BP} \right) \cdot mortsc$
 
-where *mL* is linear mortality, *mA* is the acidification mortality, *mS* is the extra mortality due to acidification effects, *mO* is the oxygen limitation mortality, where (1-δ~O2~) is the oxygen limitation scalar, *B~PB~* is the biomass of pelagic bacteria (or BB is sediment bacteria are modelled) and *mortsc* is an forced external mortality scalar.
+where *mL* is linear mortality, *mA* is the acidification mortality, *mS* is the extra mortality due to acidification effects, *mO* is the oxygen limitation mortality, where (1-δ~O2~) is the oxygen limitation scalar, *B~PB~* is the biomass of pelagic bacteria (or BB if sediment bacteria are modelled) and *mortsc* is a forced external mortality scalar.
 
-The uptake of detritus by pelagic bacteria is the modelled as
+The uptake of detritus by pelagic bacteria is modelled as
 
 $\frac{d(DL)}{dt} = \frac{Gr_{BP} \cdot PB_{DL}}{B_{BP} \cdot E_{DL,BP}}$
 
-where E~DL,\ PB~ is the assimilation efficiency on labile detritus ([EDL_BP]{style="color: orange;"} for pelagic bacteria and [EDL_BB]{style="color: orange;"} for benthic bacteria) and *PB_DL* is the current (box specific) partitioning of PB to DL (vs DR).
+where *E~DL,PB~* is the assimilation efficiency on labile detritus ([EDL_BP]{style="color: orange;"} for pelagic bacteria and [EDL_BB]{style="color: orange;"} for benthic bacteria) and *PB_DL* is the current (box specific) partitioning of PB to DL (vs DR).
 
-Uptake of refractory detritus DR is modelled in the same way except that PB_DR is used and assimilation efficiencies on refractory detritus is used ([EDR_BP]{style="color: orange;"} and [EDR_BB]{style="color: orange;"}).
+Uptake of refractory detritus DR is modelled in the same way except that PB_DR is used and assimilation efficiencies on refractory detritus are used ([EDR_BP]{style="color: orange;"} and [EDR_BB]{style="color: orange;"}).
 
-## **Biogeochemical processes** 
+## Biogeochemical processes 
 
 Details on the fluxes in the inanimate pools have been described in Fulton et al. 2004a and more recently in Link et al. 2011 [Atlantis-NEUS model report](https://atlantis-ecosystem-model.github.io/atlantis-wiki/useful-reading.html). The table of inanimate pools tracked in the water column and sediments is given in @tbl-state-variables.
