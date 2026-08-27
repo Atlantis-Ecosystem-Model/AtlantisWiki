@@ -45,7 +45,7 @@ A lot of management decisions are based on TACs — when a fishery exceeds its T
 
 1)  **Pseudo assessments** (done if [pseudo_assess]{style="color: orange;"} = 1 in *harvest.prm*) are the simplest version of stock assessments. It uses Atlantis biomasses and a random error added to them as inputs into the fishing mortality estimator and harvest control rule calculations.
 
-2)  **Full integrated assessment**, done in the **Assessment** submodel. This is done only if the *run.bat* file has a set --a parameter with *assessment.prm* parameter file. A number of assessment options are possible: Schaefer production model, ADAPT , MSVPA Integrated assessment model (CAB) and R-based assessment calls (please see the wiki).
+2)  **Full integrated assessment**, done in the **Assessment** submodel. This is done only if the *run.bat* file has a set --a parameter with *assessment.prm* parameter file. A number of assessment options are possible: Schaefer production model, ADAPT , MSVPA Integrated assessment model (CAB) and R-based assessment calls (@sec-Rlink-tac).
 
 3)  **Recommended biological catch based assessment** using tiered harvest control rules (applied if [useRBCTiers]{style="color: orange;"} = 1 in *harvest.prm*). The tier based assessment follows the harvest control rule hierarchy used in Australia and is specified in the *CallTierAssessment()* routine. It includes a (i) full quantitative population model based (e.g. SS3), (ii) catch curves, (iii) CPUE, (iv) surplus production, (v), average length, (vi) trigger points, and (vii) catch composition. The parameters for these options are specified in *assessment.prm*.
 
@@ -87,7 +87,7 @@ The TACs are set for each species and fishery combination. They are initially se
 
 Forced changes are implemented in the same way as other forced changes in Atlantis parameters, where users have to set the dates and magnitude of the change. This is described in @sec-temporal-tac-changes.
 
-Dynamic changes are applied if users have at least one of the three available stock assessment versions applied. This means that Atlantis will try to simulate the real-world situation where stocks are assessed at set time intervals (typically annually) and the TACs are updated dynamically based on the stock status, set stock biomass targets and harvest control rules (see Note! @sec-mgmt-intro)
+Dynamic changes are applied if users have at least one of the three available stock assessment versions applied or are using Rlink. This means that Atlantis will try to simulate the real-world situation where stocks are assessed at set time intervals (typically annually) and the TACs are updated dynamically based on the stock status, set stock biomass targets and harvest control rules (see Note! @sec-mgmt-intro)
 :::
 
 ::: {.scroll-frozen style="overflow-x: auto;"}
@@ -302,6 +302,56 @@ Some species are managed using biomass thresholds, if biomass is above a specifi
 | [YYY_TACchange]{style="color: orange;"} | If > 0, TACs can change during the simulation run. If [YYY_TACchange]{style="color: orange;"} = 2 then forced changes are applied as described in @sec-temporal-changes-harvest and @sec-temporal-tac-changes. If [YYY_TACchange]{style="color: orange;"} = 1, then dynamic changes in TACs are used, but this option must have some form of the stock assessment applied (see Note! @sec-mgmt-intro). |
 
 : Parameters used in stock adaptive and TAC based management. {#tbl-tac-management-parameters tbl-colwidths=[25,75]}
+
+
+### ***Dynamic TAC using R-link*** {#sec-Rlink-tac}
+
+
+Dynamic TAC values can be set using a connection between R and Atlantis (R-link). R scripts read output data from Atlantis, perform stock assessments, and return updated TAC values for each species–fleet combination in the same format as the [TAC_XXX]{style="color: orange;"} parameter. 
+
+The R-link requires parameters from the *assess.prm* and is executed annually through the function *Do_RAssess()* in **atRlinkRAssess.c**. Each time it runs, Do_RAssess() performs three steps: it creates an input file for each functional group, executes the corresponding R script, and reads the R output back into the relevant Atlantis arrays (i.e. the *TACamt* array). Note that Do_RAssess() does not run until the end of the first model year — TAC values from [TAC_XXX]{style="color: orange;"} are therefore used during the first year.  If needed, *RAssessSurvey()* can be called twice a year to provide input data for the R scripts.
+
+R-based assessment is run independently for each species where [isTAC]{style="color: orange;"} is set to 2 in *functional_groups.csv*. The name of the R-scripts are set with the parameter [RAssessRscriptName0]{style="color: orange;"} (*MyTACscript.R*) and the name of the functional group XXX will be added in front. Therefore, if a group XXX has [whichRAssess_XXX]{style="color: orange;"} set to 0, R will run an R-script named *XXX_MyTACscript.R*. Different R-script can therefore be used for each functional group. It is also possible to have different base names for the R-scripts by setting [NumRAssessScriptNames]{style="color: orange;"} to the number of Rscripts and then add parameters, [RAssessRscriptName1]{style="color: orange;"} (*MyOtherTACscript.R*) etc. Functional group with [whichRAssess_XXX]{style="color: orange;"} set to 1 will use a script with the name (*XXX_MyOtherTACscript.R*).
+
+TAC-based management can be applied to both F-mortality based fisheries and effort-based fisheries, with the exception of forced effort fisheries. For F-mortality based fisheries, TAC-based management is enabled using the flag [flag_stop_F_tac]{style="color: orange;"}. The parameterization described in the sections above applies equally to R-based TAC management.
+
+The R script must write its output to a file named according to [RAssessRoutName]{style="color: orange;"} (*Rassess.out*). The output file must contain two columns: the first listing the fishery IDs and the second the corresponding TAC values for functional group XXX. Atlantis will then read in a file called *XXX_Rassess.out* in the function *Read_RAssess_output()* to write the TAC values for each species into the TAC array (*TACamt*).
+
+Below is a minimal example R script for a functional group FHA and 17 fleets:
+ 
+```
+setwd("/app/model/output/")
+
+##cat(as.character(Sys.time()), "After setwd:", getwd(), "\n", file = "FHA_Rassess_called.log", append = TRUE)
+
+infilename <- "FHA_RAssessinput.csv"
+outfilename <- "FHA_Rassess.out"
+catchdata <- "OutCatch.txt"
+
+df <- read.csv(infilename, header = TRUE, sep = ";")
+df_catch <- read.table(catchdata, header = T)
+
+newyear <- max(df_catch$Time)
+totcatch <- df_catch$FHA[df_catch$Time == newyear]
+
+dfTAC <- data.frame(fishery_id = 0:16, TAC = c(totcatch*0.8*1000,rep(0,16)))
+write.table(dfTAC, file = outfilename, row.names = FALSE, quote = FALSE)
+
+cat("R done\n")
+```
+
+
+| **Parameter** | **Description** |
+|:--------------|:----------------|
+| [UsingRAssess]{style="color: orange;"} | Set to 1 to activate the R-link, or 0 to disable it. |
+| [whichRAssess_XXX]{style="color: orange;"} | Specifies which R assessment script to use for each functional group. Set to 0 to use the script defined by [RAssessRscriptName0]{style="color: orange;"}, or -1 to exclude the group from assessment. |
+| [RAssessRuseScript]{style="color: orange;"} | Controls how Atlantis calls R. Set to 1 to run external R scripts via system calls, or 0 to use embedded R calls directly within Atlantis. |
+| [RAssessRoutName]{style="color: orange;"} | Specifies the base name of the RAssess output files. When RAssess runs, the functional group name is automatically prepended to this base name to generate one output file per functional group. Each file contains the TAC values that Atlantis reads and writes into the corresponding model arrays. |
+| [NumRAssessScriptNames]{style="color: orange;"} | Number of R-scripts used |
+| [RAssessRscriptName0]{style="color: orange;"} | Specifies the base name of the R script used for stock assessment and TAC calculation. The name of each functional group where [whichRAssess_XXX]{style="color: orange;"} is set to 0 is automatically prepended to this base name. This allows a different R script to be specified for each functional group.
+: Parameters in assess.prm used for dynamic TAC with R-link. {#tbl-Rlink-parameters tbl-colwidths=[25,75]}
+
+
 
 
 ## Broken stick harvest control rules and broken stick scalar {#sec-broken-stick-hcr}
