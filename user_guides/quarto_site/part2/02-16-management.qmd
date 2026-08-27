@@ -304,7 +304,7 @@ Some species are managed using biomass thresholds, if biomass is above a specifi
 : Parameters used in stock adaptive and TAC based management. {#tbl-tac-management-parameters tbl-colwidths=[25,75]}
 
 
-### ***Dynamic TAC using R-link*** {#sec-Rlink-tac}
+### Dynamic TAC using R-link {#sec-Rlink-tac}
 
 
 Dynamic TAC values can be set using a connection between R and Atlantis (R-link). R scripts read output data from Atlantis, perform stock assessments, and return updated TAC values for each species–fleet combination in the same format as the [TAC_XXX]{style="color: orange;"} parameter. 
@@ -313,7 +313,7 @@ The R-link requires parameters from the *assess.prm* and is executed annually th
 
 R-based assessment is run independently for each species where [isTAC]{style="color: orange;"} is set to 2 in *functional_groups.csv*. The name of the R-scripts are set with the parameter [RAssessRscriptName0]{style="color: orange;"} (*MyTACscript.R*) and the name of the functional group XXX will be added in front. Therefore, if a group XXX has [whichRAssess_XXX]{style="color: orange;"} set to 0, R will run an R-script named *XXX_MyTACscript.R*. Different R-script can therefore be used for each functional group. It is also possible to have different base names for the R-scripts by setting [NumRAssessScriptNames]{style="color: orange;"} to the number of Rscripts and then add parameters, [RAssessRscriptName1]{style="color: orange;"} (*MyOtherTACscript.R*) etc. Functional group with [whichRAssess_XXX]{style="color: orange;"} set to 1 will use a script with the name (*XXX_MyOtherTACscript.R*).
 
-TAC-based management can be applied to both F-mortality based fisheries and effort-based fisheries, with the exception of forced effort fisheries. For F-mortality based fisheries, TAC-based management is enabled using the flag [flag_stop_F_tac]{style="color: orange;"}. The parameterization described in the sections above applies equally to R-based TAC management.
+TAC-based management can be applied to both F-mortality based fisheries and effort-based fisheries, with the exception of forced effort fisheries. For F-mortality based fisheries, TAC-based management is enabled using the flag [flag_stop_F_tac]{style="color: orange;"}. The parameterization described in the sections above applies equally to R-based TAC management as for the effort it goes into the function *TAC_Check()* to check if the effort should be scaled by TAC.
 
 The R script must write its output to a file named according to [RAssessRoutName]{style="color: orange;"} (*Rassess.out*). The output file must contain two columns: the first listing the fishery IDs and the second the corresponding TAC values for functional group XXX. Atlantis will then read in a file called *XXX_Rassess.out* in the function *Read_RAssess_output()* to write the TAC values for each species into the TAC array (*TACamt*).
 
@@ -326,15 +326,19 @@ setwd("/app/model/output/")
 
 infilename <- "FHA_RAssessinput.csv"
 outfilename <- "FHA_Rassess.out"
+
+# Optional data from the Atlantis output
 catchdata <- "OutCatch.txt"
 
 df <- read.csv(infilename, header = TRUE, sep = ";")
 df_catch <- read.table(catchdata, header = T)
 
+# TAC calculations
 newyear <- max(df_catch$Time)
 totcatch <- df_catch$FHA[df_catch$Time == newyear]
+TAC_FHA <-  totcatch*0.8*1000
 
-dfTAC <- data.frame(fishery_id = 0:16, TAC = c(totcatch*0.8*1000,rep(0,16)))
+dfTAC <- data.frame(fishery_id = 0:16, TAC = c(TAC_FHA,rep(100000000,16)))
 write.table(dfTAC, file = outfilename, row.names = FALSE, quote = FALSE)
 
 cat("R done\n")
@@ -345,7 +349,7 @@ cat("R done\n")
 |:--------------|:----------------|
 | [UsingRAssess]{style="color: orange;"} | Set to 1 to activate the R-link, or 0 to disable it. |
 | [whichRAssess_XXX]{style="color: orange;"} | Specifies which R assessment script to use for each functional group. Set to 0 to use the script defined by [RAssessRscriptName0]{style="color: orange;"}, or -1 to exclude the group from assessment. |
-| [RAssessRuseScript]{style="color: orange;"} | Controls how Atlantis calls R. Set to 1 to run external R scripts via system calls, or 0 to use embedded R calls directly within Atlantis. |
+| [RAssessRuseScript]{style="color: orange;"} | Controls how Atlantis calls R. Set to 1 to run external R scripts via system calls (i.e. to use the script named in RAssessRscriptName0), or 0 to use embedded R calls directly within Atlantis. |
 | [RAssessRoutName]{style="color: orange;"} | Specifies the base name of the RAssess output files. When RAssess runs, the functional group name is automatically prepended to this base name to generate one output file per functional group. Each file contains the TAC values that Atlantis reads and writes into the corresponding model arrays. |
 | [NumRAssessScriptNames]{style="color: orange;"} | Number of R-scripts used |
 | [RAssessRscriptName0]{style="color: orange;"} | Specifies the base name of the R script used for stock assessment and TAC calculation. The name of each functional group where [whichRAssess_XXX]{style="color: orange;"} is set to 0 is automatically prepended to this base name. This allows a different R script to be specified for each functional group.

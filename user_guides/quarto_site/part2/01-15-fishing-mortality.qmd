@@ -695,6 +695,56 @@ where *Biom~targ,i~* is the biomass of all target species in box *i* (which has 
 
 If CPUE did not fall below the threshold, but MPAs are imposed, the effort displacement will still occur (if [flagdisplace]{style="color: orange;"} = 1). The amount of effort displaced is the difference between the original effort in the box and the effort left after the MPA restrictions are imposed (the MPA scalar).
 
+
+### Effort reallocation using R-link {#sec-effort-Rlink} 
+
+Fishing effort can be dynamically reallocated annually across spatial boxes for each season and fishery using effort model 3. The R-link allows external R scripts to control this reallocation, following the same setup procedure as described for dynamic TAC in @sec-Rlink-tac. A functional group that is not subject to stock assessment (TAC via the R-link) is designated to represent the effort allocation.
+
+The format of the R script output file follows the parameterisation of effort model 3. The horizontal distribution of effort across boxes can vary by season, defined by the parameters [Effort_hdistribYYY1]{style="color: orange;"} through [Effort_hdistribYYY4]{style="color: orange;"}. The total effort per day in season 1 is calculated as [YYY_Effort]{style="color: orange;"} multiplied by [mEf1f_YYY]{style="color: orange;"}. 
+
+The minimal R script below produces the effort output file for a single fishery. Additional fisheries can be incorporated by adding further rows to the data frame before writing the output file. Note that the effort and meff1 through meff4 values should be identical across all boxes within each fishery. The output from R is read into Atlantis in the function *Read_RAssess_output()*.
+
+```
+setwd("/app/model/output/")
+
+##cat(as.character(Sys.time()), "After setwd:", getwd(), "\n", file = "SB_Rassess_called.log", append = TRUE)
+
+infilename <- "SB_RAssessinput.csv"
+outfilename <- "SB_Rassess.out"
+catchdata <- "OutCatch.txt"
+
+df <- read.csv(infilename, header = TRUE, sep = ";")
+df_catch <- read.table(catchdata, header = T)
+
+# Horizontal distribution of effort (should have the same lengt as number of boxes)
+hdist <- c(
+  0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.05, 0.05, 0.0, 0.0,
+  0.05, 0.0, 0.0, 0.05, 0.05, 0.05, 0.0, 0.0, 0.0, 0.0,
+  0.05, 0.05, 0.05, 0.5, 0.5, 0.0, 0.0, 0.0, 0.0, 0.05,
+  0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.0, 0.0, 0.0,
+  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+  0.0, 0.0, 0.0
+)
+
+
+dfEffort <- data.frame(box = 0:52, 
+                       fishery = 0,
+                       Effort_hdistrib1 = hdist,
+                       Effort_hdistrib2 = hdist,
+                       Effort_hdistrib3 = hdist,
+                       Effort_hdistrib4 = hdist,
+                       meff1 = 1,
+                       meff2 = 1,
+                       meff3 = 0,
+                       meff4 = 1.5,
+                       effort = 80000)
+
+write.table(dfEffort, file = outfilename, row.names = FALSE, quote = FALSE)
+
+cat("R done\n")
+```
+
+
 ### Effort caps {#sec-effort-caps}
 
 The next routine applied is *Check_Cap()* which allows for the implementation of effort caps (effort quotas) or can be used to more evenly smear effort through time (effectively imposing effort-based trip limits earlier in a season)*.* The users can set a maximum annual effort applied by a fishery. This is done by [YYY_flagcap]{style="color: orange;"} = 1. If effort caps are applied then the user should provide a cap of effort for each fishery in [YYY_cap]{style="color: orange;"} parameter (in total number of days fished per year). If after all calculations and adjustments, the cumulative effort applied is above the cap then fishing will cease.
